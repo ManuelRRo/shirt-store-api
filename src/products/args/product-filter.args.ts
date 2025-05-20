@@ -7,6 +7,9 @@ export class ProductFilteArgs {
   brand_id?: string;
 
   @Field({ nullable: true })
+  parentCategory?: string;
+
+  @Field({ nullable: true })
   categoryId?: string;
 
   @Field(() => Size, { nullable: true })

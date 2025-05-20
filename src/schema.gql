@@ -53,13 +53,22 @@ enum TextColors {
 type Query {
   brands(offset: Int!, limit: Int!): [Brand!]!
   brand(id: String!): Brand!
-  products(brand_id: String, categoryId: String, size: Size, textColor: TextColors): [Products!]!
+  product(id: String!): Products!
+  products(brand_id: String, parentCategory: String, categoryId: String, size: Size, textColor: TextColors): [Products!]!
 }
 
 type Mutation {
   newBrand(input: CreateBrandInput!): Brand!
+  newProduct(input: CreateProductInput!): Products!
 }
 
 input CreateBrandInput {
   name: String!
+}
+
+input CreateProductInput {
+  brand_id: String!
+  name: String!
+  price: Float!
+  categoryId: String!
 }

@@ -1,13 +1,13 @@
 import { Field, Int, ObjectType, registerEnumType } from '@nestjs/graphql';
 
 export enum Size {
-  NONE = 'None',
+  NONE = 'NONE',
   SMALL = 'SMALL',
   MEDIUM = 'MEDIUM',
   LARGE = 'LARGE',
   X_LARGE = 'X_LARGE',
-  XX_LARGE = 'XXLARGE',
-  S4YEARS_XS = '4YEARS_XS',
+  XX_LARGE = 'XX_LARGE',
+  S4YEARS_XS = 'S4YEARS_XS',
 }
 
 export enum TextColor {
@@ -16,12 +16,12 @@ export enum TextColor {
   BLUE = 'BLUE',
   YELLOW = 'YELLOW',
   PINK = 'PINK',
-  SKY_BLUE = 'Sky blue',
-  BROWN = 'Brown',
+  SKY_BLUE = 'SKY_BLUE',
+  BROWN = 'BROWN',
   BLACK = 'BLACK',
   WHITE = 'WHITE',
   ORANGE = 'ORANGE',
-  PURPLE = 'Purple',
+  PURPLE = 'PURPLE',
 }
 
 registerEnumType(Size, {

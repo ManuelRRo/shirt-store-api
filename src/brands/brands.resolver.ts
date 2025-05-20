@@ -5,12 +5,14 @@ import {
   Parent,
   Args,
   Int,
+  Mutation,
 } from '@nestjs/graphql';
 import { BrandsService } from './brands.service';
 import { Brand } from './types/brand.type';
 import { Products } from 'src/products/types/products.type';
 import { ProductsService } from 'src/products/products.service';
 import { BrandsArgs } from './args/brands.args';
+import { CreateBrandInput } from './input/create-brand.input';
 
 @Resolver(() => Brand)
 export class BrandsResolver {
@@ -30,6 +32,11 @@ export class BrandsResolver {
   @Query(() => Brand, { name: 'brand' })
   async getBrandById(@Args('id') id: string) {
     return this.brandsService.getBrandById(id);
+  }
+
+  @Mutation(() => Brand, { name: 'newBrand' })
+  createBrand(@Args('input') input: CreateBrandInput) {
+    return this.brandsService.createBrand(input);
   }
 
   @ResolveField(() => [Products])

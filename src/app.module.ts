@@ -10,6 +10,8 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ProductsModule } from './products/products.module';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { VariantsModule } from './variants/variants.module';
+import { ProductCategoriesModule } from './product-categories/product-categories.module';
+import { CategoriesModule } from './categories/categories.module';
 
 @Module({
   imports: [
@@ -27,6 +29,8 @@ import { VariantsModule } from './variants/variants.module';
     BrandsModule,
     ProductsModule,
     VariantsModule,
+    ProductCategoriesModule,
+    CategoriesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

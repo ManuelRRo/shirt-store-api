@@ -9,6 +9,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ProductsModule } from './products/products.module';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
+import { VariantsModule } from './variants/variants.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin
     AuthModule,
     BrandsModule,
     ProductsModule,
+    VariantsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

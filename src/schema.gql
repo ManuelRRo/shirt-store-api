@@ -13,6 +13,41 @@ type Products {
   name: String!
   price: Float!
   brand: Brand!
+  Variants: [Variants!]!
+}
+
+type Variants {
+  id: String!
+  size: Size!
+  textColor: TextColors!
+  rgb: String!
+  stock: Int!
+}
+
+"""Sizes shirts"""
+enum Size {
+  NONE
+  SMALL
+  MEDIUM
+  LARGE
+  X_LARGE
+  XX_LARGE
+  S4YEARS_XS
+}
+
+"""Colors Shirts"""
+enum TextColors {
+  NONE
+  GREEN
+  BLUE
+  YELLOW
+  PINK
+  SKY_BLUE
+  BROWN
+  BLACK
+  WHITE
+  ORANGE
+  PURPLE
 }
 
 type Query {

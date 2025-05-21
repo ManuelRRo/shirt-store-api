@@ -3,15 +3,21 @@ import { Products } from 'generated/prisma';
 import { BrandsArgs } from 'src/brands/args/brands.args';
 import { PrismaService } from 'src/prisma.service';
 import { ProductFilteArgs } from './args/product-filter.args';
-import { CreateProductInput } from './inputs/create-product.input';
+import { ProductInput } from './inputs/create-product.input';
 import { Size, TextColor } from 'src/variants/types/variants.type';
 
 @Injectable()
 export class ProductsService {
   constructor(private prisma: PrismaService) {}
 
-  async products(filters: ProductFilteArgs): Promise<Products[]> {
+  async products(
+    filters: ProductFilteArgs,
+    offset: number,
+    limit: number,
+  ): Promise<Products[]> {
     return await this.prisma.products.findMany({
+      skip: offset,
+      take: limit,
       where: {
         AND: [
           // Filter by brand if provided
@@ -99,8 +105,34 @@ export class ProductsService {
     });
   }
 
-  async createProduct(input: CreateProductInput) {
+  async createProduct(input: ProductInput) {
     return this.prisma.products.create({
+      data: {
+        brand_id: input.brand_id,
+        name: input.name,
+        price: input.price,
+        productCategories: {
+          create: {
+            categoryId: input.categoryId,
+          },
+        },
+      },
+      include: {
+        productCategories: {
+          include: {
+            categories: true,
+          },
+        },
+        brand: true,
+      },
+    });
+  }
+
+  async updateProduct(input: ProductInput, id: string) {
+    return this.prisma.products.update({
+      where: {
+        id,
+      },
       data: {
         brand_id: input.brand_id,
         name: input.name,

@@ -54,19 +54,20 @@ type Query {
   brands(offset: Int!, limit: Int!): [Brand!]!
   brand(id: String!): Brand!
   product(id: String!): Products!
-  products(brand_id: String, parentCategory: String, categoryId: String, size: Size, textColor: TextColors): [Products!]!
+  products(brand_id: String, parentCategory: String, categoryId: String, size: Size, textColor: TextColors, offset: Int!, limit: Int!): [Products!]!
 }
 
 type Mutation {
   newBrand(input: CreateBrandInput!): Brand!
-  newProduct(input: CreateProductInput!): Products!
+  newProduct(input: ProductInput!): Products!
+  updateProduct(input: ProductInput!, id: String!): Products!
 }
 
 input CreateBrandInput {
   name: String!
 }
 
-input CreateProductInput {
+input ProductInput {
   brand_id: String!
   name: String!
   price: Float!

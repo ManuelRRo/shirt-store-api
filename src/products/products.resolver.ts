@@ -4,6 +4,7 @@ import {
   Parent,
   Query,
   ResolveField,
+  Int,
   Resolver,
 } from '@nestjs/graphql';
 import { ProductsService } from './products.service';
@@ -11,7 +12,7 @@ import { Products } from './types/products.type';
 import { Variants } from 'src/variants/types/variants.type';
 import { VariantsService } from 'src/variants/variants.service';
 import { ProductFilteArgs } from './args/product-filter.args';
-import { CreateProductInput } from './inputs/create-product.input';
+import { ProductInput } from './inputs/create-product.input';
 
 @Resolver(() => Products)
 export class ProductsResolver {
@@ -26,13 +27,22 @@ export class ProductsResolver {
   }
 
   @Query(() => [Products], { name: 'products' })
-  getProducts(@Args() filterArgs: ProductFilteArgs) {
-    return this.productsService.products(filterArgs);
+  getProducts(
+    @Args() filterArgs: ProductFilteArgs,
+    @Args('offset', { type: () => Int }) offset: number,
+    @Args('limit', { type: () => Int }) limit: number,
+  ) {
+    return this.productsService.products(filterArgs, offset, limit);
   }
 
   @Mutation(() => Products, { name: 'newProduct' })
-  createNewProduct(@Args('input') input: CreateProductInput) {
+  createNewProduct(@Args('input') input: ProductInput) {
     return this.productsService.createProduct(input);
+  }
+
+  @Mutation(() => Products, { name: 'updateProduct' })
+  updateProduct(@Args('input') input: ProductInput, @Args('id') id: string) {
+    return this.productsService.updateProduct(input, id);
   }
 
   @ResolveField(() => [Variants])

@@ -4,22 +4,68 @@ import { BrandsArgs } from 'src/brands/args/brands.args';
 import { PrismaService } from 'src/prisma.service';
 import { ProductFilteArgs } from './args/product-filter.args';
 import { CreateProductInput } from './inputs/create-product.input';
+import { Size, TextColor } from 'src/variants/types/variants.type';
 
 @Injectable()
 export class ProductsService {
   constructor(private prisma: PrismaService) {}
 
   async products(filters: ProductFilteArgs): Promise<Products[]> {
-    return this.prisma.products.findMany({
+    return await this.prisma.products.findMany({
       where: {
+        AND: [
+          // Filter by brand if provided
+          filters.brand_id ? { brand_id: filters.brand_id } : {},
+
+          // Filter by variants if provided
+          filters.size || filters.textColor
+            ? {
+                variants: {
+                  some: {
+                    AND: [
+                      filters.size && filters.size !== Size.NONE
+                        ? { size: filters.size }
+                        : {},
+                      filters.textColor && filters.textColor !== TextColor.NONE
+                        ? { textColor: filters.textColor }
+                        : {},
+                    ].filter((condition) => Object.keys(condition).length > 0),
+                  },
+                },
+              }
+            : {},
+
+          // Filter by category if provided
+          filters.categoryId || filters.parentCategory
+            ? {
+                productCategories: {
+                  some: {
+                    AND: [
+                      filters.categoryId
+                        ? { categoryId: filters.categoryId }
+                        : {},
+                      filters.parentCategory
+                        ? { categories: { parentId: filters.parentCategory } }
+                        : {},
+                    ].filter((condition) => Object.keys(condition).length > 0),
+                  },
+                },
+              }
+            : {},
+        ].filter((condition) => Object.keys(condition).length > 0),
+      },
+      include: {
+        brand: true,
+        variants: true,
         productCategories: {
-          some: {
-            categoryId: filters.categoryId,
+          include: {
+            categories: true,
           },
         },
       },
     });
   }
+
   async product(productId: string) {
     return this.prisma.products.findFirst({
       where: {

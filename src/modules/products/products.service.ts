@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { Products } from 'generated/prisma';
 import { PrismaService } from 'src/prisma.service';
 import { ProductFilteArgs } from './args/product-filter.args';
@@ -10,7 +10,10 @@ import { UpdateProductInput } from './inputs/updateProduct.input';
 
 @Injectable()
 export class ProductsService {
-  constructor(private prisma: PrismaService) {}
+  logger: Logger;
+  constructor(private prisma: PrismaService) {
+    this.logger = new Logger();
+  }
 
   async products(
     filters: ProductFilteArgs,
@@ -130,6 +133,8 @@ export class ProductsService {
   }
 
   async updateProduct(input: UpdateProductInput) {
+    this.logger.debug(input);
+
     return this.prisma.products.update({
       where: {
         id: input.id,
@@ -139,18 +144,15 @@ export class ProductsService {
         name: input.patch.name,
         price: input.patch.price,
         productCategories: {
-          create: {
-            categoryId: input.patch.categoryId,
-          },
+          connect: input.patch.categoryId
+            ? {
+                productId_categoryId: {
+                  productId: input.id,
+                  categoryId: input.patch.categoryId,
+                },
+              }
+            : undefined,
         },
-      },
-      include: {
-        productCategories: {
-          include: {
-            categories: true,
-          },
-        },
-        brand: true,
       },
     });
   }

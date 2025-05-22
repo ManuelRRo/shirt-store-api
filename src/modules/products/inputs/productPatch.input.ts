@@ -2,15 +2,15 @@ import { Field, Float, InputType } from '@nestjs/graphql';
 
 @InputType()
 export class PatchProductInput {
-  @Field()
-  brand_id: string;
+  @Field({ nullable: true })
+  brand_id?: string;
 
-  @Field()
-  name: string;
+  @Field({ nullable: true })
+  name?: string;
 
-  @Field(() => Float)
-  price: number;
+  @Field(() => Float, { nullable: true })
+  price?: number;
 
-  @Field()
-  categoryId: string;
+  @Field({ nullable: true })
+  categoryId?: string;
 }

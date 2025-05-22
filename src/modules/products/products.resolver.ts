@@ -60,6 +60,6 @@ export class ProductsResolver {
 
   @ResolveField(() => [Variants])
   Variants(@Parent() product: Products) {
-    return this.variantsService.getVariantsByProductId(product.id);
+    return this.variantsService.getVariantsByProductId(product.id); //Usar data loader o on demand or include
   }
 }

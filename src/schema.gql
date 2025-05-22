@@ -82,10 +82,10 @@ input UpdateProductInput {
 }
 
 input PatchProductInput {
-  brand_id: String!
-  name: String!
-  price: Float!
-  categoryId: String!
+  brand_id: String
+  name: String
+  price: Float
+  categoryId: String
 }
 
 input ProductActiveInput {

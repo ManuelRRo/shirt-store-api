@@ -7585,6 +7585,7 @@ export namespace Prisma {
     price: number | null
     created_at: Date | null
     updated_at: Date | null
+    active: boolean | null
     brand_id: string | null
   }
 
@@ -7594,6 +7595,7 @@ export namespace Prisma {
     price: number | null
     created_at: Date | null
     updated_at: Date | null
+    active: boolean | null
     brand_id: string | null
   }
 
@@ -7603,6 +7605,7 @@ export namespace Prisma {
     price: number
     created_at: number
     updated_at: number
+    active: number
     brand_id: number
     _all: number
   }
@@ -7622,6 +7625,7 @@ export namespace Prisma {
     price?: true
     created_at?: true
     updated_at?: true
+    active?: true
     brand_id?: true
   }
 
@@ -7631,6 +7635,7 @@ export namespace Prisma {
     price?: true
     created_at?: true
     updated_at?: true
+    active?: true
     brand_id?: true
   }
 
@@ -7640,6 +7645,7 @@ export namespace Prisma {
     price?: true
     created_at?: true
     updated_at?: true
+    active?: true
     brand_id?: true
     _all?: true
   }
@@ -7736,6 +7742,7 @@ export namespace Prisma {
     price: number
     created_at: Date
     updated_at: Date
+    active: boolean
     brand_id: string
     _count: ProductsCountAggregateOutputType | null
     _avg: ProductsAvgAggregateOutputType | null
@@ -7764,6 +7771,7 @@ export namespace Prisma {
     price?: boolean
     created_at?: boolean
     updated_at?: boolean
+    active?: boolean
     brand_id?: boolean
     brand?: boolean | BrandsDefaultArgs<ExtArgs>
     orderDetails?: boolean | Products$orderDetailsArgs<ExtArgs>
@@ -7779,6 +7787,7 @@ export namespace Prisma {
     price?: boolean
     created_at?: boolean
     updated_at?: boolean
+    active?: boolean
     brand_id?: boolean
     brand?: boolean | BrandsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["products"]>
@@ -7789,6 +7798,7 @@ export namespace Prisma {
     price?: boolean
     created_at?: boolean
     updated_at?: boolean
+    active?: boolean
     brand_id?: boolean
     brand?: boolean | BrandsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["products"]>
@@ -7799,10 +7809,11 @@ export namespace Prisma {
     price?: boolean
     created_at?: boolean
     updated_at?: boolean
+    active?: boolean
     brand_id?: boolean
   }
 
-  export type ProductsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "price" | "created_at" | "updated_at" | "brand_id", ExtArgs["result"]["products"]>
+  export type ProductsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "price" | "created_at" | "updated_at" | "active" | "brand_id", ExtArgs["result"]["products"]>
   export type ProductsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     brand?: boolean | BrandsDefaultArgs<ExtArgs>
     orderDetails?: boolean | Products$orderDetailsArgs<ExtArgs>
@@ -7833,6 +7844,7 @@ export namespace Prisma {
       price: number
       created_at: Date
       updated_at: Date
+      active: boolean
       brand_id: string
     }, ExtArgs["result"]["products"]>
     composites: {}
@@ -8267,6 +8279,7 @@ export namespace Prisma {
     readonly price: FieldRef<"Products", 'Float'>
     readonly created_at: FieldRef<"Products", 'DateTime'>
     readonly updated_at: FieldRef<"Products", 'DateTime'>
+    readonly active: FieldRef<"Products", 'Boolean'>
     readonly brand_id: FieldRef<"Products", 'String'>
   }
     
@@ -15289,6 +15302,7 @@ export namespace Prisma {
     price: 'price',
     created_at: 'created_at',
     updated_at: 'updated_at',
+    active: 'active',
     brand_id: 'brand_id'
   };
 
@@ -15442,6 +15456,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'Size'
    */
   export type EnumSizeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Size'>
@@ -15466,13 +15487,6 @@ export namespace Prisma {
    * Reference to a field of type 'TextColor[]'
    */
   export type ListEnumTextColorFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TextColor[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
   /**
    * Deep Input Types
@@ -15751,6 +15765,7 @@ export namespace Prisma {
     price?: FloatFilter<"Products"> | number
     created_at?: DateTimeFilter<"Products"> | Date | string
     updated_at?: DateTimeFilter<"Products"> | Date | string
+    active?: BoolFilter<"Products"> | boolean
     brand_id?: StringFilter<"Products"> | string
     brand?: XOR<BrandsScalarRelationFilter, BrandsWhereInput>
     orderDetails?: OrderDetailsListRelationFilter
@@ -15765,6 +15780,7 @@ export namespace Prisma {
     price?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    active?: SortOrder
     brand_id?: SortOrder
     brand?: BrandsOrderByWithRelationInput
     orderDetails?: OrderDetailsOrderByRelationAggregateInput
@@ -15782,6 +15798,7 @@ export namespace Prisma {
     price?: FloatFilter<"Products"> | number
     created_at?: DateTimeFilter<"Products"> | Date | string
     updated_at?: DateTimeFilter<"Products"> | Date | string
+    active?: BoolFilter<"Products"> | boolean
     brand_id?: StringFilter<"Products"> | string
     brand?: XOR<BrandsScalarRelationFilter, BrandsWhereInput>
     orderDetails?: OrderDetailsListRelationFilter
@@ -15796,6 +15813,7 @@ export namespace Prisma {
     price?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    active?: SortOrder
     brand_id?: SortOrder
     _count?: ProductsCountOrderByAggregateInput
     _avg?: ProductsAvgOrderByAggregateInput
@@ -15813,6 +15831,7 @@ export namespace Prisma {
     price?: FloatWithAggregatesFilter<"Products"> | number
     created_at?: DateTimeWithAggregatesFilter<"Products"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"Products"> | Date | string
+    active?: BoolWithAggregatesFilter<"Products"> | boolean
     brand_id?: StringWithAggregatesFilter<"Products"> | string
   }
 
@@ -16400,6 +16419,7 @@ export namespace Prisma {
     price: number
     created_at?: Date | string
     updated_at?: Date | string
+    active?: boolean
     brand: BrandsCreateNestedOneWithoutProductsInput
     orderDetails?: OrderDetailsCreateNestedManyWithoutProductInput
     variants?: VariantsCreateNestedManyWithoutProductInput
@@ -16413,6 +16433,7 @@ export namespace Prisma {
     price: number
     created_at?: Date | string
     updated_at?: Date | string
+    active?: boolean
     brand_id: string
     orderDetails?: OrderDetailsUncheckedCreateNestedManyWithoutProductInput
     variants?: VariantsUncheckedCreateNestedManyWithoutProductInput
@@ -16426,6 +16447,7 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
     brand?: BrandsUpdateOneRequiredWithoutProductsNestedInput
     orderDetails?: OrderDetailsUpdateManyWithoutProductNestedInput
     variants?: VariantsUpdateManyWithoutProductNestedInput
@@ -16439,6 +16461,7 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
     brand_id?: StringFieldUpdateOperationsInput | string
     orderDetails?: OrderDetailsUncheckedUpdateManyWithoutProductNestedInput
     variants?: VariantsUncheckedUpdateManyWithoutProductNestedInput
@@ -16452,6 +16475,7 @@ export namespace Prisma {
     price: number
     created_at?: Date | string
     updated_at?: Date | string
+    active?: boolean
     brand_id: string
   }
 
@@ -16461,6 +16485,7 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ProductsUncheckedUpdateManyInput = {
@@ -16469,6 +16494,7 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
     brand_id?: StringFieldUpdateOperationsInput | string
   }
 
@@ -17073,6 +17099,11 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type BrandsScalarRelationFilter = {
     is?: BrandsWhereInput
     isNot?: BrandsWhereInput
@@ -17104,6 +17135,7 @@ export namespace Prisma {
     price?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    active?: SortOrder
     brand_id?: SortOrder
   }
 
@@ -17117,6 +17149,7 @@ export namespace Prisma {
     price?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    active?: SortOrder
     brand_id?: SortOrder
   }
 
@@ -17126,11 +17159,20 @@ export namespace Prisma {
     price?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    active?: SortOrder
     brand_id?: SortOrder
   }
 
   export type ProductsSumOrderByAggregateInput = {
     price?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type ProductsListRelationFilter = {
@@ -17277,11 +17319,6 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
   export type CategoriesNullableScalarRelationFilter = {
     is?: CategoriesWhereInput | null
     isNot?: CategoriesWhereInput | null
@@ -17345,14 +17382,6 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type CategoriesScalarRelationFilter = {
@@ -17766,6 +17795,10 @@ export namespace Prisma {
     connect?: LikesWhereUniqueInput | LikesWhereUniqueInput[]
   }
 
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
   export type BrandsUpdateOneRequiredWithoutProductsNestedInput = {
     create?: XOR<BrandsCreateWithoutProductsInput, BrandsUncheckedCreateWithoutProductsInput>
     connectOrCreate?: BrandsCreateOrConnectWithoutProductsInput
@@ -18040,10 +18073,6 @@ export namespace Prisma {
     connect?: CategoriesWhereUniqueInput | CategoriesWhereUniqueInput[]
   }
 
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
-  }
-
   export type CategoriesUpdateOneWithoutCategoriesNestedInput = {
     create?: XOR<CategoriesCreateWithoutCategoriesInput, CategoriesUncheckedCreateWithoutCategoriesInput>
     connectOrCreate?: CategoriesCreateOrConnectWithoutCategoriesInput
@@ -18280,6 +18309,19 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type NestedEnumSizeFilter<$PrismaModel = never> = {
     equals?: $Enums.Size | EnumSizeFieldRefInput<$PrismaModel>
     in?: $Enums.Size[] | ListEnumSizeFieldRefInput<$PrismaModel>
@@ -18328,11 +18370,6 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -18359,14 +18396,6 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type UserRolesCreateWithoutRolesInput = {
@@ -18769,6 +18798,7 @@ export namespace Prisma {
     price: number
     created_at?: Date | string
     updated_at?: Date | string
+    active?: boolean
     brand: BrandsCreateNestedOneWithoutProductsInput
     variants?: VariantsCreateNestedManyWithoutProductInput
     productCategories?: ProductCategoriesCreateNestedManyWithoutProductsInput
@@ -18781,6 +18811,7 @@ export namespace Prisma {
     price: number
     created_at?: Date | string
     updated_at?: Date | string
+    active?: boolean
     brand_id: string
     variants?: VariantsUncheckedCreateNestedManyWithoutProductInput
     productCategories?: ProductCategoriesUncheckedCreateNestedManyWithoutProductsInput
@@ -18834,6 +18865,7 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
     brand?: BrandsUpdateOneRequiredWithoutProductsNestedInput
     variants?: VariantsUpdateManyWithoutProductNestedInput
     productCategories?: ProductCategoriesUpdateManyWithoutProductsNestedInput
@@ -18846,6 +18878,7 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
     brand_id?: StringFieldUpdateOperationsInput | string
     variants?: VariantsUncheckedUpdateManyWithoutProductNestedInput
     productCategories?: ProductCategoriesUncheckedUpdateManyWithoutProductsNestedInput
@@ -19073,6 +19106,7 @@ export namespace Prisma {
     price: number
     created_at?: Date | string
     updated_at?: Date | string
+    active?: boolean
     orderDetails?: OrderDetailsCreateNestedManyWithoutProductInput
     variants?: VariantsCreateNestedManyWithoutProductInput
     productCategories?: ProductCategoriesCreateNestedManyWithoutProductsInput
@@ -19085,6 +19119,7 @@ export namespace Prisma {
     price: number
     created_at?: Date | string
     updated_at?: Date | string
+    active?: boolean
     orderDetails?: OrderDetailsUncheckedCreateNestedManyWithoutProductInput
     variants?: VariantsUncheckedCreateNestedManyWithoutProductInput
     productCategories?: ProductCategoriesUncheckedCreateNestedManyWithoutProductsInput
@@ -19126,6 +19161,7 @@ export namespace Prisma {
     price?: FloatFilter<"Products"> | number
     created_at?: DateTimeFilter<"Products"> | Date | string
     updated_at?: DateTimeFilter<"Products"> | Date | string
+    active?: BoolFilter<"Products"> | boolean
     brand_id?: StringFilter<"Products"> | string
   }
 
@@ -19135,6 +19171,7 @@ export namespace Prisma {
     price: number
     created_at?: Date | string
     updated_at?: Date | string
+    active?: boolean
     brand: BrandsCreateNestedOneWithoutProductsInput
     orderDetails?: OrderDetailsCreateNestedManyWithoutProductInput
     productCategories?: ProductCategoriesCreateNestedManyWithoutProductsInput
@@ -19147,6 +19184,7 @@ export namespace Prisma {
     price: number
     created_at?: Date | string
     updated_at?: Date | string
+    active?: boolean
     brand_id: string
     orderDetails?: OrderDetailsUncheckedCreateNestedManyWithoutProductInput
     productCategories?: ProductCategoriesUncheckedCreateNestedManyWithoutProductsInput
@@ -19194,6 +19232,7 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
     brand?: BrandsUpdateOneRequiredWithoutProductsNestedInput
     orderDetails?: OrderDetailsUpdateManyWithoutProductNestedInput
     productCategories?: ProductCategoriesUpdateManyWithoutProductsNestedInput
@@ -19206,6 +19245,7 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
     brand_id?: StringFieldUpdateOperationsInput | string
     orderDetails?: OrderDetailsUncheckedUpdateManyWithoutProductNestedInput
     productCategories?: ProductCategoriesUncheckedUpdateManyWithoutProductsNestedInput
@@ -19439,6 +19479,7 @@ export namespace Prisma {
     price: number
     created_at?: Date | string
     updated_at?: Date | string
+    active?: boolean
     brand: BrandsCreateNestedOneWithoutProductsInput
     orderDetails?: OrderDetailsCreateNestedManyWithoutProductInput
     variants?: VariantsCreateNestedManyWithoutProductInput
@@ -19451,6 +19492,7 @@ export namespace Prisma {
     price: number
     created_at?: Date | string
     updated_at?: Date | string
+    active?: boolean
     brand_id: string
     orderDetails?: OrderDetailsUncheckedCreateNestedManyWithoutProductInput
     variants?: VariantsUncheckedCreateNestedManyWithoutProductInput
@@ -19504,6 +19546,7 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
     brand?: BrandsUpdateOneRequiredWithoutProductsNestedInput
     orderDetails?: OrderDetailsUpdateManyWithoutProductNestedInput
     variants?: VariantsUpdateManyWithoutProductNestedInput
@@ -19516,6 +19559,7 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
     brand_id?: StringFieldUpdateOperationsInput | string
     orderDetails?: OrderDetailsUncheckedUpdateManyWithoutProductNestedInput
     variants?: VariantsUncheckedUpdateManyWithoutProductNestedInput
@@ -19559,6 +19603,7 @@ export namespace Prisma {
     price: number
     created_at?: Date | string
     updated_at?: Date | string
+    active?: boolean
     brand: BrandsCreateNestedOneWithoutProductsInput
     orderDetails?: OrderDetailsCreateNestedManyWithoutProductInput
     variants?: VariantsCreateNestedManyWithoutProductInput
@@ -19571,6 +19616,7 @@ export namespace Prisma {
     price: number
     created_at?: Date | string
     updated_at?: Date | string
+    active?: boolean
     brand_id: string
     orderDetails?: OrderDetailsUncheckedCreateNestedManyWithoutProductInput
     variants?: VariantsUncheckedCreateNestedManyWithoutProductInput
@@ -19626,6 +19672,7 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
     brand?: BrandsUpdateOneRequiredWithoutProductsNestedInput
     orderDetails?: OrderDetailsUpdateManyWithoutProductNestedInput
     variants?: VariantsUpdateManyWithoutProductNestedInput
@@ -19638,6 +19685,7 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
     brand_id?: StringFieldUpdateOperationsInput | string
     orderDetails?: OrderDetailsUncheckedUpdateManyWithoutProductNestedInput
     variants?: VariantsUncheckedUpdateManyWithoutProductNestedInput
@@ -19889,6 +19937,7 @@ export namespace Prisma {
     price: number
     created_at?: Date | string
     updated_at?: Date | string
+    active?: boolean
   }
 
   export type ProductsUpdateWithoutBrandInput = {
@@ -19897,6 +19946,7 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
     orderDetails?: OrderDetailsUpdateManyWithoutProductNestedInput
     variants?: VariantsUpdateManyWithoutProductNestedInput
     productCategories?: ProductCategoriesUpdateManyWithoutProductsNestedInput
@@ -19909,6 +19959,7 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
     orderDetails?: OrderDetailsUncheckedUpdateManyWithoutProductNestedInput
     variants?: VariantsUncheckedUpdateManyWithoutProductNestedInput
     productCategories?: ProductCategoriesUncheckedUpdateManyWithoutProductsNestedInput
@@ -19921,6 +19972,7 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    active?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type VariantsCreateManyFileInput = {

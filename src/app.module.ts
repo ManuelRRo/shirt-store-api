@@ -1,17 +1,15 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { UsersModule } from './users/users.module';
-import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './modules/users/users.module';
+import { AuthModule } from './modules/auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
-import { BrandsModule } from './brands/brands.module';
+import { BrandsModule } from './modules/brands/brands.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { ProductsModule } from './products/products.module';
+import { ProductsModule } from './modules/products/products.module';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
-import { VariantsModule } from './variants/variants.module';
-import { ProductCategoriesModule } from './product-categories/product-categories.module';
-import { CategoriesModule } from './categories/categories.module';
+import { VariantsModule } from './modules/variants/variants.module';
+import { ProductCategoriesModule } from './modules/product-categories/product-categories.module';
+import { CategoriesModule } from './modules/categories/categories.module';
 
 @Module({
   imports: [
@@ -32,7 +30,7 @@ import { CategoriesModule } from './categories/categories.module';
     ProductCategoriesModule,
     CategoriesModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

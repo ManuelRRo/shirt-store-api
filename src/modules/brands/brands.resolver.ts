@@ -4,15 +4,14 @@ import {
   ResolveField,
   Parent,
   Args,
-  Int,
   Mutation,
 } from '@nestjs/graphql';
 import { BrandsService } from './brands.service';
-import { Brand } from './types/brand.type';
-import { Products } from 'src/products/types/products.type';
-import { ProductsService } from 'src/products/products.service';
-import { BrandsArgs } from './args/brands.args';
+import { ProductsService } from 'src/modules/products/products.service';
 import { CreateBrandInput } from './input/create-brand.input';
+import { Products } from 'src/common/models/products.model';
+import { Brand } from 'src/common/models/brand.model';
+import { PaginationArgs } from 'src/common/args/pagination.args';
 
 @Resolver(() => Brand)
 export class BrandsResolver {
@@ -22,11 +21,8 @@ export class BrandsResolver {
   ) {}
 
   @Query(() => [Brand], { name: 'brands' })
-  getBrands(
-    @Args('offset', { type: () => Int }) offset: number,
-    @Args('limit', { type: () => Int }) limit: number,
-  ) {
-    return this.brandsService.brands(offset, limit);
+  getBrands(@Args() args: PaginationArgs) {
+    return this.brandsService.brands(args);
   }
 
   @Query(() => Brand, { name: 'brand' })
@@ -40,7 +36,7 @@ export class BrandsResolver {
   }
 
   @ResolveField(() => [Products])
-  products(@Parent() brand: Brand, @Args() args: BrandsArgs) {
+  products(@Parent() brand: Brand, @Args() args: PaginationArgs) {
     return this.productsService.getProductsByBrandId(brand.id, args);
   }
 }

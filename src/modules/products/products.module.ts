@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { ProductsResolver } from './products.resolver';
 import { PrismaService } from 'src/prisma.service';
-import { VariantsModule } from 'src/variants/variants.module';
+import { VariantsModule } from 'src/modules/variants/variants.module';
 
 @Module({
   imports: [VariantsModule],

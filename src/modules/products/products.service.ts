@@ -1,10 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { Products } from 'generated/prisma';
-import { BrandsArgs } from 'src/brands/args/brands.args';
 import { PrismaService } from 'src/prisma.service';
 import { ProductFilteArgs } from './args/product-filter.args';
 import { ProductInput } from './inputs/create-product.input';
-import { Size, TextColor } from 'src/variants/types/variants.type';
+import { Size, TextColor } from 'src/common/models/variants.model';
+import { PaginationArgs } from 'src/common/args/pagination.args';
+import { ProductActiveInput } from './inputs/changeActiveProduct.input';
+import { UpdateProductInput } from './inputs/updateProduct.input';
 
 @Injectable()
 export class ProductsService {
@@ -12,12 +14,11 @@ export class ProductsService {
 
   async products(
     filters: ProductFilteArgs,
-    offset: number,
-    limit: number,
+    pagination: PaginationArgs,
   ): Promise<Products[]> {
     return await this.prisma.products.findMany({
-      skip: offset,
-      take: limit,
+      skip: pagination.offset,
+      take: pagination.limit,
       where: {
         AND: [
           // Filter by brand if provided
@@ -95,7 +96,7 @@ export class ProductsService {
   //     },
   //   });
   // }
-  async getProductsByBrandId(brandId: string, args: BrandsArgs) {
+  async getProductsByBrandId(brandId: string, args: PaginationArgs) {
     return this.prisma.products.findMany({
       skip: args.offset,
       take: args.limit,
@@ -128,18 +129,18 @@ export class ProductsService {
     });
   }
 
-  async updateProduct(input: ProductInput, id: string) {
+  async updateProduct(input: UpdateProductInput) {
     return this.prisma.products.update({
       where: {
-        id,
+        id: input.id,
       },
       data: {
-        brand_id: input.brand_id,
-        name: input.name,
-        price: input.price,
+        brand_id: input.patch.brand_id,
+        name: input.patch.name,
+        price: input.patch.price,
         productCategories: {
           create: {
-            categoryId: input.categoryId,
+            categoryId: input.patch.categoryId,
           },
         },
       },
@@ -152,5 +153,26 @@ export class ProductsService {
         brand: true,
       },
     });
+  }
+
+  async modifiedProductActiveField(input: ProductActiveInput) {
+    return this.prisma.products.update({
+      where: { id: input.id },
+      data: { active: input.active },
+    });
+  }
+
+  async deleteProduct(id: string) {
+    await this.prisma.productCategories.deleteMany({
+      where: { productId: id },
+    });
+
+    await this.prisma.variants.deleteMany({
+      where: { product_id: id },
+    });
+
+    await this.prisma.products.delete({ where: { id } });
+
+    return true;
   }
 }

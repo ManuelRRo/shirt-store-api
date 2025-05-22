@@ -2,20 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Brand {
-  id: String!
-  name: String!
-  products(offset: Int!, limit: Int!): [Products!]!
-}
-
-type Products {
-  id: String!
-  name: String!
-  price: Float!
-  brand: Brand!
-  Variants: [Variants!]!
-}
-
 type Variants {
   id: String!
   size: Size!
@@ -50,6 +36,20 @@ enum TextColors {
   PURPLE
 }
 
+type Brand {
+  id: String!
+  name: String!
+  products(offset: Int!, limit: Int!): [Products!]!
+}
+
+type Products {
+  id: String!
+  name: String!
+  price: Float!
+  brand: Brand!
+  Variants: [Variants!]!
+}
+
 type Query {
   brands(offset: Int!, limit: Int!): [Brand!]!
   brand(id: String!): Brand!
@@ -60,7 +60,9 @@ type Query {
 type Mutation {
   newBrand(input: CreateBrandInput!): Brand!
   newProduct(input: ProductInput!): Products!
-  updateProduct(input: ProductInput!, id: String!): Products!
+  updateProduct(input: UpdateProductInput!): Products!
+  disableOrEnableProduct(input: ProductActiveInput!): Products!
+  deleteProduct(id: String!): String
 }
 
 input CreateBrandInput {
@@ -72,4 +74,21 @@ input ProductInput {
   name: String!
   price: Float!
   categoryId: String!
+}
+
+input UpdateProductInput {
+  id: String!
+  patch: PatchProductInput!
+}
+
+input PatchProductInput {
+  brand_id: String!
+  name: String!
+  price: Float!
+  categoryId: String!
+}
+
+input ProductActiveInput {
+  id: String!
+  active: Boolean!
 }

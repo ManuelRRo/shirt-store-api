@@ -2,15 +2,16 @@ import { Injectable } from '@nestjs/common';
 import { Brands } from 'generated/prisma';
 import { PrismaService } from 'src/prisma.service';
 import { CreateBrandInput } from './input/create-brand.input';
+import { PaginationArgs } from 'src/common/args/pagination.args';
 
 @Injectable()
 export class BrandsService {
   constructor(private prisma: PrismaService) {}
 
-  async brands(offset: number, limit: number): Promise<Brands[]> {
+  async brands(args: PaginationArgs): Promise<Brands[]> {
     return this.prisma.brands.findMany({
-      skip: offset,
-      take: limit,
+      skip: args.offset,
+      take: args.limit,
     });
   }
 

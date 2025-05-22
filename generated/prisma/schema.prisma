@@ -66,6 +66,7 @@ model Products {
   price             Float
   created_at        DateTime            @default(now())
   updated_at        DateTime            @updatedAt
+  active            Boolean             @default(true)
   brand             Brands              @relation(fields: [brand_id], references: [id])
   brand_id          String
   orderDetails      OrderDetails[]

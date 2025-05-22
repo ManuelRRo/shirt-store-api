@@ -1,5 +1,5 @@
 import { ArgsType, Field } from '@nestjs/graphql';
-import { Size, TextColor } from 'src/variants/types/variants.type';
+import { Size, TextColor } from 'src/common/models/variants.model';
 
 @ArgsType()
 export class ProductFilteArgs {

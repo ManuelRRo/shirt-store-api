@@ -1,5 +1,6 @@
 import {
   Args,
+  Context,
   Mutation,
   Parent,
   Query,
@@ -16,13 +17,18 @@ import { Variants } from 'src/common/models/variants.model';
 import { PaginationArgs } from 'src/common/args/pagination.args';
 import { ProductActiveInput } from './inputs/changeActiveProduct.input';
 import { UpdateProductInput } from './inputs/updateProduct.input';
+import { Logger } from '@nestjs/common';
+import { IDataLoaders } from 'src/common/modules/dataloader/dataloader.interface';
 
 @Resolver(() => Products)
 export class ProductsResolver {
+  logger: Logger;
   constructor(
     private readonly productsService: ProductsService,
     private variantsService: VariantsService,
-  ) {}
+  ) {
+    this.logger = new Logger();
+  }
 
   @Query(() => Products, { name: 'product' })
   async getProductById(@Args('id') id: string) {
@@ -30,7 +36,7 @@ export class ProductsResolver {
   }
 
   @Query(() => [Products], { name: 'products' })
-  getProducts(
+  async getProducts(
     @Args() filterArgs: ProductFilteArgs,
     @Args() paginationArgs: PaginationArgs,
   ) {
@@ -59,7 +65,11 @@ export class ProductsResolver {
   }
 
   @ResolveField(() => [Variants])
-  Variants(@Parent() product: Products) {
-    return this.variantsService.getVariantsByProductId(product.id); //Usar data loader o on demand or include
+  async Variants(
+    @Parent() product: Products,
+    @Context() { loaders }: { loaders: IDataLoaders },
+  ) {
+    //return this.variantsService.getVariantsByProductId(product.id); //Usar data loader o on demand or include
+    return loaders.variantsLoader.load(product.id);
   }
 }

@@ -10,17 +10,27 @@ import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin
 import { VariantsModule } from './modules/variants/variants.module';
 import { ProductCategoriesModule } from './modules/product-categories/product-categories.module';
 import { CategoriesModule } from './modules/categories/categories.module';
+import { DataloaderModule } from './common/modules/dataloader/dataloader.module';
+import { DataLoaderService } from './common/modules/dataloader/dataloader.service';
 
 @Module({
   imports: [
-    GraphQLModule.forRoot<ApolloDriverConfig>({
-      driver: ApolloDriver,
-      playground: false,
-      autoSchemaFile: 'src/schema.gql',
-      plugins: [ApolloServerPluginLandingPageLocalDefault()],
-    }),
     ConfigModule.forRoot({
       isGlobal: true,
+    }),
+    GraphQLModule.forRootAsync<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      imports: [DataloaderModule],
+      useFactory: (dataloderService: DataLoaderService) => ({
+        autoSchemaFile: 'src/schema.gql',
+        playground: false,
+        plugins: [ApolloServerPluginLandingPageLocalDefault()],
+        introspection: true,
+        context: () => ({
+          loaders: dataloderService.getLoaders(),
+        }),
+      }),
+      inject: [DataLoaderService],
     }),
     UsersModule,
     AuthModule,
@@ -29,6 +39,7 @@ import { CategoriesModule } from './modules/categories/categories.module';
     VariantsModule,
     ProductCategoriesModule,
     CategoriesModule,
+    DataloaderModule,
   ],
   controllers: [],
   providers: [],

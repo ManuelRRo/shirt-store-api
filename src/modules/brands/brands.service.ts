@@ -14,7 +14,6 @@ export class BrandsService {
       take: args.limit,
     });
   }
-
   async getBrandById(brandId: string) {
     return this.prisma.brands.findFirst({
       where: {

@@ -17,9 +17,11 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       // eslint-disable-next-line @typescript-eslint/require-await
       useFactory: async (configService: ConfigService) => ({
         secret: configService.get<string>('JWT_SECRET'),
+        global: true,
         signOptions: { expiresIn: '30m' },
       }),
     }),
   ],
+  exports: [AuthService],
 })
 export class AuthModule {}

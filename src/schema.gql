@@ -50,11 +50,25 @@ type Products {
   Variants: [Variants!]!
 }
 
+type Orders {
+  id: String!
+  user_id: String!
+  stripe_checkout_id: String!
+  created_at: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type Query {
   brands(offset: Int!, limit: Int!): [Brand!]!
   brand(id: String!): Brand!
   product(id: String!): Products!
   products(brand_id: String, parentCategory: String, categoryId: String, size: Size, textColor: TextColors, offset: Int!, limit: Int!): [Products!]!
+  Orders(offset: Int!, limit: Int!): [Orders!]!
+  Order(id: String!): Orders!
 }
 
 type Mutation {

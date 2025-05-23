@@ -12,6 +12,8 @@ import { ProductCategoriesModule } from './modules/product-categories/product-ca
 import { CategoriesModule } from './modules/categories/categories.module';
 import { DataloaderModule } from './common/modules/dataloader/dataloader.module';
 import { DataLoaderService } from './common/modules/dataloader/dataloader.service';
+import { OrdersModule } from './modules/orders/orders.module';
+import { LikesModule } from './modules/likes/likes.module';
 
 @Module({
   imports: [
@@ -26,9 +28,8 @@ import { DataLoaderService } from './common/modules/dataloader/dataloader.servic
         playground: false,
         plugins: [ApolloServerPluginLandingPageLocalDefault()],
         introspection: true,
-        context: () => ({
-          loaders: dataloderService.getLoaders(),
-        }),
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        context: ({ req }) => ({ req, loaders: dataloderService.getLoaders() }),
       }),
       inject: [DataLoaderService],
     }),
@@ -40,6 +41,8 @@ import { DataLoaderService } from './common/modules/dataloader/dataloader.servic
     ProductCategoriesModule,
     CategoriesModule,
     DataloaderModule,
+    OrdersModule,
+    LikesModule,
   ],
   controllers: [],
   providers: [],

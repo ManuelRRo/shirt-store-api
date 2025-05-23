@@ -69,7 +69,6 @@ export class ProductsResolver {
     @Parent() product: Products,
     @Context() { loaders }: { loaders: IDataLoaders },
   ) {
-    //return this.variantsService.getVariantsByProductId(product.id); //Usar data loader o on demand or include
     return loaders.variantsLoader.load(product.id);
   }
 }

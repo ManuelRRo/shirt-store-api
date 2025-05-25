@@ -68,7 +68,7 @@ type Query {
   product(id: String!): Products!
   products(brand_id: String, parentCategory: String, categoryId: String, size: Size, textColor: TextColors, offset: Int!, limit: Int!): [Products!]!
   Orders(offset: Int!, limit: Int!): [Orders!]!
-  Order(id: String!): Orders!
+  Order: [Orders!]!
 }
 
 type Mutation {

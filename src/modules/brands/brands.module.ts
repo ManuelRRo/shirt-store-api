@@ -3,26 +3,25 @@ import { BrandsService } from './brands.service';
 import { BrandsResolver } from './brands.resolver';
 import { PrismaService } from 'src/prisma.service';
 import { ProductsModule } from 'src/modules/products/products.module';
-import { JwtModule, JwtService } from '@nestjs/jwt';
+import { JwtService } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UsersModule } from '../users/users.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     ProductsModule,
     ConfigModule,
     UsersModule,
-    JwtModule.registerAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      // eslint-disable-next-line @typescript-eslint/require-await
-      useFactory: async (configService: ConfigService) => ({
-        secret: configService.get<string>('JWT_SECRET'),
-        global: true,
-        signOptions: { expiresIn: '30m' },
-      }),
-    }),
   ],
-  providers: [BrandsResolver, BrandsService, PrismaService, JwtService],
+  providers: [
+    BrandsResolver,
+    BrandsService,
+    PrismaService,
+    JwtService,
+    ConfigService,
+  ],
 })
 export class BrandsModule {}

@@ -15,9 +15,12 @@ export class OrdersService {
     });
   }
 
-  async getOrdersById(id: string): Promise<Orders | null> {
-    return await this.prisma.orders.findFirst({
-      where: { id },
+  async getOrdersByUserId(user_id: string): Promise<Orders[] | []> {
+    const orders = await this.prisma.orders.findMany({
+      where: {
+        user_id, // Replace with actual user ID
+      },
     });
+    return orders;
   }
 }

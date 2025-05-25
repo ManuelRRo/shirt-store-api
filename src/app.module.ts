@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { BrandsModule } from './modules/brands/brands.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
@@ -15,6 +15,7 @@ import { DataLoaderService } from './common/modules/dataloader/dataloader.servic
 import { OrdersModule } from './modules/orders/orders.module';
 import { LikesModule } from './modules/likes/likes.module';
 import { RolesModule } from './modules/roles/roles.module';
+import { JwtModule, JwtService } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -34,6 +35,15 @@ import { RolesModule } from './modules/roles/roles.module';
       }),
       inject: [DataLoaderService],
     }),
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        secret: configService.get<string>('JWT_SECRET'),
+        global: true, // This makes the module global
+        signOptions: { expiresIn: '30m' },
+      }),
+    }),
     UsersModule,
     AuthModule,
     BrandsModule,
@@ -47,6 +57,6 @@ import { RolesModule } from './modules/roles/roles.module';
     RolesModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [JwtService],
 })
 export class AppModule {}

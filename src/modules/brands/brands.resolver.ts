@@ -14,6 +14,10 @@ import { Brand } from 'src/common/models/brand.model';
 import { PaginationArgs } from 'src/common/args/pagination.args';
 import { UseGuards } from '@nestjs/common';
 import { GqlAuthGuard } from 'src/common/guards/gql-auth.guard';
+import { RolesGuard } from 'src/common/guards/roles.guard';
+import { Roles } from 'src/common/decorators/role.decorator';
+import { ROLES } from 'src/common/enums/roles.enum';
+//import { Roles } from 'src/common/decorators/role.decorator';
 
 @Resolver(() => Brand)
 export class BrandsResolver {
@@ -26,8 +30,9 @@ export class BrandsResolver {
   getBrands(@Args() args: PaginationArgs) {
     return this.brandsService.brands(args);
   }
-  @UseGuards(GqlAuthGuard)
+  @UseGuards(GqlAuthGuard, RolesGuard)
   @Query(() => Brand, { name: 'brand' })
+  @Roles(ROLES.MANAGER)
   async getBrandById(@Args('id') id: string) {
     return this.brandsService.getBrandById(id);
   }

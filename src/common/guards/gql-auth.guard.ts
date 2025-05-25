@@ -1,7 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import {
   CanActivate,
   ExecutionContext,
@@ -11,21 +7,32 @@ import {
 } from '@nestjs/common';
 import { GqlExecutionContext } from '@nestjs/graphql';
 import { JwtService } from '@nestjs/jwt';
+import { Request } from 'express';
+import { UsersService } from 'src/modules/users/users.service';
+import { ContextWithUser, TokenPayload } from '../dtos/UserRole.dto';
 
 @Injectable()
 export class GqlAuthGuard implements CanActivate {
-  logger: Logger;
-  constructor(private jwtService: JwtService) {
-    this.logger = new Logger();
+  private readonly logger: Logger;
+
+  constructor(
+    private readonly jwtService: JwtService,
+    private readonly usersService: UsersService,
+  ) {
+    this.logger = new Logger(GqlAuthGuard.name);
   }
 
-  async canActivate(context: ExecutionContext) {
-    const ctx = GqlExecutionContext.create(context).getContext();
-
-    // Check both possible locations for headers
+  async canActivate(context: ExecutionContext): Promise<boolean> {
+    const ctx =
+      GqlExecutionContext.create(context).getContext<ContextWithUser>();
     const request = this.getRequest(context);
     const authorization = request.headers?.authorization;
-    const token: string = authorization?.split(' ')[1];
+
+    if (!authorization) {
+      throw new UnauthorizedException('No token provided');
+    }
+
+    const token = authorization.split(' ')[1];
     this.logger.debug(token, 'TOKEN');
 
     if (!token) {
@@ -33,29 +40,42 @@ export class GqlAuthGuard implements CanActivate {
     }
 
     try {
-      this.logger.debug('here');
-      const tokenPayload = await this.jwtService.verifyAsync(token, {
-        secret: 'first_only_matter_you_cha_in_ttle_le_lls_eadl',
-      });
-      this.logger.debug('Payload', token);
+      const tokenPayload = await this.jwtService.verifyAsync<TokenPayload>(
+        token,
+        {
+          secret: 'first_only_matter_you_cha_in_ttle_le_lls_eadl',
+        },
+      );
+
+      const userWithRoles = await this.usersService.getUserWithRoles(
+        tokenPayload.sub,
+      );
+
+      // Extract role names from the nested structure
+      const roles =
+        userWithRoles?.roles?.map((userRole) => userRole.roles.name) || [];
+
       ctx.user = {
-        userId: tokenPayload.sub,
+        id: tokenPayload.sub,
         email: tokenPayload.email,
+        roles,
       };
+
+      this.logger.debug('User Context', ctx.user);
       return true;
-    } catch (error) {
-      this.logger.debug(error.message);
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : 'Invalid token';
+      this.logger.debug(message);
       throw new UnauthorizedException('Invalid token');
     }
   }
 
-  getRequest(context: ExecutionContext) {
-    if (context.getType<'graphql'>() === 'graphql') {
-      const gqlContext = GqlExecutionContext.create(context);
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-      return gqlContext.getContext().req;
+  private getRequest(context: ExecutionContext): Request {
+    if (context.getType() === 'http') {
+      return context.switchToHttp().getRequest<Request>();
     }
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return context.switchToHttp().getRequest();
+
+    const gqlContext = GqlExecutionContext.create(context);
+    return gqlContext.getContext<{ req: Request }>().req;
   }
 }

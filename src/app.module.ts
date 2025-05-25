@@ -14,6 +14,7 @@ import { DataloaderModule } from './common/modules/dataloader/dataloader.module'
 import { DataLoaderService } from './common/modules/dataloader/dataloader.service';
 import { OrdersModule } from './modules/orders/orders.module';
 import { LikesModule } from './modules/likes/likes.module';
+import { RolesModule } from './modules/roles/roles.module';
 
 @Module({
   imports: [
@@ -43,6 +44,7 @@ import { LikesModule } from './modules/likes/likes.module';
     DataloaderModule,
     OrdersModule,
     LikesModule,
+    RolesModule,
   ],
   controllers: [],
   providers: [],

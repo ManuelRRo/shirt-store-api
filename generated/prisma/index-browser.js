@@ -108,6 +108,8 @@ Prisma.NullTypes = {
 }
 
 
+Prisma.skip = skip
+
 
 /**
  * Enums

@@ -30,14 +30,15 @@ export class BrandsResolver {
   getBrands(@Args() args: PaginationArgs) {
     return this.brandsService.brands(args);
   }
-  @UseGuards(GqlAuthGuard, RolesGuard)
+
   @Query(() => Brand, { name: 'brand' })
-  @Roles(ROLES.MANAGER)
   async getBrandById(@Args('id') id: string) {
     return this.brandsService.getBrandById(id);
   }
 
+  @UseGuards(GqlAuthGuard, RolesGuard)
   @Mutation(() => Brand, { name: 'newBrand' })
+  @Roles(ROLES.MANAGER)
   createBrand(@Args('input') input: CreateBrandInput) {
     return this.brandsService.createBrand(input);
   }

@@ -1,7 +1,10 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
-export class Likes {
+export class Cart {
   @Field()
-  productId: string;
+  id: string;
+
+  @Field()
+  name: string;
 }

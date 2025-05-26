@@ -153,7 +153,7 @@ exports.Prisma.OrderDetailsScalarFieldEnum = {
   quantity: 'quantity',
   price: 'price',
   orderDetails_id: 'orderDetails_id',
-  product_id: 'product_id'
+  variant_id: 'variant_id'
 };
 
 exports.Prisma.ProductsScalarFieldEnum = {
@@ -209,6 +209,21 @@ exports.Prisma.LikesScalarFieldEnum = {
   user_id: 'user_id'
 };
 
+exports.Prisma.CartDetailsScalarFieldEnum = {
+  id: 'id',
+  quantity: 'quantity',
+  price: 'price',
+  variant_id: 'variant_id',
+  cart_id: 'cart_id'
+};
+
+exports.Prisma.CartsScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -259,7 +274,9 @@ exports.Prisma.ModelName = {
   Files: 'Files',
   Categories: 'Categories',
   ProductCategories: 'ProductCategories',
-  Likes: 'Likes'
+  Likes: 'Likes',
+  CartDetails: 'CartDetails',
+  Carts: 'Carts'
 };
 
 /**

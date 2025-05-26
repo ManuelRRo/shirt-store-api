@@ -1,15 +1,18 @@
 import { Injectable } from '@nestjs/common';
-import { Likes } from 'generated/prisma';
+import { Likes } from 'src/common/models/likes.model';
 import { PrismaService } from 'src/prisma.service';
+import { LikeInput } from './inputs/like.input';
 
 @Injectable()
 export class LikesService {
   constructor(private readonly prisma: PrismaService) {}
-  async likedProduct(id: string): Promise<Likes | null> {
+  async likedProduct(input: LikeInput, user_id: string): Promise<Likes | []> {
+    // need validate if register already exsit
+    const { productId } = input;
     return await this.prisma.likes.create({
       data: {
-        productId: id,
-        user_id: id,
+        productId,
+        user_id,
       },
     });
   }

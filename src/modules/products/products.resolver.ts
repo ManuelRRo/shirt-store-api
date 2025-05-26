@@ -17,8 +17,12 @@ import { Variants } from 'src/common/models/variants.model';
 import { PaginationArgs } from 'src/common/args/pagination.args';
 import { ProductActiveInput } from './inputs/changeActiveProduct.input';
 import { UpdateProductInput } from './inputs/updateProduct.input';
-import { Logger } from '@nestjs/common';
+import { Logger, UseGuards } from '@nestjs/common';
 import { IDataLoaders } from 'src/common/modules/dataloader/dataloader.interface';
+import { GqlAuthGuard } from 'src/common/guards/gql-auth.guard';
+import { RolesGuard } from 'src/common/guards/roles.guard';
+import { Roles } from 'src/common/decorators/role.decorator';
+import { ROLES } from 'src/common/enums/roles.enum';
 
 @Resolver(() => Products)
 export class ProductsResolver {
@@ -42,23 +46,27 @@ export class ProductsResolver {
   ) {
     return this.productsService.products(filterArgs, paginationArgs);
   }
-
+  @UseGuards(GqlAuthGuard, RolesGuard)
   @Mutation(() => Products, { name: 'newProduct' })
+  @Roles(ROLES.MANAGER)
   createNewProduct(@Args('input') input: ProductInput) {
     return this.productsService.createProduct(input);
   }
-
+  @UseGuards(GqlAuthGuard, RolesGuard)
   @Mutation(() => Products, { name: 'updateProduct' })
+  @Roles(ROLES.MANAGER)
   updateProduct(@Args('input') input: UpdateProductInput) {
     return this.productsService.updateProduct(input);
   }
-
+  @UseGuards(GqlAuthGuard, RolesGuard)
   @Mutation(() => Products, { name: 'disableOrEnableProduct' })
+  @Roles(ROLES.MANAGER)
   disableOrEnableProduct(@Args('input') input: ProductActiveInput) {
     return this.productsService.modifiedProductActiveField(input);
   }
-
+  @UseGuards(GqlAuthGuard, RolesGuard)
   @Mutation(() => String, { nullable: true, name: 'deleteProduct' })
+  @Roles(ROLES.MANAGER)
   async deleteProduct(@Args('id') id: string) {
     await this.productsService.deleteProduct(id);
     return id;

@@ -16,6 +16,8 @@ import { OrdersModule } from './modules/orders/orders.module';
 import { LikesModule } from './modules/likes/likes.module';
 import { RolesModule } from './modules/roles/roles.module';
 import { JwtModule, JwtService } from '@nestjs/jwt';
+import { CartsModule } from './modules/carts/carts.module';
+import { CartsDetailsModule } from './modules/carts-details/carts-details.module';
 
 @Module({
   imports: [
@@ -55,6 +57,8 @@ import { JwtModule, JwtService } from '@nestjs/jwt';
     OrdersModule,
     LikesModule,
     RolesModule,
+    CartsModule,
+    CartsDetailsModule,
   ],
   controllers: [],
   providers: [JwtService],

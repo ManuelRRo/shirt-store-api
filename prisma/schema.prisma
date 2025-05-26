@@ -31,6 +31,7 @@ model Users {
   roles UserRoles[]
   orders Orders []
   likes Likes[]
+  carts Carts[]
 }
 
 model UserRoles {
@@ -52,12 +53,12 @@ model Orders {
 
 model OrderDetails {
   id String @id @default(uuid())
-  quantity Int
+  quantity Int  
   price Float
   orderDetails Orders @relation(fields: [orderDetails_id],references: [id])
   orderDetails_id String
-  product Products @relation(fields: [product_id],references: [id])
-  product_id String
+  variants Variants @relation(fields: [variant_id],references: [id])
+  variant_id String
 }
 
 model Products {
@@ -69,7 +70,6 @@ model Products {
   active Boolean @default(true)
   brand Brands @relation(fields: [brand_id],references: [id])
   brand_id String
-  orderDetails OrderDetails[]
   variants Variants[]
   productCategories ProductCategories[]
   likes Likes[]
@@ -93,6 +93,8 @@ model Variants {
   stock Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  orderDetails OrderDetails[] 
+  cartDetails CartDetails[]
 }
 
 model Files {
@@ -130,6 +132,25 @@ model Likes {
   user Users @relation(fields: [user_id],references: [id])
   user_id String
   @@id([user_id,productId])
+}
+
+model CartDetails {
+  id        String   @id @default(uuid())
+  quantity  Int
+  price     Float
+  variants Variants @relation(fields: [variant_id],references: [id])
+  variant_id String
+  cart      Carts    @relation(fields: [cart_id], references: [id])
+  cart_id   String
+}
+
+model Carts {
+  id          String       @id @default(uuid())
+  user        Users        @relation(fields: [user_id], references: [id])
+  user_id     String
+  cartDetails CartDetails[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
 }
 
 enum Size {

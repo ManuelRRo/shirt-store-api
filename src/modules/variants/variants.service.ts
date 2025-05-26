@@ -1,5 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { Variants } from 'generated/prisma';
+import { VariantWithProductInfo } from 'src/common/dtos/Variants.dto';
 import { PrismaService } from 'src/prisma.service';
 
 @Injectable()
@@ -7,6 +8,28 @@ export class VariantsService {
   logger: Logger;
   constructor(private prisma: PrismaService) {
     this.logger = new Logger();
+  }
+
+  async getVariantWithProductInfo(
+    variantId: string,
+  ): Promise<VariantWithProductInfo | null> {
+    const variantWithProductInfo: VariantWithProductInfo =
+      await this.prisma.variants.findUnique({
+        where: {
+          id: variantId,
+        },
+        select: {
+          product_id: true,
+          product: {
+            select: {
+              name: true,
+              price: true,
+              active: true,
+            },
+          },
+        },
+      });
+    return variantWithProductInfo;
   }
 
   async getVariantsByProductId(productId: string) {

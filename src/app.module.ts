@@ -18,6 +18,8 @@ import { RolesModule } from './modules/roles/roles.module';
 import { JwtModule, JwtService } from '@nestjs/jwt';
 import { CartsModule } from './modules/carts/carts.module';
 import { CartsDetailsModule } from './modules/carts-details/carts-details.module';
+import { PaymentsModule } from './modules/payments/payments.module';
+import { AppService } from './app.service';
 
 @Module({
   imports: [
@@ -59,8 +61,10 @@ import { CartsDetailsModule } from './modules/carts-details/carts-details.module
     RolesModule,
     CartsModule,
     CartsDetailsModule,
+    PaymentsModule,
   ],
   controllers: [],
-  providers: [JwtService],
+  providers: [JwtService, AppService],
+  exports: [AppService],
 })
 export class AppModule {}

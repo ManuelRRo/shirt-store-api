@@ -6,6 +6,7 @@ import { VariantsService } from '../variants/variants.service';
 import { CartService } from '../carts/carts.service';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../users/users.service';
+import { AppService } from 'src/app.service';
 
 @Module({
   providers: [
@@ -16,6 +17,7 @@ import { UsersService } from '../users/users.service';
     CartService,
     JwtService,
     UsersService,
+    AppService,
   ],
 })
 export class CartsDetailsModule {}

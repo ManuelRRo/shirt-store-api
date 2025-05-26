@@ -6,6 +6,7 @@ import { ProductsModule } from 'src/modules/products/products.module';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UsersModule } from '../users/users.module';
+import { AppService } from 'src/app.service';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { UsersModule } from '../users/users.module';
     PrismaService,
     JwtService,
     ConfigService,
+    AppService,
   ],
 })
 export class BrandsModule {}

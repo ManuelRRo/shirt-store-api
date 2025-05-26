@@ -10,6 +10,7 @@ import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
 import { UsersService } from 'src/modules/users/users.service';
 import { ContextWithUser, TokenPayload } from '../dtos/UserRole.dto';
+import { AppService } from 'src/app.service';
 
 @Injectable()
 export class GqlAuthGuard implements CanActivate {
@@ -18,6 +19,7 @@ export class GqlAuthGuard implements CanActivate {
   constructor(
     private readonly jwtService: JwtService,
     private readonly usersService: UsersService,
+    private readonly appService: AppService,
   ) {
     this.logger = new Logger(GqlAuthGuard.name);
   }
@@ -43,7 +45,7 @@ export class GqlAuthGuard implements CanActivate {
       const tokenPayload = await this.jwtService.verifyAsync<TokenPayload>(
         token,
         {
-          secret: 'first_only_matter_you_cha_in_ttle_le_lls_eadl',
+          secret: this.appService.configJwtSecret(),
         },
       );
 

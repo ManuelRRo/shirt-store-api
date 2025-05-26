@@ -4,6 +4,7 @@ import { OrdersResolver } from './orders.resolver';
 import { PrismaService } from 'src/prisma.service';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../users/users.service';
+import { AppService } from 'src/app.service';
 
 @Module({
   providers: [
@@ -12,6 +13,7 @@ import { UsersService } from '../users/users.service';
     PrismaService,
     JwtService,
     UsersService,
+    AppService,
   ],
   exports: [OrdersService],
 })

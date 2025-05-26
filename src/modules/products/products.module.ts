@@ -5,6 +5,7 @@ import { PrismaService } from 'src/prisma.service';
 import { VariantsModule } from 'src/modules/variants/variants.module';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../users/users.service';
+import { AppService } from 'src/app.service';
 
 @Module({
   imports: [VariantsModule],
@@ -14,6 +15,7 @@ import { UsersService } from '../users/users.service';
     PrismaService,
     JwtService,
     UsersService,
+    AppService,
   ],
   exports: [ProductsService],
 })

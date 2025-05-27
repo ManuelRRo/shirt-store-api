@@ -33,3 +33,5 @@ export interface AuthenticatedRequest extends Request {
     email: string;
   };
 }
+
+export type SignInData = { userId: string; email: string };

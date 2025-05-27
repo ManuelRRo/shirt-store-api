@@ -1,25 +1,50 @@
 import { Injectable, RawBodyRequest } from '@nestjs/common';
 import { AppService } from 'src/app.service';
+import { PrismaService } from 'src/prisma.service';
 import Stripe from 'stripe';
+import { PaymentInput } from './inputs/payments.input';
+import { Payments, Prisma } from 'generated/prisma';
+import { OrdersService } from '../orders/orders.service';
+import path from 'path';
+import { SignInData } from 'src/common/dtos/UserRole.dto';
 
 @Injectable()
 export class PaymentsService {
   stripe;
-  constructor(private readonly appService: AppService) {
+  constructor(
+    private readonly appService: AppService,
+    private readonly prisma: PrismaService,
+    private readonly orderService: OrdersService,
+  ) {
     this.stripe = new Stripe(this.appService.configStripeSecret() as string, {
       typescript: true,
     });
   }
 
-  async createPaymentIntent(): Promise<string | null> {
+  async createPaymentIntent(
+    input: PaymentInput,
+    userSign: SignInData,
+  ): Promise<string | null> {
+    const { amount, currency } = input;
+
+    console.log('iduser', userSign);
+    const order = await this.orderService.createOrder(userSign.userId);
+
     try {
       const paymentIntent = await this.stripe.paymentIntents.create({
-        amount: 1099,
-        currency: 'usd',
+        amount,
+        currency,
         automatic_payment_methods: {
           enabled: true,
         },
       });
+      console.log('PATMENT INTENT', paymentIntent);
+      const payment = await this.addPayment(
+        order.id,
+        paymentIntent.id,
+        paymentIntent.status,
+        input,
+      );
       const jsonString = JSON.stringify(paymentIntent.client_secret);
       return jsonString;
     } catch (error) {
@@ -44,14 +69,14 @@ export class PaymentsService {
     //     err.message,
     //   );
     // }
-
+    console.log(event);
     switch (event.type) {
       case 'payment_intent.succeeded':
         console.log(`PaymentIntent for  was successful!`);
         // Then define and call a method to handle the successful payment intent.
         // handlePaymentIntentSucceeded(paymentIntent);
         break;
-      case 'payment_method.attached':
+      case '':
         // Then define and call a method to handle the successful attachment of a PaymentMethod.
         // handlePaymentMethodAttached(paymentMethod);
         break;
@@ -59,5 +84,25 @@ export class PaymentsService {
         // Unexpected event type
         console.log(`Unhandled event type ${event.type}.`);
     }
+  }
+
+  async addPayment(
+    orderId: string,
+    paymentIntent_id: string,
+    status: string,
+    input: PaymentInput,
+  ): Promise<Payments> {
+    const paymentInit: Prisma.PaymentsCreateInput = {
+      status: status,
+      amount: input.amount,
+      currency: input.currency,
+      receipt_url: 'url',
+      payment_intent: paymentIntent_id,
+      order: {
+        connect: { id: orderId },
+      },
+    };
+
+    return await this.prisma.payments.create({ data: paymentInit });
   }
 }

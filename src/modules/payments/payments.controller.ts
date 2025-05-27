@@ -1,4 +1,5 @@
 import {
+  Body,
   Controller,
   HttpCode,
   HttpStatus,
@@ -6,10 +7,15 @@ import {
   RawBodyRequest,
   Req,
   Res,
+  UseGuards,
 } from '@nestjs/common';
 import { PaymentsService } from './payments.service';
 import { Response } from 'express';
 import { AppService } from 'src/app.service';
+import { PaymentInput } from './inputs/payments.input';
+import { CurrentUser } from 'src/common/decorators/current-user.decorator';
+import { AuthGuard } from 'src/common/guards/auth.guard';
+import { SignInData } from 'src/common/dtos/UserRole.dto';
 
 @Controller('payments')
 export class PaymentsController {
@@ -17,10 +23,14 @@ export class PaymentsController {
     private readonly paymentsService: PaymentsService,
     private readonly appService: AppService,
   ) {}
+  @UseGuards(AuthGuard)
   @HttpCode(HttpStatus.OK)
   @Post('intents')
-  async createPaymentIntent(): Promise<string | null> {
-    return this.paymentsService.createPaymentIntent();
+  async createPaymentIntent(
+    @Body() input: PaymentInput,
+    @CurrentUser() id: SignInData,
+  ): Promise<string | null> {
+    return this.paymentsService.createPaymentIntent(input, id);
   }
 
   @HttpCode(HttpStatus.OK)

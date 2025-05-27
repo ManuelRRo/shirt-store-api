@@ -49,6 +49,20 @@ model Orders {
   user Users @relation(fields: [user_id],references: [id])
   user_id String
   orderDetails OrderDetails[]
+  payment Payments?
+}
+
+model Payments {
+  id String @id @default(uuid())
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  status String
+  amount Float
+  currency String
+  receipt_url String 
+  payment_intent String
+  order Orders @relation(fields: [orderId], references: [id])
+  orderId String  @unique
 }
 
 model OrderDetails {

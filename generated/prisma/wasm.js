@@ -148,6 +148,18 @@ exports.Prisma.OrdersScalarFieldEnum = {
   user_id: 'user_id'
 };
 
+exports.Prisma.PaymentsScalarFieldEnum = {
+  id: 'id',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  status: 'status',
+  amount: 'amount',
+  currency: 'currency',
+  receipt_url: 'receipt_url',
+  payment_intent: 'payment_intent',
+  orderId: 'orderId'
+};
+
 exports.Prisma.OrderDetailsScalarFieldEnum = {
   id: 'id',
   quantity: 'quantity',
@@ -267,6 +279,7 @@ exports.Prisma.ModelName = {
   Users: 'Users',
   UserRoles: 'UserRoles',
   Orders: 'Orders',
+  Payments: 'Payments',
   OrderDetails: 'OrderDetails',
   Products: 'Products',
   Brands: 'Brands',

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Orders } from 'generated/prisma';
+import { Orders, Prisma } from 'generated/prisma';
 import { PaginationArgs } from 'src/common/args/pagination.args';
 import { PrismaService } from 'src/prisma.service';
 
@@ -22,5 +22,16 @@ export class OrdersService {
       },
     });
     return orders;
+  }
+
+  async createOrder(id: string): Promise<Orders> {
+    const order: Prisma.OrdersCreateInput = {
+      stripe_checkout_id: 'jdkfasd',
+      user: {
+        connect: { id },
+      },
+    };
+
+    return await this.prisma.orders.create({ data: order });
   }
 }

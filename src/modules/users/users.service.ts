@@ -7,14 +7,6 @@ export type User = {
   password: string;
 };
 
-// const users: User[] = [
-//   {
-//     userId: 1,
-//     email: 'myemail@mail.com',
-//     password: 'my_secure_password',
-//   },
-// ];
-
 @Injectable()
 export class UsersService {
   constructor(private readonly prisma: PrismaService) {}

@@ -1,6 +1,6 @@
 import { Args, Query, Resolver } from '@nestjs/graphql';
 import { OrdersService } from './orders.service';
-import { Orders } from 'src/common/models/orders.model';
+import { Orders } from 'src/modules/orders/model/orders.model';
 import { PaginationArgs } from 'src/common/args/pagination.args';
 import { RolesGuard } from 'src/common/guards/roles.guard';
 import { GqlAuthGuard } from 'src/common/guards/gql-auth.guard';

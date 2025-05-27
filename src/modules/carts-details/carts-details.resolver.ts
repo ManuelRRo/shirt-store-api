@@ -9,7 +9,7 @@ import { CartDetailResponse } from './response/cartDetail.response';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 import { CartService } from '../carts/carts.service';
 import { CartDetailInput } from './inputs/cart-detail.input';
-import { CartDetailModel } from 'src/common/models/cart-detail.model';
+import { CartDetailModel } from 'src/modules/carts-details/model/cart-detail.model';
 
 @Resolver(() => CartDetailModel)
 export class CartsDetailsResolver {

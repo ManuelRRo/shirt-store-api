@@ -1,6 +1,6 @@
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
 import { LikesService } from './likes.service';
-import { Likes } from 'src/common/models/likes.model';
+import { Likes } from 'src/modules/likes/model/likes.model';
 import { Roles } from 'src/common/decorators/role.decorator';
 import { ROLES } from 'src/common/enums/roles.enum';
 import { UseGuards } from '@nestjs/common';

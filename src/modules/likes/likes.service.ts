@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Likes } from 'src/common/models/likes.model';
+import { Likes } from 'src/modules/likes/model/likes.model';
 import { PrismaService } from 'src/prisma.service';
 import { LikeInput } from './inputs/like.input';
 

@@ -34,6 +34,11 @@ export type UserRoles = $Result.DefaultSelection<Prisma.$UserRolesPayload>
  */
 export type Orders = $Result.DefaultSelection<Prisma.$OrdersPayload>
 /**
+ * Model Payments
+ * 
+ */
+export type Payments = $Result.DefaultSelection<Prisma.$PaymentsPayload>
+/**
  * Model OrderDetails
  * 
  */
@@ -73,6 +78,16 @@ export type ProductCategories = $Result.DefaultSelection<Prisma.$ProductCategori
  * 
  */
 export type Likes = $Result.DefaultSelection<Prisma.$LikesPayload>
+/**
+ * Model CartDetails
+ * 
+ */
+export type CartDetails = $Result.DefaultSelection<Prisma.$CartDetailsPayload>
+/**
+ * Model Carts
+ * 
+ */
+export type Carts = $Result.DefaultSelection<Prisma.$CartsPayload>
 
 /**
  * Enums
@@ -283,6 +298,16 @@ export class PrismaClient<
   get orders(): Prisma.OrdersDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.payments`: Exposes CRUD operations for the **Payments** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Payments
+    * const payments = await prisma.payments.findMany()
+    * ```
+    */
+  get payments(): Prisma.PaymentsDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.orderDetails`: Exposes CRUD operations for the **OrderDetails** model.
     * Example usage:
     * ```ts
@@ -361,6 +386,26 @@ export class PrismaClient<
     * ```
     */
   get likes(): Prisma.LikesDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.cartDetails`: Exposes CRUD operations for the **CartDetails** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CartDetails
+    * const cartDetails = await prisma.cartDetails.findMany()
+    * ```
+    */
+  get cartDetails(): Prisma.CartDetailsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.carts`: Exposes CRUD operations for the **Carts** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Carts
+    * const carts = await prisma.carts.findMany()
+    * ```
+    */
+  get carts(): Prisma.CartsDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -391,6 +436,11 @@ export namespace Prisma {
   export import raw = runtime.raw
   export import Sql = runtime.Sql
 
+
+  /**
+   * Prisma.skip
+   */
+  export import skip = runtime.skip
 
 
   /**
@@ -805,6 +855,7 @@ export namespace Prisma {
     Users: 'Users',
     UserRoles: 'UserRoles',
     Orders: 'Orders',
+    Payments: 'Payments',
     OrderDetails: 'OrderDetails',
     Products: 'Products',
     Brands: 'Brands',
@@ -812,7 +863,9 @@ export namespace Prisma {
     Files: 'Files',
     Categories: 'Categories',
     ProductCategories: 'ProductCategories',
-    Likes: 'Likes'
+    Likes: 'Likes',
+    CartDetails: 'CartDetails',
+    Carts: 'Carts'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -831,7 +884,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "roles" | "users" | "userRoles" | "orders" | "orderDetails" | "products" | "brands" | "variants" | "files" | "categories" | "productCategories" | "likes"
+      modelProps: "roles" | "users" | "userRoles" | "orders" | "payments" | "orderDetails" | "products" | "brands" | "variants" | "files" | "categories" | "productCategories" | "likes" | "cartDetails" | "carts"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1128,6 +1181,80 @@ export namespace Prisma {
           count: {
             args: Prisma.OrdersCountArgs<ExtArgs>
             result: $Utils.Optional<OrdersCountAggregateOutputType> | number
+          }
+        }
+      }
+      Payments: {
+        payload: Prisma.$PaymentsPayload<ExtArgs>
+        fields: Prisma.PaymentsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PaymentsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PaymentsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentsPayload>
+          }
+          findFirst: {
+            args: Prisma.PaymentsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PaymentsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentsPayload>
+          }
+          findMany: {
+            args: Prisma.PaymentsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentsPayload>[]
+          }
+          create: {
+            args: Prisma.PaymentsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentsPayload>
+          }
+          createMany: {
+            args: Prisma.PaymentsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PaymentsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentsPayload>[]
+          }
+          delete: {
+            args: Prisma.PaymentsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentsPayload>
+          }
+          update: {
+            args: Prisma.PaymentsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentsPayload>
+          }
+          deleteMany: {
+            args: Prisma.PaymentsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PaymentsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PaymentsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentsPayload>[]
+          }
+          upsert: {
+            args: Prisma.PaymentsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentsPayload>
+          }
+          aggregate: {
+            args: Prisma.PaymentsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePayments>
+          }
+          groupBy: {
+            args: Prisma.PaymentsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PaymentsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PaymentsCountArgs<ExtArgs>
+            result: $Utils.Optional<PaymentsCountAggregateOutputType> | number
           }
         }
       }
@@ -1723,6 +1850,154 @@ export namespace Prisma {
           }
         }
       }
+      CartDetails: {
+        payload: Prisma.$CartDetailsPayload<ExtArgs>
+        fields: Prisma.CartDetailsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CartDetailsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CartDetailsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CartDetailsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CartDetailsPayload>
+          }
+          findFirst: {
+            args: Prisma.CartDetailsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CartDetailsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CartDetailsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CartDetailsPayload>
+          }
+          findMany: {
+            args: Prisma.CartDetailsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CartDetailsPayload>[]
+          }
+          create: {
+            args: Prisma.CartDetailsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CartDetailsPayload>
+          }
+          createMany: {
+            args: Prisma.CartDetailsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CartDetailsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CartDetailsPayload>[]
+          }
+          delete: {
+            args: Prisma.CartDetailsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CartDetailsPayload>
+          }
+          update: {
+            args: Prisma.CartDetailsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CartDetailsPayload>
+          }
+          deleteMany: {
+            args: Prisma.CartDetailsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CartDetailsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CartDetailsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CartDetailsPayload>[]
+          }
+          upsert: {
+            args: Prisma.CartDetailsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CartDetailsPayload>
+          }
+          aggregate: {
+            args: Prisma.CartDetailsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCartDetails>
+          }
+          groupBy: {
+            args: Prisma.CartDetailsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CartDetailsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CartDetailsCountArgs<ExtArgs>
+            result: $Utils.Optional<CartDetailsCountAggregateOutputType> | number
+          }
+        }
+      }
+      Carts: {
+        payload: Prisma.$CartsPayload<ExtArgs>
+        fields: Prisma.CartsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CartsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CartsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CartsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CartsPayload>
+          }
+          findFirst: {
+            args: Prisma.CartsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CartsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CartsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CartsPayload>
+          }
+          findMany: {
+            args: Prisma.CartsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CartsPayload>[]
+          }
+          create: {
+            args: Prisma.CartsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CartsPayload>
+          }
+          createMany: {
+            args: Prisma.CartsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CartsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CartsPayload>[]
+          }
+          delete: {
+            args: Prisma.CartsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CartsPayload>
+          }
+          update: {
+            args: Prisma.CartsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CartsPayload>
+          }
+          deleteMany: {
+            args: Prisma.CartsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CartsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CartsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CartsPayload>[]
+          }
+          upsert: {
+            args: Prisma.CartsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CartsPayload>
+          }
+          aggregate: {
+            args: Prisma.CartsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCarts>
+          }
+          groupBy: {
+            args: Prisma.CartsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CartsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CartsCountArgs<ExtArgs>
+            result: $Utils.Optional<CartsCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1811,6 +2086,7 @@ export namespace Prisma {
     users?: UsersOmit
     userRoles?: UserRolesOmit
     orders?: OrdersOmit
+    payments?: PaymentsOmit
     orderDetails?: OrderDetailsOmit
     products?: ProductsOmit
     brands?: BrandsOmit
@@ -1819,6 +2095,8 @@ export namespace Prisma {
     categories?: CategoriesOmit
     productCategories?: ProductCategoriesOmit
     likes?: LikesOmit
+    cartDetails?: CartDetailsOmit
+    carts?: CartsOmit
   }
 
   /* Types for Logging */
@@ -1935,7 +2213,7 @@ export namespace Prisma {
    * RolesCountOutputType without action
    */
   export type RolesCountOutputTypeCountUsersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UserRolesWhereInput
+    where?: UserRolesWhereInput | $Types.Skip
   }
 
 
@@ -1947,12 +2225,14 @@ export namespace Prisma {
     roles: number
     orders: number
     likes: number
+    carts: number
   }
 
   export type UsersCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     roles?: boolean | UsersCountOutputTypeCountRolesArgs
     orders?: boolean | UsersCountOutputTypeCountOrdersArgs
     likes?: boolean | UsersCountOutputTypeCountLikesArgs
+    carts?: boolean | UsersCountOutputTypeCountCartsArgs
   }
 
   // Custom InputTypes
@@ -1970,21 +2250,28 @@ export namespace Prisma {
    * UsersCountOutputType without action
    */
   export type UsersCountOutputTypeCountRolesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UserRolesWhereInput
+    where?: UserRolesWhereInput | $Types.Skip
   }
 
   /**
    * UsersCountOutputType without action
    */
   export type UsersCountOutputTypeCountOrdersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: OrdersWhereInput
+    where?: OrdersWhereInput | $Types.Skip
   }
 
   /**
    * UsersCountOutputType without action
    */
   export type UsersCountOutputTypeCountLikesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: LikesWhereInput
+    where?: LikesWhereInput | $Types.Skip
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountCartsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CartsWhereInput | $Types.Skip
   }
 
 
@@ -2015,7 +2302,7 @@ export namespace Prisma {
    * OrdersCountOutputType without action
    */
   export type OrdersCountOutputTypeCountOrderDetailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: OrderDetailsWhereInput
+    where?: OrderDetailsWhereInput | $Types.Skip
   }
 
 
@@ -2024,14 +2311,12 @@ export namespace Prisma {
    */
 
   export type ProductsCountOutputType = {
-    orderDetails: number
     variants: number
     productCategories: number
     likes: number
   }
 
   export type ProductsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    orderDetails?: boolean | ProductsCountOutputTypeCountOrderDetailsArgs
     variants?: boolean | ProductsCountOutputTypeCountVariantsArgs
     productCategories?: boolean | ProductsCountOutputTypeCountProductCategoriesArgs
     likes?: boolean | ProductsCountOutputTypeCountLikesArgs
@@ -2051,29 +2336,22 @@ export namespace Prisma {
   /**
    * ProductsCountOutputType without action
    */
-  export type ProductsCountOutputTypeCountOrderDetailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: OrderDetailsWhereInput
-  }
-
-  /**
-   * ProductsCountOutputType without action
-   */
   export type ProductsCountOutputTypeCountVariantsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: VariantsWhereInput
+    where?: VariantsWhereInput | $Types.Skip
   }
 
   /**
    * ProductsCountOutputType without action
    */
   export type ProductsCountOutputTypeCountProductCategoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ProductCategoriesWhereInput
+    where?: ProductCategoriesWhereInput | $Types.Skip
   }
 
   /**
    * ProductsCountOutputType without action
    */
   export type ProductsCountOutputTypeCountLikesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: LikesWhereInput
+    where?: LikesWhereInput | $Types.Skip
   }
 
 
@@ -2104,7 +2382,47 @@ export namespace Prisma {
    * BrandsCountOutputType without action
    */
   export type BrandsCountOutputTypeCountProductsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ProductsWhereInput
+    where?: ProductsWhereInput | $Types.Skip
+  }
+
+
+  /**
+   * Count Type VariantsCountOutputType
+   */
+
+  export type VariantsCountOutputType = {
+    orderDetails: number
+    cartDetails: number
+  }
+
+  export type VariantsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    orderDetails?: boolean | VariantsCountOutputTypeCountOrderDetailsArgs
+    cartDetails?: boolean | VariantsCountOutputTypeCountCartDetailsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * VariantsCountOutputType without action
+   */
+  export type VariantsCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VariantsCountOutputType
+     */
+    select?: VariantsCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * VariantsCountOutputType without action
+   */
+  export type VariantsCountOutputTypeCountOrderDetailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OrderDetailsWhereInput | $Types.Skip
+  }
+
+  /**
+   * VariantsCountOutputType without action
+   */
+  export type VariantsCountOutputTypeCountCartDetailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CartDetailsWhereInput | $Types.Skip
   }
 
 
@@ -2135,7 +2453,7 @@ export namespace Prisma {
    * FilesCountOutputType without action
    */
   export type FilesCountOutputTypeCountVariantsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: VariantsWhereInput
+    where?: VariantsWhereInput | $Types.Skip
   }
 
 
@@ -2168,14 +2486,45 @@ export namespace Prisma {
    * CategoriesCountOutputType without action
    */
   export type CategoriesCountOutputTypeCountProductCategoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ProductCategoriesWhereInput
+    where?: ProductCategoriesWhereInput | $Types.Skip
   }
 
   /**
    * CategoriesCountOutputType without action
    */
   export type CategoriesCountOutputTypeCountCategoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CategoriesWhereInput
+    where?: CategoriesWhereInput | $Types.Skip
+  }
+
+
+  /**
+   * Count Type CartsCountOutputType
+   */
+
+  export type CartsCountOutputType = {
+    cartDetails: number
+  }
+
+  export type CartsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    cartDetails?: boolean | CartsCountOutputTypeCountCartDetailsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CartsCountOutputType without action
+   */
+  export type CartsCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CartsCountOutputType
+     */
+    select?: CartsCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CartsCountOutputType without action
+   */
+  export type CartsCountOutputTypeCountCartDetailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CartDetailsWhereInput | $Types.Skip
   }
 
 
@@ -2211,50 +2560,50 @@ export namespace Prisma {
 
 
   export type RolesMinAggregateInputType = {
-    id?: true
-    name?: true
+    id?: true | $Types.Skip
+    name?: true | $Types.Skip
   }
 
   export type RolesMaxAggregateInputType = {
-    id?: true
-    name?: true
+    id?: true | $Types.Skip
+    name?: true | $Types.Skip
   }
 
   export type RolesCountAggregateInputType = {
-    id?: true
-    name?: true
-    _all?: true
+    id?: true | $Types.Skip
+    name?: true | $Types.Skip
+    _all?: true | $Types.Skip
   }
 
   export type RolesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Roles to aggregate.
      */
-    where?: RolesWhereInput
+    where?: RolesWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Roles to fetch.
      */
-    orderBy?: RolesOrderByWithRelationInput | RolesOrderByWithRelationInput[]
+    orderBy?: RolesOrderByWithRelationInput | RolesOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: RolesWhereUniqueInput
+    cursor?: RolesWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Roles from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Roles.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
@@ -2287,12 +2636,12 @@ export namespace Prisma {
 
 
   export type RolesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: RolesWhereInput
-    orderBy?: RolesOrderByWithAggregationInput | RolesOrderByWithAggregationInput[]
+    where?: RolesWhereInput | $Types.Skip
+    orderBy?: RolesOrderByWithAggregationInput | RolesOrderByWithAggregationInput[] | $Types.Skip
     by: RolesScalarFieldEnum[] | RolesScalarFieldEnum
-    having?: RolesScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
+    having?: RolesScalarWhereWithAggregatesInput | $Types.Skip
+    take?: number | $Types.Skip
+    skip?: number | $Types.Skip
     _count?: RolesCountAggregateInputType | true
     _min?: RolesMinAggregateInputType
     _max?: RolesMaxAggregateInputType
@@ -2321,31 +2670,31 @@ export namespace Prisma {
 
 
   export type RolesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    users?: boolean | Roles$usersArgs<ExtArgs>
-    _count?: boolean | RolesCountOutputTypeDefaultArgs<ExtArgs>
+    id?: boolean | $Types.Skip
+    name?: boolean | $Types.Skip
+    users?: boolean | Roles$usersArgs<ExtArgs> | $Types.Skip
+    _count?: boolean | RolesCountOutputTypeDefaultArgs<ExtArgs> | $Types.Skip
   }, ExtArgs["result"]["roles"]>
 
   export type RolesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
+    id?: boolean | $Types.Skip
+    name?: boolean | $Types.Skip
   }, ExtArgs["result"]["roles"]>
 
   export type RolesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
+    id?: boolean | $Types.Skip
+    name?: boolean | $Types.Skip
   }, ExtArgs["result"]["roles"]>
 
   export type RolesSelectScalar = {
-    id?: boolean
-    name?: boolean
+    id?: boolean | $Types.Skip
+    name?: boolean | $Types.Skip
   }
 
-  export type RolesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name", ExtArgs["result"]["roles"]>
+  export type RolesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name", ExtArgs["result"]["roles"], $Types.Skip>
   export type RolesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    users?: boolean | Roles$usersArgs<ExtArgs>
-    _count?: boolean | RolesCountOutputTypeDefaultArgs<ExtArgs>
+    users?: boolean | Roles$usersArgs<ExtArgs> | $Types.Skip
+    _count?: boolean | RolesCountOutputTypeDefaultArgs<ExtArgs> | $Types.Skip
   }
   export type RolesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
   export type RolesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2851,37 +3200,37 @@ export namespace Prisma {
     /**
      * Filter, which Roles to fetch.
      */
-    where?: RolesWhereInput
+    where?: RolesWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Roles to fetch.
      */
-    orderBy?: RolesOrderByWithRelationInput | RolesOrderByWithRelationInput[]
+    orderBy?: RolesOrderByWithRelationInput | RolesOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for Roles.
      */
-    cursor?: RolesWhereUniqueInput
+    cursor?: RolesWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Roles from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Roles.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
      * Filter by unique combinations of Roles.
      */
-    distinct?: RolesScalarFieldEnum | RolesScalarFieldEnum[]
+    distinct?: RolesScalarFieldEnum | RolesScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -2903,37 +3252,37 @@ export namespace Prisma {
     /**
      * Filter, which Roles to fetch.
      */
-    where?: RolesWhereInput
+    where?: RolesWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Roles to fetch.
      */
-    orderBy?: RolesOrderByWithRelationInput | RolesOrderByWithRelationInput[]
+    orderBy?: RolesOrderByWithRelationInput | RolesOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for Roles.
      */
-    cursor?: RolesWhereUniqueInput
+    cursor?: RolesWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Roles from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Roles.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
      * Filter by unique combinations of Roles.
      */
-    distinct?: RolesScalarFieldEnum | RolesScalarFieldEnum[]
+    distinct?: RolesScalarFieldEnum | RolesScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -2955,32 +3304,32 @@ export namespace Prisma {
     /**
      * Filter, which Roles to fetch.
      */
-    where?: RolesWhereInput
+    where?: RolesWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Roles to fetch.
      */
-    orderBy?: RolesOrderByWithRelationInput | RolesOrderByWithRelationInput[]
+    orderBy?: RolesOrderByWithRelationInput | RolesOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for listing Roles.
      */
-    cursor?: RolesWhereUniqueInput
+    cursor?: RolesWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Roles from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Roles.
      */
-    skip?: number
-    distinct?: RolesScalarFieldEnum | RolesScalarFieldEnum[]
+    skip?: number | $Types.Skip
+    distinct?: RolesScalarFieldEnum | RolesScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -3013,7 +3362,7 @@ export namespace Prisma {
      * The data used to create many Roles.
      */
     data: RolesCreateManyInput | RolesCreateManyInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
   }
 
   /**
@@ -3032,7 +3381,7 @@ export namespace Prisma {
      * The data used to create many Roles.
      */
     data: RolesCreateManyInput | RolesCreateManyInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
   }
 
   /**
@@ -3072,11 +3421,11 @@ export namespace Prisma {
     /**
      * Filter which Roles to update
      */
-    where?: RolesWhereInput
+    where?: RolesWhereInput | $Types.Skip
     /**
      * Limit how many Roles to update.
      */
-    limit?: number
+    limit?: number | $Types.Skip
   }
 
   /**
@@ -3098,11 +3447,11 @@ export namespace Prisma {
     /**
      * Filter which Roles to update
      */
-    where?: RolesWhereInput
+    where?: RolesWhereInput | $Types.Skip
     /**
      * Limit how many Roles to update.
      */
-    limit?: number
+    limit?: number | $Types.Skip
   }
 
   /**
@@ -3164,11 +3513,11 @@ export namespace Prisma {
     /**
      * Filter which Roles to delete
      */
-    where?: RolesWhereInput
+    where?: RolesWhereInput | $Types.Skip
     /**
      * Limit how many Roles to delete.
      */
-    limit?: number
+    limit?: number | $Types.Skip
   }
 
   /**
@@ -3187,12 +3536,12 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: UserRolesInclude<ExtArgs> | null
-    where?: UserRolesWhereInput
-    orderBy?: UserRolesOrderByWithRelationInput | UserRolesOrderByWithRelationInput[]
-    cursor?: UserRolesWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: UserRolesScalarFieldEnum | UserRolesScalarFieldEnum[]
+    where?: UserRolesWhereInput | $Types.Skip
+    orderBy?: UserRolesOrderByWithRelationInput | UserRolesOrderByWithRelationInput[] | $Types.Skip
+    cursor?: UserRolesWhereUniqueInput | $Types.Skip
+    take?: number | $Types.Skip
+    skip?: number | $Types.Skip
+    distinct?: UserRolesScalarFieldEnum | UserRolesScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -3254,62 +3603,62 @@ export namespace Prisma {
 
 
   export type UsersMinAggregateInputType = {
-    id?: true
-    nickname?: true
-    first_name?: true
-    last_name?: true
-    email?: true
-    password?: true
+    id?: true | $Types.Skip
+    nickname?: true | $Types.Skip
+    first_name?: true | $Types.Skip
+    last_name?: true | $Types.Skip
+    email?: true | $Types.Skip
+    password?: true | $Types.Skip
   }
 
   export type UsersMaxAggregateInputType = {
-    id?: true
-    nickname?: true
-    first_name?: true
-    last_name?: true
-    email?: true
-    password?: true
+    id?: true | $Types.Skip
+    nickname?: true | $Types.Skip
+    first_name?: true | $Types.Skip
+    last_name?: true | $Types.Skip
+    email?: true | $Types.Skip
+    password?: true | $Types.Skip
   }
 
   export type UsersCountAggregateInputType = {
-    id?: true
-    nickname?: true
-    first_name?: true
-    last_name?: true
-    email?: true
-    password?: true
-    _all?: true
+    id?: true | $Types.Skip
+    nickname?: true | $Types.Skip
+    first_name?: true | $Types.Skip
+    last_name?: true | $Types.Skip
+    email?: true | $Types.Skip
+    password?: true | $Types.Skip
+    _all?: true | $Types.Skip
   }
 
   export type UsersAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Users to aggregate.
      */
-    where?: UsersWhereInput
+    where?: UsersWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Users to fetch.
      */
-    orderBy?: UsersOrderByWithRelationInput | UsersOrderByWithRelationInput[]
+    orderBy?: UsersOrderByWithRelationInput | UsersOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: UsersWhereUniqueInput
+    cursor?: UsersWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Users from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Users.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
@@ -3342,12 +3691,12 @@ export namespace Prisma {
 
 
   export type UsersGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UsersWhereInput
-    orderBy?: UsersOrderByWithAggregationInput | UsersOrderByWithAggregationInput[]
+    where?: UsersWhereInput | $Types.Skip
+    orderBy?: UsersOrderByWithAggregationInput | UsersOrderByWithAggregationInput[] | $Types.Skip
     by: UsersScalarFieldEnum[] | UsersScalarFieldEnum
-    having?: UsersScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
+    having?: UsersScalarWhereWithAggregatesInput | $Types.Skip
+    take?: number | $Types.Skip
+    skip?: number | $Types.Skip
     _count?: UsersCountAggregateInputType | true
     _min?: UsersMinAggregateInputType
     _max?: UsersMaxAggregateInputType
@@ -3380,51 +3729,53 @@ export namespace Prisma {
 
 
   export type UsersSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    nickname?: boolean
-    first_name?: boolean
-    last_name?: boolean
-    email?: boolean
-    password?: boolean
-    roles?: boolean | Users$rolesArgs<ExtArgs>
-    orders?: boolean | Users$ordersArgs<ExtArgs>
-    likes?: boolean | Users$likesArgs<ExtArgs>
-    _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
+    id?: boolean | $Types.Skip
+    nickname?: boolean | $Types.Skip
+    first_name?: boolean | $Types.Skip
+    last_name?: boolean | $Types.Skip
+    email?: boolean | $Types.Skip
+    password?: boolean | $Types.Skip
+    roles?: boolean | Users$rolesArgs<ExtArgs> | $Types.Skip
+    orders?: boolean | Users$ordersArgs<ExtArgs> | $Types.Skip
+    likes?: boolean | Users$likesArgs<ExtArgs> | $Types.Skip
+    carts?: boolean | Users$cartsArgs<ExtArgs> | $Types.Skip
+    _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs> | $Types.Skip
   }, ExtArgs["result"]["users"]>
 
   export type UsersSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    nickname?: boolean
-    first_name?: boolean
-    last_name?: boolean
-    email?: boolean
-    password?: boolean
+    id?: boolean | $Types.Skip
+    nickname?: boolean | $Types.Skip
+    first_name?: boolean | $Types.Skip
+    last_name?: boolean | $Types.Skip
+    email?: boolean | $Types.Skip
+    password?: boolean | $Types.Skip
   }, ExtArgs["result"]["users"]>
 
   export type UsersSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    nickname?: boolean
-    first_name?: boolean
-    last_name?: boolean
-    email?: boolean
-    password?: boolean
+    id?: boolean | $Types.Skip
+    nickname?: boolean | $Types.Skip
+    first_name?: boolean | $Types.Skip
+    last_name?: boolean | $Types.Skip
+    email?: boolean | $Types.Skip
+    password?: boolean | $Types.Skip
   }, ExtArgs["result"]["users"]>
 
   export type UsersSelectScalar = {
-    id?: boolean
-    nickname?: boolean
-    first_name?: boolean
-    last_name?: boolean
-    email?: boolean
-    password?: boolean
+    id?: boolean | $Types.Skip
+    nickname?: boolean | $Types.Skip
+    first_name?: boolean | $Types.Skip
+    last_name?: boolean | $Types.Skip
+    email?: boolean | $Types.Skip
+    password?: boolean | $Types.Skip
   }
 
-  export type UsersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nickname" | "first_name" | "last_name" | "email" | "password", ExtArgs["result"]["users"]>
+  export type UsersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nickname" | "first_name" | "last_name" | "email" | "password", ExtArgs["result"]["users"], $Types.Skip>
   export type UsersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    roles?: boolean | Users$rolesArgs<ExtArgs>
-    orders?: boolean | Users$ordersArgs<ExtArgs>
-    likes?: boolean | Users$likesArgs<ExtArgs>
-    _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
+    roles?: boolean | Users$rolesArgs<ExtArgs> | $Types.Skip
+    orders?: boolean | Users$ordersArgs<ExtArgs> | $Types.Skip
+    likes?: boolean | Users$likesArgs<ExtArgs> | $Types.Skip
+    carts?: boolean | Users$cartsArgs<ExtArgs> | $Types.Skip
+    _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs> | $Types.Skip
   }
   export type UsersIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
   export type UsersIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3435,6 +3786,7 @@ export namespace Prisma {
       roles: Prisma.$UserRolesPayload<ExtArgs>[]
       orders: Prisma.$OrdersPayload<ExtArgs>[]
       likes: Prisma.$LikesPayload<ExtArgs>[]
+      carts: Prisma.$CartsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3840,6 +4192,7 @@ export namespace Prisma {
     roles<T extends Users$rolesArgs<ExtArgs> = {}>(args?: Subset<T, Users$rolesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserRolesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     orders<T extends Users$ordersArgs<ExtArgs> = {}>(args?: Subset<T, Users$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrdersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     likes<T extends Users$likesArgs<ExtArgs> = {}>(args?: Subset<T, Users$likesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LikesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    carts<T extends Users$cartsArgs<ExtArgs> = {}>(args?: Subset<T, Users$cartsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CartsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3942,37 +4295,37 @@ export namespace Prisma {
     /**
      * Filter, which Users to fetch.
      */
-    where?: UsersWhereInput
+    where?: UsersWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Users to fetch.
      */
-    orderBy?: UsersOrderByWithRelationInput | UsersOrderByWithRelationInput[]
+    orderBy?: UsersOrderByWithRelationInput | UsersOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for Users.
      */
-    cursor?: UsersWhereUniqueInput
+    cursor?: UsersWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Users from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Users.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
      * Filter by unique combinations of Users.
      */
-    distinct?: UsersScalarFieldEnum | UsersScalarFieldEnum[]
+    distinct?: UsersScalarFieldEnum | UsersScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -3994,37 +4347,37 @@ export namespace Prisma {
     /**
      * Filter, which Users to fetch.
      */
-    where?: UsersWhereInput
+    where?: UsersWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Users to fetch.
      */
-    orderBy?: UsersOrderByWithRelationInput | UsersOrderByWithRelationInput[]
+    orderBy?: UsersOrderByWithRelationInput | UsersOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for Users.
      */
-    cursor?: UsersWhereUniqueInput
+    cursor?: UsersWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Users from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Users.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
      * Filter by unique combinations of Users.
      */
-    distinct?: UsersScalarFieldEnum | UsersScalarFieldEnum[]
+    distinct?: UsersScalarFieldEnum | UsersScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -4046,32 +4399,32 @@ export namespace Prisma {
     /**
      * Filter, which Users to fetch.
      */
-    where?: UsersWhereInput
+    where?: UsersWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Users to fetch.
      */
-    orderBy?: UsersOrderByWithRelationInput | UsersOrderByWithRelationInput[]
+    orderBy?: UsersOrderByWithRelationInput | UsersOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for listing Users.
      */
-    cursor?: UsersWhereUniqueInput
+    cursor?: UsersWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Users from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Users.
      */
-    skip?: number
-    distinct?: UsersScalarFieldEnum | UsersScalarFieldEnum[]
+    skip?: number | $Types.Skip
+    distinct?: UsersScalarFieldEnum | UsersScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -4104,7 +4457,7 @@ export namespace Prisma {
      * The data used to create many Users.
      */
     data: UsersCreateManyInput | UsersCreateManyInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
   }
 
   /**
@@ -4123,7 +4476,7 @@ export namespace Prisma {
      * The data used to create many Users.
      */
     data: UsersCreateManyInput | UsersCreateManyInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
   }
 
   /**
@@ -4163,11 +4516,11 @@ export namespace Prisma {
     /**
      * Filter which Users to update
      */
-    where?: UsersWhereInput
+    where?: UsersWhereInput | $Types.Skip
     /**
      * Limit how many Users to update.
      */
-    limit?: number
+    limit?: number | $Types.Skip
   }
 
   /**
@@ -4189,11 +4542,11 @@ export namespace Prisma {
     /**
      * Filter which Users to update
      */
-    where?: UsersWhereInput
+    where?: UsersWhereInput | $Types.Skip
     /**
      * Limit how many Users to update.
      */
-    limit?: number
+    limit?: number | $Types.Skip
   }
 
   /**
@@ -4255,11 +4608,11 @@ export namespace Prisma {
     /**
      * Filter which Users to delete
      */
-    where?: UsersWhereInput
+    where?: UsersWhereInput | $Types.Skip
     /**
      * Limit how many Users to delete.
      */
-    limit?: number
+    limit?: number | $Types.Skip
   }
 
   /**
@@ -4278,12 +4631,12 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: UserRolesInclude<ExtArgs> | null
-    where?: UserRolesWhereInput
-    orderBy?: UserRolesOrderByWithRelationInput | UserRolesOrderByWithRelationInput[]
-    cursor?: UserRolesWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: UserRolesScalarFieldEnum | UserRolesScalarFieldEnum[]
+    where?: UserRolesWhereInput | $Types.Skip
+    orderBy?: UserRolesOrderByWithRelationInput | UserRolesOrderByWithRelationInput[] | $Types.Skip
+    cursor?: UserRolesWhereUniqueInput | $Types.Skip
+    take?: number | $Types.Skip
+    skip?: number | $Types.Skip
+    distinct?: UserRolesScalarFieldEnum | UserRolesScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -4302,12 +4655,12 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: OrdersInclude<ExtArgs> | null
-    where?: OrdersWhereInput
-    orderBy?: OrdersOrderByWithRelationInput | OrdersOrderByWithRelationInput[]
-    cursor?: OrdersWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: OrdersScalarFieldEnum | OrdersScalarFieldEnum[]
+    where?: OrdersWhereInput | $Types.Skip
+    orderBy?: OrdersOrderByWithRelationInput | OrdersOrderByWithRelationInput[] | $Types.Skip
+    cursor?: OrdersWhereUniqueInput | $Types.Skip
+    take?: number | $Types.Skip
+    skip?: number | $Types.Skip
+    distinct?: OrdersScalarFieldEnum | OrdersScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -4326,12 +4679,36 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: LikesInclude<ExtArgs> | null
-    where?: LikesWhereInput
-    orderBy?: LikesOrderByWithRelationInput | LikesOrderByWithRelationInput[]
-    cursor?: LikesWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: LikesScalarFieldEnum | LikesScalarFieldEnum[]
+    where?: LikesWhereInput | $Types.Skip
+    orderBy?: LikesOrderByWithRelationInput | LikesOrderByWithRelationInput[] | $Types.Skip
+    cursor?: LikesWhereUniqueInput | $Types.Skip
+    take?: number | $Types.Skip
+    skip?: number | $Types.Skip
+    distinct?: LikesScalarFieldEnum | LikesScalarFieldEnum[] | $Types.Skip
+  }
+
+  /**
+   * Users.carts
+   */
+  export type Users$cartsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Carts
+     */
+    select?: CartsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Carts
+     */
+    omit?: CartsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CartsInclude<ExtArgs> | null
+    where?: CartsWhereInput | $Types.Skip
+    orderBy?: CartsOrderByWithRelationInput | CartsOrderByWithRelationInput[] | $Types.Skip
+    cursor?: CartsWhereUniqueInput | $Types.Skip
+    take?: number | $Types.Skip
+    skip?: number | $Types.Skip
+    distinct?: CartsScalarFieldEnum | CartsScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -4381,50 +4758,50 @@ export namespace Prisma {
 
 
   export type UserRolesMinAggregateInputType = {
-    userId?: true
-    roleId?: true
+    userId?: true | $Types.Skip
+    roleId?: true | $Types.Skip
   }
 
   export type UserRolesMaxAggregateInputType = {
-    userId?: true
-    roleId?: true
+    userId?: true | $Types.Skip
+    roleId?: true | $Types.Skip
   }
 
   export type UserRolesCountAggregateInputType = {
-    userId?: true
-    roleId?: true
-    _all?: true
+    userId?: true | $Types.Skip
+    roleId?: true | $Types.Skip
+    _all?: true | $Types.Skip
   }
 
   export type UserRolesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which UserRoles to aggregate.
      */
-    where?: UserRolesWhereInput
+    where?: UserRolesWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of UserRoles to fetch.
      */
-    orderBy?: UserRolesOrderByWithRelationInput | UserRolesOrderByWithRelationInput[]
+    orderBy?: UserRolesOrderByWithRelationInput | UserRolesOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: UserRolesWhereUniqueInput
+    cursor?: UserRolesWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` UserRoles from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` UserRoles.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
@@ -4457,12 +4834,12 @@ export namespace Prisma {
 
 
   export type UserRolesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UserRolesWhereInput
-    orderBy?: UserRolesOrderByWithAggregationInput | UserRolesOrderByWithAggregationInput[]
+    where?: UserRolesWhereInput | $Types.Skip
+    orderBy?: UserRolesOrderByWithAggregationInput | UserRolesOrderByWithAggregationInput[] | $Types.Skip
     by: UserRolesScalarFieldEnum[] | UserRolesScalarFieldEnum
-    having?: UserRolesScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
+    having?: UserRolesScalarWhereWithAggregatesInput | $Types.Skip
+    take?: number | $Types.Skip
+    skip?: number | $Types.Skip
     _count?: UserRolesCountAggregateInputType | true
     _min?: UserRolesMinAggregateInputType
     _max?: UserRolesMaxAggregateInputType
@@ -4491,43 +4868,43 @@ export namespace Prisma {
 
 
   export type UserRolesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    userId?: boolean
-    roleId?: boolean
-    users?: boolean | UsersDefaultArgs<ExtArgs>
-    roles?: boolean | RolesDefaultArgs<ExtArgs>
+    userId?: boolean | $Types.Skip
+    roleId?: boolean | $Types.Skip
+    users?: boolean | UsersDefaultArgs<ExtArgs> | $Types.Skip
+    roles?: boolean | RolesDefaultArgs<ExtArgs> | $Types.Skip
   }, ExtArgs["result"]["userRoles"]>
 
   export type UserRolesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    userId?: boolean
-    roleId?: boolean
-    users?: boolean | UsersDefaultArgs<ExtArgs>
-    roles?: boolean | RolesDefaultArgs<ExtArgs>
+    userId?: boolean | $Types.Skip
+    roleId?: boolean | $Types.Skip
+    users?: boolean | UsersDefaultArgs<ExtArgs> | $Types.Skip
+    roles?: boolean | RolesDefaultArgs<ExtArgs> | $Types.Skip
   }, ExtArgs["result"]["userRoles"]>
 
   export type UserRolesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    userId?: boolean
-    roleId?: boolean
-    users?: boolean | UsersDefaultArgs<ExtArgs>
-    roles?: boolean | RolesDefaultArgs<ExtArgs>
+    userId?: boolean | $Types.Skip
+    roleId?: boolean | $Types.Skip
+    users?: boolean | UsersDefaultArgs<ExtArgs> | $Types.Skip
+    roles?: boolean | RolesDefaultArgs<ExtArgs> | $Types.Skip
   }, ExtArgs["result"]["userRoles"]>
 
   export type UserRolesSelectScalar = {
-    userId?: boolean
-    roleId?: boolean
+    userId?: boolean | $Types.Skip
+    roleId?: boolean | $Types.Skip
   }
 
-  export type UserRolesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"userId" | "roleId", ExtArgs["result"]["userRoles"]>
+  export type UserRolesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"userId" | "roleId", ExtArgs["result"]["userRoles"], $Types.Skip>
   export type UserRolesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    users?: boolean | UsersDefaultArgs<ExtArgs>
-    roles?: boolean | RolesDefaultArgs<ExtArgs>
+    users?: boolean | UsersDefaultArgs<ExtArgs> | $Types.Skip
+    roles?: boolean | RolesDefaultArgs<ExtArgs> | $Types.Skip
   }
   export type UserRolesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    users?: boolean | UsersDefaultArgs<ExtArgs>
-    roles?: boolean | RolesDefaultArgs<ExtArgs>
+    users?: boolean | UsersDefaultArgs<ExtArgs> | $Types.Skip
+    roles?: boolean | RolesDefaultArgs<ExtArgs> | $Types.Skip
   }
   export type UserRolesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    users?: boolean | UsersDefaultArgs<ExtArgs>
-    roles?: boolean | RolesDefaultArgs<ExtArgs>
+    users?: boolean | UsersDefaultArgs<ExtArgs> | $Types.Skip
+    roles?: boolean | RolesDefaultArgs<ExtArgs> | $Types.Skip
   }
 
   export type $UserRolesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5033,37 +5410,37 @@ export namespace Prisma {
     /**
      * Filter, which UserRoles to fetch.
      */
-    where?: UserRolesWhereInput
+    where?: UserRolesWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of UserRoles to fetch.
      */
-    orderBy?: UserRolesOrderByWithRelationInput | UserRolesOrderByWithRelationInput[]
+    orderBy?: UserRolesOrderByWithRelationInput | UserRolesOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for UserRoles.
      */
-    cursor?: UserRolesWhereUniqueInput
+    cursor?: UserRolesWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` UserRoles from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` UserRoles.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
      * Filter by unique combinations of UserRoles.
      */
-    distinct?: UserRolesScalarFieldEnum | UserRolesScalarFieldEnum[]
+    distinct?: UserRolesScalarFieldEnum | UserRolesScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -5085,37 +5462,37 @@ export namespace Prisma {
     /**
      * Filter, which UserRoles to fetch.
      */
-    where?: UserRolesWhereInput
+    where?: UserRolesWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of UserRoles to fetch.
      */
-    orderBy?: UserRolesOrderByWithRelationInput | UserRolesOrderByWithRelationInput[]
+    orderBy?: UserRolesOrderByWithRelationInput | UserRolesOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for UserRoles.
      */
-    cursor?: UserRolesWhereUniqueInput
+    cursor?: UserRolesWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` UserRoles from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` UserRoles.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
      * Filter by unique combinations of UserRoles.
      */
-    distinct?: UserRolesScalarFieldEnum | UserRolesScalarFieldEnum[]
+    distinct?: UserRolesScalarFieldEnum | UserRolesScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -5137,32 +5514,32 @@ export namespace Prisma {
     /**
      * Filter, which UserRoles to fetch.
      */
-    where?: UserRolesWhereInput
+    where?: UserRolesWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of UserRoles to fetch.
      */
-    orderBy?: UserRolesOrderByWithRelationInput | UserRolesOrderByWithRelationInput[]
+    orderBy?: UserRolesOrderByWithRelationInput | UserRolesOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for listing UserRoles.
      */
-    cursor?: UserRolesWhereUniqueInput
+    cursor?: UserRolesWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` UserRoles from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` UserRoles.
      */
-    skip?: number
-    distinct?: UserRolesScalarFieldEnum | UserRolesScalarFieldEnum[]
+    skip?: number | $Types.Skip
+    distinct?: UserRolesScalarFieldEnum | UserRolesScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -5195,7 +5572,7 @@ export namespace Prisma {
      * The data used to create many UserRoles.
      */
     data: UserRolesCreateManyInput | UserRolesCreateManyInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
   }
 
   /**
@@ -5214,7 +5591,7 @@ export namespace Prisma {
      * The data used to create many UserRoles.
      */
     data: UserRolesCreateManyInput | UserRolesCreateManyInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -5258,11 +5635,11 @@ export namespace Prisma {
     /**
      * Filter which UserRoles to update
      */
-    where?: UserRolesWhereInput
+    where?: UserRolesWhereInput | $Types.Skip
     /**
      * Limit how many UserRoles to update.
      */
-    limit?: number
+    limit?: number | $Types.Skip
   }
 
   /**
@@ -5284,11 +5661,11 @@ export namespace Prisma {
     /**
      * Filter which UserRoles to update
      */
-    where?: UserRolesWhereInput
+    where?: UserRolesWhereInput | $Types.Skip
     /**
      * Limit how many UserRoles to update.
      */
-    limit?: number
+    limit?: number | $Types.Skip
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -5354,11 +5731,11 @@ export namespace Prisma {
     /**
      * Filter which UserRoles to delete
      */
-    where?: UserRolesWhereInput
+    where?: UserRolesWhereInput | $Types.Skip
     /**
      * Limit how many UserRoles to delete.
      */
-    limit?: number
+    limit?: number | $Types.Skip
   }
 
   /**
@@ -5414,56 +5791,56 @@ export namespace Prisma {
 
 
   export type OrdersMinAggregateInputType = {
-    id?: true
-    created_at?: true
-    stripe_checkout_id?: true
-    user_id?: true
+    id?: true | $Types.Skip
+    created_at?: true | $Types.Skip
+    stripe_checkout_id?: true | $Types.Skip
+    user_id?: true | $Types.Skip
   }
 
   export type OrdersMaxAggregateInputType = {
-    id?: true
-    created_at?: true
-    stripe_checkout_id?: true
-    user_id?: true
+    id?: true | $Types.Skip
+    created_at?: true | $Types.Skip
+    stripe_checkout_id?: true | $Types.Skip
+    user_id?: true | $Types.Skip
   }
 
   export type OrdersCountAggregateInputType = {
-    id?: true
-    created_at?: true
-    stripe_checkout_id?: true
-    user_id?: true
-    _all?: true
+    id?: true | $Types.Skip
+    created_at?: true | $Types.Skip
+    stripe_checkout_id?: true | $Types.Skip
+    user_id?: true | $Types.Skip
+    _all?: true | $Types.Skip
   }
 
   export type OrdersAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Orders to aggregate.
      */
-    where?: OrdersWhereInput
+    where?: OrdersWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Orders to fetch.
      */
-    orderBy?: OrdersOrderByWithRelationInput | OrdersOrderByWithRelationInput[]
+    orderBy?: OrdersOrderByWithRelationInput | OrdersOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: OrdersWhereUniqueInput
+    cursor?: OrdersWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Orders from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Orders.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
@@ -5496,12 +5873,12 @@ export namespace Prisma {
 
 
   export type OrdersGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: OrdersWhereInput
-    orderBy?: OrdersOrderByWithAggregationInput | OrdersOrderByWithAggregationInput[]
+    where?: OrdersWhereInput | $Types.Skip
+    orderBy?: OrdersOrderByWithAggregationInput | OrdersOrderByWithAggregationInput[] | $Types.Skip
     by: OrdersScalarFieldEnum[] | OrdersScalarFieldEnum
-    having?: OrdersScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
+    having?: OrdersScalarWhereWithAggregatesInput | $Types.Skip
+    take?: number | $Types.Skip
+    skip?: number | $Types.Skip
     _count?: OrdersCountAggregateInputType | true
     _min?: OrdersMinAggregateInputType
     _max?: OrdersMaxAggregateInputType
@@ -5532,49 +5909,51 @@ export namespace Prisma {
 
 
   export type OrdersSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    created_at?: boolean
-    stripe_checkout_id?: boolean
-    user_id?: boolean
-    user?: boolean | UsersDefaultArgs<ExtArgs>
-    orderDetails?: boolean | Orders$orderDetailsArgs<ExtArgs>
-    _count?: boolean | OrdersCountOutputTypeDefaultArgs<ExtArgs>
+    id?: boolean | $Types.Skip
+    created_at?: boolean | $Types.Skip
+    stripe_checkout_id?: boolean | $Types.Skip
+    user_id?: boolean | $Types.Skip
+    user?: boolean | UsersDefaultArgs<ExtArgs> | $Types.Skip
+    orderDetails?: boolean | Orders$orderDetailsArgs<ExtArgs> | $Types.Skip
+    payment?: boolean | Orders$paymentArgs<ExtArgs> | $Types.Skip
+    _count?: boolean | OrdersCountOutputTypeDefaultArgs<ExtArgs> | $Types.Skip
   }, ExtArgs["result"]["orders"]>
 
   export type OrdersSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    created_at?: boolean
-    stripe_checkout_id?: boolean
-    user_id?: boolean
-    user?: boolean | UsersDefaultArgs<ExtArgs>
+    id?: boolean | $Types.Skip
+    created_at?: boolean | $Types.Skip
+    stripe_checkout_id?: boolean | $Types.Skip
+    user_id?: boolean | $Types.Skip
+    user?: boolean | UsersDefaultArgs<ExtArgs> | $Types.Skip
   }, ExtArgs["result"]["orders"]>
 
   export type OrdersSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    created_at?: boolean
-    stripe_checkout_id?: boolean
-    user_id?: boolean
-    user?: boolean | UsersDefaultArgs<ExtArgs>
+    id?: boolean | $Types.Skip
+    created_at?: boolean | $Types.Skip
+    stripe_checkout_id?: boolean | $Types.Skip
+    user_id?: boolean | $Types.Skip
+    user?: boolean | UsersDefaultArgs<ExtArgs> | $Types.Skip
   }, ExtArgs["result"]["orders"]>
 
   export type OrdersSelectScalar = {
-    id?: boolean
-    created_at?: boolean
-    stripe_checkout_id?: boolean
-    user_id?: boolean
+    id?: boolean | $Types.Skip
+    created_at?: boolean | $Types.Skip
+    stripe_checkout_id?: boolean | $Types.Skip
+    user_id?: boolean | $Types.Skip
   }
 
-  export type OrdersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "created_at" | "stripe_checkout_id" | "user_id", ExtArgs["result"]["orders"]>
+  export type OrdersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "created_at" | "stripe_checkout_id" | "user_id", ExtArgs["result"]["orders"], $Types.Skip>
   export type OrdersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UsersDefaultArgs<ExtArgs>
-    orderDetails?: boolean | Orders$orderDetailsArgs<ExtArgs>
-    _count?: boolean | OrdersCountOutputTypeDefaultArgs<ExtArgs>
+    user?: boolean | UsersDefaultArgs<ExtArgs> | $Types.Skip
+    orderDetails?: boolean | Orders$orderDetailsArgs<ExtArgs> | $Types.Skip
+    payment?: boolean | Orders$paymentArgs<ExtArgs> | $Types.Skip
+    _count?: boolean | OrdersCountOutputTypeDefaultArgs<ExtArgs> | $Types.Skip
   }
   export type OrdersIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UsersDefaultArgs<ExtArgs>
+    user?: boolean | UsersDefaultArgs<ExtArgs> | $Types.Skip
   }
   export type OrdersIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UsersDefaultArgs<ExtArgs>
+    user?: boolean | UsersDefaultArgs<ExtArgs> | $Types.Skip
   }
 
   export type $OrdersPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5582,6 +5961,7 @@ export namespace Prisma {
     objects: {
       user: Prisma.$UsersPayload<ExtArgs>
       orderDetails: Prisma.$OrderDetailsPayload<ExtArgs>[]
+      payment: Prisma.$PaymentsPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5984,6 +6364,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UsersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UsersDefaultArgs<ExtArgs>>): Prisma__UsersClient<$Result.GetResult<Prisma.$UsersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     orderDetails<T extends Orders$orderDetailsArgs<ExtArgs> = {}>(args?: Subset<T, Orders$orderDetailsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderDetailsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    payment<T extends Orders$paymentArgs<ExtArgs> = {}>(args?: Subset<T, Orders$paymentArgs<ExtArgs>>): Prisma__PaymentsClient<$Result.GetResult<Prisma.$PaymentsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6084,37 +6465,37 @@ export namespace Prisma {
     /**
      * Filter, which Orders to fetch.
      */
-    where?: OrdersWhereInput
+    where?: OrdersWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Orders to fetch.
      */
-    orderBy?: OrdersOrderByWithRelationInput | OrdersOrderByWithRelationInput[]
+    orderBy?: OrdersOrderByWithRelationInput | OrdersOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for Orders.
      */
-    cursor?: OrdersWhereUniqueInput
+    cursor?: OrdersWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Orders from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Orders.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
      * Filter by unique combinations of Orders.
      */
-    distinct?: OrdersScalarFieldEnum | OrdersScalarFieldEnum[]
+    distinct?: OrdersScalarFieldEnum | OrdersScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -6136,37 +6517,37 @@ export namespace Prisma {
     /**
      * Filter, which Orders to fetch.
      */
-    where?: OrdersWhereInput
+    where?: OrdersWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Orders to fetch.
      */
-    orderBy?: OrdersOrderByWithRelationInput | OrdersOrderByWithRelationInput[]
+    orderBy?: OrdersOrderByWithRelationInput | OrdersOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for Orders.
      */
-    cursor?: OrdersWhereUniqueInput
+    cursor?: OrdersWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Orders from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Orders.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
      * Filter by unique combinations of Orders.
      */
-    distinct?: OrdersScalarFieldEnum | OrdersScalarFieldEnum[]
+    distinct?: OrdersScalarFieldEnum | OrdersScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -6188,32 +6569,32 @@ export namespace Prisma {
     /**
      * Filter, which Orders to fetch.
      */
-    where?: OrdersWhereInput
+    where?: OrdersWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Orders to fetch.
      */
-    orderBy?: OrdersOrderByWithRelationInput | OrdersOrderByWithRelationInput[]
+    orderBy?: OrdersOrderByWithRelationInput | OrdersOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for listing Orders.
      */
-    cursor?: OrdersWhereUniqueInput
+    cursor?: OrdersWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Orders from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Orders.
      */
-    skip?: number
-    distinct?: OrdersScalarFieldEnum | OrdersScalarFieldEnum[]
+    skip?: number | $Types.Skip
+    distinct?: OrdersScalarFieldEnum | OrdersScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -6246,7 +6627,7 @@ export namespace Prisma {
      * The data used to create many Orders.
      */
     data: OrdersCreateManyInput | OrdersCreateManyInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
   }
 
   /**
@@ -6265,7 +6646,7 @@ export namespace Prisma {
      * The data used to create many Orders.
      */
     data: OrdersCreateManyInput | OrdersCreateManyInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -6309,11 +6690,11 @@ export namespace Prisma {
     /**
      * Filter which Orders to update
      */
-    where?: OrdersWhereInput
+    where?: OrdersWhereInput | $Types.Skip
     /**
      * Limit how many Orders to update.
      */
-    limit?: number
+    limit?: number | $Types.Skip
   }
 
   /**
@@ -6335,11 +6716,11 @@ export namespace Prisma {
     /**
      * Filter which Orders to update
      */
-    where?: OrdersWhereInput
+    where?: OrdersWhereInput | $Types.Skip
     /**
      * Limit how many Orders to update.
      */
-    limit?: number
+    limit?: number | $Types.Skip
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -6405,11 +6786,11 @@ export namespace Prisma {
     /**
      * Filter which Orders to delete
      */
-    where?: OrdersWhereInput
+    where?: OrdersWhereInput | $Types.Skip
     /**
      * Limit how many Orders to delete.
      */
-    limit?: number
+    limit?: number | $Types.Skip
   }
 
   /**
@@ -6428,12 +6809,31 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: OrderDetailsInclude<ExtArgs> | null
-    where?: OrderDetailsWhereInput
-    orderBy?: OrderDetailsOrderByWithRelationInput | OrderDetailsOrderByWithRelationInput[]
-    cursor?: OrderDetailsWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: OrderDetailsScalarFieldEnum | OrderDetailsScalarFieldEnum[]
+    where?: OrderDetailsWhereInput | $Types.Skip
+    orderBy?: OrderDetailsOrderByWithRelationInput | OrderDetailsOrderByWithRelationInput[] | $Types.Skip
+    cursor?: OrderDetailsWhereUniqueInput | $Types.Skip
+    take?: number | $Types.Skip
+    skip?: number | $Types.Skip
+    distinct?: OrderDetailsScalarFieldEnum | OrderDetailsScalarFieldEnum[] | $Types.Skip
+  }
+
+  /**
+   * Orders.payment
+   */
+  export type Orders$paymentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Payments
+     */
+    select?: PaymentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Payments
+     */
+    omit?: PaymentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaymentsInclude<ExtArgs> | null
+    where?: PaymentsWhereInput | $Types.Skip
   }
 
   /**
@@ -6452,6 +6852,1150 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: OrdersInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Payments
+   */
+
+  export type AggregatePayments = {
+    _count: PaymentsCountAggregateOutputType | null
+    _avg: PaymentsAvgAggregateOutputType | null
+    _sum: PaymentsSumAggregateOutputType | null
+    _min: PaymentsMinAggregateOutputType | null
+    _max: PaymentsMaxAggregateOutputType | null
+  }
+
+  export type PaymentsAvgAggregateOutputType = {
+    amount: number | null
+  }
+
+  export type PaymentsSumAggregateOutputType = {
+    amount: number | null
+  }
+
+  export type PaymentsMinAggregateOutputType = {
+    id: string | null
+    created_at: Date | null
+    updated_at: Date | null
+    status: string | null
+    amount: number | null
+    currency: string | null
+    receipt_url: string | null
+    payment_intent: string | null
+    orderId: string | null
+  }
+
+  export type PaymentsMaxAggregateOutputType = {
+    id: string | null
+    created_at: Date | null
+    updated_at: Date | null
+    status: string | null
+    amount: number | null
+    currency: string | null
+    receipt_url: string | null
+    payment_intent: string | null
+    orderId: string | null
+  }
+
+  export type PaymentsCountAggregateOutputType = {
+    id: number
+    created_at: number
+    updated_at: number
+    status: number
+    amount: number
+    currency: number
+    receipt_url: number
+    payment_intent: number
+    orderId: number
+    _all: number
+  }
+
+
+  export type PaymentsAvgAggregateInputType = {
+    amount?: true | $Types.Skip
+  }
+
+  export type PaymentsSumAggregateInputType = {
+    amount?: true | $Types.Skip
+  }
+
+  export type PaymentsMinAggregateInputType = {
+    id?: true | $Types.Skip
+    created_at?: true | $Types.Skip
+    updated_at?: true | $Types.Skip
+    status?: true | $Types.Skip
+    amount?: true | $Types.Skip
+    currency?: true | $Types.Skip
+    receipt_url?: true | $Types.Skip
+    payment_intent?: true | $Types.Skip
+    orderId?: true | $Types.Skip
+  }
+
+  export type PaymentsMaxAggregateInputType = {
+    id?: true | $Types.Skip
+    created_at?: true | $Types.Skip
+    updated_at?: true | $Types.Skip
+    status?: true | $Types.Skip
+    amount?: true | $Types.Skip
+    currency?: true | $Types.Skip
+    receipt_url?: true | $Types.Skip
+    payment_intent?: true | $Types.Skip
+    orderId?: true | $Types.Skip
+  }
+
+  export type PaymentsCountAggregateInputType = {
+    id?: true | $Types.Skip
+    created_at?: true | $Types.Skip
+    updated_at?: true | $Types.Skip
+    status?: true | $Types.Skip
+    amount?: true | $Types.Skip
+    currency?: true | $Types.Skip
+    receipt_url?: true | $Types.Skip
+    payment_intent?: true | $Types.Skip
+    orderId?: true | $Types.Skip
+    _all?: true | $Types.Skip
+  }
+
+  export type PaymentsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Payments to aggregate.
+     */
+    where?: PaymentsWhereInput | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Payments to fetch.
+     */
+    orderBy?: PaymentsOrderByWithRelationInput | PaymentsOrderByWithRelationInput[] | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PaymentsWhereUniqueInput | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Payments from the position of the cursor.
+     */
+    take?: number | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Payments.
+     */
+    skip?: number | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Payments
+    **/
+    _count?: true | PaymentsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PaymentsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PaymentsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PaymentsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PaymentsMaxAggregateInputType
+  }
+
+  export type GetPaymentsAggregateType<T extends PaymentsAggregateArgs> = {
+        [P in keyof T & keyof AggregatePayments]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePayments[P]>
+      : GetScalarType<T[P], AggregatePayments[P]>
+  }
+
+
+
+
+  export type PaymentsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PaymentsWhereInput | $Types.Skip
+    orderBy?: PaymentsOrderByWithAggregationInput | PaymentsOrderByWithAggregationInput[] | $Types.Skip
+    by: PaymentsScalarFieldEnum[] | PaymentsScalarFieldEnum
+    having?: PaymentsScalarWhereWithAggregatesInput | $Types.Skip
+    take?: number | $Types.Skip
+    skip?: number | $Types.Skip
+    _count?: PaymentsCountAggregateInputType | true
+    _avg?: PaymentsAvgAggregateInputType
+    _sum?: PaymentsSumAggregateInputType
+    _min?: PaymentsMinAggregateInputType
+    _max?: PaymentsMaxAggregateInputType
+  }
+
+  export type PaymentsGroupByOutputType = {
+    id: string
+    created_at: Date
+    updated_at: Date
+    status: string
+    amount: number
+    currency: string
+    receipt_url: string
+    payment_intent: string
+    orderId: string
+    _count: PaymentsCountAggregateOutputType | null
+    _avg: PaymentsAvgAggregateOutputType | null
+    _sum: PaymentsSumAggregateOutputType | null
+    _min: PaymentsMinAggregateOutputType | null
+    _max: PaymentsMaxAggregateOutputType | null
+  }
+
+  type GetPaymentsGroupByPayload<T extends PaymentsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PaymentsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PaymentsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PaymentsGroupByOutputType[P]>
+            : GetScalarType<T[P], PaymentsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PaymentsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean | $Types.Skip
+    created_at?: boolean | $Types.Skip
+    updated_at?: boolean | $Types.Skip
+    status?: boolean | $Types.Skip
+    amount?: boolean | $Types.Skip
+    currency?: boolean | $Types.Skip
+    receipt_url?: boolean | $Types.Skip
+    payment_intent?: boolean | $Types.Skip
+    orderId?: boolean | $Types.Skip
+    order?: boolean | OrdersDefaultArgs<ExtArgs> | $Types.Skip
+  }, ExtArgs["result"]["payments"]>
+
+  export type PaymentsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean | $Types.Skip
+    created_at?: boolean | $Types.Skip
+    updated_at?: boolean | $Types.Skip
+    status?: boolean | $Types.Skip
+    amount?: boolean | $Types.Skip
+    currency?: boolean | $Types.Skip
+    receipt_url?: boolean | $Types.Skip
+    payment_intent?: boolean | $Types.Skip
+    orderId?: boolean | $Types.Skip
+    order?: boolean | OrdersDefaultArgs<ExtArgs> | $Types.Skip
+  }, ExtArgs["result"]["payments"]>
+
+  export type PaymentsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean | $Types.Skip
+    created_at?: boolean | $Types.Skip
+    updated_at?: boolean | $Types.Skip
+    status?: boolean | $Types.Skip
+    amount?: boolean | $Types.Skip
+    currency?: boolean | $Types.Skip
+    receipt_url?: boolean | $Types.Skip
+    payment_intent?: boolean | $Types.Skip
+    orderId?: boolean | $Types.Skip
+    order?: boolean | OrdersDefaultArgs<ExtArgs> | $Types.Skip
+  }, ExtArgs["result"]["payments"]>
+
+  export type PaymentsSelectScalar = {
+    id?: boolean | $Types.Skip
+    created_at?: boolean | $Types.Skip
+    updated_at?: boolean | $Types.Skip
+    status?: boolean | $Types.Skip
+    amount?: boolean | $Types.Skip
+    currency?: boolean | $Types.Skip
+    receipt_url?: boolean | $Types.Skip
+    payment_intent?: boolean | $Types.Skip
+    orderId?: boolean | $Types.Skip
+  }
+
+  export type PaymentsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "created_at" | "updated_at" | "status" | "amount" | "currency" | "receipt_url" | "payment_intent" | "orderId", ExtArgs["result"]["payments"], $Types.Skip>
+  export type PaymentsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    order?: boolean | OrdersDefaultArgs<ExtArgs> | $Types.Skip
+  }
+  export type PaymentsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    order?: boolean | OrdersDefaultArgs<ExtArgs> | $Types.Skip
+  }
+  export type PaymentsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    order?: boolean | OrdersDefaultArgs<ExtArgs> | $Types.Skip
+  }
+
+  export type $PaymentsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Payments"
+    objects: {
+      order: Prisma.$OrdersPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      created_at: Date
+      updated_at: Date
+      status: string
+      amount: number
+      currency: string
+      receipt_url: string
+      payment_intent: string
+      orderId: string
+    }, ExtArgs["result"]["payments"]>
+    composites: {}
+  }
+
+  type PaymentsGetPayload<S extends boolean | null | undefined | PaymentsDefaultArgs> = $Result.GetResult<Prisma.$PaymentsPayload, S>
+
+  type PaymentsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PaymentsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PaymentsCountAggregateInputType | true
+    }
+
+  export interface PaymentsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Payments'], meta: { name: 'Payments' } }
+    /**
+     * Find zero or one Payments that matches the filter.
+     * @param {PaymentsFindUniqueArgs} args - Arguments to find a Payments
+     * @example
+     * // Get one Payments
+     * const payments = await prisma.payments.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PaymentsFindUniqueArgs>(args: SelectSubset<T, PaymentsFindUniqueArgs<ExtArgs>>): Prisma__PaymentsClient<$Result.GetResult<Prisma.$PaymentsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Payments that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PaymentsFindUniqueOrThrowArgs} args - Arguments to find a Payments
+     * @example
+     * // Get one Payments
+     * const payments = await prisma.payments.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PaymentsFindUniqueOrThrowArgs>(args: SelectSubset<T, PaymentsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PaymentsClient<$Result.GetResult<Prisma.$PaymentsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Payments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentsFindFirstArgs} args - Arguments to find a Payments
+     * @example
+     * // Get one Payments
+     * const payments = await prisma.payments.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PaymentsFindFirstArgs>(args?: SelectSubset<T, PaymentsFindFirstArgs<ExtArgs>>): Prisma__PaymentsClient<$Result.GetResult<Prisma.$PaymentsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Payments that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentsFindFirstOrThrowArgs} args - Arguments to find a Payments
+     * @example
+     * // Get one Payments
+     * const payments = await prisma.payments.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PaymentsFindFirstOrThrowArgs>(args?: SelectSubset<T, PaymentsFindFirstOrThrowArgs<ExtArgs>>): Prisma__PaymentsClient<$Result.GetResult<Prisma.$PaymentsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Payments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Payments
+     * const payments = await prisma.payments.findMany()
+     * 
+     * // Get first 10 Payments
+     * const payments = await prisma.payments.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const paymentsWithIdOnly = await prisma.payments.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PaymentsFindManyArgs>(args?: SelectSubset<T, PaymentsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Payments.
+     * @param {PaymentsCreateArgs} args - Arguments to create a Payments.
+     * @example
+     * // Create one Payments
+     * const Payments = await prisma.payments.create({
+     *   data: {
+     *     // ... data to create a Payments
+     *   }
+     * })
+     * 
+     */
+    create<T extends PaymentsCreateArgs>(args: SelectSubset<T, PaymentsCreateArgs<ExtArgs>>): Prisma__PaymentsClient<$Result.GetResult<Prisma.$PaymentsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Payments.
+     * @param {PaymentsCreateManyArgs} args - Arguments to create many Payments.
+     * @example
+     * // Create many Payments
+     * const payments = await prisma.payments.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PaymentsCreateManyArgs>(args?: SelectSubset<T, PaymentsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Payments and returns the data saved in the database.
+     * @param {PaymentsCreateManyAndReturnArgs} args - Arguments to create many Payments.
+     * @example
+     * // Create many Payments
+     * const payments = await prisma.payments.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Payments and only return the `id`
+     * const paymentsWithIdOnly = await prisma.payments.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PaymentsCreateManyAndReturnArgs>(args?: SelectSubset<T, PaymentsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Payments.
+     * @param {PaymentsDeleteArgs} args - Arguments to delete one Payments.
+     * @example
+     * // Delete one Payments
+     * const Payments = await prisma.payments.delete({
+     *   where: {
+     *     // ... filter to delete one Payments
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PaymentsDeleteArgs>(args: SelectSubset<T, PaymentsDeleteArgs<ExtArgs>>): Prisma__PaymentsClient<$Result.GetResult<Prisma.$PaymentsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Payments.
+     * @param {PaymentsUpdateArgs} args - Arguments to update one Payments.
+     * @example
+     * // Update one Payments
+     * const payments = await prisma.payments.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PaymentsUpdateArgs>(args: SelectSubset<T, PaymentsUpdateArgs<ExtArgs>>): Prisma__PaymentsClient<$Result.GetResult<Prisma.$PaymentsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Payments.
+     * @param {PaymentsDeleteManyArgs} args - Arguments to filter Payments to delete.
+     * @example
+     * // Delete a few Payments
+     * const { count } = await prisma.payments.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PaymentsDeleteManyArgs>(args?: SelectSubset<T, PaymentsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Payments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Payments
+     * const payments = await prisma.payments.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PaymentsUpdateManyArgs>(args: SelectSubset<T, PaymentsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Payments and returns the data updated in the database.
+     * @param {PaymentsUpdateManyAndReturnArgs} args - Arguments to update many Payments.
+     * @example
+     * // Update many Payments
+     * const payments = await prisma.payments.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Payments and only return the `id`
+     * const paymentsWithIdOnly = await prisma.payments.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PaymentsUpdateManyAndReturnArgs>(args: SelectSubset<T, PaymentsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Payments.
+     * @param {PaymentsUpsertArgs} args - Arguments to update or create a Payments.
+     * @example
+     * // Update or create a Payments
+     * const payments = await prisma.payments.upsert({
+     *   create: {
+     *     // ... data to create a Payments
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Payments we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PaymentsUpsertArgs>(args: SelectSubset<T, PaymentsUpsertArgs<ExtArgs>>): Prisma__PaymentsClient<$Result.GetResult<Prisma.$PaymentsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Payments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentsCountArgs} args - Arguments to filter Payments to count.
+     * @example
+     * // Count the number of Payments
+     * const count = await prisma.payments.count({
+     *   where: {
+     *     // ... the filter for the Payments we want to count
+     *   }
+     * })
+    **/
+    count<T extends PaymentsCountArgs>(
+      args?: Subset<T, PaymentsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PaymentsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Payments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PaymentsAggregateArgs>(args: Subset<T, PaymentsAggregateArgs>): Prisma.PrismaPromise<GetPaymentsAggregateType<T>>
+
+    /**
+     * Group by Payments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PaymentsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PaymentsGroupByArgs['orderBy'] }
+        : { orderBy?: PaymentsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PaymentsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPaymentsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Payments model
+   */
+  readonly fields: PaymentsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Payments.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PaymentsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    order<T extends OrdersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, OrdersDefaultArgs<ExtArgs>>): Prisma__OrdersClient<$Result.GetResult<Prisma.$OrdersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Payments model
+   */
+  interface PaymentsFieldRefs {
+    readonly id: FieldRef<"Payments", 'String'>
+    readonly created_at: FieldRef<"Payments", 'DateTime'>
+    readonly updated_at: FieldRef<"Payments", 'DateTime'>
+    readonly status: FieldRef<"Payments", 'String'>
+    readonly amount: FieldRef<"Payments", 'Float'>
+    readonly currency: FieldRef<"Payments", 'String'>
+    readonly receipt_url: FieldRef<"Payments", 'String'>
+    readonly payment_intent: FieldRef<"Payments", 'String'>
+    readonly orderId: FieldRef<"Payments", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Payments findUnique
+   */
+  export type PaymentsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Payments
+     */
+    select?: PaymentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Payments
+     */
+    omit?: PaymentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaymentsInclude<ExtArgs> | null
+    /**
+     * Filter, which Payments to fetch.
+     */
+    where: PaymentsWhereUniqueInput
+  }
+
+  /**
+   * Payments findUniqueOrThrow
+   */
+  export type PaymentsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Payments
+     */
+    select?: PaymentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Payments
+     */
+    omit?: PaymentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaymentsInclude<ExtArgs> | null
+    /**
+     * Filter, which Payments to fetch.
+     */
+    where: PaymentsWhereUniqueInput
+  }
+
+  /**
+   * Payments findFirst
+   */
+  export type PaymentsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Payments
+     */
+    select?: PaymentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Payments
+     */
+    omit?: PaymentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaymentsInclude<ExtArgs> | null
+    /**
+     * Filter, which Payments to fetch.
+     */
+    where?: PaymentsWhereInput | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Payments to fetch.
+     */
+    orderBy?: PaymentsOrderByWithRelationInput | PaymentsOrderByWithRelationInput[] | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Payments.
+     */
+    cursor?: PaymentsWhereUniqueInput | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Payments from the position of the cursor.
+     */
+    take?: number | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Payments.
+     */
+    skip?: number | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Payments.
+     */
+    distinct?: PaymentsScalarFieldEnum | PaymentsScalarFieldEnum[] | $Types.Skip
+  }
+
+  /**
+   * Payments findFirstOrThrow
+   */
+  export type PaymentsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Payments
+     */
+    select?: PaymentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Payments
+     */
+    omit?: PaymentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaymentsInclude<ExtArgs> | null
+    /**
+     * Filter, which Payments to fetch.
+     */
+    where?: PaymentsWhereInput | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Payments to fetch.
+     */
+    orderBy?: PaymentsOrderByWithRelationInput | PaymentsOrderByWithRelationInput[] | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Payments.
+     */
+    cursor?: PaymentsWhereUniqueInput | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Payments from the position of the cursor.
+     */
+    take?: number | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Payments.
+     */
+    skip?: number | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Payments.
+     */
+    distinct?: PaymentsScalarFieldEnum | PaymentsScalarFieldEnum[] | $Types.Skip
+  }
+
+  /**
+   * Payments findMany
+   */
+  export type PaymentsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Payments
+     */
+    select?: PaymentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Payments
+     */
+    omit?: PaymentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaymentsInclude<ExtArgs> | null
+    /**
+     * Filter, which Payments to fetch.
+     */
+    where?: PaymentsWhereInput | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Payments to fetch.
+     */
+    orderBy?: PaymentsOrderByWithRelationInput | PaymentsOrderByWithRelationInput[] | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Payments.
+     */
+    cursor?: PaymentsWhereUniqueInput | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Payments from the position of the cursor.
+     */
+    take?: number | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Payments.
+     */
+    skip?: number | $Types.Skip
+    distinct?: PaymentsScalarFieldEnum | PaymentsScalarFieldEnum[] | $Types.Skip
+  }
+
+  /**
+   * Payments create
+   */
+  export type PaymentsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Payments
+     */
+    select?: PaymentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Payments
+     */
+    omit?: PaymentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaymentsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Payments.
+     */
+    data: XOR<PaymentsCreateInput, PaymentsUncheckedCreateInput>
+  }
+
+  /**
+   * Payments createMany
+   */
+  export type PaymentsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Payments.
+     */
+    data: PaymentsCreateManyInput | PaymentsCreateManyInput[]
+    skipDuplicates?: boolean | $Types.Skip
+  }
+
+  /**
+   * Payments createManyAndReturn
+   */
+  export type PaymentsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Payments
+     */
+    select?: PaymentsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Payments
+     */
+    omit?: PaymentsOmit<ExtArgs> | null
+    /**
+     * The data used to create many Payments.
+     */
+    data: PaymentsCreateManyInput | PaymentsCreateManyInput[]
+    skipDuplicates?: boolean | $Types.Skip
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaymentsIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Payments update
+   */
+  export type PaymentsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Payments
+     */
+    select?: PaymentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Payments
+     */
+    omit?: PaymentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaymentsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Payments.
+     */
+    data: XOR<PaymentsUpdateInput, PaymentsUncheckedUpdateInput>
+    /**
+     * Choose, which Payments to update.
+     */
+    where: PaymentsWhereUniqueInput
+  }
+
+  /**
+   * Payments updateMany
+   */
+  export type PaymentsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Payments.
+     */
+    data: XOR<PaymentsUpdateManyMutationInput, PaymentsUncheckedUpdateManyInput>
+    /**
+     * Filter which Payments to update
+     */
+    where?: PaymentsWhereInput | $Types.Skip
+    /**
+     * Limit how many Payments to update.
+     */
+    limit?: number | $Types.Skip
+  }
+
+  /**
+   * Payments updateManyAndReturn
+   */
+  export type PaymentsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Payments
+     */
+    select?: PaymentsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Payments
+     */
+    omit?: PaymentsOmit<ExtArgs> | null
+    /**
+     * The data used to update Payments.
+     */
+    data: XOR<PaymentsUpdateManyMutationInput, PaymentsUncheckedUpdateManyInput>
+    /**
+     * Filter which Payments to update
+     */
+    where?: PaymentsWhereInput | $Types.Skip
+    /**
+     * Limit how many Payments to update.
+     */
+    limit?: number | $Types.Skip
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaymentsIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Payments upsert
+   */
+  export type PaymentsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Payments
+     */
+    select?: PaymentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Payments
+     */
+    omit?: PaymentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaymentsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Payments to update in case it exists.
+     */
+    where: PaymentsWhereUniqueInput
+    /**
+     * In case the Payments found by the `where` argument doesn't exist, create a new Payments with this data.
+     */
+    create: XOR<PaymentsCreateInput, PaymentsUncheckedCreateInput>
+    /**
+     * In case the Payments was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PaymentsUpdateInput, PaymentsUncheckedUpdateInput>
+  }
+
+  /**
+   * Payments delete
+   */
+  export type PaymentsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Payments
+     */
+    select?: PaymentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Payments
+     */
+    omit?: PaymentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaymentsInclude<ExtArgs> | null
+    /**
+     * Filter which Payments to delete.
+     */
+    where: PaymentsWhereUniqueInput
+  }
+
+  /**
+   * Payments deleteMany
+   */
+  export type PaymentsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Payments to delete
+     */
+    where?: PaymentsWhereInput | $Types.Skip
+    /**
+     * Limit how many Payments to delete.
+     */
+    limit?: number | $Types.Skip
+  }
+
+  /**
+   * Payments without action
+   */
+  export type PaymentsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Payments
+     */
+    select?: PaymentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Payments
+     */
+    omit?: PaymentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaymentsInclude<ExtArgs> | null
   }
 
 
@@ -6482,7 +8026,7 @@ export namespace Prisma {
     quantity: number | null
     price: number | null
     orderDetails_id: string | null
-    product_id: string | null
+    variant_id: string | null
   }
 
   export type OrderDetailsMaxAggregateOutputType = {
@@ -6490,7 +8034,7 @@ export namespace Prisma {
     quantity: number | null
     price: number | null
     orderDetails_id: string | null
-    product_id: string | null
+    variant_id: string | null
   }
 
   export type OrderDetailsCountAggregateOutputType = {
@@ -6498,75 +8042,75 @@ export namespace Prisma {
     quantity: number
     price: number
     orderDetails_id: number
-    product_id: number
+    variant_id: number
     _all: number
   }
 
 
   export type OrderDetailsAvgAggregateInputType = {
-    quantity?: true
-    price?: true
+    quantity?: true | $Types.Skip
+    price?: true | $Types.Skip
   }
 
   export type OrderDetailsSumAggregateInputType = {
-    quantity?: true
-    price?: true
+    quantity?: true | $Types.Skip
+    price?: true | $Types.Skip
   }
 
   export type OrderDetailsMinAggregateInputType = {
-    id?: true
-    quantity?: true
-    price?: true
-    orderDetails_id?: true
-    product_id?: true
+    id?: true | $Types.Skip
+    quantity?: true | $Types.Skip
+    price?: true | $Types.Skip
+    orderDetails_id?: true | $Types.Skip
+    variant_id?: true | $Types.Skip
   }
 
   export type OrderDetailsMaxAggregateInputType = {
-    id?: true
-    quantity?: true
-    price?: true
-    orderDetails_id?: true
-    product_id?: true
+    id?: true | $Types.Skip
+    quantity?: true | $Types.Skip
+    price?: true | $Types.Skip
+    orderDetails_id?: true | $Types.Skip
+    variant_id?: true | $Types.Skip
   }
 
   export type OrderDetailsCountAggregateInputType = {
-    id?: true
-    quantity?: true
-    price?: true
-    orderDetails_id?: true
-    product_id?: true
-    _all?: true
+    id?: true | $Types.Skip
+    quantity?: true | $Types.Skip
+    price?: true | $Types.Skip
+    orderDetails_id?: true | $Types.Skip
+    variant_id?: true | $Types.Skip
+    _all?: true | $Types.Skip
   }
 
   export type OrderDetailsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which OrderDetails to aggregate.
      */
-    where?: OrderDetailsWhereInput
+    where?: OrderDetailsWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of OrderDetails to fetch.
      */
-    orderBy?: OrderDetailsOrderByWithRelationInput | OrderDetailsOrderByWithRelationInput[]
+    orderBy?: OrderDetailsOrderByWithRelationInput | OrderDetailsOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: OrderDetailsWhereUniqueInput
+    cursor?: OrderDetailsWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` OrderDetails from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` OrderDetails.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
@@ -6611,12 +8155,12 @@ export namespace Prisma {
 
 
   export type OrderDetailsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: OrderDetailsWhereInput
-    orderBy?: OrderDetailsOrderByWithAggregationInput | OrderDetailsOrderByWithAggregationInput[]
+    where?: OrderDetailsWhereInput | $Types.Skip
+    orderBy?: OrderDetailsOrderByWithAggregationInput | OrderDetailsOrderByWithAggregationInput[] | $Types.Skip
     by: OrderDetailsScalarFieldEnum[] | OrderDetailsScalarFieldEnum
-    having?: OrderDetailsScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
+    having?: OrderDetailsScalarWhereWithAggregatesInput | $Types.Skip
+    take?: number | $Types.Skip
+    skip?: number | $Types.Skip
     _count?: OrderDetailsCountAggregateInputType | true
     _avg?: OrderDetailsAvgAggregateInputType
     _sum?: OrderDetailsSumAggregateInputType
@@ -6629,7 +8173,7 @@ export namespace Prisma {
     quantity: number
     price: number
     orderDetails_id: string
-    product_id: string
+    variant_id: string
     _count: OrderDetailsCountAggregateOutputType | null
     _avg: OrderDetailsAvgAggregateOutputType | null
     _sum: OrderDetailsSumAggregateOutputType | null
@@ -6652,69 +8196,69 @@ export namespace Prisma {
 
 
   export type OrderDetailsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    quantity?: boolean
-    price?: boolean
-    orderDetails_id?: boolean
-    product_id?: boolean
-    orderDetails?: boolean | OrdersDefaultArgs<ExtArgs>
-    product?: boolean | ProductsDefaultArgs<ExtArgs>
+    id?: boolean | $Types.Skip
+    quantity?: boolean | $Types.Skip
+    price?: boolean | $Types.Skip
+    orderDetails_id?: boolean | $Types.Skip
+    variant_id?: boolean | $Types.Skip
+    orderDetails?: boolean | OrdersDefaultArgs<ExtArgs> | $Types.Skip
+    variants?: boolean | VariantsDefaultArgs<ExtArgs> | $Types.Skip
   }, ExtArgs["result"]["orderDetails"]>
 
   export type OrderDetailsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    quantity?: boolean
-    price?: boolean
-    orderDetails_id?: boolean
-    product_id?: boolean
-    orderDetails?: boolean | OrdersDefaultArgs<ExtArgs>
-    product?: boolean | ProductsDefaultArgs<ExtArgs>
+    id?: boolean | $Types.Skip
+    quantity?: boolean | $Types.Skip
+    price?: boolean | $Types.Skip
+    orderDetails_id?: boolean | $Types.Skip
+    variant_id?: boolean | $Types.Skip
+    orderDetails?: boolean | OrdersDefaultArgs<ExtArgs> | $Types.Skip
+    variants?: boolean | VariantsDefaultArgs<ExtArgs> | $Types.Skip
   }, ExtArgs["result"]["orderDetails"]>
 
   export type OrderDetailsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    quantity?: boolean
-    price?: boolean
-    orderDetails_id?: boolean
-    product_id?: boolean
-    orderDetails?: boolean | OrdersDefaultArgs<ExtArgs>
-    product?: boolean | ProductsDefaultArgs<ExtArgs>
+    id?: boolean | $Types.Skip
+    quantity?: boolean | $Types.Skip
+    price?: boolean | $Types.Skip
+    orderDetails_id?: boolean | $Types.Skip
+    variant_id?: boolean | $Types.Skip
+    orderDetails?: boolean | OrdersDefaultArgs<ExtArgs> | $Types.Skip
+    variants?: boolean | VariantsDefaultArgs<ExtArgs> | $Types.Skip
   }, ExtArgs["result"]["orderDetails"]>
 
   export type OrderDetailsSelectScalar = {
-    id?: boolean
-    quantity?: boolean
-    price?: boolean
-    orderDetails_id?: boolean
-    product_id?: boolean
+    id?: boolean | $Types.Skip
+    quantity?: boolean | $Types.Skip
+    price?: boolean | $Types.Skip
+    orderDetails_id?: boolean | $Types.Skip
+    variant_id?: boolean | $Types.Skip
   }
 
-  export type OrderDetailsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "quantity" | "price" | "orderDetails_id" | "product_id", ExtArgs["result"]["orderDetails"]>
+  export type OrderDetailsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "quantity" | "price" | "orderDetails_id" | "variant_id", ExtArgs["result"]["orderDetails"], $Types.Skip>
   export type OrderDetailsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    orderDetails?: boolean | OrdersDefaultArgs<ExtArgs>
-    product?: boolean | ProductsDefaultArgs<ExtArgs>
+    orderDetails?: boolean | OrdersDefaultArgs<ExtArgs> | $Types.Skip
+    variants?: boolean | VariantsDefaultArgs<ExtArgs> | $Types.Skip
   }
   export type OrderDetailsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    orderDetails?: boolean | OrdersDefaultArgs<ExtArgs>
-    product?: boolean | ProductsDefaultArgs<ExtArgs>
+    orderDetails?: boolean | OrdersDefaultArgs<ExtArgs> | $Types.Skip
+    variants?: boolean | VariantsDefaultArgs<ExtArgs> | $Types.Skip
   }
   export type OrderDetailsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    orderDetails?: boolean | OrdersDefaultArgs<ExtArgs>
-    product?: boolean | ProductsDefaultArgs<ExtArgs>
+    orderDetails?: boolean | OrdersDefaultArgs<ExtArgs> | $Types.Skip
+    variants?: boolean | VariantsDefaultArgs<ExtArgs> | $Types.Skip
   }
 
   export type $OrderDetailsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "OrderDetails"
     objects: {
       orderDetails: Prisma.$OrdersPayload<ExtArgs>
-      product: Prisma.$ProductsPayload<ExtArgs>
+      variants: Prisma.$VariantsPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       quantity: number
       price: number
       orderDetails_id: string
-      product_id: string
+      variant_id: string
     }, ExtArgs["result"]["orderDetails"]>
     composites: {}
   }
@@ -7110,7 +8654,7 @@ export namespace Prisma {
   export interface Prisma__OrderDetailsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     orderDetails<T extends OrdersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, OrdersDefaultArgs<ExtArgs>>): Prisma__OrdersClient<$Result.GetResult<Prisma.$OrdersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    product<T extends ProductsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductsDefaultArgs<ExtArgs>>): Prisma__ProductsClient<$Result.GetResult<Prisma.$ProductsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    variants<T extends VariantsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, VariantsDefaultArgs<ExtArgs>>): Prisma__VariantsClient<$Result.GetResult<Prisma.$VariantsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7144,7 +8688,7 @@ export namespace Prisma {
     readonly quantity: FieldRef<"OrderDetails", 'Int'>
     readonly price: FieldRef<"OrderDetails", 'Float'>
     readonly orderDetails_id: FieldRef<"OrderDetails", 'String'>
-    readonly product_id: FieldRef<"OrderDetails", 'String'>
+    readonly variant_id: FieldRef<"OrderDetails", 'String'>
   }
     
 
@@ -7212,37 +8756,37 @@ export namespace Prisma {
     /**
      * Filter, which OrderDetails to fetch.
      */
-    where?: OrderDetailsWhereInput
+    where?: OrderDetailsWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of OrderDetails to fetch.
      */
-    orderBy?: OrderDetailsOrderByWithRelationInput | OrderDetailsOrderByWithRelationInput[]
+    orderBy?: OrderDetailsOrderByWithRelationInput | OrderDetailsOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for OrderDetails.
      */
-    cursor?: OrderDetailsWhereUniqueInput
+    cursor?: OrderDetailsWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` OrderDetails from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` OrderDetails.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
      * Filter by unique combinations of OrderDetails.
      */
-    distinct?: OrderDetailsScalarFieldEnum | OrderDetailsScalarFieldEnum[]
+    distinct?: OrderDetailsScalarFieldEnum | OrderDetailsScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -7264,37 +8808,37 @@ export namespace Prisma {
     /**
      * Filter, which OrderDetails to fetch.
      */
-    where?: OrderDetailsWhereInput
+    where?: OrderDetailsWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of OrderDetails to fetch.
      */
-    orderBy?: OrderDetailsOrderByWithRelationInput | OrderDetailsOrderByWithRelationInput[]
+    orderBy?: OrderDetailsOrderByWithRelationInput | OrderDetailsOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for OrderDetails.
      */
-    cursor?: OrderDetailsWhereUniqueInput
+    cursor?: OrderDetailsWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` OrderDetails from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` OrderDetails.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
      * Filter by unique combinations of OrderDetails.
      */
-    distinct?: OrderDetailsScalarFieldEnum | OrderDetailsScalarFieldEnum[]
+    distinct?: OrderDetailsScalarFieldEnum | OrderDetailsScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -7316,32 +8860,32 @@ export namespace Prisma {
     /**
      * Filter, which OrderDetails to fetch.
      */
-    where?: OrderDetailsWhereInput
+    where?: OrderDetailsWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of OrderDetails to fetch.
      */
-    orderBy?: OrderDetailsOrderByWithRelationInput | OrderDetailsOrderByWithRelationInput[]
+    orderBy?: OrderDetailsOrderByWithRelationInput | OrderDetailsOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for listing OrderDetails.
      */
-    cursor?: OrderDetailsWhereUniqueInput
+    cursor?: OrderDetailsWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` OrderDetails from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` OrderDetails.
      */
-    skip?: number
-    distinct?: OrderDetailsScalarFieldEnum | OrderDetailsScalarFieldEnum[]
+    skip?: number | $Types.Skip
+    distinct?: OrderDetailsScalarFieldEnum | OrderDetailsScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -7374,7 +8918,7 @@ export namespace Prisma {
      * The data used to create many OrderDetails.
      */
     data: OrderDetailsCreateManyInput | OrderDetailsCreateManyInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
   }
 
   /**
@@ -7393,7 +8937,7 @@ export namespace Prisma {
      * The data used to create many OrderDetails.
      */
     data: OrderDetailsCreateManyInput | OrderDetailsCreateManyInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -7437,11 +8981,11 @@ export namespace Prisma {
     /**
      * Filter which OrderDetails to update
      */
-    where?: OrderDetailsWhereInput
+    where?: OrderDetailsWhereInput | $Types.Skip
     /**
      * Limit how many OrderDetails to update.
      */
-    limit?: number
+    limit?: number | $Types.Skip
   }
 
   /**
@@ -7463,11 +9007,11 @@ export namespace Prisma {
     /**
      * Filter which OrderDetails to update
      */
-    where?: OrderDetailsWhereInput
+    where?: OrderDetailsWhereInput | $Types.Skip
     /**
      * Limit how many OrderDetails to update.
      */
-    limit?: number
+    limit?: number | $Types.Skip
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -7533,11 +9077,11 @@ export namespace Prisma {
     /**
      * Filter which OrderDetails to delete
      */
-    where?: OrderDetailsWhereInput
+    where?: OrderDetailsWhereInput | $Types.Skip
     /**
      * Limit how many OrderDetails to delete.
      */
-    limit?: number
+    limit?: number | $Types.Skip
   }
 
   /**
@@ -7612,73 +9156,73 @@ export namespace Prisma {
 
 
   export type ProductsAvgAggregateInputType = {
-    price?: true
+    price?: true | $Types.Skip
   }
 
   export type ProductsSumAggregateInputType = {
-    price?: true
+    price?: true | $Types.Skip
   }
 
   export type ProductsMinAggregateInputType = {
-    id?: true
-    name?: true
-    price?: true
-    created_at?: true
-    updated_at?: true
-    active?: true
-    brand_id?: true
+    id?: true | $Types.Skip
+    name?: true | $Types.Skip
+    price?: true | $Types.Skip
+    created_at?: true | $Types.Skip
+    updated_at?: true | $Types.Skip
+    active?: true | $Types.Skip
+    brand_id?: true | $Types.Skip
   }
 
   export type ProductsMaxAggregateInputType = {
-    id?: true
-    name?: true
-    price?: true
-    created_at?: true
-    updated_at?: true
-    active?: true
-    brand_id?: true
+    id?: true | $Types.Skip
+    name?: true | $Types.Skip
+    price?: true | $Types.Skip
+    created_at?: true | $Types.Skip
+    updated_at?: true | $Types.Skip
+    active?: true | $Types.Skip
+    brand_id?: true | $Types.Skip
   }
 
   export type ProductsCountAggregateInputType = {
-    id?: true
-    name?: true
-    price?: true
-    created_at?: true
-    updated_at?: true
-    active?: true
-    brand_id?: true
-    _all?: true
+    id?: true | $Types.Skip
+    name?: true | $Types.Skip
+    price?: true | $Types.Skip
+    created_at?: true | $Types.Skip
+    updated_at?: true | $Types.Skip
+    active?: true | $Types.Skip
+    brand_id?: true | $Types.Skip
+    _all?: true | $Types.Skip
   }
 
   export type ProductsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Products to aggregate.
      */
-    where?: ProductsWhereInput
+    where?: ProductsWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Products to fetch.
      */
-    orderBy?: ProductsOrderByWithRelationInput | ProductsOrderByWithRelationInput[]
+    orderBy?: ProductsOrderByWithRelationInput | ProductsOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: ProductsWhereUniqueInput
+    cursor?: ProductsWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Products from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Products.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
@@ -7723,12 +9267,12 @@ export namespace Prisma {
 
 
   export type ProductsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ProductsWhereInput
-    orderBy?: ProductsOrderByWithAggregationInput | ProductsOrderByWithAggregationInput[]
+    where?: ProductsWhereInput | $Types.Skip
+    orderBy?: ProductsOrderByWithAggregationInput | ProductsOrderByWithAggregationInput[] | $Types.Skip
     by: ProductsScalarFieldEnum[] | ProductsScalarFieldEnum
-    having?: ProductsScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
+    having?: ProductsScalarWhereWithAggregatesInput | $Types.Skip
+    take?: number | $Types.Skip
+    skip?: number | $Types.Skip
     _count?: ProductsCountAggregateInputType | true
     _avg?: ProductsAvgAggregateInputType
     _sum?: ProductsSumAggregateInputType
@@ -7766,74 +9310,71 @@ export namespace Prisma {
 
 
   export type ProductsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    price?: boolean
-    created_at?: boolean
-    updated_at?: boolean
-    active?: boolean
-    brand_id?: boolean
-    brand?: boolean | BrandsDefaultArgs<ExtArgs>
-    orderDetails?: boolean | Products$orderDetailsArgs<ExtArgs>
-    variants?: boolean | Products$variantsArgs<ExtArgs>
-    productCategories?: boolean | Products$productCategoriesArgs<ExtArgs>
-    likes?: boolean | Products$likesArgs<ExtArgs>
-    _count?: boolean | ProductsCountOutputTypeDefaultArgs<ExtArgs>
+    id?: boolean | $Types.Skip
+    name?: boolean | $Types.Skip
+    price?: boolean | $Types.Skip
+    created_at?: boolean | $Types.Skip
+    updated_at?: boolean | $Types.Skip
+    active?: boolean | $Types.Skip
+    brand_id?: boolean | $Types.Skip
+    brand?: boolean | BrandsDefaultArgs<ExtArgs> | $Types.Skip
+    variants?: boolean | Products$variantsArgs<ExtArgs> | $Types.Skip
+    productCategories?: boolean | Products$productCategoriesArgs<ExtArgs> | $Types.Skip
+    likes?: boolean | Products$likesArgs<ExtArgs> | $Types.Skip
+    _count?: boolean | ProductsCountOutputTypeDefaultArgs<ExtArgs> | $Types.Skip
   }, ExtArgs["result"]["products"]>
 
   export type ProductsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    price?: boolean
-    created_at?: boolean
-    updated_at?: boolean
-    active?: boolean
-    brand_id?: boolean
-    brand?: boolean | BrandsDefaultArgs<ExtArgs>
+    id?: boolean | $Types.Skip
+    name?: boolean | $Types.Skip
+    price?: boolean | $Types.Skip
+    created_at?: boolean | $Types.Skip
+    updated_at?: boolean | $Types.Skip
+    active?: boolean | $Types.Skip
+    brand_id?: boolean | $Types.Skip
+    brand?: boolean | BrandsDefaultArgs<ExtArgs> | $Types.Skip
   }, ExtArgs["result"]["products"]>
 
   export type ProductsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    price?: boolean
-    created_at?: boolean
-    updated_at?: boolean
-    active?: boolean
-    brand_id?: boolean
-    brand?: boolean | BrandsDefaultArgs<ExtArgs>
+    id?: boolean | $Types.Skip
+    name?: boolean | $Types.Skip
+    price?: boolean | $Types.Skip
+    created_at?: boolean | $Types.Skip
+    updated_at?: boolean | $Types.Skip
+    active?: boolean | $Types.Skip
+    brand_id?: boolean | $Types.Skip
+    brand?: boolean | BrandsDefaultArgs<ExtArgs> | $Types.Skip
   }, ExtArgs["result"]["products"]>
 
   export type ProductsSelectScalar = {
-    id?: boolean
-    name?: boolean
-    price?: boolean
-    created_at?: boolean
-    updated_at?: boolean
-    active?: boolean
-    brand_id?: boolean
+    id?: boolean | $Types.Skip
+    name?: boolean | $Types.Skip
+    price?: boolean | $Types.Skip
+    created_at?: boolean | $Types.Skip
+    updated_at?: boolean | $Types.Skip
+    active?: boolean | $Types.Skip
+    brand_id?: boolean | $Types.Skip
   }
 
-  export type ProductsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "price" | "created_at" | "updated_at" | "active" | "brand_id", ExtArgs["result"]["products"]>
+  export type ProductsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "price" | "created_at" | "updated_at" | "active" | "brand_id", ExtArgs["result"]["products"], $Types.Skip>
   export type ProductsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    brand?: boolean | BrandsDefaultArgs<ExtArgs>
-    orderDetails?: boolean | Products$orderDetailsArgs<ExtArgs>
-    variants?: boolean | Products$variantsArgs<ExtArgs>
-    productCategories?: boolean | Products$productCategoriesArgs<ExtArgs>
-    likes?: boolean | Products$likesArgs<ExtArgs>
-    _count?: boolean | ProductsCountOutputTypeDefaultArgs<ExtArgs>
+    brand?: boolean | BrandsDefaultArgs<ExtArgs> | $Types.Skip
+    variants?: boolean | Products$variantsArgs<ExtArgs> | $Types.Skip
+    productCategories?: boolean | Products$productCategoriesArgs<ExtArgs> | $Types.Skip
+    likes?: boolean | Products$likesArgs<ExtArgs> | $Types.Skip
+    _count?: boolean | ProductsCountOutputTypeDefaultArgs<ExtArgs> | $Types.Skip
   }
   export type ProductsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    brand?: boolean | BrandsDefaultArgs<ExtArgs>
+    brand?: boolean | BrandsDefaultArgs<ExtArgs> | $Types.Skip
   }
   export type ProductsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    brand?: boolean | BrandsDefaultArgs<ExtArgs>
+    brand?: boolean | BrandsDefaultArgs<ExtArgs> | $Types.Skip
   }
 
   export type $ProductsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Products"
     objects: {
       brand: Prisma.$BrandsPayload<ExtArgs>
-      orderDetails: Prisma.$OrderDetailsPayload<ExtArgs>[]
       variants: Prisma.$VariantsPayload<ExtArgs>[]
       productCategories: Prisma.$ProductCategoriesPayload<ExtArgs>[]
       likes: Prisma.$LikesPayload<ExtArgs>[]
@@ -8241,7 +9782,6 @@ export namespace Prisma {
   export interface Prisma__ProductsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     brand<T extends BrandsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BrandsDefaultArgs<ExtArgs>>): Prisma__BrandsClient<$Result.GetResult<Prisma.$BrandsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    orderDetails<T extends Products$orderDetailsArgs<ExtArgs> = {}>(args?: Subset<T, Products$orderDetailsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderDetailsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     variants<T extends Products$variantsArgs<ExtArgs> = {}>(args?: Subset<T, Products$variantsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VariantsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     productCategories<T extends Products$productCategoriesArgs<ExtArgs> = {}>(args?: Subset<T, Products$productCategoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductCategoriesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     likes<T extends Products$likesArgs<ExtArgs> = {}>(args?: Subset<T, Products$likesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LikesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -8348,37 +9888,37 @@ export namespace Prisma {
     /**
      * Filter, which Products to fetch.
      */
-    where?: ProductsWhereInput
+    where?: ProductsWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Products to fetch.
      */
-    orderBy?: ProductsOrderByWithRelationInput | ProductsOrderByWithRelationInput[]
+    orderBy?: ProductsOrderByWithRelationInput | ProductsOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for Products.
      */
-    cursor?: ProductsWhereUniqueInput
+    cursor?: ProductsWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Products from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Products.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
      * Filter by unique combinations of Products.
      */
-    distinct?: ProductsScalarFieldEnum | ProductsScalarFieldEnum[]
+    distinct?: ProductsScalarFieldEnum | ProductsScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -8400,37 +9940,37 @@ export namespace Prisma {
     /**
      * Filter, which Products to fetch.
      */
-    where?: ProductsWhereInput
+    where?: ProductsWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Products to fetch.
      */
-    orderBy?: ProductsOrderByWithRelationInput | ProductsOrderByWithRelationInput[]
+    orderBy?: ProductsOrderByWithRelationInput | ProductsOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for Products.
      */
-    cursor?: ProductsWhereUniqueInput
+    cursor?: ProductsWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Products from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Products.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
      * Filter by unique combinations of Products.
      */
-    distinct?: ProductsScalarFieldEnum | ProductsScalarFieldEnum[]
+    distinct?: ProductsScalarFieldEnum | ProductsScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -8452,32 +9992,32 @@ export namespace Prisma {
     /**
      * Filter, which Products to fetch.
      */
-    where?: ProductsWhereInput
+    where?: ProductsWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Products to fetch.
      */
-    orderBy?: ProductsOrderByWithRelationInput | ProductsOrderByWithRelationInput[]
+    orderBy?: ProductsOrderByWithRelationInput | ProductsOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for listing Products.
      */
-    cursor?: ProductsWhereUniqueInput
+    cursor?: ProductsWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Products from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Products.
      */
-    skip?: number
-    distinct?: ProductsScalarFieldEnum | ProductsScalarFieldEnum[]
+    skip?: number | $Types.Skip
+    distinct?: ProductsScalarFieldEnum | ProductsScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -8510,7 +10050,7 @@ export namespace Prisma {
      * The data used to create many Products.
      */
     data: ProductsCreateManyInput | ProductsCreateManyInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
   }
 
   /**
@@ -8529,7 +10069,7 @@ export namespace Prisma {
      * The data used to create many Products.
      */
     data: ProductsCreateManyInput | ProductsCreateManyInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -8573,11 +10113,11 @@ export namespace Prisma {
     /**
      * Filter which Products to update
      */
-    where?: ProductsWhereInput
+    where?: ProductsWhereInput | $Types.Skip
     /**
      * Limit how many Products to update.
      */
-    limit?: number
+    limit?: number | $Types.Skip
   }
 
   /**
@@ -8599,11 +10139,11 @@ export namespace Prisma {
     /**
      * Filter which Products to update
      */
-    where?: ProductsWhereInput
+    where?: ProductsWhereInput | $Types.Skip
     /**
      * Limit how many Products to update.
      */
-    limit?: number
+    limit?: number | $Types.Skip
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -8669,35 +10209,11 @@ export namespace Prisma {
     /**
      * Filter which Products to delete
      */
-    where?: ProductsWhereInput
+    where?: ProductsWhereInput | $Types.Skip
     /**
      * Limit how many Products to delete.
      */
-    limit?: number
-  }
-
-  /**
-   * Products.orderDetails
-   */
-  export type Products$orderDetailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the OrderDetails
-     */
-    select?: OrderDetailsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the OrderDetails
-     */
-    omit?: OrderDetailsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: OrderDetailsInclude<ExtArgs> | null
-    where?: OrderDetailsWhereInput
-    orderBy?: OrderDetailsOrderByWithRelationInput | OrderDetailsOrderByWithRelationInput[]
-    cursor?: OrderDetailsWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: OrderDetailsScalarFieldEnum | OrderDetailsScalarFieldEnum[]
+    limit?: number | $Types.Skip
   }
 
   /**
@@ -8716,12 +10232,12 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: VariantsInclude<ExtArgs> | null
-    where?: VariantsWhereInput
-    orderBy?: VariantsOrderByWithRelationInput | VariantsOrderByWithRelationInput[]
-    cursor?: VariantsWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: VariantsScalarFieldEnum | VariantsScalarFieldEnum[]
+    where?: VariantsWhereInput | $Types.Skip
+    orderBy?: VariantsOrderByWithRelationInput | VariantsOrderByWithRelationInput[] | $Types.Skip
+    cursor?: VariantsWhereUniqueInput | $Types.Skip
+    take?: number | $Types.Skip
+    skip?: number | $Types.Skip
+    distinct?: VariantsScalarFieldEnum | VariantsScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -8740,12 +10256,12 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ProductCategoriesInclude<ExtArgs> | null
-    where?: ProductCategoriesWhereInput
-    orderBy?: ProductCategoriesOrderByWithRelationInput | ProductCategoriesOrderByWithRelationInput[]
-    cursor?: ProductCategoriesWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ProductCategoriesScalarFieldEnum | ProductCategoriesScalarFieldEnum[]
+    where?: ProductCategoriesWhereInput | $Types.Skip
+    orderBy?: ProductCategoriesOrderByWithRelationInput | ProductCategoriesOrderByWithRelationInput[] | $Types.Skip
+    cursor?: ProductCategoriesWhereUniqueInput | $Types.Skip
+    take?: number | $Types.Skip
+    skip?: number | $Types.Skip
+    distinct?: ProductCategoriesScalarFieldEnum | ProductCategoriesScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -8764,12 +10280,12 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: LikesInclude<ExtArgs> | null
-    where?: LikesWhereInput
-    orderBy?: LikesOrderByWithRelationInput | LikesOrderByWithRelationInput[]
-    cursor?: LikesWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: LikesScalarFieldEnum | LikesScalarFieldEnum[]
+    where?: LikesWhereInput | $Types.Skip
+    orderBy?: LikesOrderByWithRelationInput | LikesOrderByWithRelationInput[] | $Types.Skip
+    cursor?: LikesWhereUniqueInput | $Types.Skip
+    take?: number | $Types.Skip
+    skip?: number | $Types.Skip
+    distinct?: LikesScalarFieldEnum | LikesScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -8819,50 +10335,50 @@ export namespace Prisma {
 
 
   export type BrandsMinAggregateInputType = {
-    id?: true
-    name?: true
+    id?: true | $Types.Skip
+    name?: true | $Types.Skip
   }
 
   export type BrandsMaxAggregateInputType = {
-    id?: true
-    name?: true
+    id?: true | $Types.Skip
+    name?: true | $Types.Skip
   }
 
   export type BrandsCountAggregateInputType = {
-    id?: true
-    name?: true
-    _all?: true
+    id?: true | $Types.Skip
+    name?: true | $Types.Skip
+    _all?: true | $Types.Skip
   }
 
   export type BrandsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Brands to aggregate.
      */
-    where?: BrandsWhereInput
+    where?: BrandsWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Brands to fetch.
      */
-    orderBy?: BrandsOrderByWithRelationInput | BrandsOrderByWithRelationInput[]
+    orderBy?: BrandsOrderByWithRelationInput | BrandsOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: BrandsWhereUniqueInput
+    cursor?: BrandsWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Brands from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Brands.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
@@ -8895,12 +10411,12 @@ export namespace Prisma {
 
 
   export type BrandsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: BrandsWhereInput
-    orderBy?: BrandsOrderByWithAggregationInput | BrandsOrderByWithAggregationInput[]
+    where?: BrandsWhereInput | $Types.Skip
+    orderBy?: BrandsOrderByWithAggregationInput | BrandsOrderByWithAggregationInput[] | $Types.Skip
     by: BrandsScalarFieldEnum[] | BrandsScalarFieldEnum
-    having?: BrandsScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
+    having?: BrandsScalarWhereWithAggregatesInput | $Types.Skip
+    take?: number | $Types.Skip
+    skip?: number | $Types.Skip
     _count?: BrandsCountAggregateInputType | true
     _min?: BrandsMinAggregateInputType
     _max?: BrandsMaxAggregateInputType
@@ -8929,31 +10445,31 @@ export namespace Prisma {
 
 
   export type BrandsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    products?: boolean | Brands$productsArgs<ExtArgs>
-    _count?: boolean | BrandsCountOutputTypeDefaultArgs<ExtArgs>
+    id?: boolean | $Types.Skip
+    name?: boolean | $Types.Skip
+    products?: boolean | Brands$productsArgs<ExtArgs> | $Types.Skip
+    _count?: boolean | BrandsCountOutputTypeDefaultArgs<ExtArgs> | $Types.Skip
   }, ExtArgs["result"]["brands"]>
 
   export type BrandsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
+    id?: boolean | $Types.Skip
+    name?: boolean | $Types.Skip
   }, ExtArgs["result"]["brands"]>
 
   export type BrandsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
+    id?: boolean | $Types.Skip
+    name?: boolean | $Types.Skip
   }, ExtArgs["result"]["brands"]>
 
   export type BrandsSelectScalar = {
-    id?: boolean
-    name?: boolean
+    id?: boolean | $Types.Skip
+    name?: boolean | $Types.Skip
   }
 
-  export type BrandsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name", ExtArgs["result"]["brands"]>
+  export type BrandsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name", ExtArgs["result"]["brands"], $Types.Skip>
   export type BrandsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    products?: boolean | Brands$productsArgs<ExtArgs>
-    _count?: boolean | BrandsCountOutputTypeDefaultArgs<ExtArgs>
+    products?: boolean | Brands$productsArgs<ExtArgs> | $Types.Skip
+    _count?: boolean | BrandsCountOutputTypeDefaultArgs<ExtArgs> | $Types.Skip
   }
   export type BrandsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
   export type BrandsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -9459,37 +10975,37 @@ export namespace Prisma {
     /**
      * Filter, which Brands to fetch.
      */
-    where?: BrandsWhereInput
+    where?: BrandsWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Brands to fetch.
      */
-    orderBy?: BrandsOrderByWithRelationInput | BrandsOrderByWithRelationInput[]
+    orderBy?: BrandsOrderByWithRelationInput | BrandsOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for Brands.
      */
-    cursor?: BrandsWhereUniqueInput
+    cursor?: BrandsWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Brands from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Brands.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
      * Filter by unique combinations of Brands.
      */
-    distinct?: BrandsScalarFieldEnum | BrandsScalarFieldEnum[]
+    distinct?: BrandsScalarFieldEnum | BrandsScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -9511,37 +11027,37 @@ export namespace Prisma {
     /**
      * Filter, which Brands to fetch.
      */
-    where?: BrandsWhereInput
+    where?: BrandsWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Brands to fetch.
      */
-    orderBy?: BrandsOrderByWithRelationInput | BrandsOrderByWithRelationInput[]
+    orderBy?: BrandsOrderByWithRelationInput | BrandsOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for Brands.
      */
-    cursor?: BrandsWhereUniqueInput
+    cursor?: BrandsWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Brands from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Brands.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
      * Filter by unique combinations of Brands.
      */
-    distinct?: BrandsScalarFieldEnum | BrandsScalarFieldEnum[]
+    distinct?: BrandsScalarFieldEnum | BrandsScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -9563,32 +11079,32 @@ export namespace Prisma {
     /**
      * Filter, which Brands to fetch.
      */
-    where?: BrandsWhereInput
+    where?: BrandsWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Brands to fetch.
      */
-    orderBy?: BrandsOrderByWithRelationInput | BrandsOrderByWithRelationInput[]
+    orderBy?: BrandsOrderByWithRelationInput | BrandsOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for listing Brands.
      */
-    cursor?: BrandsWhereUniqueInput
+    cursor?: BrandsWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Brands from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Brands.
      */
-    skip?: number
-    distinct?: BrandsScalarFieldEnum | BrandsScalarFieldEnum[]
+    skip?: number | $Types.Skip
+    distinct?: BrandsScalarFieldEnum | BrandsScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -9621,7 +11137,7 @@ export namespace Prisma {
      * The data used to create many Brands.
      */
     data: BrandsCreateManyInput | BrandsCreateManyInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
   }
 
   /**
@@ -9640,7 +11156,7 @@ export namespace Prisma {
      * The data used to create many Brands.
      */
     data: BrandsCreateManyInput | BrandsCreateManyInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
   }
 
   /**
@@ -9680,11 +11196,11 @@ export namespace Prisma {
     /**
      * Filter which Brands to update
      */
-    where?: BrandsWhereInput
+    where?: BrandsWhereInput | $Types.Skip
     /**
      * Limit how many Brands to update.
      */
-    limit?: number
+    limit?: number | $Types.Skip
   }
 
   /**
@@ -9706,11 +11222,11 @@ export namespace Prisma {
     /**
      * Filter which Brands to update
      */
-    where?: BrandsWhereInput
+    where?: BrandsWhereInput | $Types.Skip
     /**
      * Limit how many Brands to update.
      */
-    limit?: number
+    limit?: number | $Types.Skip
   }
 
   /**
@@ -9772,11 +11288,11 @@ export namespace Prisma {
     /**
      * Filter which Brands to delete
      */
-    where?: BrandsWhereInput
+    where?: BrandsWhereInput | $Types.Skip
     /**
      * Limit how many Brands to delete.
      */
-    limit?: number
+    limit?: number | $Types.Skip
   }
 
   /**
@@ -9795,12 +11311,12 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ProductsInclude<ExtArgs> | null
-    where?: ProductsWhereInput
-    orderBy?: ProductsOrderByWithRelationInput | ProductsOrderByWithRelationInput[]
-    cursor?: ProductsWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ProductsScalarFieldEnum | ProductsScalarFieldEnum[]
+    where?: ProductsWhereInput | $Types.Skip
+    orderBy?: ProductsOrderByWithRelationInput | ProductsOrderByWithRelationInput[] | $Types.Skip
+    cursor?: ProductsWhereUniqueInput | $Types.Skip
+    take?: number | $Types.Skip
+    skip?: number | $Types.Skip
+    distinct?: ProductsScalarFieldEnum | ProductsScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -9881,79 +11397,79 @@ export namespace Prisma {
 
 
   export type VariantsAvgAggregateInputType = {
-    stock?: true
+    stock?: true | $Types.Skip
   }
 
   export type VariantsSumAggregateInputType = {
-    stock?: true
+    stock?: true | $Types.Skip
   }
 
   export type VariantsMinAggregateInputType = {
-    id?: true
-    product_id?: true
-    file_id?: true
-    size?: true
-    textColor?: true
-    rgb?: true
-    stock?: true
-    createdAt?: true
-    updatedAt?: true
+    id?: true | $Types.Skip
+    product_id?: true | $Types.Skip
+    file_id?: true | $Types.Skip
+    size?: true | $Types.Skip
+    textColor?: true | $Types.Skip
+    rgb?: true | $Types.Skip
+    stock?: true | $Types.Skip
+    createdAt?: true | $Types.Skip
+    updatedAt?: true | $Types.Skip
   }
 
   export type VariantsMaxAggregateInputType = {
-    id?: true
-    product_id?: true
-    file_id?: true
-    size?: true
-    textColor?: true
-    rgb?: true
-    stock?: true
-    createdAt?: true
-    updatedAt?: true
+    id?: true | $Types.Skip
+    product_id?: true | $Types.Skip
+    file_id?: true | $Types.Skip
+    size?: true | $Types.Skip
+    textColor?: true | $Types.Skip
+    rgb?: true | $Types.Skip
+    stock?: true | $Types.Skip
+    createdAt?: true | $Types.Skip
+    updatedAt?: true | $Types.Skip
   }
 
   export type VariantsCountAggregateInputType = {
-    id?: true
-    product_id?: true
-    file_id?: true
-    size?: true
-    textColor?: true
-    rgb?: true
-    stock?: true
-    createdAt?: true
-    updatedAt?: true
-    _all?: true
+    id?: true | $Types.Skip
+    product_id?: true | $Types.Skip
+    file_id?: true | $Types.Skip
+    size?: true | $Types.Skip
+    textColor?: true | $Types.Skip
+    rgb?: true | $Types.Skip
+    stock?: true | $Types.Skip
+    createdAt?: true | $Types.Skip
+    updatedAt?: true | $Types.Skip
+    _all?: true | $Types.Skip
   }
 
   export type VariantsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Variants to aggregate.
      */
-    where?: VariantsWhereInput
+    where?: VariantsWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Variants to fetch.
      */
-    orderBy?: VariantsOrderByWithRelationInput | VariantsOrderByWithRelationInput[]
+    orderBy?: VariantsOrderByWithRelationInput | VariantsOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: VariantsWhereUniqueInput
+    cursor?: VariantsWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Variants from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Variants.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
@@ -9998,12 +11514,12 @@ export namespace Prisma {
 
 
   export type VariantsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: VariantsWhereInput
-    orderBy?: VariantsOrderByWithAggregationInput | VariantsOrderByWithAggregationInput[]
+    where?: VariantsWhereInput | $Types.Skip
+    orderBy?: VariantsOrderByWithAggregationInput | VariantsOrderByWithAggregationInput[] | $Types.Skip
     by: VariantsScalarFieldEnum[] | VariantsScalarFieldEnum
-    having?: VariantsScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
+    having?: VariantsScalarWhereWithAggregatesInput | $Types.Skip
+    take?: number | $Types.Skip
+    skip?: number | $Types.Skip
     _count?: VariantsCountAggregateInputType | true
     _avg?: VariantsAvgAggregateInputType
     _sum?: VariantsSumAggregateInputType
@@ -10043,71 +11559,77 @@ export namespace Prisma {
 
 
   export type VariantsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    product_id?: boolean
-    file_id?: boolean
-    size?: boolean
-    textColor?: boolean
-    rgb?: boolean
-    stock?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    product?: boolean | ProductsDefaultArgs<ExtArgs>
-    file?: boolean | FilesDefaultArgs<ExtArgs>
+    id?: boolean | $Types.Skip
+    product_id?: boolean | $Types.Skip
+    file_id?: boolean | $Types.Skip
+    size?: boolean | $Types.Skip
+    textColor?: boolean | $Types.Skip
+    rgb?: boolean | $Types.Skip
+    stock?: boolean | $Types.Skip
+    createdAt?: boolean | $Types.Skip
+    updatedAt?: boolean | $Types.Skip
+    product?: boolean | ProductsDefaultArgs<ExtArgs> | $Types.Skip
+    file?: boolean | FilesDefaultArgs<ExtArgs> | $Types.Skip
+    orderDetails?: boolean | Variants$orderDetailsArgs<ExtArgs> | $Types.Skip
+    cartDetails?: boolean | Variants$cartDetailsArgs<ExtArgs> | $Types.Skip
+    _count?: boolean | VariantsCountOutputTypeDefaultArgs<ExtArgs> | $Types.Skip
   }, ExtArgs["result"]["variants"]>
 
   export type VariantsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    product_id?: boolean
-    file_id?: boolean
-    size?: boolean
-    textColor?: boolean
-    rgb?: boolean
-    stock?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    product?: boolean | ProductsDefaultArgs<ExtArgs>
-    file?: boolean | FilesDefaultArgs<ExtArgs>
+    id?: boolean | $Types.Skip
+    product_id?: boolean | $Types.Skip
+    file_id?: boolean | $Types.Skip
+    size?: boolean | $Types.Skip
+    textColor?: boolean | $Types.Skip
+    rgb?: boolean | $Types.Skip
+    stock?: boolean | $Types.Skip
+    createdAt?: boolean | $Types.Skip
+    updatedAt?: boolean | $Types.Skip
+    product?: boolean | ProductsDefaultArgs<ExtArgs> | $Types.Skip
+    file?: boolean | FilesDefaultArgs<ExtArgs> | $Types.Skip
   }, ExtArgs["result"]["variants"]>
 
   export type VariantsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    product_id?: boolean
-    file_id?: boolean
-    size?: boolean
-    textColor?: boolean
-    rgb?: boolean
-    stock?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    product?: boolean | ProductsDefaultArgs<ExtArgs>
-    file?: boolean | FilesDefaultArgs<ExtArgs>
+    id?: boolean | $Types.Skip
+    product_id?: boolean | $Types.Skip
+    file_id?: boolean | $Types.Skip
+    size?: boolean | $Types.Skip
+    textColor?: boolean | $Types.Skip
+    rgb?: boolean | $Types.Skip
+    stock?: boolean | $Types.Skip
+    createdAt?: boolean | $Types.Skip
+    updatedAt?: boolean | $Types.Skip
+    product?: boolean | ProductsDefaultArgs<ExtArgs> | $Types.Skip
+    file?: boolean | FilesDefaultArgs<ExtArgs> | $Types.Skip
   }, ExtArgs["result"]["variants"]>
 
   export type VariantsSelectScalar = {
-    id?: boolean
-    product_id?: boolean
-    file_id?: boolean
-    size?: boolean
-    textColor?: boolean
-    rgb?: boolean
-    stock?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
+    id?: boolean | $Types.Skip
+    product_id?: boolean | $Types.Skip
+    file_id?: boolean | $Types.Skip
+    size?: boolean | $Types.Skip
+    textColor?: boolean | $Types.Skip
+    rgb?: boolean | $Types.Skip
+    stock?: boolean | $Types.Skip
+    createdAt?: boolean | $Types.Skip
+    updatedAt?: boolean | $Types.Skip
   }
 
-  export type VariantsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "product_id" | "file_id" | "size" | "textColor" | "rgb" | "stock" | "createdAt" | "updatedAt", ExtArgs["result"]["variants"]>
+  export type VariantsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "product_id" | "file_id" | "size" | "textColor" | "rgb" | "stock" | "createdAt" | "updatedAt", ExtArgs["result"]["variants"], $Types.Skip>
   export type VariantsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    product?: boolean | ProductsDefaultArgs<ExtArgs>
-    file?: boolean | FilesDefaultArgs<ExtArgs>
+    product?: boolean | ProductsDefaultArgs<ExtArgs> | $Types.Skip
+    file?: boolean | FilesDefaultArgs<ExtArgs> | $Types.Skip
+    orderDetails?: boolean | Variants$orderDetailsArgs<ExtArgs> | $Types.Skip
+    cartDetails?: boolean | Variants$cartDetailsArgs<ExtArgs> | $Types.Skip
+    _count?: boolean | VariantsCountOutputTypeDefaultArgs<ExtArgs> | $Types.Skip
   }
   export type VariantsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    product?: boolean | ProductsDefaultArgs<ExtArgs>
-    file?: boolean | FilesDefaultArgs<ExtArgs>
+    product?: boolean | ProductsDefaultArgs<ExtArgs> | $Types.Skip
+    file?: boolean | FilesDefaultArgs<ExtArgs> | $Types.Skip
   }
   export type VariantsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    product?: boolean | ProductsDefaultArgs<ExtArgs>
-    file?: boolean | FilesDefaultArgs<ExtArgs>
+    product?: boolean | ProductsDefaultArgs<ExtArgs> | $Types.Skip
+    file?: boolean | FilesDefaultArgs<ExtArgs> | $Types.Skip
   }
 
   export type $VariantsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -10115,6 +11637,8 @@ export namespace Prisma {
     objects: {
       product: Prisma.$ProductsPayload<ExtArgs>
       file: Prisma.$FilesPayload<ExtArgs>
+      orderDetails: Prisma.$OrderDetailsPayload<ExtArgs>[]
+      cartDetails: Prisma.$CartDetailsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -10522,6 +12046,8 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     product<T extends ProductsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductsDefaultArgs<ExtArgs>>): Prisma__ProductsClient<$Result.GetResult<Prisma.$ProductsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     file<T extends FilesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FilesDefaultArgs<ExtArgs>>): Prisma__FilesClient<$Result.GetResult<Prisma.$FilesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    orderDetails<T extends Variants$orderDetailsArgs<ExtArgs> = {}>(args?: Subset<T, Variants$orderDetailsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderDetailsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    cartDetails<T extends Variants$cartDetailsArgs<ExtArgs> = {}>(args?: Subset<T, Variants$cartDetailsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CartDetailsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10627,37 +12153,37 @@ export namespace Prisma {
     /**
      * Filter, which Variants to fetch.
      */
-    where?: VariantsWhereInput
+    where?: VariantsWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Variants to fetch.
      */
-    orderBy?: VariantsOrderByWithRelationInput | VariantsOrderByWithRelationInput[]
+    orderBy?: VariantsOrderByWithRelationInput | VariantsOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for Variants.
      */
-    cursor?: VariantsWhereUniqueInput
+    cursor?: VariantsWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Variants from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Variants.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
      * Filter by unique combinations of Variants.
      */
-    distinct?: VariantsScalarFieldEnum | VariantsScalarFieldEnum[]
+    distinct?: VariantsScalarFieldEnum | VariantsScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -10679,37 +12205,37 @@ export namespace Prisma {
     /**
      * Filter, which Variants to fetch.
      */
-    where?: VariantsWhereInput
+    where?: VariantsWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Variants to fetch.
      */
-    orderBy?: VariantsOrderByWithRelationInput | VariantsOrderByWithRelationInput[]
+    orderBy?: VariantsOrderByWithRelationInput | VariantsOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for Variants.
      */
-    cursor?: VariantsWhereUniqueInput
+    cursor?: VariantsWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Variants from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Variants.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
      * Filter by unique combinations of Variants.
      */
-    distinct?: VariantsScalarFieldEnum | VariantsScalarFieldEnum[]
+    distinct?: VariantsScalarFieldEnum | VariantsScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -10731,32 +12257,32 @@ export namespace Prisma {
     /**
      * Filter, which Variants to fetch.
      */
-    where?: VariantsWhereInput
+    where?: VariantsWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Variants to fetch.
      */
-    orderBy?: VariantsOrderByWithRelationInput | VariantsOrderByWithRelationInput[]
+    orderBy?: VariantsOrderByWithRelationInput | VariantsOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for listing Variants.
      */
-    cursor?: VariantsWhereUniqueInput
+    cursor?: VariantsWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Variants from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Variants.
      */
-    skip?: number
-    distinct?: VariantsScalarFieldEnum | VariantsScalarFieldEnum[]
+    skip?: number | $Types.Skip
+    distinct?: VariantsScalarFieldEnum | VariantsScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -10789,7 +12315,7 @@ export namespace Prisma {
      * The data used to create many Variants.
      */
     data: VariantsCreateManyInput | VariantsCreateManyInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
   }
 
   /**
@@ -10808,7 +12334,7 @@ export namespace Prisma {
      * The data used to create many Variants.
      */
     data: VariantsCreateManyInput | VariantsCreateManyInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -10852,11 +12378,11 @@ export namespace Prisma {
     /**
      * Filter which Variants to update
      */
-    where?: VariantsWhereInput
+    where?: VariantsWhereInput | $Types.Skip
     /**
      * Limit how many Variants to update.
      */
-    limit?: number
+    limit?: number | $Types.Skip
   }
 
   /**
@@ -10878,11 +12404,11 @@ export namespace Prisma {
     /**
      * Filter which Variants to update
      */
-    where?: VariantsWhereInput
+    where?: VariantsWhereInput | $Types.Skip
     /**
      * Limit how many Variants to update.
      */
-    limit?: number
+    limit?: number | $Types.Skip
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -10948,11 +12474,59 @@ export namespace Prisma {
     /**
      * Filter which Variants to delete
      */
-    where?: VariantsWhereInput
+    where?: VariantsWhereInput | $Types.Skip
     /**
      * Limit how many Variants to delete.
      */
-    limit?: number
+    limit?: number | $Types.Skip
+  }
+
+  /**
+   * Variants.orderDetails
+   */
+  export type Variants$orderDetailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderDetails
+     */
+    select?: OrderDetailsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrderDetails
+     */
+    omit?: OrderDetailsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderDetailsInclude<ExtArgs> | null
+    where?: OrderDetailsWhereInput | $Types.Skip
+    orderBy?: OrderDetailsOrderByWithRelationInput | OrderDetailsOrderByWithRelationInput[] | $Types.Skip
+    cursor?: OrderDetailsWhereUniqueInput | $Types.Skip
+    take?: number | $Types.Skip
+    skip?: number | $Types.Skip
+    distinct?: OrderDetailsScalarFieldEnum | OrderDetailsScalarFieldEnum[] | $Types.Skip
+  }
+
+  /**
+   * Variants.cartDetails
+   */
+  export type Variants$cartDetailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CartDetails
+     */
+    select?: CartDetailsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CartDetails
+     */
+    omit?: CartDetailsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CartDetailsInclude<ExtArgs> | null
+    where?: CartDetailsWhereInput | $Types.Skip
+    orderBy?: CartDetailsOrderByWithRelationInput | CartDetailsOrderByWithRelationInput[] | $Types.Skip
+    cursor?: CartDetailsWhereUniqueInput | $Types.Skip
+    take?: number | $Types.Skip
+    skip?: number | $Types.Skip
+    distinct?: CartDetailsScalarFieldEnum | CartDetailsScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -11008,56 +12582,56 @@ export namespace Prisma {
 
 
   export type FilesMinAggregateInputType = {
-    id?: true
-    key?: true
-    idKey?: true
-    bucket?: true
+    id?: true | $Types.Skip
+    key?: true | $Types.Skip
+    idKey?: true | $Types.Skip
+    bucket?: true | $Types.Skip
   }
 
   export type FilesMaxAggregateInputType = {
-    id?: true
-    key?: true
-    idKey?: true
-    bucket?: true
+    id?: true | $Types.Skip
+    key?: true | $Types.Skip
+    idKey?: true | $Types.Skip
+    bucket?: true | $Types.Skip
   }
 
   export type FilesCountAggregateInputType = {
-    id?: true
-    key?: true
-    idKey?: true
-    bucket?: true
-    _all?: true
+    id?: true | $Types.Skip
+    key?: true | $Types.Skip
+    idKey?: true | $Types.Skip
+    bucket?: true | $Types.Skip
+    _all?: true | $Types.Skip
   }
 
   export type FilesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Files to aggregate.
      */
-    where?: FilesWhereInput
+    where?: FilesWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Files to fetch.
      */
-    orderBy?: FilesOrderByWithRelationInput | FilesOrderByWithRelationInput[]
+    orderBy?: FilesOrderByWithRelationInput | FilesOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: FilesWhereUniqueInput
+    cursor?: FilesWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Files from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Files.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
@@ -11090,12 +12664,12 @@ export namespace Prisma {
 
 
   export type FilesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: FilesWhereInput
-    orderBy?: FilesOrderByWithAggregationInput | FilesOrderByWithAggregationInput[]
+    where?: FilesWhereInput | $Types.Skip
+    orderBy?: FilesOrderByWithAggregationInput | FilesOrderByWithAggregationInput[] | $Types.Skip
     by: FilesScalarFieldEnum[] | FilesScalarFieldEnum
-    having?: FilesScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
+    having?: FilesScalarWhereWithAggregatesInput | $Types.Skip
+    take?: number | $Types.Skip
+    skip?: number | $Types.Skip
     _count?: FilesCountAggregateInputType | true
     _min?: FilesMinAggregateInputType
     _max?: FilesMaxAggregateInputType
@@ -11126,39 +12700,39 @@ export namespace Prisma {
 
 
   export type FilesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    key?: boolean
-    idKey?: boolean
-    bucket?: boolean
-    variants?: boolean | Files$variantsArgs<ExtArgs>
-    _count?: boolean | FilesCountOutputTypeDefaultArgs<ExtArgs>
+    id?: boolean | $Types.Skip
+    key?: boolean | $Types.Skip
+    idKey?: boolean | $Types.Skip
+    bucket?: boolean | $Types.Skip
+    variants?: boolean | Files$variantsArgs<ExtArgs> | $Types.Skip
+    _count?: boolean | FilesCountOutputTypeDefaultArgs<ExtArgs> | $Types.Skip
   }, ExtArgs["result"]["files"]>
 
   export type FilesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    key?: boolean
-    idKey?: boolean
-    bucket?: boolean
+    id?: boolean | $Types.Skip
+    key?: boolean | $Types.Skip
+    idKey?: boolean | $Types.Skip
+    bucket?: boolean | $Types.Skip
   }, ExtArgs["result"]["files"]>
 
   export type FilesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    key?: boolean
-    idKey?: boolean
-    bucket?: boolean
+    id?: boolean | $Types.Skip
+    key?: boolean | $Types.Skip
+    idKey?: boolean | $Types.Skip
+    bucket?: boolean | $Types.Skip
   }, ExtArgs["result"]["files"]>
 
   export type FilesSelectScalar = {
-    id?: boolean
-    key?: boolean
-    idKey?: boolean
-    bucket?: boolean
+    id?: boolean | $Types.Skip
+    key?: boolean | $Types.Skip
+    idKey?: boolean | $Types.Skip
+    bucket?: boolean | $Types.Skip
   }
 
-  export type FilesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "key" | "idKey" | "bucket", ExtArgs["result"]["files"]>
+  export type FilesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "key" | "idKey" | "bucket", ExtArgs["result"]["files"], $Types.Skip>
   export type FilesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    variants?: boolean | Files$variantsArgs<ExtArgs>
-    _count?: boolean | FilesCountOutputTypeDefaultArgs<ExtArgs>
+    variants?: boolean | Files$variantsArgs<ExtArgs> | $Types.Skip
+    _count?: boolean | FilesCountOutputTypeDefaultArgs<ExtArgs> | $Types.Skip
   }
   export type FilesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
   export type FilesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -11668,37 +13242,37 @@ export namespace Prisma {
     /**
      * Filter, which Files to fetch.
      */
-    where?: FilesWhereInput
+    where?: FilesWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Files to fetch.
      */
-    orderBy?: FilesOrderByWithRelationInput | FilesOrderByWithRelationInput[]
+    orderBy?: FilesOrderByWithRelationInput | FilesOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for Files.
      */
-    cursor?: FilesWhereUniqueInput
+    cursor?: FilesWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Files from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Files.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
      * Filter by unique combinations of Files.
      */
-    distinct?: FilesScalarFieldEnum | FilesScalarFieldEnum[]
+    distinct?: FilesScalarFieldEnum | FilesScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -11720,37 +13294,37 @@ export namespace Prisma {
     /**
      * Filter, which Files to fetch.
      */
-    where?: FilesWhereInput
+    where?: FilesWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Files to fetch.
      */
-    orderBy?: FilesOrderByWithRelationInput | FilesOrderByWithRelationInput[]
+    orderBy?: FilesOrderByWithRelationInput | FilesOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for Files.
      */
-    cursor?: FilesWhereUniqueInput
+    cursor?: FilesWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Files from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Files.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
      * Filter by unique combinations of Files.
      */
-    distinct?: FilesScalarFieldEnum | FilesScalarFieldEnum[]
+    distinct?: FilesScalarFieldEnum | FilesScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -11772,32 +13346,32 @@ export namespace Prisma {
     /**
      * Filter, which Files to fetch.
      */
-    where?: FilesWhereInput
+    where?: FilesWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Files to fetch.
      */
-    orderBy?: FilesOrderByWithRelationInput | FilesOrderByWithRelationInput[]
+    orderBy?: FilesOrderByWithRelationInput | FilesOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for listing Files.
      */
-    cursor?: FilesWhereUniqueInput
+    cursor?: FilesWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Files from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Files.
      */
-    skip?: number
-    distinct?: FilesScalarFieldEnum | FilesScalarFieldEnum[]
+    skip?: number | $Types.Skip
+    distinct?: FilesScalarFieldEnum | FilesScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -11830,7 +13404,7 @@ export namespace Prisma {
      * The data used to create many Files.
      */
     data: FilesCreateManyInput | FilesCreateManyInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
   }
 
   /**
@@ -11849,7 +13423,7 @@ export namespace Prisma {
      * The data used to create many Files.
      */
     data: FilesCreateManyInput | FilesCreateManyInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
   }
 
   /**
@@ -11889,11 +13463,11 @@ export namespace Prisma {
     /**
      * Filter which Files to update
      */
-    where?: FilesWhereInput
+    where?: FilesWhereInput | $Types.Skip
     /**
      * Limit how many Files to update.
      */
-    limit?: number
+    limit?: number | $Types.Skip
   }
 
   /**
@@ -11915,11 +13489,11 @@ export namespace Prisma {
     /**
      * Filter which Files to update
      */
-    where?: FilesWhereInput
+    where?: FilesWhereInput | $Types.Skip
     /**
      * Limit how many Files to update.
      */
-    limit?: number
+    limit?: number | $Types.Skip
   }
 
   /**
@@ -11981,11 +13555,11 @@ export namespace Prisma {
     /**
      * Filter which Files to delete
      */
-    where?: FilesWhereInput
+    where?: FilesWhereInput | $Types.Skip
     /**
      * Limit how many Files to delete.
      */
-    limit?: number
+    limit?: number | $Types.Skip
   }
 
   /**
@@ -12004,12 +13578,12 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: VariantsInclude<ExtArgs> | null
-    where?: VariantsWhereInput
-    orderBy?: VariantsOrderByWithRelationInput | VariantsOrderByWithRelationInput[]
-    cursor?: VariantsWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: VariantsScalarFieldEnum | VariantsScalarFieldEnum[]
+    where?: VariantsWhereInput | $Types.Skip
+    orderBy?: VariantsOrderByWithRelationInput | VariantsOrderByWithRelationInput[] | $Types.Skip
+    cursor?: VariantsWhereUniqueInput | $Types.Skip
+    take?: number | $Types.Skip
+    skip?: number | $Types.Skip
+    distinct?: VariantsScalarFieldEnum | VariantsScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -12071,62 +13645,62 @@ export namespace Prisma {
 
 
   export type CategoriesMinAggregateInputType = {
-    id?: true
-    name?: true
-    parentId?: true
-    active?: true
-    createdAt?: true
-    updatedAt?: true
+    id?: true | $Types.Skip
+    name?: true | $Types.Skip
+    parentId?: true | $Types.Skip
+    active?: true | $Types.Skip
+    createdAt?: true | $Types.Skip
+    updatedAt?: true | $Types.Skip
   }
 
   export type CategoriesMaxAggregateInputType = {
-    id?: true
-    name?: true
-    parentId?: true
-    active?: true
-    createdAt?: true
-    updatedAt?: true
+    id?: true | $Types.Skip
+    name?: true | $Types.Skip
+    parentId?: true | $Types.Skip
+    active?: true | $Types.Skip
+    createdAt?: true | $Types.Skip
+    updatedAt?: true | $Types.Skip
   }
 
   export type CategoriesCountAggregateInputType = {
-    id?: true
-    name?: true
-    parentId?: true
-    active?: true
-    createdAt?: true
-    updatedAt?: true
-    _all?: true
+    id?: true | $Types.Skip
+    name?: true | $Types.Skip
+    parentId?: true | $Types.Skip
+    active?: true | $Types.Skip
+    createdAt?: true | $Types.Skip
+    updatedAt?: true | $Types.Skip
+    _all?: true | $Types.Skip
   }
 
   export type CategoriesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Categories to aggregate.
      */
-    where?: CategoriesWhereInput
+    where?: CategoriesWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Categories to fetch.
      */
-    orderBy?: CategoriesOrderByWithRelationInput | CategoriesOrderByWithRelationInput[]
+    orderBy?: CategoriesOrderByWithRelationInput | CategoriesOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: CategoriesWhereUniqueInput
+    cursor?: CategoriesWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Categories from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Categories.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
@@ -12159,12 +13733,12 @@ export namespace Prisma {
 
 
   export type CategoriesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CategoriesWhereInput
-    orderBy?: CategoriesOrderByWithAggregationInput | CategoriesOrderByWithAggregationInput[]
+    where?: CategoriesWhereInput | $Types.Skip
+    orderBy?: CategoriesOrderByWithAggregationInput | CategoriesOrderByWithAggregationInput[] | $Types.Skip
     by: CategoriesScalarFieldEnum[] | CategoriesScalarFieldEnum
-    having?: CategoriesScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
+    having?: CategoriesScalarWhereWithAggregatesInput | $Types.Skip
+    take?: number | $Types.Skip
+    skip?: number | $Types.Skip
     _count?: CategoriesCountAggregateInputType | true
     _min?: CategoriesMinAggregateInputType
     _max?: CategoriesMaxAggregateInputType
@@ -12197,59 +13771,59 @@ export namespace Prisma {
 
 
   export type CategoriesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    parentId?: boolean
-    active?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    parent?: boolean | Categories$parentArgs<ExtArgs>
-    productCategories?: boolean | Categories$productCategoriesArgs<ExtArgs>
-    Categories?: boolean | Categories$CategoriesArgs<ExtArgs>
-    _count?: boolean | CategoriesCountOutputTypeDefaultArgs<ExtArgs>
+    id?: boolean | $Types.Skip
+    name?: boolean | $Types.Skip
+    parentId?: boolean | $Types.Skip
+    active?: boolean | $Types.Skip
+    createdAt?: boolean | $Types.Skip
+    updatedAt?: boolean | $Types.Skip
+    parent?: boolean | Categories$parentArgs<ExtArgs> | $Types.Skip
+    productCategories?: boolean | Categories$productCategoriesArgs<ExtArgs> | $Types.Skip
+    Categories?: boolean | Categories$CategoriesArgs<ExtArgs> | $Types.Skip
+    _count?: boolean | CategoriesCountOutputTypeDefaultArgs<ExtArgs> | $Types.Skip
   }, ExtArgs["result"]["categories"]>
 
   export type CategoriesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    parentId?: boolean
-    active?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    parent?: boolean | Categories$parentArgs<ExtArgs>
+    id?: boolean | $Types.Skip
+    name?: boolean | $Types.Skip
+    parentId?: boolean | $Types.Skip
+    active?: boolean | $Types.Skip
+    createdAt?: boolean | $Types.Skip
+    updatedAt?: boolean | $Types.Skip
+    parent?: boolean | Categories$parentArgs<ExtArgs> | $Types.Skip
   }, ExtArgs["result"]["categories"]>
 
   export type CategoriesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    parentId?: boolean
-    active?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    parent?: boolean | Categories$parentArgs<ExtArgs>
+    id?: boolean | $Types.Skip
+    name?: boolean | $Types.Skip
+    parentId?: boolean | $Types.Skip
+    active?: boolean | $Types.Skip
+    createdAt?: boolean | $Types.Skip
+    updatedAt?: boolean | $Types.Skip
+    parent?: boolean | Categories$parentArgs<ExtArgs> | $Types.Skip
   }, ExtArgs["result"]["categories"]>
 
   export type CategoriesSelectScalar = {
-    id?: boolean
-    name?: boolean
-    parentId?: boolean
-    active?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
+    id?: boolean | $Types.Skip
+    name?: boolean | $Types.Skip
+    parentId?: boolean | $Types.Skip
+    active?: boolean | $Types.Skip
+    createdAt?: boolean | $Types.Skip
+    updatedAt?: boolean | $Types.Skip
   }
 
-  export type CategoriesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "parentId" | "active" | "createdAt" | "updatedAt", ExtArgs["result"]["categories"]>
+  export type CategoriesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "parentId" | "active" | "createdAt" | "updatedAt", ExtArgs["result"]["categories"], $Types.Skip>
   export type CategoriesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    parent?: boolean | Categories$parentArgs<ExtArgs>
-    productCategories?: boolean | Categories$productCategoriesArgs<ExtArgs>
-    Categories?: boolean | Categories$CategoriesArgs<ExtArgs>
-    _count?: boolean | CategoriesCountOutputTypeDefaultArgs<ExtArgs>
+    parent?: boolean | Categories$parentArgs<ExtArgs> | $Types.Skip
+    productCategories?: boolean | Categories$productCategoriesArgs<ExtArgs> | $Types.Skip
+    Categories?: boolean | Categories$CategoriesArgs<ExtArgs> | $Types.Skip
+    _count?: boolean | CategoriesCountOutputTypeDefaultArgs<ExtArgs> | $Types.Skip
   }
   export type CategoriesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    parent?: boolean | Categories$parentArgs<ExtArgs>
+    parent?: boolean | Categories$parentArgs<ExtArgs> | $Types.Skip
   }
   export type CategoriesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    parent?: boolean | Categories$parentArgs<ExtArgs>
+    parent?: boolean | Categories$parentArgs<ExtArgs> | $Types.Skip
   }
 
   export type $CategoriesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -12765,37 +14339,37 @@ export namespace Prisma {
     /**
      * Filter, which Categories to fetch.
      */
-    where?: CategoriesWhereInput
+    where?: CategoriesWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Categories to fetch.
      */
-    orderBy?: CategoriesOrderByWithRelationInput | CategoriesOrderByWithRelationInput[]
+    orderBy?: CategoriesOrderByWithRelationInput | CategoriesOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for Categories.
      */
-    cursor?: CategoriesWhereUniqueInput
+    cursor?: CategoriesWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Categories from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Categories.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
      * Filter by unique combinations of Categories.
      */
-    distinct?: CategoriesScalarFieldEnum | CategoriesScalarFieldEnum[]
+    distinct?: CategoriesScalarFieldEnum | CategoriesScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -12817,37 +14391,37 @@ export namespace Prisma {
     /**
      * Filter, which Categories to fetch.
      */
-    where?: CategoriesWhereInput
+    where?: CategoriesWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Categories to fetch.
      */
-    orderBy?: CategoriesOrderByWithRelationInput | CategoriesOrderByWithRelationInput[]
+    orderBy?: CategoriesOrderByWithRelationInput | CategoriesOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for Categories.
      */
-    cursor?: CategoriesWhereUniqueInput
+    cursor?: CategoriesWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Categories from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Categories.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
      * Filter by unique combinations of Categories.
      */
-    distinct?: CategoriesScalarFieldEnum | CategoriesScalarFieldEnum[]
+    distinct?: CategoriesScalarFieldEnum | CategoriesScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -12869,32 +14443,32 @@ export namespace Prisma {
     /**
      * Filter, which Categories to fetch.
      */
-    where?: CategoriesWhereInput
+    where?: CategoriesWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Categories to fetch.
      */
-    orderBy?: CategoriesOrderByWithRelationInput | CategoriesOrderByWithRelationInput[]
+    orderBy?: CategoriesOrderByWithRelationInput | CategoriesOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for listing Categories.
      */
-    cursor?: CategoriesWhereUniqueInput
+    cursor?: CategoriesWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Categories from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Categories.
      */
-    skip?: number
-    distinct?: CategoriesScalarFieldEnum | CategoriesScalarFieldEnum[]
+    skip?: number | $Types.Skip
+    distinct?: CategoriesScalarFieldEnum | CategoriesScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -12927,7 +14501,7 @@ export namespace Prisma {
      * The data used to create many Categories.
      */
     data: CategoriesCreateManyInput | CategoriesCreateManyInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
   }
 
   /**
@@ -12946,7 +14520,7 @@ export namespace Prisma {
      * The data used to create many Categories.
      */
     data: CategoriesCreateManyInput | CategoriesCreateManyInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -12990,11 +14564,11 @@ export namespace Prisma {
     /**
      * Filter which Categories to update
      */
-    where?: CategoriesWhereInput
+    where?: CategoriesWhereInput | $Types.Skip
     /**
      * Limit how many Categories to update.
      */
-    limit?: number
+    limit?: number | $Types.Skip
   }
 
   /**
@@ -13016,11 +14590,11 @@ export namespace Prisma {
     /**
      * Filter which Categories to update
      */
-    where?: CategoriesWhereInput
+    where?: CategoriesWhereInput | $Types.Skip
     /**
      * Limit how many Categories to update.
      */
-    limit?: number
+    limit?: number | $Types.Skip
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -13086,11 +14660,11 @@ export namespace Prisma {
     /**
      * Filter which Categories to delete
      */
-    where?: CategoriesWhereInput
+    where?: CategoriesWhereInput | $Types.Skip
     /**
      * Limit how many Categories to delete.
      */
-    limit?: number
+    limit?: number | $Types.Skip
   }
 
   /**
@@ -13109,7 +14683,7 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: CategoriesInclude<ExtArgs> | null
-    where?: CategoriesWhereInput
+    where?: CategoriesWhereInput | $Types.Skip
   }
 
   /**
@@ -13128,12 +14702,12 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ProductCategoriesInclude<ExtArgs> | null
-    where?: ProductCategoriesWhereInput
-    orderBy?: ProductCategoriesOrderByWithRelationInput | ProductCategoriesOrderByWithRelationInput[]
-    cursor?: ProductCategoriesWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ProductCategoriesScalarFieldEnum | ProductCategoriesScalarFieldEnum[]
+    where?: ProductCategoriesWhereInput | $Types.Skip
+    orderBy?: ProductCategoriesOrderByWithRelationInput | ProductCategoriesOrderByWithRelationInput[] | $Types.Skip
+    cursor?: ProductCategoriesWhereUniqueInput | $Types.Skip
+    take?: number | $Types.Skip
+    skip?: number | $Types.Skip
+    distinct?: ProductCategoriesScalarFieldEnum | ProductCategoriesScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -13152,12 +14726,12 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: CategoriesInclude<ExtArgs> | null
-    where?: CategoriesWhereInput
-    orderBy?: CategoriesOrderByWithRelationInput | CategoriesOrderByWithRelationInput[]
-    cursor?: CategoriesWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: CategoriesScalarFieldEnum | CategoriesScalarFieldEnum[]
+    where?: CategoriesWhereInput | $Types.Skip
+    orderBy?: CategoriesOrderByWithRelationInput | CategoriesOrderByWithRelationInput[] | $Types.Skip
+    cursor?: CategoriesWhereUniqueInput | $Types.Skip
+    take?: number | $Types.Skip
+    skip?: number | $Types.Skip
+    distinct?: CategoriesScalarFieldEnum | CategoriesScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -13207,50 +14781,50 @@ export namespace Prisma {
 
 
   export type ProductCategoriesMinAggregateInputType = {
-    productId?: true
-    categoryId?: true
+    productId?: true | $Types.Skip
+    categoryId?: true | $Types.Skip
   }
 
   export type ProductCategoriesMaxAggregateInputType = {
-    productId?: true
-    categoryId?: true
+    productId?: true | $Types.Skip
+    categoryId?: true | $Types.Skip
   }
 
   export type ProductCategoriesCountAggregateInputType = {
-    productId?: true
-    categoryId?: true
-    _all?: true
+    productId?: true | $Types.Skip
+    categoryId?: true | $Types.Skip
+    _all?: true | $Types.Skip
   }
 
   export type ProductCategoriesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which ProductCategories to aggregate.
      */
-    where?: ProductCategoriesWhereInput
+    where?: ProductCategoriesWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of ProductCategories to fetch.
      */
-    orderBy?: ProductCategoriesOrderByWithRelationInput | ProductCategoriesOrderByWithRelationInput[]
+    orderBy?: ProductCategoriesOrderByWithRelationInput | ProductCategoriesOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: ProductCategoriesWhereUniqueInput
+    cursor?: ProductCategoriesWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` ProductCategories from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` ProductCategories.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
@@ -13283,12 +14857,12 @@ export namespace Prisma {
 
 
   export type ProductCategoriesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ProductCategoriesWhereInput
-    orderBy?: ProductCategoriesOrderByWithAggregationInput | ProductCategoriesOrderByWithAggregationInput[]
+    where?: ProductCategoriesWhereInput | $Types.Skip
+    orderBy?: ProductCategoriesOrderByWithAggregationInput | ProductCategoriesOrderByWithAggregationInput[] | $Types.Skip
     by: ProductCategoriesScalarFieldEnum[] | ProductCategoriesScalarFieldEnum
-    having?: ProductCategoriesScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
+    having?: ProductCategoriesScalarWhereWithAggregatesInput | $Types.Skip
+    take?: number | $Types.Skip
+    skip?: number | $Types.Skip
     _count?: ProductCategoriesCountAggregateInputType | true
     _min?: ProductCategoriesMinAggregateInputType
     _max?: ProductCategoriesMaxAggregateInputType
@@ -13317,43 +14891,43 @@ export namespace Prisma {
 
 
   export type ProductCategoriesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    productId?: boolean
-    categoryId?: boolean
-    products?: boolean | ProductsDefaultArgs<ExtArgs>
-    categories?: boolean | CategoriesDefaultArgs<ExtArgs>
+    productId?: boolean | $Types.Skip
+    categoryId?: boolean | $Types.Skip
+    products?: boolean | ProductsDefaultArgs<ExtArgs> | $Types.Skip
+    categories?: boolean | CategoriesDefaultArgs<ExtArgs> | $Types.Skip
   }, ExtArgs["result"]["productCategories"]>
 
   export type ProductCategoriesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    productId?: boolean
-    categoryId?: boolean
-    products?: boolean | ProductsDefaultArgs<ExtArgs>
-    categories?: boolean | CategoriesDefaultArgs<ExtArgs>
+    productId?: boolean | $Types.Skip
+    categoryId?: boolean | $Types.Skip
+    products?: boolean | ProductsDefaultArgs<ExtArgs> | $Types.Skip
+    categories?: boolean | CategoriesDefaultArgs<ExtArgs> | $Types.Skip
   }, ExtArgs["result"]["productCategories"]>
 
   export type ProductCategoriesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    productId?: boolean
-    categoryId?: boolean
-    products?: boolean | ProductsDefaultArgs<ExtArgs>
-    categories?: boolean | CategoriesDefaultArgs<ExtArgs>
+    productId?: boolean | $Types.Skip
+    categoryId?: boolean | $Types.Skip
+    products?: boolean | ProductsDefaultArgs<ExtArgs> | $Types.Skip
+    categories?: boolean | CategoriesDefaultArgs<ExtArgs> | $Types.Skip
   }, ExtArgs["result"]["productCategories"]>
 
   export type ProductCategoriesSelectScalar = {
-    productId?: boolean
-    categoryId?: boolean
+    productId?: boolean | $Types.Skip
+    categoryId?: boolean | $Types.Skip
   }
 
-  export type ProductCategoriesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"productId" | "categoryId", ExtArgs["result"]["productCategories"]>
+  export type ProductCategoriesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"productId" | "categoryId", ExtArgs["result"]["productCategories"], $Types.Skip>
   export type ProductCategoriesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    products?: boolean | ProductsDefaultArgs<ExtArgs>
-    categories?: boolean | CategoriesDefaultArgs<ExtArgs>
+    products?: boolean | ProductsDefaultArgs<ExtArgs> | $Types.Skip
+    categories?: boolean | CategoriesDefaultArgs<ExtArgs> | $Types.Skip
   }
   export type ProductCategoriesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    products?: boolean | ProductsDefaultArgs<ExtArgs>
-    categories?: boolean | CategoriesDefaultArgs<ExtArgs>
+    products?: boolean | ProductsDefaultArgs<ExtArgs> | $Types.Skip
+    categories?: boolean | CategoriesDefaultArgs<ExtArgs> | $Types.Skip
   }
   export type ProductCategoriesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    products?: boolean | ProductsDefaultArgs<ExtArgs>
-    categories?: boolean | CategoriesDefaultArgs<ExtArgs>
+    products?: boolean | ProductsDefaultArgs<ExtArgs> | $Types.Skip
+    categories?: boolean | CategoriesDefaultArgs<ExtArgs> | $Types.Skip
   }
 
   export type $ProductCategoriesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -13859,37 +15433,37 @@ export namespace Prisma {
     /**
      * Filter, which ProductCategories to fetch.
      */
-    where?: ProductCategoriesWhereInput
+    where?: ProductCategoriesWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of ProductCategories to fetch.
      */
-    orderBy?: ProductCategoriesOrderByWithRelationInput | ProductCategoriesOrderByWithRelationInput[]
+    orderBy?: ProductCategoriesOrderByWithRelationInput | ProductCategoriesOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for ProductCategories.
      */
-    cursor?: ProductCategoriesWhereUniqueInput
+    cursor?: ProductCategoriesWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` ProductCategories from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` ProductCategories.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
      * Filter by unique combinations of ProductCategories.
      */
-    distinct?: ProductCategoriesScalarFieldEnum | ProductCategoriesScalarFieldEnum[]
+    distinct?: ProductCategoriesScalarFieldEnum | ProductCategoriesScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -13911,37 +15485,37 @@ export namespace Prisma {
     /**
      * Filter, which ProductCategories to fetch.
      */
-    where?: ProductCategoriesWhereInput
+    where?: ProductCategoriesWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of ProductCategories to fetch.
      */
-    orderBy?: ProductCategoriesOrderByWithRelationInput | ProductCategoriesOrderByWithRelationInput[]
+    orderBy?: ProductCategoriesOrderByWithRelationInput | ProductCategoriesOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for ProductCategories.
      */
-    cursor?: ProductCategoriesWhereUniqueInput
+    cursor?: ProductCategoriesWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` ProductCategories from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` ProductCategories.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
      * Filter by unique combinations of ProductCategories.
      */
-    distinct?: ProductCategoriesScalarFieldEnum | ProductCategoriesScalarFieldEnum[]
+    distinct?: ProductCategoriesScalarFieldEnum | ProductCategoriesScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -13963,32 +15537,32 @@ export namespace Prisma {
     /**
      * Filter, which ProductCategories to fetch.
      */
-    where?: ProductCategoriesWhereInput
+    where?: ProductCategoriesWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of ProductCategories to fetch.
      */
-    orderBy?: ProductCategoriesOrderByWithRelationInput | ProductCategoriesOrderByWithRelationInput[]
+    orderBy?: ProductCategoriesOrderByWithRelationInput | ProductCategoriesOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for listing ProductCategories.
      */
-    cursor?: ProductCategoriesWhereUniqueInput
+    cursor?: ProductCategoriesWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` ProductCategories from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` ProductCategories.
      */
-    skip?: number
-    distinct?: ProductCategoriesScalarFieldEnum | ProductCategoriesScalarFieldEnum[]
+    skip?: number | $Types.Skip
+    distinct?: ProductCategoriesScalarFieldEnum | ProductCategoriesScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -14021,7 +15595,7 @@ export namespace Prisma {
      * The data used to create many ProductCategories.
      */
     data: ProductCategoriesCreateManyInput | ProductCategoriesCreateManyInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
   }
 
   /**
@@ -14040,7 +15614,7 @@ export namespace Prisma {
      * The data used to create many ProductCategories.
      */
     data: ProductCategoriesCreateManyInput | ProductCategoriesCreateManyInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -14084,11 +15658,11 @@ export namespace Prisma {
     /**
      * Filter which ProductCategories to update
      */
-    where?: ProductCategoriesWhereInput
+    where?: ProductCategoriesWhereInput | $Types.Skip
     /**
      * Limit how many ProductCategories to update.
      */
-    limit?: number
+    limit?: number | $Types.Skip
   }
 
   /**
@@ -14110,11 +15684,11 @@ export namespace Prisma {
     /**
      * Filter which ProductCategories to update
      */
-    where?: ProductCategoriesWhereInput
+    where?: ProductCategoriesWhereInput | $Types.Skip
     /**
      * Limit how many ProductCategories to update.
      */
-    limit?: number
+    limit?: number | $Types.Skip
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -14180,11 +15754,11 @@ export namespace Prisma {
     /**
      * Filter which ProductCategories to delete
      */
-    where?: ProductCategoriesWhereInput
+    where?: ProductCategoriesWhereInput | $Types.Skip
     /**
      * Limit how many ProductCategories to delete.
      */
-    limit?: number
+    limit?: number | $Types.Skip
   }
 
   /**
@@ -14234,50 +15808,50 @@ export namespace Prisma {
 
 
   export type LikesMinAggregateInputType = {
-    productId?: true
-    user_id?: true
+    productId?: true | $Types.Skip
+    user_id?: true | $Types.Skip
   }
 
   export type LikesMaxAggregateInputType = {
-    productId?: true
-    user_id?: true
+    productId?: true | $Types.Skip
+    user_id?: true | $Types.Skip
   }
 
   export type LikesCountAggregateInputType = {
-    productId?: true
-    user_id?: true
-    _all?: true
+    productId?: true | $Types.Skip
+    user_id?: true | $Types.Skip
+    _all?: true | $Types.Skip
   }
 
   export type LikesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Likes to aggregate.
      */
-    where?: LikesWhereInput
+    where?: LikesWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Likes to fetch.
      */
-    orderBy?: LikesOrderByWithRelationInput | LikesOrderByWithRelationInput[]
+    orderBy?: LikesOrderByWithRelationInput | LikesOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: LikesWhereUniqueInput
+    cursor?: LikesWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Likes from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Likes.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
@@ -14310,12 +15884,12 @@ export namespace Prisma {
 
 
   export type LikesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: LikesWhereInput
-    orderBy?: LikesOrderByWithAggregationInput | LikesOrderByWithAggregationInput[]
+    where?: LikesWhereInput | $Types.Skip
+    orderBy?: LikesOrderByWithAggregationInput | LikesOrderByWithAggregationInput[] | $Types.Skip
     by: LikesScalarFieldEnum[] | LikesScalarFieldEnum
-    having?: LikesScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
+    having?: LikesScalarWhereWithAggregatesInput | $Types.Skip
+    take?: number | $Types.Skip
+    skip?: number | $Types.Skip
     _count?: LikesCountAggregateInputType | true
     _min?: LikesMinAggregateInputType
     _max?: LikesMaxAggregateInputType
@@ -14344,43 +15918,43 @@ export namespace Prisma {
 
 
   export type LikesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    productId?: boolean
-    user_id?: boolean
-    products?: boolean | ProductsDefaultArgs<ExtArgs>
-    user?: boolean | UsersDefaultArgs<ExtArgs>
+    productId?: boolean | $Types.Skip
+    user_id?: boolean | $Types.Skip
+    products?: boolean | ProductsDefaultArgs<ExtArgs> | $Types.Skip
+    user?: boolean | UsersDefaultArgs<ExtArgs> | $Types.Skip
   }, ExtArgs["result"]["likes"]>
 
   export type LikesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    productId?: boolean
-    user_id?: boolean
-    products?: boolean | ProductsDefaultArgs<ExtArgs>
-    user?: boolean | UsersDefaultArgs<ExtArgs>
+    productId?: boolean | $Types.Skip
+    user_id?: boolean | $Types.Skip
+    products?: boolean | ProductsDefaultArgs<ExtArgs> | $Types.Skip
+    user?: boolean | UsersDefaultArgs<ExtArgs> | $Types.Skip
   }, ExtArgs["result"]["likes"]>
 
   export type LikesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    productId?: boolean
-    user_id?: boolean
-    products?: boolean | ProductsDefaultArgs<ExtArgs>
-    user?: boolean | UsersDefaultArgs<ExtArgs>
+    productId?: boolean | $Types.Skip
+    user_id?: boolean | $Types.Skip
+    products?: boolean | ProductsDefaultArgs<ExtArgs> | $Types.Skip
+    user?: boolean | UsersDefaultArgs<ExtArgs> | $Types.Skip
   }, ExtArgs["result"]["likes"]>
 
   export type LikesSelectScalar = {
-    productId?: boolean
-    user_id?: boolean
+    productId?: boolean | $Types.Skip
+    user_id?: boolean | $Types.Skip
   }
 
-  export type LikesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"productId" | "user_id", ExtArgs["result"]["likes"]>
+  export type LikesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"productId" | "user_id", ExtArgs["result"]["likes"], $Types.Skip>
   export type LikesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    products?: boolean | ProductsDefaultArgs<ExtArgs>
-    user?: boolean | UsersDefaultArgs<ExtArgs>
+    products?: boolean | ProductsDefaultArgs<ExtArgs> | $Types.Skip
+    user?: boolean | UsersDefaultArgs<ExtArgs> | $Types.Skip
   }
   export type LikesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    products?: boolean | ProductsDefaultArgs<ExtArgs>
-    user?: boolean | UsersDefaultArgs<ExtArgs>
+    products?: boolean | ProductsDefaultArgs<ExtArgs> | $Types.Skip
+    user?: boolean | UsersDefaultArgs<ExtArgs> | $Types.Skip
   }
   export type LikesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    products?: boolean | ProductsDefaultArgs<ExtArgs>
-    user?: boolean | UsersDefaultArgs<ExtArgs>
+    products?: boolean | ProductsDefaultArgs<ExtArgs> | $Types.Skip
+    user?: boolean | UsersDefaultArgs<ExtArgs> | $Types.Skip
   }
 
   export type $LikesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -14886,37 +16460,37 @@ export namespace Prisma {
     /**
      * Filter, which Likes to fetch.
      */
-    where?: LikesWhereInput
+    where?: LikesWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Likes to fetch.
      */
-    orderBy?: LikesOrderByWithRelationInput | LikesOrderByWithRelationInput[]
+    orderBy?: LikesOrderByWithRelationInput | LikesOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for Likes.
      */
-    cursor?: LikesWhereUniqueInput
+    cursor?: LikesWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Likes from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Likes.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
      * Filter by unique combinations of Likes.
      */
-    distinct?: LikesScalarFieldEnum | LikesScalarFieldEnum[]
+    distinct?: LikesScalarFieldEnum | LikesScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -14938,37 +16512,37 @@ export namespace Prisma {
     /**
      * Filter, which Likes to fetch.
      */
-    where?: LikesWhereInput
+    where?: LikesWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Likes to fetch.
      */
-    orderBy?: LikesOrderByWithRelationInput | LikesOrderByWithRelationInput[]
+    orderBy?: LikesOrderByWithRelationInput | LikesOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for searching for Likes.
      */
-    cursor?: LikesWhereUniqueInput
+    cursor?: LikesWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Likes from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Likes.
      */
-    skip?: number
+    skip?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
      * Filter by unique combinations of Likes.
      */
-    distinct?: LikesScalarFieldEnum | LikesScalarFieldEnum[]
+    distinct?: LikesScalarFieldEnum | LikesScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -14990,32 +16564,32 @@ export namespace Prisma {
     /**
      * Filter, which Likes to fetch.
      */
-    where?: LikesWhereInput
+    where?: LikesWhereInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
      * Determine the order of Likes to fetch.
      */
-    orderBy?: LikesOrderByWithRelationInput | LikesOrderByWithRelationInput[]
+    orderBy?: LikesOrderByWithRelationInput | LikesOrderByWithRelationInput[] | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the position for listing Likes.
      */
-    cursor?: LikesWhereUniqueInput
+    cursor?: LikesWhereUniqueInput | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Take `±n` Likes from the position of the cursor.
      */
-    take?: number
+    take?: number | $Types.Skip
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
      * Skip the first `n` Likes.
      */
-    skip?: number
-    distinct?: LikesScalarFieldEnum | LikesScalarFieldEnum[]
+    skip?: number | $Types.Skip
+    distinct?: LikesScalarFieldEnum | LikesScalarFieldEnum[] | $Types.Skip
   }
 
   /**
@@ -15048,7 +16622,7 @@ export namespace Prisma {
      * The data used to create many Likes.
      */
     data: LikesCreateManyInput | LikesCreateManyInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
   }
 
   /**
@@ -15067,7 +16641,7 @@ export namespace Prisma {
      * The data used to create many Likes.
      */
     data: LikesCreateManyInput | LikesCreateManyInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -15111,11 +16685,11 @@ export namespace Prisma {
     /**
      * Filter which Likes to update
      */
-    where?: LikesWhereInput
+    where?: LikesWhereInput | $Types.Skip
     /**
      * Limit how many Likes to update.
      */
-    limit?: number
+    limit?: number | $Types.Skip
   }
 
   /**
@@ -15137,11 +16711,11 @@ export namespace Prisma {
     /**
      * Filter which Likes to update
      */
-    where?: LikesWhereInput
+    where?: LikesWhereInput | $Types.Skip
     /**
      * Limit how many Likes to update.
      */
-    limit?: number
+    limit?: number | $Types.Skip
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -15207,11 +16781,11 @@ export namespace Prisma {
     /**
      * Filter which Likes to delete
      */
-    where?: LikesWhereInput
+    where?: LikesWhereInput | $Types.Skip
     /**
      * Limit how many Likes to delete.
      */
-    limit?: number
+    limit?: number | $Types.Skip
   }
 
   /**
@@ -15230,6 +16804,2185 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: LikesInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model CartDetails
+   */
+
+  export type AggregateCartDetails = {
+    _count: CartDetailsCountAggregateOutputType | null
+    _avg: CartDetailsAvgAggregateOutputType | null
+    _sum: CartDetailsSumAggregateOutputType | null
+    _min: CartDetailsMinAggregateOutputType | null
+    _max: CartDetailsMaxAggregateOutputType | null
+  }
+
+  export type CartDetailsAvgAggregateOutputType = {
+    quantity: number | null
+    price: number | null
+  }
+
+  export type CartDetailsSumAggregateOutputType = {
+    quantity: number | null
+    price: number | null
+  }
+
+  export type CartDetailsMinAggregateOutputType = {
+    id: string | null
+    quantity: number | null
+    price: number | null
+    variant_id: string | null
+    cart_id: string | null
+  }
+
+  export type CartDetailsMaxAggregateOutputType = {
+    id: string | null
+    quantity: number | null
+    price: number | null
+    variant_id: string | null
+    cart_id: string | null
+  }
+
+  export type CartDetailsCountAggregateOutputType = {
+    id: number
+    quantity: number
+    price: number
+    variant_id: number
+    cart_id: number
+    _all: number
+  }
+
+
+  export type CartDetailsAvgAggregateInputType = {
+    quantity?: true | $Types.Skip
+    price?: true | $Types.Skip
+  }
+
+  export type CartDetailsSumAggregateInputType = {
+    quantity?: true | $Types.Skip
+    price?: true | $Types.Skip
+  }
+
+  export type CartDetailsMinAggregateInputType = {
+    id?: true | $Types.Skip
+    quantity?: true | $Types.Skip
+    price?: true | $Types.Skip
+    variant_id?: true | $Types.Skip
+    cart_id?: true | $Types.Skip
+  }
+
+  export type CartDetailsMaxAggregateInputType = {
+    id?: true | $Types.Skip
+    quantity?: true | $Types.Skip
+    price?: true | $Types.Skip
+    variant_id?: true | $Types.Skip
+    cart_id?: true | $Types.Skip
+  }
+
+  export type CartDetailsCountAggregateInputType = {
+    id?: true | $Types.Skip
+    quantity?: true | $Types.Skip
+    price?: true | $Types.Skip
+    variant_id?: true | $Types.Skip
+    cart_id?: true | $Types.Skip
+    _all?: true | $Types.Skip
+  }
+
+  export type CartDetailsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CartDetails to aggregate.
+     */
+    where?: CartDetailsWhereInput | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CartDetails to fetch.
+     */
+    orderBy?: CartDetailsOrderByWithRelationInput | CartDetailsOrderByWithRelationInput[] | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CartDetailsWhereUniqueInput | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CartDetails from the position of the cursor.
+     */
+    take?: number | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CartDetails.
+     */
+    skip?: number | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CartDetails
+    **/
+    _count?: true | CartDetailsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CartDetailsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CartDetailsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CartDetailsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CartDetailsMaxAggregateInputType
+  }
+
+  export type GetCartDetailsAggregateType<T extends CartDetailsAggregateArgs> = {
+        [P in keyof T & keyof AggregateCartDetails]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCartDetails[P]>
+      : GetScalarType<T[P], AggregateCartDetails[P]>
+  }
+
+
+
+
+  export type CartDetailsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CartDetailsWhereInput | $Types.Skip
+    orderBy?: CartDetailsOrderByWithAggregationInput | CartDetailsOrderByWithAggregationInput[] | $Types.Skip
+    by: CartDetailsScalarFieldEnum[] | CartDetailsScalarFieldEnum
+    having?: CartDetailsScalarWhereWithAggregatesInput | $Types.Skip
+    take?: number | $Types.Skip
+    skip?: number | $Types.Skip
+    _count?: CartDetailsCountAggregateInputType | true
+    _avg?: CartDetailsAvgAggregateInputType
+    _sum?: CartDetailsSumAggregateInputType
+    _min?: CartDetailsMinAggregateInputType
+    _max?: CartDetailsMaxAggregateInputType
+  }
+
+  export type CartDetailsGroupByOutputType = {
+    id: string
+    quantity: number
+    price: number
+    variant_id: string
+    cart_id: string
+    _count: CartDetailsCountAggregateOutputType | null
+    _avg: CartDetailsAvgAggregateOutputType | null
+    _sum: CartDetailsSumAggregateOutputType | null
+    _min: CartDetailsMinAggregateOutputType | null
+    _max: CartDetailsMaxAggregateOutputType | null
+  }
+
+  type GetCartDetailsGroupByPayload<T extends CartDetailsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CartDetailsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CartDetailsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CartDetailsGroupByOutputType[P]>
+            : GetScalarType<T[P], CartDetailsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CartDetailsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean | $Types.Skip
+    quantity?: boolean | $Types.Skip
+    price?: boolean | $Types.Skip
+    variant_id?: boolean | $Types.Skip
+    cart_id?: boolean | $Types.Skip
+    variants?: boolean | VariantsDefaultArgs<ExtArgs> | $Types.Skip
+    cart?: boolean | CartsDefaultArgs<ExtArgs> | $Types.Skip
+  }, ExtArgs["result"]["cartDetails"]>
+
+  export type CartDetailsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean | $Types.Skip
+    quantity?: boolean | $Types.Skip
+    price?: boolean | $Types.Skip
+    variant_id?: boolean | $Types.Skip
+    cart_id?: boolean | $Types.Skip
+    variants?: boolean | VariantsDefaultArgs<ExtArgs> | $Types.Skip
+    cart?: boolean | CartsDefaultArgs<ExtArgs> | $Types.Skip
+  }, ExtArgs["result"]["cartDetails"]>
+
+  export type CartDetailsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean | $Types.Skip
+    quantity?: boolean | $Types.Skip
+    price?: boolean | $Types.Skip
+    variant_id?: boolean | $Types.Skip
+    cart_id?: boolean | $Types.Skip
+    variants?: boolean | VariantsDefaultArgs<ExtArgs> | $Types.Skip
+    cart?: boolean | CartsDefaultArgs<ExtArgs> | $Types.Skip
+  }, ExtArgs["result"]["cartDetails"]>
+
+  export type CartDetailsSelectScalar = {
+    id?: boolean | $Types.Skip
+    quantity?: boolean | $Types.Skip
+    price?: boolean | $Types.Skip
+    variant_id?: boolean | $Types.Skip
+    cart_id?: boolean | $Types.Skip
+  }
+
+  export type CartDetailsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "quantity" | "price" | "variant_id" | "cart_id", ExtArgs["result"]["cartDetails"], $Types.Skip>
+  export type CartDetailsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    variants?: boolean | VariantsDefaultArgs<ExtArgs> | $Types.Skip
+    cart?: boolean | CartsDefaultArgs<ExtArgs> | $Types.Skip
+  }
+  export type CartDetailsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    variants?: boolean | VariantsDefaultArgs<ExtArgs> | $Types.Skip
+    cart?: boolean | CartsDefaultArgs<ExtArgs> | $Types.Skip
+  }
+  export type CartDetailsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    variants?: boolean | VariantsDefaultArgs<ExtArgs> | $Types.Skip
+    cart?: boolean | CartsDefaultArgs<ExtArgs> | $Types.Skip
+  }
+
+  export type $CartDetailsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CartDetails"
+    objects: {
+      variants: Prisma.$VariantsPayload<ExtArgs>
+      cart: Prisma.$CartsPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      quantity: number
+      price: number
+      variant_id: string
+      cart_id: string
+    }, ExtArgs["result"]["cartDetails"]>
+    composites: {}
+  }
+
+  type CartDetailsGetPayload<S extends boolean | null | undefined | CartDetailsDefaultArgs> = $Result.GetResult<Prisma.$CartDetailsPayload, S>
+
+  type CartDetailsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CartDetailsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CartDetailsCountAggregateInputType | true
+    }
+
+  export interface CartDetailsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CartDetails'], meta: { name: 'CartDetails' } }
+    /**
+     * Find zero or one CartDetails that matches the filter.
+     * @param {CartDetailsFindUniqueArgs} args - Arguments to find a CartDetails
+     * @example
+     * // Get one CartDetails
+     * const cartDetails = await prisma.cartDetails.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CartDetailsFindUniqueArgs>(args: SelectSubset<T, CartDetailsFindUniqueArgs<ExtArgs>>): Prisma__CartDetailsClient<$Result.GetResult<Prisma.$CartDetailsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CartDetails that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CartDetailsFindUniqueOrThrowArgs} args - Arguments to find a CartDetails
+     * @example
+     * // Get one CartDetails
+     * const cartDetails = await prisma.cartDetails.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CartDetailsFindUniqueOrThrowArgs>(args: SelectSubset<T, CartDetailsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CartDetailsClient<$Result.GetResult<Prisma.$CartDetailsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CartDetails that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CartDetailsFindFirstArgs} args - Arguments to find a CartDetails
+     * @example
+     * // Get one CartDetails
+     * const cartDetails = await prisma.cartDetails.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CartDetailsFindFirstArgs>(args?: SelectSubset<T, CartDetailsFindFirstArgs<ExtArgs>>): Prisma__CartDetailsClient<$Result.GetResult<Prisma.$CartDetailsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CartDetails that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CartDetailsFindFirstOrThrowArgs} args - Arguments to find a CartDetails
+     * @example
+     * // Get one CartDetails
+     * const cartDetails = await prisma.cartDetails.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CartDetailsFindFirstOrThrowArgs>(args?: SelectSubset<T, CartDetailsFindFirstOrThrowArgs<ExtArgs>>): Prisma__CartDetailsClient<$Result.GetResult<Prisma.$CartDetailsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CartDetails that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CartDetailsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CartDetails
+     * const cartDetails = await prisma.cartDetails.findMany()
+     * 
+     * // Get first 10 CartDetails
+     * const cartDetails = await prisma.cartDetails.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const cartDetailsWithIdOnly = await prisma.cartDetails.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CartDetailsFindManyArgs>(args?: SelectSubset<T, CartDetailsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CartDetailsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CartDetails.
+     * @param {CartDetailsCreateArgs} args - Arguments to create a CartDetails.
+     * @example
+     * // Create one CartDetails
+     * const CartDetails = await prisma.cartDetails.create({
+     *   data: {
+     *     // ... data to create a CartDetails
+     *   }
+     * })
+     * 
+     */
+    create<T extends CartDetailsCreateArgs>(args: SelectSubset<T, CartDetailsCreateArgs<ExtArgs>>): Prisma__CartDetailsClient<$Result.GetResult<Prisma.$CartDetailsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CartDetails.
+     * @param {CartDetailsCreateManyArgs} args - Arguments to create many CartDetails.
+     * @example
+     * // Create many CartDetails
+     * const cartDetails = await prisma.cartDetails.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CartDetailsCreateManyArgs>(args?: SelectSubset<T, CartDetailsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CartDetails and returns the data saved in the database.
+     * @param {CartDetailsCreateManyAndReturnArgs} args - Arguments to create many CartDetails.
+     * @example
+     * // Create many CartDetails
+     * const cartDetails = await prisma.cartDetails.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CartDetails and only return the `id`
+     * const cartDetailsWithIdOnly = await prisma.cartDetails.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CartDetailsCreateManyAndReturnArgs>(args?: SelectSubset<T, CartDetailsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CartDetailsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a CartDetails.
+     * @param {CartDetailsDeleteArgs} args - Arguments to delete one CartDetails.
+     * @example
+     * // Delete one CartDetails
+     * const CartDetails = await prisma.cartDetails.delete({
+     *   where: {
+     *     // ... filter to delete one CartDetails
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CartDetailsDeleteArgs>(args: SelectSubset<T, CartDetailsDeleteArgs<ExtArgs>>): Prisma__CartDetailsClient<$Result.GetResult<Prisma.$CartDetailsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CartDetails.
+     * @param {CartDetailsUpdateArgs} args - Arguments to update one CartDetails.
+     * @example
+     * // Update one CartDetails
+     * const cartDetails = await prisma.cartDetails.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CartDetailsUpdateArgs>(args: SelectSubset<T, CartDetailsUpdateArgs<ExtArgs>>): Prisma__CartDetailsClient<$Result.GetResult<Prisma.$CartDetailsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CartDetails.
+     * @param {CartDetailsDeleteManyArgs} args - Arguments to filter CartDetails to delete.
+     * @example
+     * // Delete a few CartDetails
+     * const { count } = await prisma.cartDetails.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CartDetailsDeleteManyArgs>(args?: SelectSubset<T, CartDetailsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CartDetails.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CartDetailsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CartDetails
+     * const cartDetails = await prisma.cartDetails.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CartDetailsUpdateManyArgs>(args: SelectSubset<T, CartDetailsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CartDetails and returns the data updated in the database.
+     * @param {CartDetailsUpdateManyAndReturnArgs} args - Arguments to update many CartDetails.
+     * @example
+     * // Update many CartDetails
+     * const cartDetails = await prisma.cartDetails.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more CartDetails and only return the `id`
+     * const cartDetailsWithIdOnly = await prisma.cartDetails.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CartDetailsUpdateManyAndReturnArgs>(args: SelectSubset<T, CartDetailsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CartDetailsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one CartDetails.
+     * @param {CartDetailsUpsertArgs} args - Arguments to update or create a CartDetails.
+     * @example
+     * // Update or create a CartDetails
+     * const cartDetails = await prisma.cartDetails.upsert({
+     *   create: {
+     *     // ... data to create a CartDetails
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CartDetails we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CartDetailsUpsertArgs>(args: SelectSubset<T, CartDetailsUpsertArgs<ExtArgs>>): Prisma__CartDetailsClient<$Result.GetResult<Prisma.$CartDetailsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CartDetails.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CartDetailsCountArgs} args - Arguments to filter CartDetails to count.
+     * @example
+     * // Count the number of CartDetails
+     * const count = await prisma.cartDetails.count({
+     *   where: {
+     *     // ... the filter for the CartDetails we want to count
+     *   }
+     * })
+    **/
+    count<T extends CartDetailsCountArgs>(
+      args?: Subset<T, CartDetailsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CartDetailsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CartDetails.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CartDetailsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CartDetailsAggregateArgs>(args: Subset<T, CartDetailsAggregateArgs>): Prisma.PrismaPromise<GetCartDetailsAggregateType<T>>
+
+    /**
+     * Group by CartDetails.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CartDetailsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CartDetailsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CartDetailsGroupByArgs['orderBy'] }
+        : { orderBy?: CartDetailsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CartDetailsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCartDetailsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CartDetails model
+   */
+  readonly fields: CartDetailsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CartDetails.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CartDetailsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    variants<T extends VariantsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, VariantsDefaultArgs<ExtArgs>>): Prisma__VariantsClient<$Result.GetResult<Prisma.$VariantsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    cart<T extends CartsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CartsDefaultArgs<ExtArgs>>): Prisma__CartsClient<$Result.GetResult<Prisma.$CartsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CartDetails model
+   */
+  interface CartDetailsFieldRefs {
+    readonly id: FieldRef<"CartDetails", 'String'>
+    readonly quantity: FieldRef<"CartDetails", 'Int'>
+    readonly price: FieldRef<"CartDetails", 'Float'>
+    readonly variant_id: FieldRef<"CartDetails", 'String'>
+    readonly cart_id: FieldRef<"CartDetails", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CartDetails findUnique
+   */
+  export type CartDetailsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CartDetails
+     */
+    select?: CartDetailsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CartDetails
+     */
+    omit?: CartDetailsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CartDetailsInclude<ExtArgs> | null
+    /**
+     * Filter, which CartDetails to fetch.
+     */
+    where: CartDetailsWhereUniqueInput
+  }
+
+  /**
+   * CartDetails findUniqueOrThrow
+   */
+  export type CartDetailsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CartDetails
+     */
+    select?: CartDetailsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CartDetails
+     */
+    omit?: CartDetailsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CartDetailsInclude<ExtArgs> | null
+    /**
+     * Filter, which CartDetails to fetch.
+     */
+    where: CartDetailsWhereUniqueInput
+  }
+
+  /**
+   * CartDetails findFirst
+   */
+  export type CartDetailsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CartDetails
+     */
+    select?: CartDetailsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CartDetails
+     */
+    omit?: CartDetailsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CartDetailsInclude<ExtArgs> | null
+    /**
+     * Filter, which CartDetails to fetch.
+     */
+    where?: CartDetailsWhereInput | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CartDetails to fetch.
+     */
+    orderBy?: CartDetailsOrderByWithRelationInput | CartDetailsOrderByWithRelationInput[] | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CartDetails.
+     */
+    cursor?: CartDetailsWhereUniqueInput | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CartDetails from the position of the cursor.
+     */
+    take?: number | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CartDetails.
+     */
+    skip?: number | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CartDetails.
+     */
+    distinct?: CartDetailsScalarFieldEnum | CartDetailsScalarFieldEnum[] | $Types.Skip
+  }
+
+  /**
+   * CartDetails findFirstOrThrow
+   */
+  export type CartDetailsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CartDetails
+     */
+    select?: CartDetailsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CartDetails
+     */
+    omit?: CartDetailsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CartDetailsInclude<ExtArgs> | null
+    /**
+     * Filter, which CartDetails to fetch.
+     */
+    where?: CartDetailsWhereInput | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CartDetails to fetch.
+     */
+    orderBy?: CartDetailsOrderByWithRelationInput | CartDetailsOrderByWithRelationInput[] | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CartDetails.
+     */
+    cursor?: CartDetailsWhereUniqueInput | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CartDetails from the position of the cursor.
+     */
+    take?: number | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CartDetails.
+     */
+    skip?: number | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CartDetails.
+     */
+    distinct?: CartDetailsScalarFieldEnum | CartDetailsScalarFieldEnum[] | $Types.Skip
+  }
+
+  /**
+   * CartDetails findMany
+   */
+  export type CartDetailsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CartDetails
+     */
+    select?: CartDetailsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CartDetails
+     */
+    omit?: CartDetailsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CartDetailsInclude<ExtArgs> | null
+    /**
+     * Filter, which CartDetails to fetch.
+     */
+    where?: CartDetailsWhereInput | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CartDetails to fetch.
+     */
+    orderBy?: CartDetailsOrderByWithRelationInput | CartDetailsOrderByWithRelationInput[] | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CartDetails.
+     */
+    cursor?: CartDetailsWhereUniqueInput | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CartDetails from the position of the cursor.
+     */
+    take?: number | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CartDetails.
+     */
+    skip?: number | $Types.Skip
+    distinct?: CartDetailsScalarFieldEnum | CartDetailsScalarFieldEnum[] | $Types.Skip
+  }
+
+  /**
+   * CartDetails create
+   */
+  export type CartDetailsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CartDetails
+     */
+    select?: CartDetailsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CartDetails
+     */
+    omit?: CartDetailsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CartDetailsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CartDetails.
+     */
+    data: XOR<CartDetailsCreateInput, CartDetailsUncheckedCreateInput>
+  }
+
+  /**
+   * CartDetails createMany
+   */
+  export type CartDetailsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CartDetails.
+     */
+    data: CartDetailsCreateManyInput | CartDetailsCreateManyInput[]
+    skipDuplicates?: boolean | $Types.Skip
+  }
+
+  /**
+   * CartDetails createManyAndReturn
+   */
+  export type CartDetailsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CartDetails
+     */
+    select?: CartDetailsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CartDetails
+     */
+    omit?: CartDetailsOmit<ExtArgs> | null
+    /**
+     * The data used to create many CartDetails.
+     */
+    data: CartDetailsCreateManyInput | CartDetailsCreateManyInput[]
+    skipDuplicates?: boolean | $Types.Skip
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CartDetailsIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CartDetails update
+   */
+  export type CartDetailsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CartDetails
+     */
+    select?: CartDetailsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CartDetails
+     */
+    omit?: CartDetailsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CartDetailsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CartDetails.
+     */
+    data: XOR<CartDetailsUpdateInput, CartDetailsUncheckedUpdateInput>
+    /**
+     * Choose, which CartDetails to update.
+     */
+    where: CartDetailsWhereUniqueInput
+  }
+
+  /**
+   * CartDetails updateMany
+   */
+  export type CartDetailsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CartDetails.
+     */
+    data: XOR<CartDetailsUpdateManyMutationInput, CartDetailsUncheckedUpdateManyInput>
+    /**
+     * Filter which CartDetails to update
+     */
+    where?: CartDetailsWhereInput | $Types.Skip
+    /**
+     * Limit how many CartDetails to update.
+     */
+    limit?: number | $Types.Skip
+  }
+
+  /**
+   * CartDetails updateManyAndReturn
+   */
+  export type CartDetailsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CartDetails
+     */
+    select?: CartDetailsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CartDetails
+     */
+    omit?: CartDetailsOmit<ExtArgs> | null
+    /**
+     * The data used to update CartDetails.
+     */
+    data: XOR<CartDetailsUpdateManyMutationInput, CartDetailsUncheckedUpdateManyInput>
+    /**
+     * Filter which CartDetails to update
+     */
+    where?: CartDetailsWhereInput | $Types.Skip
+    /**
+     * Limit how many CartDetails to update.
+     */
+    limit?: number | $Types.Skip
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CartDetailsIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CartDetails upsert
+   */
+  export type CartDetailsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CartDetails
+     */
+    select?: CartDetailsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CartDetails
+     */
+    omit?: CartDetailsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CartDetailsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CartDetails to update in case it exists.
+     */
+    where: CartDetailsWhereUniqueInput
+    /**
+     * In case the CartDetails found by the `where` argument doesn't exist, create a new CartDetails with this data.
+     */
+    create: XOR<CartDetailsCreateInput, CartDetailsUncheckedCreateInput>
+    /**
+     * In case the CartDetails was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CartDetailsUpdateInput, CartDetailsUncheckedUpdateInput>
+  }
+
+  /**
+   * CartDetails delete
+   */
+  export type CartDetailsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CartDetails
+     */
+    select?: CartDetailsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CartDetails
+     */
+    omit?: CartDetailsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CartDetailsInclude<ExtArgs> | null
+    /**
+     * Filter which CartDetails to delete.
+     */
+    where: CartDetailsWhereUniqueInput
+  }
+
+  /**
+   * CartDetails deleteMany
+   */
+  export type CartDetailsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CartDetails to delete
+     */
+    where?: CartDetailsWhereInput | $Types.Skip
+    /**
+     * Limit how many CartDetails to delete.
+     */
+    limit?: number | $Types.Skip
+  }
+
+  /**
+   * CartDetails without action
+   */
+  export type CartDetailsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CartDetails
+     */
+    select?: CartDetailsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CartDetails
+     */
+    omit?: CartDetailsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CartDetailsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Carts
+   */
+
+  export type AggregateCarts = {
+    _count: CartsCountAggregateOutputType | null
+    _min: CartsMinAggregateOutputType | null
+    _max: CartsMaxAggregateOutputType | null
+  }
+
+  export type CartsMinAggregateOutputType = {
+    id: string | null
+    user_id: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CartsMaxAggregateOutputType = {
+    id: string | null
+    user_id: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CartsCountAggregateOutputType = {
+    id: number
+    user_id: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type CartsMinAggregateInputType = {
+    id?: true | $Types.Skip
+    user_id?: true | $Types.Skip
+    createdAt?: true | $Types.Skip
+    updatedAt?: true | $Types.Skip
+  }
+
+  export type CartsMaxAggregateInputType = {
+    id?: true | $Types.Skip
+    user_id?: true | $Types.Skip
+    createdAt?: true | $Types.Skip
+    updatedAt?: true | $Types.Skip
+  }
+
+  export type CartsCountAggregateInputType = {
+    id?: true | $Types.Skip
+    user_id?: true | $Types.Skip
+    createdAt?: true | $Types.Skip
+    updatedAt?: true | $Types.Skip
+    _all?: true | $Types.Skip
+  }
+
+  export type CartsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Carts to aggregate.
+     */
+    where?: CartsWhereInput | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Carts to fetch.
+     */
+    orderBy?: CartsOrderByWithRelationInput | CartsOrderByWithRelationInput[] | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CartsWhereUniqueInput | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Carts from the position of the cursor.
+     */
+    take?: number | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Carts.
+     */
+    skip?: number | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Carts
+    **/
+    _count?: true | CartsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CartsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CartsMaxAggregateInputType
+  }
+
+  export type GetCartsAggregateType<T extends CartsAggregateArgs> = {
+        [P in keyof T & keyof AggregateCarts]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCarts[P]>
+      : GetScalarType<T[P], AggregateCarts[P]>
+  }
+
+
+
+
+  export type CartsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CartsWhereInput | $Types.Skip
+    orderBy?: CartsOrderByWithAggregationInput | CartsOrderByWithAggregationInput[] | $Types.Skip
+    by: CartsScalarFieldEnum[] | CartsScalarFieldEnum
+    having?: CartsScalarWhereWithAggregatesInput | $Types.Skip
+    take?: number | $Types.Skip
+    skip?: number | $Types.Skip
+    _count?: CartsCountAggregateInputType | true
+    _min?: CartsMinAggregateInputType
+    _max?: CartsMaxAggregateInputType
+  }
+
+  export type CartsGroupByOutputType = {
+    id: string
+    user_id: string
+    createdAt: Date
+    updatedAt: Date
+    _count: CartsCountAggregateOutputType | null
+    _min: CartsMinAggregateOutputType | null
+    _max: CartsMaxAggregateOutputType | null
+  }
+
+  type GetCartsGroupByPayload<T extends CartsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CartsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CartsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CartsGroupByOutputType[P]>
+            : GetScalarType<T[P], CartsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CartsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean | $Types.Skip
+    user_id?: boolean | $Types.Skip
+    createdAt?: boolean | $Types.Skip
+    updatedAt?: boolean | $Types.Skip
+    user?: boolean | UsersDefaultArgs<ExtArgs> | $Types.Skip
+    cartDetails?: boolean | Carts$cartDetailsArgs<ExtArgs> | $Types.Skip
+    _count?: boolean | CartsCountOutputTypeDefaultArgs<ExtArgs> | $Types.Skip
+  }, ExtArgs["result"]["carts"]>
+
+  export type CartsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean | $Types.Skip
+    user_id?: boolean | $Types.Skip
+    createdAt?: boolean | $Types.Skip
+    updatedAt?: boolean | $Types.Skip
+    user?: boolean | UsersDefaultArgs<ExtArgs> | $Types.Skip
+  }, ExtArgs["result"]["carts"]>
+
+  export type CartsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean | $Types.Skip
+    user_id?: boolean | $Types.Skip
+    createdAt?: boolean | $Types.Skip
+    updatedAt?: boolean | $Types.Skip
+    user?: boolean | UsersDefaultArgs<ExtArgs> | $Types.Skip
+  }, ExtArgs["result"]["carts"]>
+
+  export type CartsSelectScalar = {
+    id?: boolean | $Types.Skip
+    user_id?: boolean | $Types.Skip
+    createdAt?: boolean | $Types.Skip
+    updatedAt?: boolean | $Types.Skip
+  }
+
+  export type CartsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "createdAt" | "updatedAt", ExtArgs["result"]["carts"], $Types.Skip>
+  export type CartsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UsersDefaultArgs<ExtArgs> | $Types.Skip
+    cartDetails?: boolean | Carts$cartDetailsArgs<ExtArgs> | $Types.Skip
+    _count?: boolean | CartsCountOutputTypeDefaultArgs<ExtArgs> | $Types.Skip
+  }
+  export type CartsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UsersDefaultArgs<ExtArgs> | $Types.Skip
+  }
+  export type CartsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UsersDefaultArgs<ExtArgs> | $Types.Skip
+  }
+
+  export type $CartsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Carts"
+    objects: {
+      user: Prisma.$UsersPayload<ExtArgs>
+      cartDetails: Prisma.$CartDetailsPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      user_id: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["carts"]>
+    composites: {}
+  }
+
+  type CartsGetPayload<S extends boolean | null | undefined | CartsDefaultArgs> = $Result.GetResult<Prisma.$CartsPayload, S>
+
+  type CartsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CartsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CartsCountAggregateInputType | true
+    }
+
+  export interface CartsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Carts'], meta: { name: 'Carts' } }
+    /**
+     * Find zero or one Carts that matches the filter.
+     * @param {CartsFindUniqueArgs} args - Arguments to find a Carts
+     * @example
+     * // Get one Carts
+     * const carts = await prisma.carts.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CartsFindUniqueArgs>(args: SelectSubset<T, CartsFindUniqueArgs<ExtArgs>>): Prisma__CartsClient<$Result.GetResult<Prisma.$CartsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Carts that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CartsFindUniqueOrThrowArgs} args - Arguments to find a Carts
+     * @example
+     * // Get one Carts
+     * const carts = await prisma.carts.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CartsFindUniqueOrThrowArgs>(args: SelectSubset<T, CartsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CartsClient<$Result.GetResult<Prisma.$CartsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Carts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CartsFindFirstArgs} args - Arguments to find a Carts
+     * @example
+     * // Get one Carts
+     * const carts = await prisma.carts.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CartsFindFirstArgs>(args?: SelectSubset<T, CartsFindFirstArgs<ExtArgs>>): Prisma__CartsClient<$Result.GetResult<Prisma.$CartsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Carts that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CartsFindFirstOrThrowArgs} args - Arguments to find a Carts
+     * @example
+     * // Get one Carts
+     * const carts = await prisma.carts.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CartsFindFirstOrThrowArgs>(args?: SelectSubset<T, CartsFindFirstOrThrowArgs<ExtArgs>>): Prisma__CartsClient<$Result.GetResult<Prisma.$CartsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Carts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CartsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Carts
+     * const carts = await prisma.carts.findMany()
+     * 
+     * // Get first 10 Carts
+     * const carts = await prisma.carts.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const cartsWithIdOnly = await prisma.carts.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CartsFindManyArgs>(args?: SelectSubset<T, CartsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CartsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Carts.
+     * @param {CartsCreateArgs} args - Arguments to create a Carts.
+     * @example
+     * // Create one Carts
+     * const Carts = await prisma.carts.create({
+     *   data: {
+     *     // ... data to create a Carts
+     *   }
+     * })
+     * 
+     */
+    create<T extends CartsCreateArgs>(args: SelectSubset<T, CartsCreateArgs<ExtArgs>>): Prisma__CartsClient<$Result.GetResult<Prisma.$CartsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Carts.
+     * @param {CartsCreateManyArgs} args - Arguments to create many Carts.
+     * @example
+     * // Create many Carts
+     * const carts = await prisma.carts.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CartsCreateManyArgs>(args?: SelectSubset<T, CartsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Carts and returns the data saved in the database.
+     * @param {CartsCreateManyAndReturnArgs} args - Arguments to create many Carts.
+     * @example
+     * // Create many Carts
+     * const carts = await prisma.carts.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Carts and only return the `id`
+     * const cartsWithIdOnly = await prisma.carts.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CartsCreateManyAndReturnArgs>(args?: SelectSubset<T, CartsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CartsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Carts.
+     * @param {CartsDeleteArgs} args - Arguments to delete one Carts.
+     * @example
+     * // Delete one Carts
+     * const Carts = await prisma.carts.delete({
+     *   where: {
+     *     // ... filter to delete one Carts
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CartsDeleteArgs>(args: SelectSubset<T, CartsDeleteArgs<ExtArgs>>): Prisma__CartsClient<$Result.GetResult<Prisma.$CartsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Carts.
+     * @param {CartsUpdateArgs} args - Arguments to update one Carts.
+     * @example
+     * // Update one Carts
+     * const carts = await prisma.carts.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CartsUpdateArgs>(args: SelectSubset<T, CartsUpdateArgs<ExtArgs>>): Prisma__CartsClient<$Result.GetResult<Prisma.$CartsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Carts.
+     * @param {CartsDeleteManyArgs} args - Arguments to filter Carts to delete.
+     * @example
+     * // Delete a few Carts
+     * const { count } = await prisma.carts.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CartsDeleteManyArgs>(args?: SelectSubset<T, CartsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Carts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CartsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Carts
+     * const carts = await prisma.carts.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CartsUpdateManyArgs>(args: SelectSubset<T, CartsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Carts and returns the data updated in the database.
+     * @param {CartsUpdateManyAndReturnArgs} args - Arguments to update many Carts.
+     * @example
+     * // Update many Carts
+     * const carts = await prisma.carts.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Carts and only return the `id`
+     * const cartsWithIdOnly = await prisma.carts.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CartsUpdateManyAndReturnArgs>(args: SelectSubset<T, CartsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CartsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Carts.
+     * @param {CartsUpsertArgs} args - Arguments to update or create a Carts.
+     * @example
+     * // Update or create a Carts
+     * const carts = await prisma.carts.upsert({
+     *   create: {
+     *     // ... data to create a Carts
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Carts we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CartsUpsertArgs>(args: SelectSubset<T, CartsUpsertArgs<ExtArgs>>): Prisma__CartsClient<$Result.GetResult<Prisma.$CartsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Carts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CartsCountArgs} args - Arguments to filter Carts to count.
+     * @example
+     * // Count the number of Carts
+     * const count = await prisma.carts.count({
+     *   where: {
+     *     // ... the filter for the Carts we want to count
+     *   }
+     * })
+    **/
+    count<T extends CartsCountArgs>(
+      args?: Subset<T, CartsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CartsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Carts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CartsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CartsAggregateArgs>(args: Subset<T, CartsAggregateArgs>): Prisma.PrismaPromise<GetCartsAggregateType<T>>
+
+    /**
+     * Group by Carts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CartsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CartsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CartsGroupByArgs['orderBy'] }
+        : { orderBy?: CartsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CartsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCartsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Carts model
+   */
+  readonly fields: CartsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Carts.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CartsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UsersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UsersDefaultArgs<ExtArgs>>): Prisma__UsersClient<$Result.GetResult<Prisma.$UsersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    cartDetails<T extends Carts$cartDetailsArgs<ExtArgs> = {}>(args?: Subset<T, Carts$cartDetailsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CartDetailsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Carts model
+   */
+  interface CartsFieldRefs {
+    readonly id: FieldRef<"Carts", 'String'>
+    readonly user_id: FieldRef<"Carts", 'String'>
+    readonly createdAt: FieldRef<"Carts", 'DateTime'>
+    readonly updatedAt: FieldRef<"Carts", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Carts findUnique
+   */
+  export type CartsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Carts
+     */
+    select?: CartsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Carts
+     */
+    omit?: CartsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CartsInclude<ExtArgs> | null
+    /**
+     * Filter, which Carts to fetch.
+     */
+    where: CartsWhereUniqueInput
+  }
+
+  /**
+   * Carts findUniqueOrThrow
+   */
+  export type CartsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Carts
+     */
+    select?: CartsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Carts
+     */
+    omit?: CartsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CartsInclude<ExtArgs> | null
+    /**
+     * Filter, which Carts to fetch.
+     */
+    where: CartsWhereUniqueInput
+  }
+
+  /**
+   * Carts findFirst
+   */
+  export type CartsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Carts
+     */
+    select?: CartsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Carts
+     */
+    omit?: CartsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CartsInclude<ExtArgs> | null
+    /**
+     * Filter, which Carts to fetch.
+     */
+    where?: CartsWhereInput | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Carts to fetch.
+     */
+    orderBy?: CartsOrderByWithRelationInput | CartsOrderByWithRelationInput[] | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Carts.
+     */
+    cursor?: CartsWhereUniqueInput | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Carts from the position of the cursor.
+     */
+    take?: number | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Carts.
+     */
+    skip?: number | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Carts.
+     */
+    distinct?: CartsScalarFieldEnum | CartsScalarFieldEnum[] | $Types.Skip
+  }
+
+  /**
+   * Carts findFirstOrThrow
+   */
+  export type CartsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Carts
+     */
+    select?: CartsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Carts
+     */
+    omit?: CartsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CartsInclude<ExtArgs> | null
+    /**
+     * Filter, which Carts to fetch.
+     */
+    where?: CartsWhereInput | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Carts to fetch.
+     */
+    orderBy?: CartsOrderByWithRelationInput | CartsOrderByWithRelationInput[] | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Carts.
+     */
+    cursor?: CartsWhereUniqueInput | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Carts from the position of the cursor.
+     */
+    take?: number | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Carts.
+     */
+    skip?: number | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Carts.
+     */
+    distinct?: CartsScalarFieldEnum | CartsScalarFieldEnum[] | $Types.Skip
+  }
+
+  /**
+   * Carts findMany
+   */
+  export type CartsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Carts
+     */
+    select?: CartsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Carts
+     */
+    omit?: CartsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CartsInclude<ExtArgs> | null
+    /**
+     * Filter, which Carts to fetch.
+     */
+    where?: CartsWhereInput | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Carts to fetch.
+     */
+    orderBy?: CartsOrderByWithRelationInput | CartsOrderByWithRelationInput[] | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Carts.
+     */
+    cursor?: CartsWhereUniqueInput | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Carts from the position of the cursor.
+     */
+    take?: number | $Types.Skip
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Carts.
+     */
+    skip?: number | $Types.Skip
+    distinct?: CartsScalarFieldEnum | CartsScalarFieldEnum[] | $Types.Skip
+  }
+
+  /**
+   * Carts create
+   */
+  export type CartsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Carts
+     */
+    select?: CartsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Carts
+     */
+    omit?: CartsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CartsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Carts.
+     */
+    data: XOR<CartsCreateInput, CartsUncheckedCreateInput>
+  }
+
+  /**
+   * Carts createMany
+   */
+  export type CartsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Carts.
+     */
+    data: CartsCreateManyInput | CartsCreateManyInput[]
+    skipDuplicates?: boolean | $Types.Skip
+  }
+
+  /**
+   * Carts createManyAndReturn
+   */
+  export type CartsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Carts
+     */
+    select?: CartsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Carts
+     */
+    omit?: CartsOmit<ExtArgs> | null
+    /**
+     * The data used to create many Carts.
+     */
+    data: CartsCreateManyInput | CartsCreateManyInput[]
+    skipDuplicates?: boolean | $Types.Skip
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CartsIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Carts update
+   */
+  export type CartsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Carts
+     */
+    select?: CartsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Carts
+     */
+    omit?: CartsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CartsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Carts.
+     */
+    data: XOR<CartsUpdateInput, CartsUncheckedUpdateInput>
+    /**
+     * Choose, which Carts to update.
+     */
+    where: CartsWhereUniqueInput
+  }
+
+  /**
+   * Carts updateMany
+   */
+  export type CartsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Carts.
+     */
+    data: XOR<CartsUpdateManyMutationInput, CartsUncheckedUpdateManyInput>
+    /**
+     * Filter which Carts to update
+     */
+    where?: CartsWhereInput | $Types.Skip
+    /**
+     * Limit how many Carts to update.
+     */
+    limit?: number | $Types.Skip
+  }
+
+  /**
+   * Carts updateManyAndReturn
+   */
+  export type CartsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Carts
+     */
+    select?: CartsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Carts
+     */
+    omit?: CartsOmit<ExtArgs> | null
+    /**
+     * The data used to update Carts.
+     */
+    data: XOR<CartsUpdateManyMutationInput, CartsUncheckedUpdateManyInput>
+    /**
+     * Filter which Carts to update
+     */
+    where?: CartsWhereInput | $Types.Skip
+    /**
+     * Limit how many Carts to update.
+     */
+    limit?: number | $Types.Skip
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CartsIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Carts upsert
+   */
+  export type CartsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Carts
+     */
+    select?: CartsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Carts
+     */
+    omit?: CartsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CartsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Carts to update in case it exists.
+     */
+    where: CartsWhereUniqueInput
+    /**
+     * In case the Carts found by the `where` argument doesn't exist, create a new Carts with this data.
+     */
+    create: XOR<CartsCreateInput, CartsUncheckedCreateInput>
+    /**
+     * In case the Carts was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CartsUpdateInput, CartsUncheckedUpdateInput>
+  }
+
+  /**
+   * Carts delete
+   */
+  export type CartsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Carts
+     */
+    select?: CartsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Carts
+     */
+    omit?: CartsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CartsInclude<ExtArgs> | null
+    /**
+     * Filter which Carts to delete.
+     */
+    where: CartsWhereUniqueInput
+  }
+
+  /**
+   * Carts deleteMany
+   */
+  export type CartsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Carts to delete
+     */
+    where?: CartsWhereInput | $Types.Skip
+    /**
+     * Limit how many Carts to delete.
+     */
+    limit?: number | $Types.Skip
+  }
+
+  /**
+   * Carts.cartDetails
+   */
+  export type Carts$cartDetailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CartDetails
+     */
+    select?: CartDetailsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CartDetails
+     */
+    omit?: CartDetailsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CartDetailsInclude<ExtArgs> | null
+    where?: CartDetailsWhereInput | $Types.Skip
+    orderBy?: CartDetailsOrderByWithRelationInput | CartDetailsOrderByWithRelationInput[] | $Types.Skip
+    cursor?: CartDetailsWhereUniqueInput | $Types.Skip
+    take?: number | $Types.Skip
+    skip?: number | $Types.Skip
+    distinct?: CartDetailsScalarFieldEnum | CartDetailsScalarFieldEnum[] | $Types.Skip
+  }
+
+  /**
+   * Carts without action
+   */
+  export type CartsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Carts
+     */
+    select?: CartsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Carts
+     */
+    omit?: CartsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CartsInclude<ExtArgs> | null
   }
 
 
@@ -15285,12 +19038,27 @@ export namespace Prisma {
   export type OrdersScalarFieldEnum = (typeof OrdersScalarFieldEnum)[keyof typeof OrdersScalarFieldEnum]
 
 
+  export const PaymentsScalarFieldEnum: {
+    id: 'id',
+    created_at: 'created_at',
+    updated_at: 'updated_at',
+    status: 'status',
+    amount: 'amount',
+    currency: 'currency',
+    receipt_url: 'receipt_url',
+    payment_intent: 'payment_intent',
+    orderId: 'orderId'
+  };
+
+  export type PaymentsScalarFieldEnum = (typeof PaymentsScalarFieldEnum)[keyof typeof PaymentsScalarFieldEnum]
+
+
   export const OrderDetailsScalarFieldEnum: {
     id: 'id',
     quantity: 'quantity',
     price: 'price',
     orderDetails_id: 'orderDetails_id',
-    product_id: 'product_id'
+    variant_id: 'variant_id'
   };
 
   export type OrderDetailsScalarFieldEnum = (typeof OrderDetailsScalarFieldEnum)[keyof typeof OrderDetailsScalarFieldEnum]
@@ -15370,6 +19138,27 @@ export namespace Prisma {
   export type LikesScalarFieldEnum = (typeof LikesScalarFieldEnum)[keyof typeof LikesScalarFieldEnum]
 
 
+  export const CartDetailsScalarFieldEnum: {
+    id: 'id',
+    quantity: 'quantity',
+    price: 'price',
+    variant_id: 'variant_id',
+    cart_id: 'cart_id'
+  };
+
+  export type CartDetailsScalarFieldEnum = (typeof CartDetailsScalarFieldEnum)[keyof typeof CartDetailsScalarFieldEnum]
+
+
+  export const CartsScalarFieldEnum: {
+    id: 'id',
+    user_id: 'user_id',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type CartsScalarFieldEnum = (typeof CartsScalarFieldEnum)[keyof typeof CartsScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -15428,20 +19217,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
-   */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-  /**
-   * Reference to a field of type 'Int[]'
-   */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -15452,6 +19227,20 @@ export namespace Prisma {
    * Reference to a field of type 'Float[]'
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 
@@ -15494,760 +19283,963 @@ export namespace Prisma {
 
 
   export type RolesWhereInput = {
-    AND?: RolesWhereInput | RolesWhereInput[]
-    OR?: RolesWhereInput[]
-    NOT?: RolesWhereInput | RolesWhereInput[]
-    id?: StringFilter<"Roles"> | string
-    name?: StringFilter<"Roles"> | string
-    users?: UserRolesListRelationFilter
+    AND?: RolesWhereInput | RolesWhereInput[] | $Types.Skip
+    OR?: RolesWhereInput[] | $Types.Skip
+    NOT?: RolesWhereInput | RolesWhereInput[] | $Types.Skip
+    id?: StringFilter<"Roles"> | string | $Types.Skip
+    name?: StringFilter<"Roles"> | string | $Types.Skip
+    users?: UserRolesListRelationFilter | $Types.Skip
   }
 
   export type RolesOrderByWithRelationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    users?: UserRolesOrderByRelationAggregateInput
+    id?: SortOrder | $Types.Skip
+    name?: SortOrder | $Types.Skip
+    users?: UserRolesOrderByRelationAggregateInput | $Types.Skip
   }
 
   export type RolesWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: RolesWhereInput | RolesWhereInput[]
-    OR?: RolesWhereInput[]
-    NOT?: RolesWhereInput | RolesWhereInput[]
-    name?: StringFilter<"Roles"> | string
-    users?: UserRolesListRelationFilter
+    id?: string | $Types.Skip
+    AND?: RolesWhereInput | RolesWhereInput[] | $Types.Skip
+    OR?: RolesWhereInput[] | $Types.Skip
+    NOT?: RolesWhereInput | RolesWhereInput[] | $Types.Skip
+    name?: StringFilter<"Roles"> | string | $Types.Skip
+    users?: UserRolesListRelationFilter | $Types.Skip
   }, "id">
 
   export type RolesOrderByWithAggregationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    _count?: RolesCountOrderByAggregateInput
-    _max?: RolesMaxOrderByAggregateInput
-    _min?: RolesMinOrderByAggregateInput
+    id?: SortOrder | $Types.Skip
+    name?: SortOrder | $Types.Skip
+    _count?: RolesCountOrderByAggregateInput | $Types.Skip
+    _max?: RolesMaxOrderByAggregateInput | $Types.Skip
+    _min?: RolesMinOrderByAggregateInput | $Types.Skip
   }
 
   export type RolesScalarWhereWithAggregatesInput = {
-    AND?: RolesScalarWhereWithAggregatesInput | RolesScalarWhereWithAggregatesInput[]
-    OR?: RolesScalarWhereWithAggregatesInput[]
-    NOT?: RolesScalarWhereWithAggregatesInput | RolesScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Roles"> | string
-    name?: StringWithAggregatesFilter<"Roles"> | string
+    AND?: RolesScalarWhereWithAggregatesInput | RolesScalarWhereWithAggregatesInput[] | $Types.Skip
+    OR?: RolesScalarWhereWithAggregatesInput[] | $Types.Skip
+    NOT?: RolesScalarWhereWithAggregatesInput | RolesScalarWhereWithAggregatesInput[] | $Types.Skip
+    id?: StringWithAggregatesFilter<"Roles"> | string | $Types.Skip
+    name?: StringWithAggregatesFilter<"Roles"> | string | $Types.Skip
   }
 
   export type UsersWhereInput = {
-    AND?: UsersWhereInput | UsersWhereInput[]
-    OR?: UsersWhereInput[]
-    NOT?: UsersWhereInput | UsersWhereInput[]
-    id?: StringFilter<"Users"> | string
-    nickname?: StringFilter<"Users"> | string
-    first_name?: StringFilter<"Users"> | string
-    last_name?: StringFilter<"Users"> | string
-    email?: StringFilter<"Users"> | string
-    password?: StringFilter<"Users"> | string
-    roles?: UserRolesListRelationFilter
-    orders?: OrdersListRelationFilter
-    likes?: LikesListRelationFilter
+    AND?: UsersWhereInput | UsersWhereInput[] | $Types.Skip
+    OR?: UsersWhereInput[] | $Types.Skip
+    NOT?: UsersWhereInput | UsersWhereInput[] | $Types.Skip
+    id?: StringFilter<"Users"> | string | $Types.Skip
+    nickname?: StringFilter<"Users"> | string | $Types.Skip
+    first_name?: StringFilter<"Users"> | string | $Types.Skip
+    last_name?: StringFilter<"Users"> | string | $Types.Skip
+    email?: StringFilter<"Users"> | string | $Types.Skip
+    password?: StringFilter<"Users"> | string | $Types.Skip
+    roles?: UserRolesListRelationFilter | $Types.Skip
+    orders?: OrdersListRelationFilter | $Types.Skip
+    likes?: LikesListRelationFilter | $Types.Skip
+    carts?: CartsListRelationFilter | $Types.Skip
   }
 
   export type UsersOrderByWithRelationInput = {
-    id?: SortOrder
-    nickname?: SortOrder
-    first_name?: SortOrder
-    last_name?: SortOrder
-    email?: SortOrder
-    password?: SortOrder
-    roles?: UserRolesOrderByRelationAggregateInput
-    orders?: OrdersOrderByRelationAggregateInput
-    likes?: LikesOrderByRelationAggregateInput
+    id?: SortOrder | $Types.Skip
+    nickname?: SortOrder | $Types.Skip
+    first_name?: SortOrder | $Types.Skip
+    last_name?: SortOrder | $Types.Skip
+    email?: SortOrder | $Types.Skip
+    password?: SortOrder | $Types.Skip
+    roles?: UserRolesOrderByRelationAggregateInput | $Types.Skip
+    orders?: OrdersOrderByRelationAggregateInput | $Types.Skip
+    likes?: LikesOrderByRelationAggregateInput | $Types.Skip
+    carts?: CartsOrderByRelationAggregateInput | $Types.Skip
   }
 
   export type UsersWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: UsersWhereInput | UsersWhereInput[]
-    OR?: UsersWhereInput[]
-    NOT?: UsersWhereInput | UsersWhereInput[]
-    nickname?: StringFilter<"Users"> | string
-    first_name?: StringFilter<"Users"> | string
-    last_name?: StringFilter<"Users"> | string
-    email?: StringFilter<"Users"> | string
-    password?: StringFilter<"Users"> | string
-    roles?: UserRolesListRelationFilter
-    orders?: OrdersListRelationFilter
-    likes?: LikesListRelationFilter
-  }, "id">
+    id?: string | $Types.Skip
+    email?: string | $Types.Skip
+    AND?: UsersWhereInput | UsersWhereInput[] | $Types.Skip
+    OR?: UsersWhereInput[] | $Types.Skip
+    NOT?: UsersWhereInput | UsersWhereInput[] | $Types.Skip
+    nickname?: StringFilter<"Users"> | string | $Types.Skip
+    first_name?: StringFilter<"Users"> | string | $Types.Skip
+    last_name?: StringFilter<"Users"> | string | $Types.Skip
+    password?: StringFilter<"Users"> | string | $Types.Skip
+    roles?: UserRolesListRelationFilter | $Types.Skip
+    orders?: OrdersListRelationFilter | $Types.Skip
+    likes?: LikesListRelationFilter | $Types.Skip
+    carts?: CartsListRelationFilter | $Types.Skip
+  }, "id" | "email">
 
   export type UsersOrderByWithAggregationInput = {
-    id?: SortOrder
-    nickname?: SortOrder
-    first_name?: SortOrder
-    last_name?: SortOrder
-    email?: SortOrder
-    password?: SortOrder
-    _count?: UsersCountOrderByAggregateInput
-    _max?: UsersMaxOrderByAggregateInput
-    _min?: UsersMinOrderByAggregateInput
+    id?: SortOrder | $Types.Skip
+    nickname?: SortOrder | $Types.Skip
+    first_name?: SortOrder | $Types.Skip
+    last_name?: SortOrder | $Types.Skip
+    email?: SortOrder | $Types.Skip
+    password?: SortOrder | $Types.Skip
+    _count?: UsersCountOrderByAggregateInput | $Types.Skip
+    _max?: UsersMaxOrderByAggregateInput | $Types.Skip
+    _min?: UsersMinOrderByAggregateInput | $Types.Skip
   }
 
   export type UsersScalarWhereWithAggregatesInput = {
-    AND?: UsersScalarWhereWithAggregatesInput | UsersScalarWhereWithAggregatesInput[]
-    OR?: UsersScalarWhereWithAggregatesInput[]
-    NOT?: UsersScalarWhereWithAggregatesInput | UsersScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Users"> | string
-    nickname?: StringWithAggregatesFilter<"Users"> | string
-    first_name?: StringWithAggregatesFilter<"Users"> | string
-    last_name?: StringWithAggregatesFilter<"Users"> | string
-    email?: StringWithAggregatesFilter<"Users"> | string
-    password?: StringWithAggregatesFilter<"Users"> | string
+    AND?: UsersScalarWhereWithAggregatesInput | UsersScalarWhereWithAggregatesInput[] | $Types.Skip
+    OR?: UsersScalarWhereWithAggregatesInput[] | $Types.Skip
+    NOT?: UsersScalarWhereWithAggregatesInput | UsersScalarWhereWithAggregatesInput[] | $Types.Skip
+    id?: StringWithAggregatesFilter<"Users"> | string | $Types.Skip
+    nickname?: StringWithAggregatesFilter<"Users"> | string | $Types.Skip
+    first_name?: StringWithAggregatesFilter<"Users"> | string | $Types.Skip
+    last_name?: StringWithAggregatesFilter<"Users"> | string | $Types.Skip
+    email?: StringWithAggregatesFilter<"Users"> | string | $Types.Skip
+    password?: StringWithAggregatesFilter<"Users"> | string | $Types.Skip
   }
 
   export type UserRolesWhereInput = {
-    AND?: UserRolesWhereInput | UserRolesWhereInput[]
-    OR?: UserRolesWhereInput[]
-    NOT?: UserRolesWhereInput | UserRolesWhereInput[]
-    userId?: StringFilter<"UserRoles"> | string
-    roleId?: StringFilter<"UserRoles"> | string
-    users?: XOR<UsersScalarRelationFilter, UsersWhereInput>
-    roles?: XOR<RolesScalarRelationFilter, RolesWhereInput>
+    AND?: UserRolesWhereInput | UserRolesWhereInput[] | $Types.Skip
+    OR?: UserRolesWhereInput[] | $Types.Skip
+    NOT?: UserRolesWhereInput | UserRolesWhereInput[] | $Types.Skip
+    userId?: StringFilter<"UserRoles"> | string | $Types.Skip
+    roleId?: StringFilter<"UserRoles"> | string | $Types.Skip
+    users?: XOR<UsersScalarRelationFilter, UsersWhereInput> | $Types.Skip
+    roles?: XOR<RolesScalarRelationFilter, RolesWhereInput> | $Types.Skip
   }
 
   export type UserRolesOrderByWithRelationInput = {
-    userId?: SortOrder
-    roleId?: SortOrder
-    users?: UsersOrderByWithRelationInput
-    roles?: RolesOrderByWithRelationInput
+    userId?: SortOrder | $Types.Skip
+    roleId?: SortOrder | $Types.Skip
+    users?: UsersOrderByWithRelationInput | $Types.Skip
+    roles?: RolesOrderByWithRelationInput | $Types.Skip
   }
 
   export type UserRolesWhereUniqueInput = Prisma.AtLeast<{
-    userId_roleId?: UserRolesUserIdRoleIdCompoundUniqueInput
-    AND?: UserRolesWhereInput | UserRolesWhereInput[]
-    OR?: UserRolesWhereInput[]
-    NOT?: UserRolesWhereInput | UserRolesWhereInput[]
-    userId?: StringFilter<"UserRoles"> | string
-    roleId?: StringFilter<"UserRoles"> | string
-    users?: XOR<UsersScalarRelationFilter, UsersWhereInput>
-    roles?: XOR<RolesScalarRelationFilter, RolesWhereInput>
+    userId_roleId?: UserRolesUserIdRoleIdCompoundUniqueInput | $Types.Skip
+    AND?: UserRolesWhereInput | UserRolesWhereInput[] | $Types.Skip
+    OR?: UserRolesWhereInput[] | $Types.Skip
+    NOT?: UserRolesWhereInput | UserRolesWhereInput[] | $Types.Skip
+    userId?: StringFilter<"UserRoles"> | string | $Types.Skip
+    roleId?: StringFilter<"UserRoles"> | string | $Types.Skip
+    users?: XOR<UsersScalarRelationFilter, UsersWhereInput> | $Types.Skip
+    roles?: XOR<RolesScalarRelationFilter, RolesWhereInput> | $Types.Skip
   }, "userId_roleId">
 
   export type UserRolesOrderByWithAggregationInput = {
-    userId?: SortOrder
-    roleId?: SortOrder
-    _count?: UserRolesCountOrderByAggregateInput
-    _max?: UserRolesMaxOrderByAggregateInput
-    _min?: UserRolesMinOrderByAggregateInput
+    userId?: SortOrder | $Types.Skip
+    roleId?: SortOrder | $Types.Skip
+    _count?: UserRolesCountOrderByAggregateInput | $Types.Skip
+    _max?: UserRolesMaxOrderByAggregateInput | $Types.Skip
+    _min?: UserRolesMinOrderByAggregateInput | $Types.Skip
   }
 
   export type UserRolesScalarWhereWithAggregatesInput = {
-    AND?: UserRolesScalarWhereWithAggregatesInput | UserRolesScalarWhereWithAggregatesInput[]
-    OR?: UserRolesScalarWhereWithAggregatesInput[]
-    NOT?: UserRolesScalarWhereWithAggregatesInput | UserRolesScalarWhereWithAggregatesInput[]
-    userId?: StringWithAggregatesFilter<"UserRoles"> | string
-    roleId?: StringWithAggregatesFilter<"UserRoles"> | string
+    AND?: UserRolesScalarWhereWithAggregatesInput | UserRolesScalarWhereWithAggregatesInput[] | $Types.Skip
+    OR?: UserRolesScalarWhereWithAggregatesInput[] | $Types.Skip
+    NOT?: UserRolesScalarWhereWithAggregatesInput | UserRolesScalarWhereWithAggregatesInput[] | $Types.Skip
+    userId?: StringWithAggregatesFilter<"UserRoles"> | string | $Types.Skip
+    roleId?: StringWithAggregatesFilter<"UserRoles"> | string | $Types.Skip
   }
 
   export type OrdersWhereInput = {
-    AND?: OrdersWhereInput | OrdersWhereInput[]
-    OR?: OrdersWhereInput[]
-    NOT?: OrdersWhereInput | OrdersWhereInput[]
-    id?: StringFilter<"Orders"> | string
-    created_at?: DateTimeFilter<"Orders"> | Date | string
-    stripe_checkout_id?: StringFilter<"Orders"> | string
-    user_id?: StringFilter<"Orders"> | string
-    user?: XOR<UsersScalarRelationFilter, UsersWhereInput>
-    orderDetails?: OrderDetailsListRelationFilter
+    AND?: OrdersWhereInput | OrdersWhereInput[] | $Types.Skip
+    OR?: OrdersWhereInput[] | $Types.Skip
+    NOT?: OrdersWhereInput | OrdersWhereInput[] | $Types.Skip
+    id?: StringFilter<"Orders"> | string | $Types.Skip
+    created_at?: DateTimeFilter<"Orders"> | Date | string | $Types.Skip
+    stripe_checkout_id?: StringFilter<"Orders"> | string | $Types.Skip
+    user_id?: StringFilter<"Orders"> | string | $Types.Skip
+    user?: XOR<UsersScalarRelationFilter, UsersWhereInput> | $Types.Skip
+    orderDetails?: OrderDetailsListRelationFilter | $Types.Skip
+    payment?: XOR<PaymentsNullableScalarRelationFilter, PaymentsWhereInput> | null | $Types.Skip
   }
 
   export type OrdersOrderByWithRelationInput = {
-    id?: SortOrder
-    created_at?: SortOrder
-    stripe_checkout_id?: SortOrder
-    user_id?: SortOrder
-    user?: UsersOrderByWithRelationInput
-    orderDetails?: OrderDetailsOrderByRelationAggregateInput
+    id?: SortOrder | $Types.Skip
+    created_at?: SortOrder | $Types.Skip
+    stripe_checkout_id?: SortOrder | $Types.Skip
+    user_id?: SortOrder | $Types.Skip
+    user?: UsersOrderByWithRelationInput | $Types.Skip
+    orderDetails?: OrderDetailsOrderByRelationAggregateInput | $Types.Skip
+    payment?: PaymentsOrderByWithRelationInput | $Types.Skip
   }
 
   export type OrdersWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: OrdersWhereInput | OrdersWhereInput[]
-    OR?: OrdersWhereInput[]
-    NOT?: OrdersWhereInput | OrdersWhereInput[]
-    created_at?: DateTimeFilter<"Orders"> | Date | string
-    stripe_checkout_id?: StringFilter<"Orders"> | string
-    user_id?: StringFilter<"Orders"> | string
-    user?: XOR<UsersScalarRelationFilter, UsersWhereInput>
-    orderDetails?: OrderDetailsListRelationFilter
+    id?: string | $Types.Skip
+    AND?: OrdersWhereInput | OrdersWhereInput[] | $Types.Skip
+    OR?: OrdersWhereInput[] | $Types.Skip
+    NOT?: OrdersWhereInput | OrdersWhereInput[] | $Types.Skip
+    created_at?: DateTimeFilter<"Orders"> | Date | string | $Types.Skip
+    stripe_checkout_id?: StringFilter<"Orders"> | string | $Types.Skip
+    user_id?: StringFilter<"Orders"> | string | $Types.Skip
+    user?: XOR<UsersScalarRelationFilter, UsersWhereInput> | $Types.Skip
+    orderDetails?: OrderDetailsListRelationFilter | $Types.Skip
+    payment?: XOR<PaymentsNullableScalarRelationFilter, PaymentsWhereInput> | null | $Types.Skip
   }, "id">
 
   export type OrdersOrderByWithAggregationInput = {
-    id?: SortOrder
-    created_at?: SortOrder
-    stripe_checkout_id?: SortOrder
-    user_id?: SortOrder
-    _count?: OrdersCountOrderByAggregateInput
-    _max?: OrdersMaxOrderByAggregateInput
-    _min?: OrdersMinOrderByAggregateInput
+    id?: SortOrder | $Types.Skip
+    created_at?: SortOrder | $Types.Skip
+    stripe_checkout_id?: SortOrder | $Types.Skip
+    user_id?: SortOrder | $Types.Skip
+    _count?: OrdersCountOrderByAggregateInput | $Types.Skip
+    _max?: OrdersMaxOrderByAggregateInput | $Types.Skip
+    _min?: OrdersMinOrderByAggregateInput | $Types.Skip
   }
 
   export type OrdersScalarWhereWithAggregatesInput = {
-    AND?: OrdersScalarWhereWithAggregatesInput | OrdersScalarWhereWithAggregatesInput[]
-    OR?: OrdersScalarWhereWithAggregatesInput[]
-    NOT?: OrdersScalarWhereWithAggregatesInput | OrdersScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Orders"> | string
-    created_at?: DateTimeWithAggregatesFilter<"Orders"> | Date | string
-    stripe_checkout_id?: StringWithAggregatesFilter<"Orders"> | string
-    user_id?: StringWithAggregatesFilter<"Orders"> | string
+    AND?: OrdersScalarWhereWithAggregatesInput | OrdersScalarWhereWithAggregatesInput[] | $Types.Skip
+    OR?: OrdersScalarWhereWithAggregatesInput[] | $Types.Skip
+    NOT?: OrdersScalarWhereWithAggregatesInput | OrdersScalarWhereWithAggregatesInput[] | $Types.Skip
+    id?: StringWithAggregatesFilter<"Orders"> | string | $Types.Skip
+    created_at?: DateTimeWithAggregatesFilter<"Orders"> | Date | string | $Types.Skip
+    stripe_checkout_id?: StringWithAggregatesFilter<"Orders"> | string | $Types.Skip
+    user_id?: StringWithAggregatesFilter<"Orders"> | string | $Types.Skip
+  }
+
+  export type PaymentsWhereInput = {
+    AND?: PaymentsWhereInput | PaymentsWhereInput[] | $Types.Skip
+    OR?: PaymentsWhereInput[] | $Types.Skip
+    NOT?: PaymentsWhereInput | PaymentsWhereInput[] | $Types.Skip
+    id?: StringFilter<"Payments"> | string | $Types.Skip
+    created_at?: DateTimeFilter<"Payments"> | Date | string | $Types.Skip
+    updated_at?: DateTimeFilter<"Payments"> | Date | string | $Types.Skip
+    status?: StringFilter<"Payments"> | string | $Types.Skip
+    amount?: FloatFilter<"Payments"> | number | $Types.Skip
+    currency?: StringFilter<"Payments"> | string | $Types.Skip
+    receipt_url?: StringFilter<"Payments"> | string | $Types.Skip
+    payment_intent?: StringFilter<"Payments"> | string | $Types.Skip
+    orderId?: StringFilter<"Payments"> | string | $Types.Skip
+    order?: XOR<OrdersScalarRelationFilter, OrdersWhereInput> | $Types.Skip
+  }
+
+  export type PaymentsOrderByWithRelationInput = {
+    id?: SortOrder | $Types.Skip
+    created_at?: SortOrder | $Types.Skip
+    updated_at?: SortOrder | $Types.Skip
+    status?: SortOrder | $Types.Skip
+    amount?: SortOrder | $Types.Skip
+    currency?: SortOrder | $Types.Skip
+    receipt_url?: SortOrder | $Types.Skip
+    payment_intent?: SortOrder | $Types.Skip
+    orderId?: SortOrder | $Types.Skip
+    order?: OrdersOrderByWithRelationInput | $Types.Skip
+  }
+
+  export type PaymentsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string | $Types.Skip
+    orderId?: string | $Types.Skip
+    AND?: PaymentsWhereInput | PaymentsWhereInput[] | $Types.Skip
+    OR?: PaymentsWhereInput[] | $Types.Skip
+    NOT?: PaymentsWhereInput | PaymentsWhereInput[] | $Types.Skip
+    created_at?: DateTimeFilter<"Payments"> | Date | string | $Types.Skip
+    updated_at?: DateTimeFilter<"Payments"> | Date | string | $Types.Skip
+    status?: StringFilter<"Payments"> | string | $Types.Skip
+    amount?: FloatFilter<"Payments"> | number | $Types.Skip
+    currency?: StringFilter<"Payments"> | string | $Types.Skip
+    receipt_url?: StringFilter<"Payments"> | string | $Types.Skip
+    payment_intent?: StringFilter<"Payments"> | string | $Types.Skip
+    order?: XOR<OrdersScalarRelationFilter, OrdersWhereInput> | $Types.Skip
+  }, "id" | "orderId">
+
+  export type PaymentsOrderByWithAggregationInput = {
+    id?: SortOrder | $Types.Skip
+    created_at?: SortOrder | $Types.Skip
+    updated_at?: SortOrder | $Types.Skip
+    status?: SortOrder | $Types.Skip
+    amount?: SortOrder | $Types.Skip
+    currency?: SortOrder | $Types.Skip
+    receipt_url?: SortOrder | $Types.Skip
+    payment_intent?: SortOrder | $Types.Skip
+    orderId?: SortOrder | $Types.Skip
+    _count?: PaymentsCountOrderByAggregateInput | $Types.Skip
+    _avg?: PaymentsAvgOrderByAggregateInput | $Types.Skip
+    _max?: PaymentsMaxOrderByAggregateInput | $Types.Skip
+    _min?: PaymentsMinOrderByAggregateInput | $Types.Skip
+    _sum?: PaymentsSumOrderByAggregateInput | $Types.Skip
+  }
+
+  export type PaymentsScalarWhereWithAggregatesInput = {
+    AND?: PaymentsScalarWhereWithAggregatesInput | PaymentsScalarWhereWithAggregatesInput[] | $Types.Skip
+    OR?: PaymentsScalarWhereWithAggregatesInput[] | $Types.Skip
+    NOT?: PaymentsScalarWhereWithAggregatesInput | PaymentsScalarWhereWithAggregatesInput[] | $Types.Skip
+    id?: StringWithAggregatesFilter<"Payments"> | string | $Types.Skip
+    created_at?: DateTimeWithAggregatesFilter<"Payments"> | Date | string | $Types.Skip
+    updated_at?: DateTimeWithAggregatesFilter<"Payments"> | Date | string | $Types.Skip
+    status?: StringWithAggregatesFilter<"Payments"> | string | $Types.Skip
+    amount?: FloatWithAggregatesFilter<"Payments"> | number | $Types.Skip
+    currency?: StringWithAggregatesFilter<"Payments"> | string | $Types.Skip
+    receipt_url?: StringWithAggregatesFilter<"Payments"> | string | $Types.Skip
+    payment_intent?: StringWithAggregatesFilter<"Payments"> | string | $Types.Skip
+    orderId?: StringWithAggregatesFilter<"Payments"> | string | $Types.Skip
   }
 
   export type OrderDetailsWhereInput = {
-    AND?: OrderDetailsWhereInput | OrderDetailsWhereInput[]
-    OR?: OrderDetailsWhereInput[]
-    NOT?: OrderDetailsWhereInput | OrderDetailsWhereInput[]
-    id?: StringFilter<"OrderDetails"> | string
-    quantity?: IntFilter<"OrderDetails"> | number
-    price?: FloatFilter<"OrderDetails"> | number
-    orderDetails_id?: StringFilter<"OrderDetails"> | string
-    product_id?: StringFilter<"OrderDetails"> | string
-    orderDetails?: XOR<OrdersScalarRelationFilter, OrdersWhereInput>
-    product?: XOR<ProductsScalarRelationFilter, ProductsWhereInput>
+    AND?: OrderDetailsWhereInput | OrderDetailsWhereInput[] | $Types.Skip
+    OR?: OrderDetailsWhereInput[] | $Types.Skip
+    NOT?: OrderDetailsWhereInput | OrderDetailsWhereInput[] | $Types.Skip
+    id?: StringFilter<"OrderDetails"> | string | $Types.Skip
+    quantity?: IntFilter<"OrderDetails"> | number | $Types.Skip
+    price?: FloatFilter<"OrderDetails"> | number | $Types.Skip
+    orderDetails_id?: StringFilter<"OrderDetails"> | string | $Types.Skip
+    variant_id?: StringFilter<"OrderDetails"> | string | $Types.Skip
+    orderDetails?: XOR<OrdersScalarRelationFilter, OrdersWhereInput> | $Types.Skip
+    variants?: XOR<VariantsScalarRelationFilter, VariantsWhereInput> | $Types.Skip
   }
 
   export type OrderDetailsOrderByWithRelationInput = {
-    id?: SortOrder
-    quantity?: SortOrder
-    price?: SortOrder
-    orderDetails_id?: SortOrder
-    product_id?: SortOrder
-    orderDetails?: OrdersOrderByWithRelationInput
-    product?: ProductsOrderByWithRelationInput
+    id?: SortOrder | $Types.Skip
+    quantity?: SortOrder | $Types.Skip
+    price?: SortOrder | $Types.Skip
+    orderDetails_id?: SortOrder | $Types.Skip
+    variant_id?: SortOrder | $Types.Skip
+    orderDetails?: OrdersOrderByWithRelationInput | $Types.Skip
+    variants?: VariantsOrderByWithRelationInput | $Types.Skip
   }
 
   export type OrderDetailsWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: OrderDetailsWhereInput | OrderDetailsWhereInput[]
-    OR?: OrderDetailsWhereInput[]
-    NOT?: OrderDetailsWhereInput | OrderDetailsWhereInput[]
-    quantity?: IntFilter<"OrderDetails"> | number
-    price?: FloatFilter<"OrderDetails"> | number
-    orderDetails_id?: StringFilter<"OrderDetails"> | string
-    product_id?: StringFilter<"OrderDetails"> | string
-    orderDetails?: XOR<OrdersScalarRelationFilter, OrdersWhereInput>
-    product?: XOR<ProductsScalarRelationFilter, ProductsWhereInput>
+    id?: string | $Types.Skip
+    AND?: OrderDetailsWhereInput | OrderDetailsWhereInput[] | $Types.Skip
+    OR?: OrderDetailsWhereInput[] | $Types.Skip
+    NOT?: OrderDetailsWhereInput | OrderDetailsWhereInput[] | $Types.Skip
+    quantity?: IntFilter<"OrderDetails"> | number | $Types.Skip
+    price?: FloatFilter<"OrderDetails"> | number | $Types.Skip
+    orderDetails_id?: StringFilter<"OrderDetails"> | string | $Types.Skip
+    variant_id?: StringFilter<"OrderDetails"> | string | $Types.Skip
+    orderDetails?: XOR<OrdersScalarRelationFilter, OrdersWhereInput> | $Types.Skip
+    variants?: XOR<VariantsScalarRelationFilter, VariantsWhereInput> | $Types.Skip
   }, "id">
 
   export type OrderDetailsOrderByWithAggregationInput = {
-    id?: SortOrder
-    quantity?: SortOrder
-    price?: SortOrder
-    orderDetails_id?: SortOrder
-    product_id?: SortOrder
-    _count?: OrderDetailsCountOrderByAggregateInput
-    _avg?: OrderDetailsAvgOrderByAggregateInput
-    _max?: OrderDetailsMaxOrderByAggregateInput
-    _min?: OrderDetailsMinOrderByAggregateInput
-    _sum?: OrderDetailsSumOrderByAggregateInput
+    id?: SortOrder | $Types.Skip
+    quantity?: SortOrder | $Types.Skip
+    price?: SortOrder | $Types.Skip
+    orderDetails_id?: SortOrder | $Types.Skip
+    variant_id?: SortOrder | $Types.Skip
+    _count?: OrderDetailsCountOrderByAggregateInput | $Types.Skip
+    _avg?: OrderDetailsAvgOrderByAggregateInput | $Types.Skip
+    _max?: OrderDetailsMaxOrderByAggregateInput | $Types.Skip
+    _min?: OrderDetailsMinOrderByAggregateInput | $Types.Skip
+    _sum?: OrderDetailsSumOrderByAggregateInput | $Types.Skip
   }
 
   export type OrderDetailsScalarWhereWithAggregatesInput = {
-    AND?: OrderDetailsScalarWhereWithAggregatesInput | OrderDetailsScalarWhereWithAggregatesInput[]
-    OR?: OrderDetailsScalarWhereWithAggregatesInput[]
-    NOT?: OrderDetailsScalarWhereWithAggregatesInput | OrderDetailsScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"OrderDetails"> | string
-    quantity?: IntWithAggregatesFilter<"OrderDetails"> | number
-    price?: FloatWithAggregatesFilter<"OrderDetails"> | number
-    orderDetails_id?: StringWithAggregatesFilter<"OrderDetails"> | string
-    product_id?: StringWithAggregatesFilter<"OrderDetails"> | string
+    AND?: OrderDetailsScalarWhereWithAggregatesInput | OrderDetailsScalarWhereWithAggregatesInput[] | $Types.Skip
+    OR?: OrderDetailsScalarWhereWithAggregatesInput[] | $Types.Skip
+    NOT?: OrderDetailsScalarWhereWithAggregatesInput | OrderDetailsScalarWhereWithAggregatesInput[] | $Types.Skip
+    id?: StringWithAggregatesFilter<"OrderDetails"> | string | $Types.Skip
+    quantity?: IntWithAggregatesFilter<"OrderDetails"> | number | $Types.Skip
+    price?: FloatWithAggregatesFilter<"OrderDetails"> | number | $Types.Skip
+    orderDetails_id?: StringWithAggregatesFilter<"OrderDetails"> | string | $Types.Skip
+    variant_id?: StringWithAggregatesFilter<"OrderDetails"> | string | $Types.Skip
   }
 
   export type ProductsWhereInput = {
-    AND?: ProductsWhereInput | ProductsWhereInput[]
-    OR?: ProductsWhereInput[]
-    NOT?: ProductsWhereInput | ProductsWhereInput[]
-    id?: StringFilter<"Products"> | string
-    name?: StringFilter<"Products"> | string
-    price?: FloatFilter<"Products"> | number
-    created_at?: DateTimeFilter<"Products"> | Date | string
-    updated_at?: DateTimeFilter<"Products"> | Date | string
-    active?: BoolFilter<"Products"> | boolean
-    brand_id?: StringFilter<"Products"> | string
-    brand?: XOR<BrandsScalarRelationFilter, BrandsWhereInput>
-    orderDetails?: OrderDetailsListRelationFilter
-    variants?: VariantsListRelationFilter
-    productCategories?: ProductCategoriesListRelationFilter
-    likes?: LikesListRelationFilter
+    AND?: ProductsWhereInput | ProductsWhereInput[] | $Types.Skip
+    OR?: ProductsWhereInput[] | $Types.Skip
+    NOT?: ProductsWhereInput | ProductsWhereInput[] | $Types.Skip
+    id?: StringFilter<"Products"> | string | $Types.Skip
+    name?: StringFilter<"Products"> | string | $Types.Skip
+    price?: FloatFilter<"Products"> | number | $Types.Skip
+    created_at?: DateTimeFilter<"Products"> | Date | string | $Types.Skip
+    updated_at?: DateTimeFilter<"Products"> | Date | string | $Types.Skip
+    active?: BoolFilter<"Products"> | boolean | $Types.Skip
+    brand_id?: StringFilter<"Products"> | string | $Types.Skip
+    brand?: XOR<BrandsScalarRelationFilter, BrandsWhereInput> | $Types.Skip
+    variants?: VariantsListRelationFilter | $Types.Skip
+    productCategories?: ProductCategoriesListRelationFilter | $Types.Skip
+    likes?: LikesListRelationFilter | $Types.Skip
   }
 
   export type ProductsOrderByWithRelationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    price?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-    active?: SortOrder
-    brand_id?: SortOrder
-    brand?: BrandsOrderByWithRelationInput
-    orderDetails?: OrderDetailsOrderByRelationAggregateInput
-    variants?: VariantsOrderByRelationAggregateInput
-    productCategories?: ProductCategoriesOrderByRelationAggregateInput
-    likes?: LikesOrderByRelationAggregateInput
+    id?: SortOrder | $Types.Skip
+    name?: SortOrder | $Types.Skip
+    price?: SortOrder | $Types.Skip
+    created_at?: SortOrder | $Types.Skip
+    updated_at?: SortOrder | $Types.Skip
+    active?: SortOrder | $Types.Skip
+    brand_id?: SortOrder | $Types.Skip
+    brand?: BrandsOrderByWithRelationInput | $Types.Skip
+    variants?: VariantsOrderByRelationAggregateInput | $Types.Skip
+    productCategories?: ProductCategoriesOrderByRelationAggregateInput | $Types.Skip
+    likes?: LikesOrderByRelationAggregateInput | $Types.Skip
   }
 
   export type ProductsWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: ProductsWhereInput | ProductsWhereInput[]
-    OR?: ProductsWhereInput[]
-    NOT?: ProductsWhereInput | ProductsWhereInput[]
-    name?: StringFilter<"Products"> | string
-    price?: FloatFilter<"Products"> | number
-    created_at?: DateTimeFilter<"Products"> | Date | string
-    updated_at?: DateTimeFilter<"Products"> | Date | string
-    active?: BoolFilter<"Products"> | boolean
-    brand_id?: StringFilter<"Products"> | string
-    brand?: XOR<BrandsScalarRelationFilter, BrandsWhereInput>
-    orderDetails?: OrderDetailsListRelationFilter
-    variants?: VariantsListRelationFilter
-    productCategories?: ProductCategoriesListRelationFilter
-    likes?: LikesListRelationFilter
+    id?: string | $Types.Skip
+    AND?: ProductsWhereInput | ProductsWhereInput[] | $Types.Skip
+    OR?: ProductsWhereInput[] | $Types.Skip
+    NOT?: ProductsWhereInput | ProductsWhereInput[] | $Types.Skip
+    name?: StringFilter<"Products"> | string | $Types.Skip
+    price?: FloatFilter<"Products"> | number | $Types.Skip
+    created_at?: DateTimeFilter<"Products"> | Date | string | $Types.Skip
+    updated_at?: DateTimeFilter<"Products"> | Date | string | $Types.Skip
+    active?: BoolFilter<"Products"> | boolean | $Types.Skip
+    brand_id?: StringFilter<"Products"> | string | $Types.Skip
+    brand?: XOR<BrandsScalarRelationFilter, BrandsWhereInput> | $Types.Skip
+    variants?: VariantsListRelationFilter | $Types.Skip
+    productCategories?: ProductCategoriesListRelationFilter | $Types.Skip
+    likes?: LikesListRelationFilter | $Types.Skip
   }, "id">
 
   export type ProductsOrderByWithAggregationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    price?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-    active?: SortOrder
-    brand_id?: SortOrder
-    _count?: ProductsCountOrderByAggregateInput
-    _avg?: ProductsAvgOrderByAggregateInput
-    _max?: ProductsMaxOrderByAggregateInput
-    _min?: ProductsMinOrderByAggregateInput
-    _sum?: ProductsSumOrderByAggregateInput
+    id?: SortOrder | $Types.Skip
+    name?: SortOrder | $Types.Skip
+    price?: SortOrder | $Types.Skip
+    created_at?: SortOrder | $Types.Skip
+    updated_at?: SortOrder | $Types.Skip
+    active?: SortOrder | $Types.Skip
+    brand_id?: SortOrder | $Types.Skip
+    _count?: ProductsCountOrderByAggregateInput | $Types.Skip
+    _avg?: ProductsAvgOrderByAggregateInput | $Types.Skip
+    _max?: ProductsMaxOrderByAggregateInput | $Types.Skip
+    _min?: ProductsMinOrderByAggregateInput | $Types.Skip
+    _sum?: ProductsSumOrderByAggregateInput | $Types.Skip
   }
 
   export type ProductsScalarWhereWithAggregatesInput = {
-    AND?: ProductsScalarWhereWithAggregatesInput | ProductsScalarWhereWithAggregatesInput[]
-    OR?: ProductsScalarWhereWithAggregatesInput[]
-    NOT?: ProductsScalarWhereWithAggregatesInput | ProductsScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Products"> | string
-    name?: StringWithAggregatesFilter<"Products"> | string
-    price?: FloatWithAggregatesFilter<"Products"> | number
-    created_at?: DateTimeWithAggregatesFilter<"Products"> | Date | string
-    updated_at?: DateTimeWithAggregatesFilter<"Products"> | Date | string
-    active?: BoolWithAggregatesFilter<"Products"> | boolean
-    brand_id?: StringWithAggregatesFilter<"Products"> | string
+    AND?: ProductsScalarWhereWithAggregatesInput | ProductsScalarWhereWithAggregatesInput[] | $Types.Skip
+    OR?: ProductsScalarWhereWithAggregatesInput[] | $Types.Skip
+    NOT?: ProductsScalarWhereWithAggregatesInput | ProductsScalarWhereWithAggregatesInput[] | $Types.Skip
+    id?: StringWithAggregatesFilter<"Products"> | string | $Types.Skip
+    name?: StringWithAggregatesFilter<"Products"> | string | $Types.Skip
+    price?: FloatWithAggregatesFilter<"Products"> | number | $Types.Skip
+    created_at?: DateTimeWithAggregatesFilter<"Products"> | Date | string | $Types.Skip
+    updated_at?: DateTimeWithAggregatesFilter<"Products"> | Date | string | $Types.Skip
+    active?: BoolWithAggregatesFilter<"Products"> | boolean | $Types.Skip
+    brand_id?: StringWithAggregatesFilter<"Products"> | string | $Types.Skip
   }
 
   export type BrandsWhereInput = {
-    AND?: BrandsWhereInput | BrandsWhereInput[]
-    OR?: BrandsWhereInput[]
-    NOT?: BrandsWhereInput | BrandsWhereInput[]
-    id?: StringFilter<"Brands"> | string
-    name?: StringFilter<"Brands"> | string
-    products?: ProductsListRelationFilter
+    AND?: BrandsWhereInput | BrandsWhereInput[] | $Types.Skip
+    OR?: BrandsWhereInput[] | $Types.Skip
+    NOT?: BrandsWhereInput | BrandsWhereInput[] | $Types.Skip
+    id?: StringFilter<"Brands"> | string | $Types.Skip
+    name?: StringFilter<"Brands"> | string | $Types.Skip
+    products?: ProductsListRelationFilter | $Types.Skip
   }
 
   export type BrandsOrderByWithRelationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    products?: ProductsOrderByRelationAggregateInput
+    id?: SortOrder | $Types.Skip
+    name?: SortOrder | $Types.Skip
+    products?: ProductsOrderByRelationAggregateInput | $Types.Skip
   }
 
   export type BrandsWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: BrandsWhereInput | BrandsWhereInput[]
-    OR?: BrandsWhereInput[]
-    NOT?: BrandsWhereInput | BrandsWhereInput[]
-    name?: StringFilter<"Brands"> | string
-    products?: ProductsListRelationFilter
+    id?: string | $Types.Skip
+    AND?: BrandsWhereInput | BrandsWhereInput[] | $Types.Skip
+    OR?: BrandsWhereInput[] | $Types.Skip
+    NOT?: BrandsWhereInput | BrandsWhereInput[] | $Types.Skip
+    name?: StringFilter<"Brands"> | string | $Types.Skip
+    products?: ProductsListRelationFilter | $Types.Skip
   }, "id">
 
   export type BrandsOrderByWithAggregationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    _count?: BrandsCountOrderByAggregateInput
-    _max?: BrandsMaxOrderByAggregateInput
-    _min?: BrandsMinOrderByAggregateInput
+    id?: SortOrder | $Types.Skip
+    name?: SortOrder | $Types.Skip
+    _count?: BrandsCountOrderByAggregateInput | $Types.Skip
+    _max?: BrandsMaxOrderByAggregateInput | $Types.Skip
+    _min?: BrandsMinOrderByAggregateInput | $Types.Skip
   }
 
   export type BrandsScalarWhereWithAggregatesInput = {
-    AND?: BrandsScalarWhereWithAggregatesInput | BrandsScalarWhereWithAggregatesInput[]
-    OR?: BrandsScalarWhereWithAggregatesInput[]
-    NOT?: BrandsScalarWhereWithAggregatesInput | BrandsScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Brands"> | string
-    name?: StringWithAggregatesFilter<"Brands"> | string
+    AND?: BrandsScalarWhereWithAggregatesInput | BrandsScalarWhereWithAggregatesInput[] | $Types.Skip
+    OR?: BrandsScalarWhereWithAggregatesInput[] | $Types.Skip
+    NOT?: BrandsScalarWhereWithAggregatesInput | BrandsScalarWhereWithAggregatesInput[] | $Types.Skip
+    id?: StringWithAggregatesFilter<"Brands"> | string | $Types.Skip
+    name?: StringWithAggregatesFilter<"Brands"> | string | $Types.Skip
   }
 
   export type VariantsWhereInput = {
-    AND?: VariantsWhereInput | VariantsWhereInput[]
-    OR?: VariantsWhereInput[]
-    NOT?: VariantsWhereInput | VariantsWhereInput[]
-    id?: StringFilter<"Variants"> | string
-    product_id?: StringFilter<"Variants"> | string
-    file_id?: StringFilter<"Variants"> | string
-    size?: EnumSizeFilter<"Variants"> | $Enums.Size
-    textColor?: EnumTextColorFilter<"Variants"> | $Enums.TextColor
-    rgb?: StringFilter<"Variants"> | string
-    stock?: IntFilter<"Variants"> | number
-    createdAt?: DateTimeFilter<"Variants"> | Date | string
-    updatedAt?: DateTimeFilter<"Variants"> | Date | string
-    product?: XOR<ProductsScalarRelationFilter, ProductsWhereInput>
-    file?: XOR<FilesScalarRelationFilter, FilesWhereInput>
+    AND?: VariantsWhereInput | VariantsWhereInput[] | $Types.Skip
+    OR?: VariantsWhereInput[] | $Types.Skip
+    NOT?: VariantsWhereInput | VariantsWhereInput[] | $Types.Skip
+    id?: StringFilter<"Variants"> | string | $Types.Skip
+    product_id?: StringFilter<"Variants"> | string | $Types.Skip
+    file_id?: StringFilter<"Variants"> | string | $Types.Skip
+    size?: EnumSizeFilter<"Variants"> | $Enums.Size | $Types.Skip
+    textColor?: EnumTextColorFilter<"Variants"> | $Enums.TextColor | $Types.Skip
+    rgb?: StringFilter<"Variants"> | string | $Types.Skip
+    stock?: IntFilter<"Variants"> | number | $Types.Skip
+    createdAt?: DateTimeFilter<"Variants"> | Date | string | $Types.Skip
+    updatedAt?: DateTimeFilter<"Variants"> | Date | string | $Types.Skip
+    product?: XOR<ProductsScalarRelationFilter, ProductsWhereInput> | $Types.Skip
+    file?: XOR<FilesScalarRelationFilter, FilesWhereInput> | $Types.Skip
+    orderDetails?: OrderDetailsListRelationFilter | $Types.Skip
+    cartDetails?: CartDetailsListRelationFilter | $Types.Skip
   }
 
   export type VariantsOrderByWithRelationInput = {
-    id?: SortOrder
-    product_id?: SortOrder
-    file_id?: SortOrder
-    size?: SortOrder
-    textColor?: SortOrder
-    rgb?: SortOrder
-    stock?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    product?: ProductsOrderByWithRelationInput
-    file?: FilesOrderByWithRelationInput
+    id?: SortOrder | $Types.Skip
+    product_id?: SortOrder | $Types.Skip
+    file_id?: SortOrder | $Types.Skip
+    size?: SortOrder | $Types.Skip
+    textColor?: SortOrder | $Types.Skip
+    rgb?: SortOrder | $Types.Skip
+    stock?: SortOrder | $Types.Skip
+    createdAt?: SortOrder | $Types.Skip
+    updatedAt?: SortOrder | $Types.Skip
+    product?: ProductsOrderByWithRelationInput | $Types.Skip
+    file?: FilesOrderByWithRelationInput | $Types.Skip
+    orderDetails?: OrderDetailsOrderByRelationAggregateInput | $Types.Skip
+    cartDetails?: CartDetailsOrderByRelationAggregateInput | $Types.Skip
   }
 
   export type VariantsWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: VariantsWhereInput | VariantsWhereInput[]
-    OR?: VariantsWhereInput[]
-    NOT?: VariantsWhereInput | VariantsWhereInput[]
-    product_id?: StringFilter<"Variants"> | string
-    file_id?: StringFilter<"Variants"> | string
-    size?: EnumSizeFilter<"Variants"> | $Enums.Size
-    textColor?: EnumTextColorFilter<"Variants"> | $Enums.TextColor
-    rgb?: StringFilter<"Variants"> | string
-    stock?: IntFilter<"Variants"> | number
-    createdAt?: DateTimeFilter<"Variants"> | Date | string
-    updatedAt?: DateTimeFilter<"Variants"> | Date | string
-    product?: XOR<ProductsScalarRelationFilter, ProductsWhereInput>
-    file?: XOR<FilesScalarRelationFilter, FilesWhereInput>
+    id?: string | $Types.Skip
+    AND?: VariantsWhereInput | VariantsWhereInput[] | $Types.Skip
+    OR?: VariantsWhereInput[] | $Types.Skip
+    NOT?: VariantsWhereInput | VariantsWhereInput[] | $Types.Skip
+    product_id?: StringFilter<"Variants"> | string | $Types.Skip
+    file_id?: StringFilter<"Variants"> | string | $Types.Skip
+    size?: EnumSizeFilter<"Variants"> | $Enums.Size | $Types.Skip
+    textColor?: EnumTextColorFilter<"Variants"> | $Enums.TextColor | $Types.Skip
+    rgb?: StringFilter<"Variants"> | string | $Types.Skip
+    stock?: IntFilter<"Variants"> | number | $Types.Skip
+    createdAt?: DateTimeFilter<"Variants"> | Date | string | $Types.Skip
+    updatedAt?: DateTimeFilter<"Variants"> | Date | string | $Types.Skip
+    product?: XOR<ProductsScalarRelationFilter, ProductsWhereInput> | $Types.Skip
+    file?: XOR<FilesScalarRelationFilter, FilesWhereInput> | $Types.Skip
+    orderDetails?: OrderDetailsListRelationFilter | $Types.Skip
+    cartDetails?: CartDetailsListRelationFilter | $Types.Skip
   }, "id">
 
   export type VariantsOrderByWithAggregationInput = {
-    id?: SortOrder
-    product_id?: SortOrder
-    file_id?: SortOrder
-    size?: SortOrder
-    textColor?: SortOrder
-    rgb?: SortOrder
-    stock?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: VariantsCountOrderByAggregateInput
-    _avg?: VariantsAvgOrderByAggregateInput
-    _max?: VariantsMaxOrderByAggregateInput
-    _min?: VariantsMinOrderByAggregateInput
-    _sum?: VariantsSumOrderByAggregateInput
+    id?: SortOrder | $Types.Skip
+    product_id?: SortOrder | $Types.Skip
+    file_id?: SortOrder | $Types.Skip
+    size?: SortOrder | $Types.Skip
+    textColor?: SortOrder | $Types.Skip
+    rgb?: SortOrder | $Types.Skip
+    stock?: SortOrder | $Types.Skip
+    createdAt?: SortOrder | $Types.Skip
+    updatedAt?: SortOrder | $Types.Skip
+    _count?: VariantsCountOrderByAggregateInput | $Types.Skip
+    _avg?: VariantsAvgOrderByAggregateInput | $Types.Skip
+    _max?: VariantsMaxOrderByAggregateInput | $Types.Skip
+    _min?: VariantsMinOrderByAggregateInput | $Types.Skip
+    _sum?: VariantsSumOrderByAggregateInput | $Types.Skip
   }
 
   export type VariantsScalarWhereWithAggregatesInput = {
-    AND?: VariantsScalarWhereWithAggregatesInput | VariantsScalarWhereWithAggregatesInput[]
-    OR?: VariantsScalarWhereWithAggregatesInput[]
-    NOT?: VariantsScalarWhereWithAggregatesInput | VariantsScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Variants"> | string
-    product_id?: StringWithAggregatesFilter<"Variants"> | string
-    file_id?: StringWithAggregatesFilter<"Variants"> | string
-    size?: EnumSizeWithAggregatesFilter<"Variants"> | $Enums.Size
-    textColor?: EnumTextColorWithAggregatesFilter<"Variants"> | $Enums.TextColor
-    rgb?: StringWithAggregatesFilter<"Variants"> | string
-    stock?: IntWithAggregatesFilter<"Variants"> | number
-    createdAt?: DateTimeWithAggregatesFilter<"Variants"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"Variants"> | Date | string
+    AND?: VariantsScalarWhereWithAggregatesInput | VariantsScalarWhereWithAggregatesInput[] | $Types.Skip
+    OR?: VariantsScalarWhereWithAggregatesInput[] | $Types.Skip
+    NOT?: VariantsScalarWhereWithAggregatesInput | VariantsScalarWhereWithAggregatesInput[] | $Types.Skip
+    id?: StringWithAggregatesFilter<"Variants"> | string | $Types.Skip
+    product_id?: StringWithAggregatesFilter<"Variants"> | string | $Types.Skip
+    file_id?: StringWithAggregatesFilter<"Variants"> | string | $Types.Skip
+    size?: EnumSizeWithAggregatesFilter<"Variants"> | $Enums.Size | $Types.Skip
+    textColor?: EnumTextColorWithAggregatesFilter<"Variants"> | $Enums.TextColor | $Types.Skip
+    rgb?: StringWithAggregatesFilter<"Variants"> | string | $Types.Skip
+    stock?: IntWithAggregatesFilter<"Variants"> | number | $Types.Skip
+    createdAt?: DateTimeWithAggregatesFilter<"Variants"> | Date | string | $Types.Skip
+    updatedAt?: DateTimeWithAggregatesFilter<"Variants"> | Date | string | $Types.Skip
   }
 
   export type FilesWhereInput = {
-    AND?: FilesWhereInput | FilesWhereInput[]
-    OR?: FilesWhereInput[]
-    NOT?: FilesWhereInput | FilesWhereInput[]
-    id?: StringFilter<"Files"> | string
-    key?: StringFilter<"Files"> | string
-    idKey?: StringFilter<"Files"> | string
-    bucket?: StringFilter<"Files"> | string
-    variants?: VariantsListRelationFilter
+    AND?: FilesWhereInput | FilesWhereInput[] | $Types.Skip
+    OR?: FilesWhereInput[] | $Types.Skip
+    NOT?: FilesWhereInput | FilesWhereInput[] | $Types.Skip
+    id?: StringFilter<"Files"> | string | $Types.Skip
+    key?: StringFilter<"Files"> | string | $Types.Skip
+    idKey?: StringFilter<"Files"> | string | $Types.Skip
+    bucket?: StringFilter<"Files"> | string | $Types.Skip
+    variants?: VariantsListRelationFilter | $Types.Skip
   }
 
   export type FilesOrderByWithRelationInput = {
-    id?: SortOrder
-    key?: SortOrder
-    idKey?: SortOrder
-    bucket?: SortOrder
-    variants?: VariantsOrderByRelationAggregateInput
+    id?: SortOrder | $Types.Skip
+    key?: SortOrder | $Types.Skip
+    idKey?: SortOrder | $Types.Skip
+    bucket?: SortOrder | $Types.Skip
+    variants?: VariantsOrderByRelationAggregateInput | $Types.Skip
   }
 
   export type FilesWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: FilesWhereInput | FilesWhereInput[]
-    OR?: FilesWhereInput[]
-    NOT?: FilesWhereInput | FilesWhereInput[]
-    key?: StringFilter<"Files"> | string
-    idKey?: StringFilter<"Files"> | string
-    bucket?: StringFilter<"Files"> | string
-    variants?: VariantsListRelationFilter
+    id?: string | $Types.Skip
+    AND?: FilesWhereInput | FilesWhereInput[] | $Types.Skip
+    OR?: FilesWhereInput[] | $Types.Skip
+    NOT?: FilesWhereInput | FilesWhereInput[] | $Types.Skip
+    key?: StringFilter<"Files"> | string | $Types.Skip
+    idKey?: StringFilter<"Files"> | string | $Types.Skip
+    bucket?: StringFilter<"Files"> | string | $Types.Skip
+    variants?: VariantsListRelationFilter | $Types.Skip
   }, "id">
 
   export type FilesOrderByWithAggregationInput = {
-    id?: SortOrder
-    key?: SortOrder
-    idKey?: SortOrder
-    bucket?: SortOrder
-    _count?: FilesCountOrderByAggregateInput
-    _max?: FilesMaxOrderByAggregateInput
-    _min?: FilesMinOrderByAggregateInput
+    id?: SortOrder | $Types.Skip
+    key?: SortOrder | $Types.Skip
+    idKey?: SortOrder | $Types.Skip
+    bucket?: SortOrder | $Types.Skip
+    _count?: FilesCountOrderByAggregateInput | $Types.Skip
+    _max?: FilesMaxOrderByAggregateInput | $Types.Skip
+    _min?: FilesMinOrderByAggregateInput | $Types.Skip
   }
 
   export type FilesScalarWhereWithAggregatesInput = {
-    AND?: FilesScalarWhereWithAggregatesInput | FilesScalarWhereWithAggregatesInput[]
-    OR?: FilesScalarWhereWithAggregatesInput[]
-    NOT?: FilesScalarWhereWithAggregatesInput | FilesScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Files"> | string
-    key?: StringWithAggregatesFilter<"Files"> | string
-    idKey?: StringWithAggregatesFilter<"Files"> | string
-    bucket?: StringWithAggregatesFilter<"Files"> | string
+    AND?: FilesScalarWhereWithAggregatesInput | FilesScalarWhereWithAggregatesInput[] | $Types.Skip
+    OR?: FilesScalarWhereWithAggregatesInput[] | $Types.Skip
+    NOT?: FilesScalarWhereWithAggregatesInput | FilesScalarWhereWithAggregatesInput[] | $Types.Skip
+    id?: StringWithAggregatesFilter<"Files"> | string | $Types.Skip
+    key?: StringWithAggregatesFilter<"Files"> | string | $Types.Skip
+    idKey?: StringWithAggregatesFilter<"Files"> | string | $Types.Skip
+    bucket?: StringWithAggregatesFilter<"Files"> | string | $Types.Skip
   }
 
   export type CategoriesWhereInput = {
-    AND?: CategoriesWhereInput | CategoriesWhereInput[]
-    OR?: CategoriesWhereInput[]
-    NOT?: CategoriesWhereInput | CategoriesWhereInput[]
-    id?: StringFilter<"Categories"> | string
-    name?: StringFilter<"Categories"> | string
-    parentId?: StringNullableFilter<"Categories"> | string | null
-    active?: BoolFilter<"Categories"> | boolean
-    createdAt?: DateTimeFilter<"Categories"> | Date | string
-    updatedAt?: DateTimeFilter<"Categories"> | Date | string
-    parent?: XOR<CategoriesNullableScalarRelationFilter, CategoriesWhereInput> | null
-    productCategories?: ProductCategoriesListRelationFilter
-    Categories?: CategoriesListRelationFilter
+    AND?: CategoriesWhereInput | CategoriesWhereInput[] | $Types.Skip
+    OR?: CategoriesWhereInput[] | $Types.Skip
+    NOT?: CategoriesWhereInput | CategoriesWhereInput[] | $Types.Skip
+    id?: StringFilter<"Categories"> | string | $Types.Skip
+    name?: StringFilter<"Categories"> | string | $Types.Skip
+    parentId?: StringNullableFilter<"Categories"> | string | null | $Types.Skip
+    active?: BoolFilter<"Categories"> | boolean | $Types.Skip
+    createdAt?: DateTimeFilter<"Categories"> | Date | string | $Types.Skip
+    updatedAt?: DateTimeFilter<"Categories"> | Date | string | $Types.Skip
+    parent?: XOR<CategoriesNullableScalarRelationFilter, CategoriesWhereInput> | null | $Types.Skip
+    productCategories?: ProductCategoriesListRelationFilter | $Types.Skip
+    Categories?: CategoriesListRelationFilter | $Types.Skip
   }
 
   export type CategoriesOrderByWithRelationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    parentId?: SortOrderInput | SortOrder
-    active?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    parent?: CategoriesOrderByWithRelationInput
-    productCategories?: ProductCategoriesOrderByRelationAggregateInput
-    Categories?: CategoriesOrderByRelationAggregateInput
+    id?: SortOrder | $Types.Skip
+    name?: SortOrder | $Types.Skip
+    parentId?: SortOrderInput | SortOrder | $Types.Skip
+    active?: SortOrder | $Types.Skip
+    createdAt?: SortOrder | $Types.Skip
+    updatedAt?: SortOrder | $Types.Skip
+    parent?: CategoriesOrderByWithRelationInput | $Types.Skip
+    productCategories?: ProductCategoriesOrderByRelationAggregateInput | $Types.Skip
+    Categories?: CategoriesOrderByRelationAggregateInput | $Types.Skip
   }
 
   export type CategoriesWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: CategoriesWhereInput | CategoriesWhereInput[]
-    OR?: CategoriesWhereInput[]
-    NOT?: CategoriesWhereInput | CategoriesWhereInput[]
-    name?: StringFilter<"Categories"> | string
-    parentId?: StringNullableFilter<"Categories"> | string | null
-    active?: BoolFilter<"Categories"> | boolean
-    createdAt?: DateTimeFilter<"Categories"> | Date | string
-    updatedAt?: DateTimeFilter<"Categories"> | Date | string
-    parent?: XOR<CategoriesNullableScalarRelationFilter, CategoriesWhereInput> | null
-    productCategories?: ProductCategoriesListRelationFilter
-    Categories?: CategoriesListRelationFilter
+    id?: string | $Types.Skip
+    AND?: CategoriesWhereInput | CategoriesWhereInput[] | $Types.Skip
+    OR?: CategoriesWhereInput[] | $Types.Skip
+    NOT?: CategoriesWhereInput | CategoriesWhereInput[] | $Types.Skip
+    name?: StringFilter<"Categories"> | string | $Types.Skip
+    parentId?: StringNullableFilter<"Categories"> | string | null | $Types.Skip
+    active?: BoolFilter<"Categories"> | boolean | $Types.Skip
+    createdAt?: DateTimeFilter<"Categories"> | Date | string | $Types.Skip
+    updatedAt?: DateTimeFilter<"Categories"> | Date | string | $Types.Skip
+    parent?: XOR<CategoriesNullableScalarRelationFilter, CategoriesWhereInput> | null | $Types.Skip
+    productCategories?: ProductCategoriesListRelationFilter | $Types.Skip
+    Categories?: CategoriesListRelationFilter | $Types.Skip
   }, "id">
 
   export type CategoriesOrderByWithAggregationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    parentId?: SortOrderInput | SortOrder
-    active?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: CategoriesCountOrderByAggregateInput
-    _max?: CategoriesMaxOrderByAggregateInput
-    _min?: CategoriesMinOrderByAggregateInput
+    id?: SortOrder | $Types.Skip
+    name?: SortOrder | $Types.Skip
+    parentId?: SortOrderInput | SortOrder | $Types.Skip
+    active?: SortOrder | $Types.Skip
+    createdAt?: SortOrder | $Types.Skip
+    updatedAt?: SortOrder | $Types.Skip
+    _count?: CategoriesCountOrderByAggregateInput | $Types.Skip
+    _max?: CategoriesMaxOrderByAggregateInput | $Types.Skip
+    _min?: CategoriesMinOrderByAggregateInput | $Types.Skip
   }
 
   export type CategoriesScalarWhereWithAggregatesInput = {
-    AND?: CategoriesScalarWhereWithAggregatesInput | CategoriesScalarWhereWithAggregatesInput[]
-    OR?: CategoriesScalarWhereWithAggregatesInput[]
-    NOT?: CategoriesScalarWhereWithAggregatesInput | CategoriesScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Categories"> | string
-    name?: StringWithAggregatesFilter<"Categories"> | string
-    parentId?: StringNullableWithAggregatesFilter<"Categories"> | string | null
-    active?: BoolWithAggregatesFilter<"Categories"> | boolean
-    createdAt?: DateTimeWithAggregatesFilter<"Categories"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"Categories"> | Date | string
+    AND?: CategoriesScalarWhereWithAggregatesInput | CategoriesScalarWhereWithAggregatesInput[] | $Types.Skip
+    OR?: CategoriesScalarWhereWithAggregatesInput[] | $Types.Skip
+    NOT?: CategoriesScalarWhereWithAggregatesInput | CategoriesScalarWhereWithAggregatesInput[] | $Types.Skip
+    id?: StringWithAggregatesFilter<"Categories"> | string | $Types.Skip
+    name?: StringWithAggregatesFilter<"Categories"> | string | $Types.Skip
+    parentId?: StringNullableWithAggregatesFilter<"Categories"> | string | null | $Types.Skip
+    active?: BoolWithAggregatesFilter<"Categories"> | boolean | $Types.Skip
+    createdAt?: DateTimeWithAggregatesFilter<"Categories"> | Date | string | $Types.Skip
+    updatedAt?: DateTimeWithAggregatesFilter<"Categories"> | Date | string | $Types.Skip
   }
 
   export type ProductCategoriesWhereInput = {
-    AND?: ProductCategoriesWhereInput | ProductCategoriesWhereInput[]
-    OR?: ProductCategoriesWhereInput[]
-    NOT?: ProductCategoriesWhereInput | ProductCategoriesWhereInput[]
-    productId?: StringFilter<"ProductCategories"> | string
-    categoryId?: StringFilter<"ProductCategories"> | string
-    products?: XOR<ProductsScalarRelationFilter, ProductsWhereInput>
-    categories?: XOR<CategoriesScalarRelationFilter, CategoriesWhereInput>
+    AND?: ProductCategoriesWhereInput | ProductCategoriesWhereInput[] | $Types.Skip
+    OR?: ProductCategoriesWhereInput[] | $Types.Skip
+    NOT?: ProductCategoriesWhereInput | ProductCategoriesWhereInput[] | $Types.Skip
+    productId?: StringFilter<"ProductCategories"> | string | $Types.Skip
+    categoryId?: StringFilter<"ProductCategories"> | string | $Types.Skip
+    products?: XOR<ProductsScalarRelationFilter, ProductsWhereInput> | $Types.Skip
+    categories?: XOR<CategoriesScalarRelationFilter, CategoriesWhereInput> | $Types.Skip
   }
 
   export type ProductCategoriesOrderByWithRelationInput = {
-    productId?: SortOrder
-    categoryId?: SortOrder
-    products?: ProductsOrderByWithRelationInput
-    categories?: CategoriesOrderByWithRelationInput
+    productId?: SortOrder | $Types.Skip
+    categoryId?: SortOrder | $Types.Skip
+    products?: ProductsOrderByWithRelationInput | $Types.Skip
+    categories?: CategoriesOrderByWithRelationInput | $Types.Skip
   }
 
   export type ProductCategoriesWhereUniqueInput = Prisma.AtLeast<{
-    productId_categoryId?: ProductCategoriesProductIdCategoryIdCompoundUniqueInput
-    AND?: ProductCategoriesWhereInput | ProductCategoriesWhereInput[]
-    OR?: ProductCategoriesWhereInput[]
-    NOT?: ProductCategoriesWhereInput | ProductCategoriesWhereInput[]
-    productId?: StringFilter<"ProductCategories"> | string
-    categoryId?: StringFilter<"ProductCategories"> | string
-    products?: XOR<ProductsScalarRelationFilter, ProductsWhereInput>
-    categories?: XOR<CategoriesScalarRelationFilter, CategoriesWhereInput>
+    productId_categoryId?: ProductCategoriesProductIdCategoryIdCompoundUniqueInput | $Types.Skip
+    AND?: ProductCategoriesWhereInput | ProductCategoriesWhereInput[] | $Types.Skip
+    OR?: ProductCategoriesWhereInput[] | $Types.Skip
+    NOT?: ProductCategoriesWhereInput | ProductCategoriesWhereInput[] | $Types.Skip
+    productId?: StringFilter<"ProductCategories"> | string | $Types.Skip
+    categoryId?: StringFilter<"ProductCategories"> | string | $Types.Skip
+    products?: XOR<ProductsScalarRelationFilter, ProductsWhereInput> | $Types.Skip
+    categories?: XOR<CategoriesScalarRelationFilter, CategoriesWhereInput> | $Types.Skip
   }, "productId_categoryId">
 
   export type ProductCategoriesOrderByWithAggregationInput = {
-    productId?: SortOrder
-    categoryId?: SortOrder
-    _count?: ProductCategoriesCountOrderByAggregateInput
-    _max?: ProductCategoriesMaxOrderByAggregateInput
-    _min?: ProductCategoriesMinOrderByAggregateInput
+    productId?: SortOrder | $Types.Skip
+    categoryId?: SortOrder | $Types.Skip
+    _count?: ProductCategoriesCountOrderByAggregateInput | $Types.Skip
+    _max?: ProductCategoriesMaxOrderByAggregateInput | $Types.Skip
+    _min?: ProductCategoriesMinOrderByAggregateInput | $Types.Skip
   }
 
   export type ProductCategoriesScalarWhereWithAggregatesInput = {
-    AND?: ProductCategoriesScalarWhereWithAggregatesInput | ProductCategoriesScalarWhereWithAggregatesInput[]
-    OR?: ProductCategoriesScalarWhereWithAggregatesInput[]
-    NOT?: ProductCategoriesScalarWhereWithAggregatesInput | ProductCategoriesScalarWhereWithAggregatesInput[]
-    productId?: StringWithAggregatesFilter<"ProductCategories"> | string
-    categoryId?: StringWithAggregatesFilter<"ProductCategories"> | string
+    AND?: ProductCategoriesScalarWhereWithAggregatesInput | ProductCategoriesScalarWhereWithAggregatesInput[] | $Types.Skip
+    OR?: ProductCategoriesScalarWhereWithAggregatesInput[] | $Types.Skip
+    NOT?: ProductCategoriesScalarWhereWithAggregatesInput | ProductCategoriesScalarWhereWithAggregatesInput[] | $Types.Skip
+    productId?: StringWithAggregatesFilter<"ProductCategories"> | string | $Types.Skip
+    categoryId?: StringWithAggregatesFilter<"ProductCategories"> | string | $Types.Skip
   }
 
   export type LikesWhereInput = {
-    AND?: LikesWhereInput | LikesWhereInput[]
-    OR?: LikesWhereInput[]
-    NOT?: LikesWhereInput | LikesWhereInput[]
-    productId?: StringFilter<"Likes"> | string
-    user_id?: StringFilter<"Likes"> | string
-    products?: XOR<ProductsScalarRelationFilter, ProductsWhereInput>
-    user?: XOR<UsersScalarRelationFilter, UsersWhereInput>
+    AND?: LikesWhereInput | LikesWhereInput[] | $Types.Skip
+    OR?: LikesWhereInput[] | $Types.Skip
+    NOT?: LikesWhereInput | LikesWhereInput[] | $Types.Skip
+    productId?: StringFilter<"Likes"> | string | $Types.Skip
+    user_id?: StringFilter<"Likes"> | string | $Types.Skip
+    products?: XOR<ProductsScalarRelationFilter, ProductsWhereInput> | $Types.Skip
+    user?: XOR<UsersScalarRelationFilter, UsersWhereInput> | $Types.Skip
   }
 
   export type LikesOrderByWithRelationInput = {
-    productId?: SortOrder
-    user_id?: SortOrder
-    products?: ProductsOrderByWithRelationInput
-    user?: UsersOrderByWithRelationInput
+    productId?: SortOrder | $Types.Skip
+    user_id?: SortOrder | $Types.Skip
+    products?: ProductsOrderByWithRelationInput | $Types.Skip
+    user?: UsersOrderByWithRelationInput | $Types.Skip
   }
 
   export type LikesWhereUniqueInput = Prisma.AtLeast<{
-    user_id_productId?: LikesUser_idProductIdCompoundUniqueInput
-    AND?: LikesWhereInput | LikesWhereInput[]
-    OR?: LikesWhereInput[]
-    NOT?: LikesWhereInput | LikesWhereInput[]
-    productId?: StringFilter<"Likes"> | string
-    user_id?: StringFilter<"Likes"> | string
-    products?: XOR<ProductsScalarRelationFilter, ProductsWhereInput>
-    user?: XOR<UsersScalarRelationFilter, UsersWhereInput>
+    user_id_productId?: LikesUser_idProductIdCompoundUniqueInput | $Types.Skip
+    AND?: LikesWhereInput | LikesWhereInput[] | $Types.Skip
+    OR?: LikesWhereInput[] | $Types.Skip
+    NOT?: LikesWhereInput | LikesWhereInput[] | $Types.Skip
+    productId?: StringFilter<"Likes"> | string | $Types.Skip
+    user_id?: StringFilter<"Likes"> | string | $Types.Skip
+    products?: XOR<ProductsScalarRelationFilter, ProductsWhereInput> | $Types.Skip
+    user?: XOR<UsersScalarRelationFilter, UsersWhereInput> | $Types.Skip
   }, "user_id_productId">
 
   export type LikesOrderByWithAggregationInput = {
-    productId?: SortOrder
-    user_id?: SortOrder
-    _count?: LikesCountOrderByAggregateInput
-    _max?: LikesMaxOrderByAggregateInput
-    _min?: LikesMinOrderByAggregateInput
+    productId?: SortOrder | $Types.Skip
+    user_id?: SortOrder | $Types.Skip
+    _count?: LikesCountOrderByAggregateInput | $Types.Skip
+    _max?: LikesMaxOrderByAggregateInput | $Types.Skip
+    _min?: LikesMinOrderByAggregateInput | $Types.Skip
   }
 
   export type LikesScalarWhereWithAggregatesInput = {
-    AND?: LikesScalarWhereWithAggregatesInput | LikesScalarWhereWithAggregatesInput[]
-    OR?: LikesScalarWhereWithAggregatesInput[]
-    NOT?: LikesScalarWhereWithAggregatesInput | LikesScalarWhereWithAggregatesInput[]
-    productId?: StringWithAggregatesFilter<"Likes"> | string
-    user_id?: StringWithAggregatesFilter<"Likes"> | string
+    AND?: LikesScalarWhereWithAggregatesInput | LikesScalarWhereWithAggregatesInput[] | $Types.Skip
+    OR?: LikesScalarWhereWithAggregatesInput[] | $Types.Skip
+    NOT?: LikesScalarWhereWithAggregatesInput | LikesScalarWhereWithAggregatesInput[] | $Types.Skip
+    productId?: StringWithAggregatesFilter<"Likes"> | string | $Types.Skip
+    user_id?: StringWithAggregatesFilter<"Likes"> | string | $Types.Skip
+  }
+
+  export type CartDetailsWhereInput = {
+    AND?: CartDetailsWhereInput | CartDetailsWhereInput[] | $Types.Skip
+    OR?: CartDetailsWhereInput[] | $Types.Skip
+    NOT?: CartDetailsWhereInput | CartDetailsWhereInput[] | $Types.Skip
+    id?: StringFilter<"CartDetails"> | string | $Types.Skip
+    quantity?: IntFilter<"CartDetails"> | number | $Types.Skip
+    price?: FloatFilter<"CartDetails"> | number | $Types.Skip
+    variant_id?: StringFilter<"CartDetails"> | string | $Types.Skip
+    cart_id?: StringFilter<"CartDetails"> | string | $Types.Skip
+    variants?: XOR<VariantsScalarRelationFilter, VariantsWhereInput> | $Types.Skip
+    cart?: XOR<CartsScalarRelationFilter, CartsWhereInput> | $Types.Skip
+  }
+
+  export type CartDetailsOrderByWithRelationInput = {
+    id?: SortOrder | $Types.Skip
+    quantity?: SortOrder | $Types.Skip
+    price?: SortOrder | $Types.Skip
+    variant_id?: SortOrder | $Types.Skip
+    cart_id?: SortOrder | $Types.Skip
+    variants?: VariantsOrderByWithRelationInput | $Types.Skip
+    cart?: CartsOrderByWithRelationInput | $Types.Skip
+  }
+
+  export type CartDetailsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string | $Types.Skip
+    AND?: CartDetailsWhereInput | CartDetailsWhereInput[] | $Types.Skip
+    OR?: CartDetailsWhereInput[] | $Types.Skip
+    NOT?: CartDetailsWhereInput | CartDetailsWhereInput[] | $Types.Skip
+    quantity?: IntFilter<"CartDetails"> | number | $Types.Skip
+    price?: FloatFilter<"CartDetails"> | number | $Types.Skip
+    variant_id?: StringFilter<"CartDetails"> | string | $Types.Skip
+    cart_id?: StringFilter<"CartDetails"> | string | $Types.Skip
+    variants?: XOR<VariantsScalarRelationFilter, VariantsWhereInput> | $Types.Skip
+    cart?: XOR<CartsScalarRelationFilter, CartsWhereInput> | $Types.Skip
+  }, "id">
+
+  export type CartDetailsOrderByWithAggregationInput = {
+    id?: SortOrder | $Types.Skip
+    quantity?: SortOrder | $Types.Skip
+    price?: SortOrder | $Types.Skip
+    variant_id?: SortOrder | $Types.Skip
+    cart_id?: SortOrder | $Types.Skip
+    _count?: CartDetailsCountOrderByAggregateInput | $Types.Skip
+    _avg?: CartDetailsAvgOrderByAggregateInput | $Types.Skip
+    _max?: CartDetailsMaxOrderByAggregateInput | $Types.Skip
+    _min?: CartDetailsMinOrderByAggregateInput | $Types.Skip
+    _sum?: CartDetailsSumOrderByAggregateInput | $Types.Skip
+  }
+
+  export type CartDetailsScalarWhereWithAggregatesInput = {
+    AND?: CartDetailsScalarWhereWithAggregatesInput | CartDetailsScalarWhereWithAggregatesInput[] | $Types.Skip
+    OR?: CartDetailsScalarWhereWithAggregatesInput[] | $Types.Skip
+    NOT?: CartDetailsScalarWhereWithAggregatesInput | CartDetailsScalarWhereWithAggregatesInput[] | $Types.Skip
+    id?: StringWithAggregatesFilter<"CartDetails"> | string | $Types.Skip
+    quantity?: IntWithAggregatesFilter<"CartDetails"> | number | $Types.Skip
+    price?: FloatWithAggregatesFilter<"CartDetails"> | number | $Types.Skip
+    variant_id?: StringWithAggregatesFilter<"CartDetails"> | string | $Types.Skip
+    cart_id?: StringWithAggregatesFilter<"CartDetails"> | string | $Types.Skip
+  }
+
+  export type CartsWhereInput = {
+    AND?: CartsWhereInput | CartsWhereInput[] | $Types.Skip
+    OR?: CartsWhereInput[] | $Types.Skip
+    NOT?: CartsWhereInput | CartsWhereInput[] | $Types.Skip
+    id?: StringFilter<"Carts"> | string | $Types.Skip
+    user_id?: StringFilter<"Carts"> | string | $Types.Skip
+    createdAt?: DateTimeFilter<"Carts"> | Date | string | $Types.Skip
+    updatedAt?: DateTimeFilter<"Carts"> | Date | string | $Types.Skip
+    user?: XOR<UsersScalarRelationFilter, UsersWhereInput> | $Types.Skip
+    cartDetails?: CartDetailsListRelationFilter | $Types.Skip
+  }
+
+  export type CartsOrderByWithRelationInput = {
+    id?: SortOrder | $Types.Skip
+    user_id?: SortOrder | $Types.Skip
+    createdAt?: SortOrder | $Types.Skip
+    updatedAt?: SortOrder | $Types.Skip
+    user?: UsersOrderByWithRelationInput | $Types.Skip
+    cartDetails?: CartDetailsOrderByRelationAggregateInput | $Types.Skip
+  }
+
+  export type CartsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string | $Types.Skip
+    AND?: CartsWhereInput | CartsWhereInput[] | $Types.Skip
+    OR?: CartsWhereInput[] | $Types.Skip
+    NOT?: CartsWhereInput | CartsWhereInput[] | $Types.Skip
+    user_id?: StringFilter<"Carts"> | string | $Types.Skip
+    createdAt?: DateTimeFilter<"Carts"> | Date | string | $Types.Skip
+    updatedAt?: DateTimeFilter<"Carts"> | Date | string | $Types.Skip
+    user?: XOR<UsersScalarRelationFilter, UsersWhereInput> | $Types.Skip
+    cartDetails?: CartDetailsListRelationFilter | $Types.Skip
+  }, "id">
+
+  export type CartsOrderByWithAggregationInput = {
+    id?: SortOrder | $Types.Skip
+    user_id?: SortOrder | $Types.Skip
+    createdAt?: SortOrder | $Types.Skip
+    updatedAt?: SortOrder | $Types.Skip
+    _count?: CartsCountOrderByAggregateInput | $Types.Skip
+    _max?: CartsMaxOrderByAggregateInput | $Types.Skip
+    _min?: CartsMinOrderByAggregateInput | $Types.Skip
+  }
+
+  export type CartsScalarWhereWithAggregatesInput = {
+    AND?: CartsScalarWhereWithAggregatesInput | CartsScalarWhereWithAggregatesInput[] | $Types.Skip
+    OR?: CartsScalarWhereWithAggregatesInput[] | $Types.Skip
+    NOT?: CartsScalarWhereWithAggregatesInput | CartsScalarWhereWithAggregatesInput[] | $Types.Skip
+    id?: StringWithAggregatesFilter<"Carts"> | string | $Types.Skip
+    user_id?: StringWithAggregatesFilter<"Carts"> | string | $Types.Skip
+    createdAt?: DateTimeWithAggregatesFilter<"Carts"> | Date | string | $Types.Skip
+    updatedAt?: DateTimeWithAggregatesFilter<"Carts"> | Date | string | $Types.Skip
   }
 
   export type RolesCreateInput = {
-    id?: string
+    id?: string | $Types.Skip
     name: string
-    users?: UserRolesCreateNestedManyWithoutRolesInput
+    users?: UserRolesCreateNestedManyWithoutRolesInput | $Types.Skip
   }
 
   export type RolesUncheckedCreateInput = {
-    id?: string
+    id?: string | $Types.Skip
     name: string
-    users?: UserRolesUncheckedCreateNestedManyWithoutRolesInput
+    users?: UserRolesUncheckedCreateNestedManyWithoutRolesInput | $Types.Skip
   }
 
   export type RolesUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    users?: UserRolesUpdateManyWithoutRolesNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    users?: UserRolesUpdateManyWithoutRolesNestedInput | $Types.Skip
   }
 
   export type RolesUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    users?: UserRolesUncheckedUpdateManyWithoutRolesNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    users?: UserRolesUncheckedUpdateManyWithoutRolesNestedInput | $Types.Skip
   }
 
   export type RolesCreateManyInput = {
-    id?: string
+    id?: string | $Types.Skip
     name: string
   }
 
   export type RolesUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type RolesUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type UsersCreateInput = {
-    id?: string
+    id?: string | $Types.Skip
     nickname: string
     first_name: string
     last_name: string
     email: string
     password: string
-    roles?: UserRolesCreateNestedManyWithoutUsersInput
-    orders?: OrdersCreateNestedManyWithoutUserInput
-    likes?: LikesCreateNestedManyWithoutUserInput
+    roles?: UserRolesCreateNestedManyWithoutUsersInput | $Types.Skip
+    orders?: OrdersCreateNestedManyWithoutUserInput | $Types.Skip
+    likes?: LikesCreateNestedManyWithoutUserInput | $Types.Skip
+    carts?: CartsCreateNestedManyWithoutUserInput | $Types.Skip
   }
 
   export type UsersUncheckedCreateInput = {
-    id?: string
+    id?: string | $Types.Skip
     nickname: string
     first_name: string
     last_name: string
     email: string
     password: string
-    roles?: UserRolesUncheckedCreateNestedManyWithoutUsersInput
-    orders?: OrdersUncheckedCreateNestedManyWithoutUserInput
-    likes?: LikesUncheckedCreateNestedManyWithoutUserInput
+    roles?: UserRolesUncheckedCreateNestedManyWithoutUsersInput | $Types.Skip
+    orders?: OrdersUncheckedCreateNestedManyWithoutUserInput | $Types.Skip
+    likes?: LikesUncheckedCreateNestedManyWithoutUserInput | $Types.Skip
+    carts?: CartsUncheckedCreateNestedManyWithoutUserInput | $Types.Skip
   }
 
   export type UsersUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nickname?: StringFieldUpdateOperationsInput | string
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    roles?: UserRolesUpdateManyWithoutUsersNestedInput
-    orders?: OrdersUpdateManyWithoutUserNestedInput
-    likes?: LikesUpdateManyWithoutUserNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    nickname?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    first_name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    last_name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    email?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    password?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    roles?: UserRolesUpdateManyWithoutUsersNestedInput | $Types.Skip
+    orders?: OrdersUpdateManyWithoutUserNestedInput | $Types.Skip
+    likes?: LikesUpdateManyWithoutUserNestedInput | $Types.Skip
+    carts?: CartsUpdateManyWithoutUserNestedInput | $Types.Skip
   }
 
   export type UsersUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nickname?: StringFieldUpdateOperationsInput | string
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    roles?: UserRolesUncheckedUpdateManyWithoutUsersNestedInput
-    orders?: OrdersUncheckedUpdateManyWithoutUserNestedInput
-    likes?: LikesUncheckedUpdateManyWithoutUserNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    nickname?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    first_name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    last_name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    email?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    password?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    roles?: UserRolesUncheckedUpdateManyWithoutUsersNestedInput | $Types.Skip
+    orders?: OrdersUncheckedUpdateManyWithoutUserNestedInput | $Types.Skip
+    likes?: LikesUncheckedUpdateManyWithoutUserNestedInput | $Types.Skip
+    carts?: CartsUncheckedUpdateManyWithoutUserNestedInput | $Types.Skip
   }
 
   export type UsersCreateManyInput = {
-    id?: string
+    id?: string | $Types.Skip
     nickname: string
     first_name: string
     last_name: string
@@ -16256,21 +20248,21 @@ export namespace Prisma {
   }
 
   export type UsersUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nickname?: StringFieldUpdateOperationsInput | string
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    nickname?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    first_name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    last_name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    email?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    password?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type UsersUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nickname?: StringFieldUpdateOperationsInput | string
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    nickname?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    first_name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    last_name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    email?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    password?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type UserRolesCreateInput = {
@@ -16284,13 +20276,13 @@ export namespace Prisma {
   }
 
   export type UserRolesUpdateInput = {
-    users?: UsersUpdateOneRequiredWithoutRolesNestedInput
-    roles?: RolesUpdateOneRequiredWithoutUsersNestedInput
+    users?: UsersUpdateOneRequiredWithoutRolesNestedInput | $Types.Skip
+    roles?: RolesUpdateOneRequiredWithoutUsersNestedInput | $Types.Skip
   }
 
   export type UserRolesUncheckedUpdateInput = {
-    userId?: StringFieldUpdateOperationsInput | string
-    roleId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    roleId?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type UserRolesCreateManyInput = {
@@ -16303,443 +20295,534 @@ export namespace Prisma {
   }
 
   export type UserRolesUncheckedUpdateManyInput = {
-    userId?: StringFieldUpdateOperationsInput | string
-    roleId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    roleId?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type OrdersCreateInput = {
-    id?: string
-    created_at?: Date | string
+    id?: string | $Types.Skip
+    created_at?: Date | string | $Types.Skip
     stripe_checkout_id: string
     user: UsersCreateNestedOneWithoutOrdersInput
-    orderDetails?: OrderDetailsCreateNestedManyWithoutOrderDetailsInput
+    orderDetails?: OrderDetailsCreateNestedManyWithoutOrderDetailsInput | $Types.Skip
+    payment?: PaymentsCreateNestedOneWithoutOrderInput | $Types.Skip
   }
 
   export type OrdersUncheckedCreateInput = {
-    id?: string
-    created_at?: Date | string
+    id?: string | $Types.Skip
+    created_at?: Date | string | $Types.Skip
     stripe_checkout_id: string
     user_id: string
-    orderDetails?: OrderDetailsUncheckedCreateNestedManyWithoutOrderDetailsInput
+    orderDetails?: OrderDetailsUncheckedCreateNestedManyWithoutOrderDetailsInput | $Types.Skip
+    payment?: PaymentsUncheckedCreateNestedOneWithoutOrderInput | $Types.Skip
   }
 
   export type OrdersUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    stripe_checkout_id?: StringFieldUpdateOperationsInput | string
-    user?: UsersUpdateOneRequiredWithoutOrdersNestedInput
-    orderDetails?: OrderDetailsUpdateManyWithoutOrderDetailsNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    stripe_checkout_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    user?: UsersUpdateOneRequiredWithoutOrdersNestedInput | $Types.Skip
+    orderDetails?: OrderDetailsUpdateManyWithoutOrderDetailsNestedInput | $Types.Skip
+    payment?: PaymentsUpdateOneWithoutOrderNestedInput | $Types.Skip
   }
 
   export type OrdersUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    stripe_checkout_id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
-    orderDetails?: OrderDetailsUncheckedUpdateManyWithoutOrderDetailsNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    stripe_checkout_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    user_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    orderDetails?: OrderDetailsUncheckedUpdateManyWithoutOrderDetailsNestedInput | $Types.Skip
+    payment?: PaymentsUncheckedUpdateOneWithoutOrderNestedInput | $Types.Skip
   }
 
   export type OrdersCreateManyInput = {
-    id?: string
-    created_at?: Date | string
+    id?: string | $Types.Skip
+    created_at?: Date | string | $Types.Skip
     stripe_checkout_id: string
     user_id: string
   }
 
   export type OrdersUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    stripe_checkout_id?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    stripe_checkout_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type OrdersUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    stripe_checkout_id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    stripe_checkout_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    user_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+  }
+
+  export type PaymentsCreateInput = {
+    id?: string | $Types.Skip
+    created_at?: Date | string | $Types.Skip
+    updated_at?: Date | string | $Types.Skip
+    status: string
+    amount: number
+    currency: string
+    receipt_url: string
+    payment_intent: string
+    order: OrdersCreateNestedOneWithoutPaymentInput
+  }
+
+  export type PaymentsUncheckedCreateInput = {
+    id?: string | $Types.Skip
+    created_at?: Date | string | $Types.Skip
+    updated_at?: Date | string | $Types.Skip
+    status: string
+    amount: number
+    currency: string
+    receipt_url: string
+    payment_intent: string
+    orderId: string
+  }
+
+  export type PaymentsUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    status?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    amount?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    currency?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    receipt_url?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    payment_intent?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    order?: OrdersUpdateOneRequiredWithoutPaymentNestedInput | $Types.Skip
+  }
+
+  export type PaymentsUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    status?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    amount?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    currency?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    receipt_url?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    payment_intent?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    orderId?: StringFieldUpdateOperationsInput | string | $Types.Skip
+  }
+
+  export type PaymentsCreateManyInput = {
+    id?: string | $Types.Skip
+    created_at?: Date | string | $Types.Skip
+    updated_at?: Date | string | $Types.Skip
+    status: string
+    amount: number
+    currency: string
+    receipt_url: string
+    payment_intent: string
+    orderId: string
+  }
+
+  export type PaymentsUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    status?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    amount?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    currency?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    receipt_url?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    payment_intent?: StringFieldUpdateOperationsInput | string | $Types.Skip
+  }
+
+  export type PaymentsUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    status?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    amount?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    currency?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    receipt_url?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    payment_intent?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    orderId?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type OrderDetailsCreateInput = {
-    id?: string
+    id?: string | $Types.Skip
     quantity: number
     price: number
     orderDetails: OrdersCreateNestedOneWithoutOrderDetailsInput
-    product: ProductsCreateNestedOneWithoutOrderDetailsInput
+    variants: VariantsCreateNestedOneWithoutOrderDetailsInput
   }
 
   export type OrderDetailsUncheckedCreateInput = {
-    id?: string
+    id?: string | $Types.Skip
     quantity: number
     price: number
     orderDetails_id: string
-    product_id: string
+    variant_id: string
   }
 
   export type OrderDetailsUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    quantity?: IntFieldUpdateOperationsInput | number
-    price?: FloatFieldUpdateOperationsInput | number
-    orderDetails?: OrdersUpdateOneRequiredWithoutOrderDetailsNestedInput
-    product?: ProductsUpdateOneRequiredWithoutOrderDetailsNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    quantity?: IntFieldUpdateOperationsInput | number | $Types.Skip
+    price?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    orderDetails?: OrdersUpdateOneRequiredWithoutOrderDetailsNestedInput | $Types.Skip
+    variants?: VariantsUpdateOneRequiredWithoutOrderDetailsNestedInput | $Types.Skip
   }
 
   export type OrderDetailsUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    quantity?: IntFieldUpdateOperationsInput | number
-    price?: FloatFieldUpdateOperationsInput | number
-    orderDetails_id?: StringFieldUpdateOperationsInput | string
-    product_id?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    quantity?: IntFieldUpdateOperationsInput | number | $Types.Skip
+    price?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    orderDetails_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    variant_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type OrderDetailsCreateManyInput = {
-    id?: string
+    id?: string | $Types.Skip
     quantity: number
     price: number
     orderDetails_id: string
-    product_id: string
+    variant_id: string
   }
 
   export type OrderDetailsUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    quantity?: IntFieldUpdateOperationsInput | number
-    price?: FloatFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    quantity?: IntFieldUpdateOperationsInput | number | $Types.Skip
+    price?: FloatFieldUpdateOperationsInput | number | $Types.Skip
   }
 
   export type OrderDetailsUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    quantity?: IntFieldUpdateOperationsInput | number
-    price?: FloatFieldUpdateOperationsInput | number
-    orderDetails_id?: StringFieldUpdateOperationsInput | string
-    product_id?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    quantity?: IntFieldUpdateOperationsInput | number | $Types.Skip
+    price?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    orderDetails_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    variant_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type ProductsCreateInput = {
-    id?: string
+    id?: string | $Types.Skip
     name: string
     price: number
-    created_at?: Date | string
-    updated_at?: Date | string
-    active?: boolean
+    created_at?: Date | string | $Types.Skip
+    updated_at?: Date | string | $Types.Skip
+    active?: boolean | $Types.Skip
     brand: BrandsCreateNestedOneWithoutProductsInput
-    orderDetails?: OrderDetailsCreateNestedManyWithoutProductInput
-    variants?: VariantsCreateNestedManyWithoutProductInput
-    productCategories?: ProductCategoriesCreateNestedManyWithoutProductsInput
-    likes?: LikesCreateNestedManyWithoutProductsInput
+    variants?: VariantsCreateNestedManyWithoutProductInput | $Types.Skip
+    productCategories?: ProductCategoriesCreateNestedManyWithoutProductsInput | $Types.Skip
+    likes?: LikesCreateNestedManyWithoutProductsInput | $Types.Skip
   }
 
   export type ProductsUncheckedCreateInput = {
-    id?: string
+    id?: string | $Types.Skip
     name: string
     price: number
-    created_at?: Date | string
-    updated_at?: Date | string
-    active?: boolean
+    created_at?: Date | string | $Types.Skip
+    updated_at?: Date | string | $Types.Skip
+    active?: boolean | $Types.Skip
     brand_id: string
-    orderDetails?: OrderDetailsUncheckedCreateNestedManyWithoutProductInput
-    variants?: VariantsUncheckedCreateNestedManyWithoutProductInput
-    productCategories?: ProductCategoriesUncheckedCreateNestedManyWithoutProductsInput
-    likes?: LikesUncheckedCreateNestedManyWithoutProductsInput
+    variants?: VariantsUncheckedCreateNestedManyWithoutProductInput | $Types.Skip
+    productCategories?: ProductCategoriesUncheckedCreateNestedManyWithoutProductsInput | $Types.Skip
+    likes?: LikesUncheckedCreateNestedManyWithoutProductsInput | $Types.Skip
   }
 
   export type ProductsUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    brand?: BrandsUpdateOneRequiredWithoutProductsNestedInput
-    orderDetails?: OrderDetailsUpdateManyWithoutProductNestedInput
-    variants?: VariantsUpdateManyWithoutProductNestedInput
-    productCategories?: ProductCategoriesUpdateManyWithoutProductsNestedInput
-    likes?: LikesUpdateManyWithoutProductsNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    price?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    active?: BoolFieldUpdateOperationsInput | boolean | $Types.Skip
+    brand?: BrandsUpdateOneRequiredWithoutProductsNestedInput | $Types.Skip
+    variants?: VariantsUpdateManyWithoutProductNestedInput | $Types.Skip
+    productCategories?: ProductCategoriesUpdateManyWithoutProductsNestedInput | $Types.Skip
+    likes?: LikesUpdateManyWithoutProductsNestedInput | $Types.Skip
   }
 
   export type ProductsUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    brand_id?: StringFieldUpdateOperationsInput | string
-    orderDetails?: OrderDetailsUncheckedUpdateManyWithoutProductNestedInput
-    variants?: VariantsUncheckedUpdateManyWithoutProductNestedInput
-    productCategories?: ProductCategoriesUncheckedUpdateManyWithoutProductsNestedInput
-    likes?: LikesUncheckedUpdateManyWithoutProductsNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    price?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    active?: BoolFieldUpdateOperationsInput | boolean | $Types.Skip
+    brand_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    variants?: VariantsUncheckedUpdateManyWithoutProductNestedInput | $Types.Skip
+    productCategories?: ProductCategoriesUncheckedUpdateManyWithoutProductsNestedInput | $Types.Skip
+    likes?: LikesUncheckedUpdateManyWithoutProductsNestedInput | $Types.Skip
   }
 
   export type ProductsCreateManyInput = {
-    id?: string
+    id?: string | $Types.Skip
     name: string
     price: number
-    created_at?: Date | string
-    updated_at?: Date | string
-    active?: boolean
+    created_at?: Date | string | $Types.Skip
+    updated_at?: Date | string | $Types.Skip
+    active?: boolean | $Types.Skip
     brand_id: string
   }
 
   export type ProductsUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    active?: BoolFieldUpdateOperationsInput | boolean
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    price?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    active?: BoolFieldUpdateOperationsInput | boolean | $Types.Skip
   }
 
   export type ProductsUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    brand_id?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    price?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    active?: BoolFieldUpdateOperationsInput | boolean | $Types.Skip
+    brand_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type BrandsCreateInput = {
-    id?: string
+    id?: string | $Types.Skip
     name: string
-    products?: ProductsCreateNestedManyWithoutBrandInput
+    products?: ProductsCreateNestedManyWithoutBrandInput | $Types.Skip
   }
 
   export type BrandsUncheckedCreateInput = {
-    id?: string
+    id?: string | $Types.Skip
     name: string
-    products?: ProductsUncheckedCreateNestedManyWithoutBrandInput
+    products?: ProductsUncheckedCreateNestedManyWithoutBrandInput | $Types.Skip
   }
 
   export type BrandsUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    products?: ProductsUpdateManyWithoutBrandNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    products?: ProductsUpdateManyWithoutBrandNestedInput | $Types.Skip
   }
 
   export type BrandsUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    products?: ProductsUncheckedUpdateManyWithoutBrandNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    products?: ProductsUncheckedUpdateManyWithoutBrandNestedInput | $Types.Skip
   }
 
   export type BrandsCreateManyInput = {
-    id?: string
+    id?: string | $Types.Skip
     name: string
   }
 
   export type BrandsUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type BrandsUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type VariantsCreateInput = {
-    id?: string
-    size?: $Enums.Size
-    textColor?: $Enums.TextColor
+    id?: string | $Types.Skip
+    size?: $Enums.Size | $Types.Skip
+    textColor?: $Enums.TextColor | $Types.Skip
     rgb: string
     stock: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    createdAt?: Date | string | $Types.Skip
+    updatedAt?: Date | string | $Types.Skip
     product: ProductsCreateNestedOneWithoutVariantsInput
     file: FilesCreateNestedOneWithoutVariantsInput
+    orderDetails?: OrderDetailsCreateNestedManyWithoutVariantsInput | $Types.Skip
+    cartDetails?: CartDetailsCreateNestedManyWithoutVariantsInput | $Types.Skip
   }
 
   export type VariantsUncheckedCreateInput = {
-    id?: string
+    id?: string | $Types.Skip
     product_id: string
     file_id: string
-    size?: $Enums.Size
-    textColor?: $Enums.TextColor
+    size?: $Enums.Size | $Types.Skip
+    textColor?: $Enums.TextColor | $Types.Skip
     rgb: string
     stock: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    createdAt?: Date | string | $Types.Skip
+    updatedAt?: Date | string | $Types.Skip
+    orderDetails?: OrderDetailsUncheckedCreateNestedManyWithoutVariantsInput | $Types.Skip
+    cartDetails?: CartDetailsUncheckedCreateNestedManyWithoutVariantsInput | $Types.Skip
   }
 
   export type VariantsUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    size?: EnumSizeFieldUpdateOperationsInput | $Enums.Size
-    textColor?: EnumTextColorFieldUpdateOperationsInput | $Enums.TextColor
-    rgb?: StringFieldUpdateOperationsInput | string
-    stock?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    product?: ProductsUpdateOneRequiredWithoutVariantsNestedInput
-    file?: FilesUpdateOneRequiredWithoutVariantsNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    size?: EnumSizeFieldUpdateOperationsInput | $Enums.Size | $Types.Skip
+    textColor?: EnumTextColorFieldUpdateOperationsInput | $Enums.TextColor | $Types.Skip
+    rgb?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    stock?: IntFieldUpdateOperationsInput | number | $Types.Skip
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    product?: ProductsUpdateOneRequiredWithoutVariantsNestedInput | $Types.Skip
+    file?: FilesUpdateOneRequiredWithoutVariantsNestedInput | $Types.Skip
+    orderDetails?: OrderDetailsUpdateManyWithoutVariantsNestedInput | $Types.Skip
+    cartDetails?: CartDetailsUpdateManyWithoutVariantsNestedInput | $Types.Skip
   }
 
   export type VariantsUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    product_id?: StringFieldUpdateOperationsInput | string
-    file_id?: StringFieldUpdateOperationsInput | string
-    size?: EnumSizeFieldUpdateOperationsInput | $Enums.Size
-    textColor?: EnumTextColorFieldUpdateOperationsInput | $Enums.TextColor
-    rgb?: StringFieldUpdateOperationsInput | string
-    stock?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    product_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    file_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    size?: EnumSizeFieldUpdateOperationsInput | $Enums.Size | $Types.Skip
+    textColor?: EnumTextColorFieldUpdateOperationsInput | $Enums.TextColor | $Types.Skip
+    rgb?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    stock?: IntFieldUpdateOperationsInput | number | $Types.Skip
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    orderDetails?: OrderDetailsUncheckedUpdateManyWithoutVariantsNestedInput | $Types.Skip
+    cartDetails?: CartDetailsUncheckedUpdateManyWithoutVariantsNestedInput | $Types.Skip
   }
 
   export type VariantsCreateManyInput = {
-    id?: string
+    id?: string | $Types.Skip
     product_id: string
     file_id: string
-    size?: $Enums.Size
-    textColor?: $Enums.TextColor
+    size?: $Enums.Size | $Types.Skip
+    textColor?: $Enums.TextColor | $Types.Skip
     rgb: string
     stock: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    createdAt?: Date | string | $Types.Skip
+    updatedAt?: Date | string | $Types.Skip
   }
 
   export type VariantsUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    size?: EnumSizeFieldUpdateOperationsInput | $Enums.Size
-    textColor?: EnumTextColorFieldUpdateOperationsInput | $Enums.TextColor
-    rgb?: StringFieldUpdateOperationsInput | string
-    stock?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    size?: EnumSizeFieldUpdateOperationsInput | $Enums.Size | $Types.Skip
+    textColor?: EnumTextColorFieldUpdateOperationsInput | $Enums.TextColor | $Types.Skip
+    rgb?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    stock?: IntFieldUpdateOperationsInput | number | $Types.Skip
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
   }
 
   export type VariantsUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    product_id?: StringFieldUpdateOperationsInput | string
-    file_id?: StringFieldUpdateOperationsInput | string
-    size?: EnumSizeFieldUpdateOperationsInput | $Enums.Size
-    textColor?: EnumTextColorFieldUpdateOperationsInput | $Enums.TextColor
-    rgb?: StringFieldUpdateOperationsInput | string
-    stock?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    product_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    file_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    size?: EnumSizeFieldUpdateOperationsInput | $Enums.Size | $Types.Skip
+    textColor?: EnumTextColorFieldUpdateOperationsInput | $Enums.TextColor | $Types.Skip
+    rgb?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    stock?: IntFieldUpdateOperationsInput | number | $Types.Skip
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
   }
 
   export type FilesCreateInput = {
-    id?: string
+    id?: string | $Types.Skip
     key: string
     idKey: string
     bucket: string
-    variants?: VariantsCreateNestedManyWithoutFileInput
+    variants?: VariantsCreateNestedManyWithoutFileInput | $Types.Skip
   }
 
   export type FilesUncheckedCreateInput = {
-    id?: string
+    id?: string | $Types.Skip
     key: string
     idKey: string
     bucket: string
-    variants?: VariantsUncheckedCreateNestedManyWithoutFileInput
+    variants?: VariantsUncheckedCreateNestedManyWithoutFileInput | $Types.Skip
   }
 
   export type FilesUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    key?: StringFieldUpdateOperationsInput | string
-    idKey?: StringFieldUpdateOperationsInput | string
-    bucket?: StringFieldUpdateOperationsInput | string
-    variants?: VariantsUpdateManyWithoutFileNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    key?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    idKey?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    bucket?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    variants?: VariantsUpdateManyWithoutFileNestedInput | $Types.Skip
   }
 
   export type FilesUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    key?: StringFieldUpdateOperationsInput | string
-    idKey?: StringFieldUpdateOperationsInput | string
-    bucket?: StringFieldUpdateOperationsInput | string
-    variants?: VariantsUncheckedUpdateManyWithoutFileNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    key?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    idKey?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    bucket?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    variants?: VariantsUncheckedUpdateManyWithoutFileNestedInput | $Types.Skip
   }
 
   export type FilesCreateManyInput = {
-    id?: string
+    id?: string | $Types.Skip
     key: string
     idKey: string
     bucket: string
   }
 
   export type FilesUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    key?: StringFieldUpdateOperationsInput | string
-    idKey?: StringFieldUpdateOperationsInput | string
-    bucket?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    key?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    idKey?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    bucket?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type FilesUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    key?: StringFieldUpdateOperationsInput | string
-    idKey?: StringFieldUpdateOperationsInput | string
-    bucket?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    key?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    idKey?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    bucket?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type CategoriesCreateInput = {
-    id?: string
+    id?: string | $Types.Skip
     name: string
     active: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    parent?: CategoriesCreateNestedOneWithoutCategoriesInput
-    productCategories?: ProductCategoriesCreateNestedManyWithoutCategoriesInput
-    Categories?: CategoriesCreateNestedManyWithoutParentInput
+    createdAt?: Date | string | $Types.Skip
+    updatedAt?: Date | string | $Types.Skip
+    parent?: CategoriesCreateNestedOneWithoutCategoriesInput | $Types.Skip
+    productCategories?: ProductCategoriesCreateNestedManyWithoutCategoriesInput | $Types.Skip
+    Categories?: CategoriesCreateNestedManyWithoutParentInput | $Types.Skip
   }
 
   export type CategoriesUncheckedCreateInput = {
-    id?: string
+    id?: string | $Types.Skip
     name: string
-    parentId?: string | null
+    parentId?: string | null | $Types.Skip
     active: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    productCategories?: ProductCategoriesUncheckedCreateNestedManyWithoutCategoriesInput
-    Categories?: CategoriesUncheckedCreateNestedManyWithoutParentInput
+    createdAt?: Date | string | $Types.Skip
+    updatedAt?: Date | string | $Types.Skip
+    productCategories?: ProductCategoriesUncheckedCreateNestedManyWithoutCategoriesInput | $Types.Skip
+    Categories?: CategoriesUncheckedCreateNestedManyWithoutParentInput | $Types.Skip
   }
 
   export type CategoriesUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    parent?: CategoriesUpdateOneWithoutCategoriesNestedInput
-    productCategories?: ProductCategoriesUpdateManyWithoutCategoriesNestedInput
-    Categories?: CategoriesUpdateManyWithoutParentNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    active?: BoolFieldUpdateOperationsInput | boolean | $Types.Skip
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    parent?: CategoriesUpdateOneWithoutCategoriesNestedInput | $Types.Skip
+    productCategories?: ProductCategoriesUpdateManyWithoutCategoriesNestedInput | $Types.Skip
+    Categories?: CategoriesUpdateManyWithoutParentNestedInput | $Types.Skip
   }
 
   export type CategoriesUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    parentId?: NullableStringFieldUpdateOperationsInput | string | null
-    active?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    productCategories?: ProductCategoriesUncheckedUpdateManyWithoutCategoriesNestedInput
-    Categories?: CategoriesUncheckedUpdateManyWithoutParentNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null | $Types.Skip
+    active?: BoolFieldUpdateOperationsInput | boolean | $Types.Skip
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    productCategories?: ProductCategoriesUncheckedUpdateManyWithoutCategoriesNestedInput | $Types.Skip
+    Categories?: CategoriesUncheckedUpdateManyWithoutParentNestedInput | $Types.Skip
   }
 
   export type CategoriesCreateManyInput = {
-    id?: string
+    id?: string | $Types.Skip
     name: string
-    parentId?: string | null
+    parentId?: string | null | $Types.Skip
     active: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    createdAt?: Date | string | $Types.Skip
+    updatedAt?: Date | string | $Types.Skip
   }
 
   export type CategoriesUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    active?: BoolFieldUpdateOperationsInput | boolean | $Types.Skip
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
   }
 
   export type CategoriesUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    parentId?: NullableStringFieldUpdateOperationsInput | string | null
-    active?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null | $Types.Skip
+    active?: BoolFieldUpdateOperationsInput | boolean | $Types.Skip
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
   }
 
   export type ProductCategoriesCreateInput = {
@@ -16753,13 +20836,13 @@ export namespace Prisma {
   }
 
   export type ProductCategoriesUpdateInput = {
-    products?: ProductsUpdateOneRequiredWithoutProductCategoriesNestedInput
-    categories?: CategoriesUpdateOneRequiredWithoutProductCategoriesNestedInput
+    products?: ProductsUpdateOneRequiredWithoutProductCategoriesNestedInput | $Types.Skip
+    categories?: CategoriesUpdateOneRequiredWithoutProductCategoriesNestedInput | $Types.Skip
   }
 
   export type ProductCategoriesUncheckedUpdateInput = {
-    productId?: StringFieldUpdateOperationsInput | string
-    categoryId?: StringFieldUpdateOperationsInput | string
+    productId?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    categoryId?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type ProductCategoriesCreateManyInput = {
@@ -16772,8 +20855,8 @@ export namespace Prisma {
   }
 
   export type ProductCategoriesUncheckedUpdateManyInput = {
-    productId?: StringFieldUpdateOperationsInput | string
-    categoryId?: StringFieldUpdateOperationsInput | string
+    productId?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    categoryId?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type LikesCreateInput = {
@@ -16787,13 +20870,13 @@ export namespace Prisma {
   }
 
   export type LikesUpdateInput = {
-    products?: ProductsUpdateOneRequiredWithoutLikesNestedInput
-    user?: UsersUpdateOneRequiredWithoutLikesNestedInput
+    products?: ProductsUpdateOneRequiredWithoutLikesNestedInput | $Types.Skip
+    user?: UsersUpdateOneRequiredWithoutLikesNestedInput | $Types.Skip
   }
 
   export type LikesUncheckedUpdateInput = {
-    productId?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
+    productId?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    user_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type LikesCreateManyInput = {
@@ -16806,123 +20889,239 @@ export namespace Prisma {
   }
 
   export type LikesUncheckedUpdateManyInput = {
-    productId?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
+    productId?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    user_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+  }
+
+  export type CartDetailsCreateInput = {
+    id?: string | $Types.Skip
+    quantity: number
+    price: number
+    variants: VariantsCreateNestedOneWithoutCartDetailsInput
+    cart: CartsCreateNestedOneWithoutCartDetailsInput
+  }
+
+  export type CartDetailsUncheckedCreateInput = {
+    id?: string | $Types.Skip
+    quantity: number
+    price: number
+    variant_id: string
+    cart_id: string
+  }
+
+  export type CartDetailsUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    quantity?: IntFieldUpdateOperationsInput | number | $Types.Skip
+    price?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    variants?: VariantsUpdateOneRequiredWithoutCartDetailsNestedInput | $Types.Skip
+    cart?: CartsUpdateOneRequiredWithoutCartDetailsNestedInput | $Types.Skip
+  }
+
+  export type CartDetailsUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    quantity?: IntFieldUpdateOperationsInput | number | $Types.Skip
+    price?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    variant_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    cart_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+  }
+
+  export type CartDetailsCreateManyInput = {
+    id?: string | $Types.Skip
+    quantity: number
+    price: number
+    variant_id: string
+    cart_id: string
+  }
+
+  export type CartDetailsUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    quantity?: IntFieldUpdateOperationsInput | number | $Types.Skip
+    price?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+  }
+
+  export type CartDetailsUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    quantity?: IntFieldUpdateOperationsInput | number | $Types.Skip
+    price?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    variant_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    cart_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+  }
+
+  export type CartsCreateInput = {
+    id?: string | $Types.Skip
+    createdAt?: Date | string | $Types.Skip
+    updatedAt?: Date | string | $Types.Skip
+    user: UsersCreateNestedOneWithoutCartsInput
+    cartDetails?: CartDetailsCreateNestedManyWithoutCartInput | $Types.Skip
+  }
+
+  export type CartsUncheckedCreateInput = {
+    id?: string | $Types.Skip
+    user_id: string
+    createdAt?: Date | string | $Types.Skip
+    updatedAt?: Date | string | $Types.Skip
+    cartDetails?: CartDetailsUncheckedCreateNestedManyWithoutCartInput | $Types.Skip
+  }
+
+  export type CartsUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    user?: UsersUpdateOneRequiredWithoutCartsNestedInput | $Types.Skip
+    cartDetails?: CartDetailsUpdateManyWithoutCartNestedInput | $Types.Skip
+  }
+
+  export type CartsUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    user_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    cartDetails?: CartDetailsUncheckedUpdateManyWithoutCartNestedInput | $Types.Skip
+  }
+
+  export type CartsCreateManyInput = {
+    id?: string | $Types.Skip
+    user_id: string
+    createdAt?: Date | string | $Types.Skip
+    updatedAt?: Date | string | $Types.Skip
+  }
+
+  export type CartsUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+  }
+
+  export type CartsUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    user_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
   }
 
   export type StringFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringFilter<$PrismaModel> | string
+    equals?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | $Types.Skip
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | $Types.Skip
+    lt?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    lte?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    gt?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    gte?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    contains?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    startsWith?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    endsWith?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    mode?: QueryMode | $Types.Skip
+    not?: NestedStringFilter<$PrismaModel> | string | $Types.Skip
   }
 
   export type UserRolesListRelationFilter = {
-    every?: UserRolesWhereInput
-    some?: UserRolesWhereInput
-    none?: UserRolesWhereInput
+    every?: UserRolesWhereInput | $Types.Skip
+    some?: UserRolesWhereInput | $Types.Skip
+    none?: UserRolesWhereInput | $Types.Skip
   }
 
   export type UserRolesOrderByRelationAggregateInput = {
-    _count?: SortOrder
+    _count?: SortOrder | $Types.Skip
   }
 
   export type RolesCountOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
+    id?: SortOrder | $Types.Skip
+    name?: SortOrder | $Types.Skip
   }
 
   export type RolesMaxOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
+    id?: SortOrder | $Types.Skip
+    name?: SortOrder | $Types.Skip
   }
 
   export type RolesMinOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
+    id?: SortOrder | $Types.Skip
+    name?: SortOrder | $Types.Skip
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
+    equals?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | $Types.Skip
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | $Types.Skip
+    lt?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    lte?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    gt?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    gte?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    contains?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    startsWith?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    endsWith?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    mode?: QueryMode | $Types.Skip
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string | $Types.Skip
+    _count?: NestedIntFilter<$PrismaModel> | $Types.Skip
+    _min?: NestedStringFilter<$PrismaModel> | $Types.Skip
+    _max?: NestedStringFilter<$PrismaModel> | $Types.Skip
   }
 
   export type OrdersListRelationFilter = {
-    every?: OrdersWhereInput
-    some?: OrdersWhereInput
-    none?: OrdersWhereInput
+    every?: OrdersWhereInput | $Types.Skip
+    some?: OrdersWhereInput | $Types.Skip
+    none?: OrdersWhereInput | $Types.Skip
   }
 
   export type LikesListRelationFilter = {
-    every?: LikesWhereInput
-    some?: LikesWhereInput
-    none?: LikesWhereInput
+    every?: LikesWhereInput | $Types.Skip
+    some?: LikesWhereInput | $Types.Skip
+    none?: LikesWhereInput | $Types.Skip
+  }
+
+  export type CartsListRelationFilter = {
+    every?: CartsWhereInput | $Types.Skip
+    some?: CartsWhereInput | $Types.Skip
+    none?: CartsWhereInput | $Types.Skip
   }
 
   export type OrdersOrderByRelationAggregateInput = {
-    _count?: SortOrder
+    _count?: SortOrder | $Types.Skip
   }
 
   export type LikesOrderByRelationAggregateInput = {
-    _count?: SortOrder
+    _count?: SortOrder | $Types.Skip
+  }
+
+  export type CartsOrderByRelationAggregateInput = {
+    _count?: SortOrder | $Types.Skip
   }
 
   export type UsersCountOrderByAggregateInput = {
-    id?: SortOrder
-    nickname?: SortOrder
-    first_name?: SortOrder
-    last_name?: SortOrder
-    email?: SortOrder
-    password?: SortOrder
+    id?: SortOrder | $Types.Skip
+    nickname?: SortOrder | $Types.Skip
+    first_name?: SortOrder | $Types.Skip
+    last_name?: SortOrder | $Types.Skip
+    email?: SortOrder | $Types.Skip
+    password?: SortOrder | $Types.Skip
   }
 
   export type UsersMaxOrderByAggregateInput = {
-    id?: SortOrder
-    nickname?: SortOrder
-    first_name?: SortOrder
-    last_name?: SortOrder
-    email?: SortOrder
-    password?: SortOrder
+    id?: SortOrder | $Types.Skip
+    nickname?: SortOrder | $Types.Skip
+    first_name?: SortOrder | $Types.Skip
+    last_name?: SortOrder | $Types.Skip
+    email?: SortOrder | $Types.Skip
+    password?: SortOrder | $Types.Skip
   }
 
   export type UsersMinOrderByAggregateInput = {
-    id?: SortOrder
-    nickname?: SortOrder
-    first_name?: SortOrder
-    last_name?: SortOrder
-    email?: SortOrder
-    password?: SortOrder
+    id?: SortOrder | $Types.Skip
+    nickname?: SortOrder | $Types.Skip
+    first_name?: SortOrder | $Types.Skip
+    last_name?: SortOrder | $Types.Skip
+    email?: SortOrder | $Types.Skip
+    password?: SortOrder | $Types.Skip
   }
 
   export type UsersScalarRelationFilter = {
-    is?: UsersWhereInput
-    isNot?: UsersWhereInput
+    is?: UsersWhereInput | $Types.Skip
+    isNot?: UsersWhereInput | $Types.Skip
   }
 
   export type RolesScalarRelationFilter = {
-    is?: RolesWhereInput
-    isNot?: RolesWhereInput
+    is?: RolesWhereInput | $Types.Skip
+    isNot?: RolesWhereInput | $Types.Skip
   }
 
   export type UserRolesUserIdRoleIdCompoundUniqueInput = {
@@ -16931,462 +21130,526 @@ export namespace Prisma {
   }
 
   export type UserRolesCountOrderByAggregateInput = {
-    userId?: SortOrder
-    roleId?: SortOrder
+    userId?: SortOrder | $Types.Skip
+    roleId?: SortOrder | $Types.Skip
   }
 
   export type UserRolesMaxOrderByAggregateInput = {
-    userId?: SortOrder
-    roleId?: SortOrder
+    userId?: SortOrder | $Types.Skip
+    roleId?: SortOrder | $Types.Skip
   }
 
   export type UserRolesMinOrderByAggregateInput = {
-    userId?: SortOrder
-    roleId?: SortOrder
+    userId?: SortOrder | $Types.Skip
+    roleId?: SortOrder | $Types.Skip
   }
 
   export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | $Types.Skip
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | $Types.Skip
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | $Types.Skip
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel> | $Types.Skip
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel> | $Types.Skip
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel> | $Types.Skip
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel> | $Types.Skip
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string | $Types.Skip
   }
 
   export type OrderDetailsListRelationFilter = {
-    every?: OrderDetailsWhereInput
-    some?: OrderDetailsWhereInput
-    none?: OrderDetailsWhereInput
+    every?: OrderDetailsWhereInput | $Types.Skip
+    some?: OrderDetailsWhereInput | $Types.Skip
+    none?: OrderDetailsWhereInput | $Types.Skip
+  }
+
+  export type PaymentsNullableScalarRelationFilter = {
+    is?: PaymentsWhereInput | null | $Types.Skip
+    isNot?: PaymentsWhereInput | null | $Types.Skip
   }
 
   export type OrderDetailsOrderByRelationAggregateInput = {
-    _count?: SortOrder
+    _count?: SortOrder | $Types.Skip
   }
 
   export type OrdersCountOrderByAggregateInput = {
-    id?: SortOrder
-    created_at?: SortOrder
-    stripe_checkout_id?: SortOrder
-    user_id?: SortOrder
+    id?: SortOrder | $Types.Skip
+    created_at?: SortOrder | $Types.Skip
+    stripe_checkout_id?: SortOrder | $Types.Skip
+    user_id?: SortOrder | $Types.Skip
   }
 
   export type OrdersMaxOrderByAggregateInput = {
-    id?: SortOrder
-    created_at?: SortOrder
-    stripe_checkout_id?: SortOrder
-    user_id?: SortOrder
+    id?: SortOrder | $Types.Skip
+    created_at?: SortOrder | $Types.Skip
+    stripe_checkout_id?: SortOrder | $Types.Skip
+    user_id?: SortOrder | $Types.Skip
   }
 
   export type OrdersMinOrderByAggregateInput = {
-    id?: SortOrder
-    created_at?: SortOrder
-    stripe_checkout_id?: SortOrder
-    user_id?: SortOrder
+    id?: SortOrder | $Types.Skip
+    created_at?: SortOrder | $Types.Skip
+    stripe_checkout_id?: SortOrder | $Types.Skip
+    user_id?: SortOrder | $Types.Skip
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | $Types.Skip
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | $Types.Skip
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | $Types.Skip
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel> | $Types.Skip
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel> | $Types.Skip
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel> | $Types.Skip
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel> | $Types.Skip
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string | $Types.Skip
+    _count?: NestedIntFilter<$PrismaModel> | $Types.Skip
+    _min?: NestedDateTimeFilter<$PrismaModel> | $Types.Skip
+    _max?: NestedDateTimeFilter<$PrismaModel> | $Types.Skip
   }
 
   export type FloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
+    equals?: number | FloatFieldRefInput<$PrismaModel> | $Types.Skip
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | $Types.Skip
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | $Types.Skip
+    lt?: number | FloatFieldRefInput<$PrismaModel> | $Types.Skip
+    lte?: number | FloatFieldRefInput<$PrismaModel> | $Types.Skip
+    gt?: number | FloatFieldRefInput<$PrismaModel> | $Types.Skip
+    gte?: number | FloatFieldRefInput<$PrismaModel> | $Types.Skip
+    not?: NestedFloatFilter<$PrismaModel> | number | $Types.Skip
   }
 
   export type OrdersScalarRelationFilter = {
-    is?: OrdersWhereInput
-    isNot?: OrdersWhereInput
+    is?: OrdersWhereInput | $Types.Skip
+    isNot?: OrdersWhereInput | $Types.Skip
   }
 
-  export type ProductsScalarRelationFilter = {
-    is?: ProductsWhereInput
-    isNot?: ProductsWhereInput
+  export type PaymentsCountOrderByAggregateInput = {
+    id?: SortOrder | $Types.Skip
+    created_at?: SortOrder | $Types.Skip
+    updated_at?: SortOrder | $Types.Skip
+    status?: SortOrder | $Types.Skip
+    amount?: SortOrder | $Types.Skip
+    currency?: SortOrder | $Types.Skip
+    receipt_url?: SortOrder | $Types.Skip
+    payment_intent?: SortOrder | $Types.Skip
+    orderId?: SortOrder | $Types.Skip
   }
 
-  export type OrderDetailsCountOrderByAggregateInput = {
-    id?: SortOrder
-    quantity?: SortOrder
-    price?: SortOrder
-    orderDetails_id?: SortOrder
-    product_id?: SortOrder
+  export type PaymentsAvgOrderByAggregateInput = {
+    amount?: SortOrder | $Types.Skip
   }
 
-  export type OrderDetailsAvgOrderByAggregateInput = {
-    quantity?: SortOrder
-    price?: SortOrder
+  export type PaymentsMaxOrderByAggregateInput = {
+    id?: SortOrder | $Types.Skip
+    created_at?: SortOrder | $Types.Skip
+    updated_at?: SortOrder | $Types.Skip
+    status?: SortOrder | $Types.Skip
+    amount?: SortOrder | $Types.Skip
+    currency?: SortOrder | $Types.Skip
+    receipt_url?: SortOrder | $Types.Skip
+    payment_intent?: SortOrder | $Types.Skip
+    orderId?: SortOrder | $Types.Skip
   }
 
-  export type OrderDetailsMaxOrderByAggregateInput = {
-    id?: SortOrder
-    quantity?: SortOrder
-    price?: SortOrder
-    orderDetails_id?: SortOrder
-    product_id?: SortOrder
+  export type PaymentsMinOrderByAggregateInput = {
+    id?: SortOrder | $Types.Skip
+    created_at?: SortOrder | $Types.Skip
+    updated_at?: SortOrder | $Types.Skip
+    status?: SortOrder | $Types.Skip
+    amount?: SortOrder | $Types.Skip
+    currency?: SortOrder | $Types.Skip
+    receipt_url?: SortOrder | $Types.Skip
+    payment_intent?: SortOrder | $Types.Skip
+    orderId?: SortOrder | $Types.Skip
   }
 
-  export type OrderDetailsMinOrderByAggregateInput = {
-    id?: SortOrder
-    quantity?: SortOrder
-    price?: SortOrder
-    orderDetails_id?: SortOrder
-    product_id?: SortOrder
-  }
-
-  export type OrderDetailsSumOrderByAggregateInput = {
-    quantity?: SortOrder
-    price?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
+  export type PaymentsSumOrderByAggregateInput = {
+    amount?: SortOrder | $Types.Skip
   }
 
   export type FloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
+    equals?: number | FloatFieldRefInput<$PrismaModel> | $Types.Skip
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | $Types.Skip
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | $Types.Skip
+    lt?: number | FloatFieldRefInput<$PrismaModel> | $Types.Skip
+    lte?: number | FloatFieldRefInput<$PrismaModel> | $Types.Skip
+    gt?: number | FloatFieldRefInput<$PrismaModel> | $Types.Skip
+    gte?: number | FloatFieldRefInput<$PrismaModel> | $Types.Skip
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number | $Types.Skip
+    _count?: NestedIntFilter<$PrismaModel> | $Types.Skip
+    _avg?: NestedFloatFilter<$PrismaModel> | $Types.Skip
+    _sum?: NestedFloatFilter<$PrismaModel> | $Types.Skip
+    _min?: NestedFloatFilter<$PrismaModel> | $Types.Skip
+    _max?: NestedFloatFilter<$PrismaModel> | $Types.Skip
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | $Types.Skip
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | $Types.Skip
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | $Types.Skip
+    lt?: number | IntFieldRefInput<$PrismaModel> | $Types.Skip
+    lte?: number | IntFieldRefInput<$PrismaModel> | $Types.Skip
+    gt?: number | IntFieldRefInput<$PrismaModel> | $Types.Skip
+    gte?: number | IntFieldRefInput<$PrismaModel> | $Types.Skip
+    not?: NestedIntFilter<$PrismaModel> | number | $Types.Skip
+  }
+
+  export type VariantsScalarRelationFilter = {
+    is?: VariantsWhereInput | $Types.Skip
+    isNot?: VariantsWhereInput | $Types.Skip
+  }
+
+  export type OrderDetailsCountOrderByAggregateInput = {
+    id?: SortOrder | $Types.Skip
+    quantity?: SortOrder | $Types.Skip
+    price?: SortOrder | $Types.Skip
+    orderDetails_id?: SortOrder | $Types.Skip
+    variant_id?: SortOrder | $Types.Skip
+  }
+
+  export type OrderDetailsAvgOrderByAggregateInput = {
+    quantity?: SortOrder | $Types.Skip
+    price?: SortOrder | $Types.Skip
+  }
+
+  export type OrderDetailsMaxOrderByAggregateInput = {
+    id?: SortOrder | $Types.Skip
+    quantity?: SortOrder | $Types.Skip
+    price?: SortOrder | $Types.Skip
+    orderDetails_id?: SortOrder | $Types.Skip
+    variant_id?: SortOrder | $Types.Skip
+  }
+
+  export type OrderDetailsMinOrderByAggregateInput = {
+    id?: SortOrder | $Types.Skip
+    quantity?: SortOrder | $Types.Skip
+    price?: SortOrder | $Types.Skip
+    orderDetails_id?: SortOrder | $Types.Skip
+    variant_id?: SortOrder | $Types.Skip
+  }
+
+  export type OrderDetailsSumOrderByAggregateInput = {
+    quantity?: SortOrder | $Types.Skip
+    price?: SortOrder | $Types.Skip
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | $Types.Skip
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | $Types.Skip
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | $Types.Skip
+    lt?: number | IntFieldRefInput<$PrismaModel> | $Types.Skip
+    lte?: number | IntFieldRefInput<$PrismaModel> | $Types.Skip
+    gt?: number | IntFieldRefInput<$PrismaModel> | $Types.Skip
+    gte?: number | IntFieldRefInput<$PrismaModel> | $Types.Skip
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number | $Types.Skip
+    _count?: NestedIntFilter<$PrismaModel> | $Types.Skip
+    _avg?: NestedFloatFilter<$PrismaModel> | $Types.Skip
+    _sum?: NestedIntFilter<$PrismaModel> | $Types.Skip
+    _min?: NestedIntFilter<$PrismaModel> | $Types.Skip
+    _max?: NestedIntFilter<$PrismaModel> | $Types.Skip
   }
 
   export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | $Types.Skip
+    not?: NestedBoolFilter<$PrismaModel> | boolean | $Types.Skip
   }
 
   export type BrandsScalarRelationFilter = {
-    is?: BrandsWhereInput
-    isNot?: BrandsWhereInput
+    is?: BrandsWhereInput | $Types.Skip
+    isNot?: BrandsWhereInput | $Types.Skip
   }
 
   export type VariantsListRelationFilter = {
-    every?: VariantsWhereInput
-    some?: VariantsWhereInput
-    none?: VariantsWhereInput
+    every?: VariantsWhereInput | $Types.Skip
+    some?: VariantsWhereInput | $Types.Skip
+    none?: VariantsWhereInput | $Types.Skip
   }
 
   export type ProductCategoriesListRelationFilter = {
-    every?: ProductCategoriesWhereInput
-    some?: ProductCategoriesWhereInput
-    none?: ProductCategoriesWhereInput
+    every?: ProductCategoriesWhereInput | $Types.Skip
+    some?: ProductCategoriesWhereInput | $Types.Skip
+    none?: ProductCategoriesWhereInput | $Types.Skip
   }
 
   export type VariantsOrderByRelationAggregateInput = {
-    _count?: SortOrder
+    _count?: SortOrder | $Types.Skip
   }
 
   export type ProductCategoriesOrderByRelationAggregateInput = {
-    _count?: SortOrder
+    _count?: SortOrder | $Types.Skip
   }
 
   export type ProductsCountOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    price?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-    active?: SortOrder
-    brand_id?: SortOrder
+    id?: SortOrder | $Types.Skip
+    name?: SortOrder | $Types.Skip
+    price?: SortOrder | $Types.Skip
+    created_at?: SortOrder | $Types.Skip
+    updated_at?: SortOrder | $Types.Skip
+    active?: SortOrder | $Types.Skip
+    brand_id?: SortOrder | $Types.Skip
   }
 
   export type ProductsAvgOrderByAggregateInput = {
-    price?: SortOrder
+    price?: SortOrder | $Types.Skip
   }
 
   export type ProductsMaxOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    price?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-    active?: SortOrder
-    brand_id?: SortOrder
+    id?: SortOrder | $Types.Skip
+    name?: SortOrder | $Types.Skip
+    price?: SortOrder | $Types.Skip
+    created_at?: SortOrder | $Types.Skip
+    updated_at?: SortOrder | $Types.Skip
+    active?: SortOrder | $Types.Skip
+    brand_id?: SortOrder | $Types.Skip
   }
 
   export type ProductsMinOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    price?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-    active?: SortOrder
-    brand_id?: SortOrder
+    id?: SortOrder | $Types.Skip
+    name?: SortOrder | $Types.Skip
+    price?: SortOrder | $Types.Skip
+    created_at?: SortOrder | $Types.Skip
+    updated_at?: SortOrder | $Types.Skip
+    active?: SortOrder | $Types.Skip
+    brand_id?: SortOrder | $Types.Skip
   }
 
   export type ProductsSumOrderByAggregateInput = {
-    price?: SortOrder
+    price?: SortOrder | $Types.Skip
   }
 
   export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | $Types.Skip
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean | $Types.Skip
+    _count?: NestedIntFilter<$PrismaModel> | $Types.Skip
+    _min?: NestedBoolFilter<$PrismaModel> | $Types.Skip
+    _max?: NestedBoolFilter<$PrismaModel> | $Types.Skip
   }
 
   export type ProductsListRelationFilter = {
-    every?: ProductsWhereInput
-    some?: ProductsWhereInput
-    none?: ProductsWhereInput
+    every?: ProductsWhereInput | $Types.Skip
+    some?: ProductsWhereInput | $Types.Skip
+    none?: ProductsWhereInput | $Types.Skip
   }
 
   export type ProductsOrderByRelationAggregateInput = {
-    _count?: SortOrder
+    _count?: SortOrder | $Types.Skip
   }
 
   export type BrandsCountOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
+    id?: SortOrder | $Types.Skip
+    name?: SortOrder | $Types.Skip
   }
 
   export type BrandsMaxOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
+    id?: SortOrder | $Types.Skip
+    name?: SortOrder | $Types.Skip
   }
 
   export type BrandsMinOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
+    id?: SortOrder | $Types.Skip
+    name?: SortOrder | $Types.Skip
   }
 
   export type EnumSizeFilter<$PrismaModel = never> = {
-    equals?: $Enums.Size | EnumSizeFieldRefInput<$PrismaModel>
-    in?: $Enums.Size[] | ListEnumSizeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Size[] | ListEnumSizeFieldRefInput<$PrismaModel>
-    not?: NestedEnumSizeFilter<$PrismaModel> | $Enums.Size
+    equals?: $Enums.Size | EnumSizeFieldRefInput<$PrismaModel> | $Types.Skip
+    in?: $Enums.Size[] | ListEnumSizeFieldRefInput<$PrismaModel> | $Types.Skip
+    notIn?: $Enums.Size[] | ListEnumSizeFieldRefInput<$PrismaModel> | $Types.Skip
+    not?: NestedEnumSizeFilter<$PrismaModel> | $Enums.Size | $Types.Skip
   }
 
   export type EnumTextColorFilter<$PrismaModel = never> = {
-    equals?: $Enums.TextColor | EnumTextColorFieldRefInput<$PrismaModel>
-    in?: $Enums.TextColor[] | ListEnumTextColorFieldRefInput<$PrismaModel>
-    notIn?: $Enums.TextColor[] | ListEnumTextColorFieldRefInput<$PrismaModel>
-    not?: NestedEnumTextColorFilter<$PrismaModel> | $Enums.TextColor
+    equals?: $Enums.TextColor | EnumTextColorFieldRefInput<$PrismaModel> | $Types.Skip
+    in?: $Enums.TextColor[] | ListEnumTextColorFieldRefInput<$PrismaModel> | $Types.Skip
+    notIn?: $Enums.TextColor[] | ListEnumTextColorFieldRefInput<$PrismaModel> | $Types.Skip
+    not?: NestedEnumTextColorFilter<$PrismaModel> | $Enums.TextColor | $Types.Skip
+  }
+
+  export type ProductsScalarRelationFilter = {
+    is?: ProductsWhereInput | $Types.Skip
+    isNot?: ProductsWhereInput | $Types.Skip
   }
 
   export type FilesScalarRelationFilter = {
-    is?: FilesWhereInput
-    isNot?: FilesWhereInput
+    is?: FilesWhereInput | $Types.Skip
+    isNot?: FilesWhereInput | $Types.Skip
+  }
+
+  export type CartDetailsListRelationFilter = {
+    every?: CartDetailsWhereInput | $Types.Skip
+    some?: CartDetailsWhereInput | $Types.Skip
+    none?: CartDetailsWhereInput | $Types.Skip
+  }
+
+  export type CartDetailsOrderByRelationAggregateInput = {
+    _count?: SortOrder | $Types.Skip
   }
 
   export type VariantsCountOrderByAggregateInput = {
-    id?: SortOrder
-    product_id?: SortOrder
-    file_id?: SortOrder
-    size?: SortOrder
-    textColor?: SortOrder
-    rgb?: SortOrder
-    stock?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    id?: SortOrder | $Types.Skip
+    product_id?: SortOrder | $Types.Skip
+    file_id?: SortOrder | $Types.Skip
+    size?: SortOrder | $Types.Skip
+    textColor?: SortOrder | $Types.Skip
+    rgb?: SortOrder | $Types.Skip
+    stock?: SortOrder | $Types.Skip
+    createdAt?: SortOrder | $Types.Skip
+    updatedAt?: SortOrder | $Types.Skip
   }
 
   export type VariantsAvgOrderByAggregateInput = {
-    stock?: SortOrder
+    stock?: SortOrder | $Types.Skip
   }
 
   export type VariantsMaxOrderByAggregateInput = {
-    id?: SortOrder
-    product_id?: SortOrder
-    file_id?: SortOrder
-    size?: SortOrder
-    textColor?: SortOrder
-    rgb?: SortOrder
-    stock?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    id?: SortOrder | $Types.Skip
+    product_id?: SortOrder | $Types.Skip
+    file_id?: SortOrder | $Types.Skip
+    size?: SortOrder | $Types.Skip
+    textColor?: SortOrder | $Types.Skip
+    rgb?: SortOrder | $Types.Skip
+    stock?: SortOrder | $Types.Skip
+    createdAt?: SortOrder | $Types.Skip
+    updatedAt?: SortOrder | $Types.Skip
   }
 
   export type VariantsMinOrderByAggregateInput = {
-    id?: SortOrder
-    product_id?: SortOrder
-    file_id?: SortOrder
-    size?: SortOrder
-    textColor?: SortOrder
-    rgb?: SortOrder
-    stock?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    id?: SortOrder | $Types.Skip
+    product_id?: SortOrder | $Types.Skip
+    file_id?: SortOrder | $Types.Skip
+    size?: SortOrder | $Types.Skip
+    textColor?: SortOrder | $Types.Skip
+    rgb?: SortOrder | $Types.Skip
+    stock?: SortOrder | $Types.Skip
+    createdAt?: SortOrder | $Types.Skip
+    updatedAt?: SortOrder | $Types.Skip
   }
 
   export type VariantsSumOrderByAggregateInput = {
-    stock?: SortOrder
+    stock?: SortOrder | $Types.Skip
   }
 
   export type EnumSizeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Size | EnumSizeFieldRefInput<$PrismaModel>
-    in?: $Enums.Size[] | ListEnumSizeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Size[] | ListEnumSizeFieldRefInput<$PrismaModel>
-    not?: NestedEnumSizeWithAggregatesFilter<$PrismaModel> | $Enums.Size
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumSizeFilter<$PrismaModel>
-    _max?: NestedEnumSizeFilter<$PrismaModel>
+    equals?: $Enums.Size | EnumSizeFieldRefInput<$PrismaModel> | $Types.Skip
+    in?: $Enums.Size[] | ListEnumSizeFieldRefInput<$PrismaModel> | $Types.Skip
+    notIn?: $Enums.Size[] | ListEnumSizeFieldRefInput<$PrismaModel> | $Types.Skip
+    not?: NestedEnumSizeWithAggregatesFilter<$PrismaModel> | $Enums.Size | $Types.Skip
+    _count?: NestedIntFilter<$PrismaModel> | $Types.Skip
+    _min?: NestedEnumSizeFilter<$PrismaModel> | $Types.Skip
+    _max?: NestedEnumSizeFilter<$PrismaModel> | $Types.Skip
   }
 
   export type EnumTextColorWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.TextColor | EnumTextColorFieldRefInput<$PrismaModel>
-    in?: $Enums.TextColor[] | ListEnumTextColorFieldRefInput<$PrismaModel>
-    notIn?: $Enums.TextColor[] | ListEnumTextColorFieldRefInput<$PrismaModel>
-    not?: NestedEnumTextColorWithAggregatesFilter<$PrismaModel> | $Enums.TextColor
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumTextColorFilter<$PrismaModel>
-    _max?: NestedEnumTextColorFilter<$PrismaModel>
+    equals?: $Enums.TextColor | EnumTextColorFieldRefInput<$PrismaModel> | $Types.Skip
+    in?: $Enums.TextColor[] | ListEnumTextColorFieldRefInput<$PrismaModel> | $Types.Skip
+    notIn?: $Enums.TextColor[] | ListEnumTextColorFieldRefInput<$PrismaModel> | $Types.Skip
+    not?: NestedEnumTextColorWithAggregatesFilter<$PrismaModel> | $Enums.TextColor | $Types.Skip
+    _count?: NestedIntFilter<$PrismaModel> | $Types.Skip
+    _min?: NestedEnumTextColorFilter<$PrismaModel> | $Types.Skip
+    _max?: NestedEnumTextColorFilter<$PrismaModel> | $Types.Skip
   }
 
   export type FilesCountOrderByAggregateInput = {
-    id?: SortOrder
-    key?: SortOrder
-    idKey?: SortOrder
-    bucket?: SortOrder
+    id?: SortOrder | $Types.Skip
+    key?: SortOrder | $Types.Skip
+    idKey?: SortOrder | $Types.Skip
+    bucket?: SortOrder | $Types.Skip
   }
 
   export type FilesMaxOrderByAggregateInput = {
-    id?: SortOrder
-    key?: SortOrder
-    idKey?: SortOrder
-    bucket?: SortOrder
+    id?: SortOrder | $Types.Skip
+    key?: SortOrder | $Types.Skip
+    idKey?: SortOrder | $Types.Skip
+    bucket?: SortOrder | $Types.Skip
   }
 
   export type FilesMinOrderByAggregateInput = {
-    id?: SortOrder
-    key?: SortOrder
-    idKey?: SortOrder
-    bucket?: SortOrder
+    id?: SortOrder | $Types.Skip
+    key?: SortOrder | $Types.Skip
+    idKey?: SortOrder | $Types.Skip
+    bucket?: SortOrder | $Types.Skip
   }
 
   export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+    equals?: string | StringFieldRefInput<$PrismaModel> | null | $Types.Skip
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null | $Types.Skip
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null | $Types.Skip
+    lt?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    lte?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    gt?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    gte?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    contains?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    startsWith?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    endsWith?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    mode?: QueryMode | $Types.Skip
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null | $Types.Skip
   }
 
   export type CategoriesNullableScalarRelationFilter = {
-    is?: CategoriesWhereInput | null
-    isNot?: CategoriesWhereInput | null
+    is?: CategoriesWhereInput | null | $Types.Skip
+    isNot?: CategoriesWhereInput | null | $Types.Skip
   }
 
   export type CategoriesListRelationFilter = {
-    every?: CategoriesWhereInput
-    some?: CategoriesWhereInput
-    none?: CategoriesWhereInput
+    every?: CategoriesWhereInput | $Types.Skip
+    some?: CategoriesWhereInput | $Types.Skip
+    none?: CategoriesWhereInput | $Types.Skip
   }
 
   export type SortOrderInput = {
     sort: SortOrder
-    nulls?: NullsOrder
+    nulls?: NullsOrder | $Types.Skip
   }
 
   export type CategoriesOrderByRelationAggregateInput = {
-    _count?: SortOrder
+    _count?: SortOrder | $Types.Skip
   }
 
   export type CategoriesCountOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    parentId?: SortOrder
-    active?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    id?: SortOrder | $Types.Skip
+    name?: SortOrder | $Types.Skip
+    parentId?: SortOrder | $Types.Skip
+    active?: SortOrder | $Types.Skip
+    createdAt?: SortOrder | $Types.Skip
+    updatedAt?: SortOrder | $Types.Skip
   }
 
   export type CategoriesMaxOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    parentId?: SortOrder
-    active?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    id?: SortOrder | $Types.Skip
+    name?: SortOrder | $Types.Skip
+    parentId?: SortOrder | $Types.Skip
+    active?: SortOrder | $Types.Skip
+    createdAt?: SortOrder | $Types.Skip
+    updatedAt?: SortOrder | $Types.Skip
   }
 
   export type CategoriesMinOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    parentId?: SortOrder
-    active?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    id?: SortOrder | $Types.Skip
+    name?: SortOrder | $Types.Skip
+    parentId?: SortOrder | $Types.Skip
+    active?: SortOrder | $Types.Skip
+    createdAt?: SortOrder | $Types.Skip
+    updatedAt?: SortOrder | $Types.Skip
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
+    equals?: string | StringFieldRefInput<$PrismaModel> | null | $Types.Skip
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null | $Types.Skip
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null | $Types.Skip
+    lt?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    lte?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    gt?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    gte?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    contains?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    startsWith?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    endsWith?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    mode?: QueryMode | $Types.Skip
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null | $Types.Skip
+    _count?: NestedIntNullableFilter<$PrismaModel> | $Types.Skip
+    _min?: NestedStringNullableFilter<$PrismaModel> | $Types.Skip
+    _max?: NestedStringNullableFilter<$PrismaModel> | $Types.Skip
   }
 
   export type CategoriesScalarRelationFilter = {
-    is?: CategoriesWhereInput
-    isNot?: CategoriesWhereInput
+    is?: CategoriesWhereInput | $Types.Skip
+    isNot?: CategoriesWhereInput | $Types.Skip
   }
 
   export type ProductCategoriesProductIdCategoryIdCompoundUniqueInput = {
@@ -17395,18 +21658,18 @@ export namespace Prisma {
   }
 
   export type ProductCategoriesCountOrderByAggregateInput = {
-    productId?: SortOrder
-    categoryId?: SortOrder
+    productId?: SortOrder | $Types.Skip
+    categoryId?: SortOrder | $Types.Skip
   }
 
   export type ProductCategoriesMaxOrderByAggregateInput = {
-    productId?: SortOrder
-    categoryId?: SortOrder
+    productId?: SortOrder | $Types.Skip
+    categoryId?: SortOrder | $Types.Skip
   }
 
   export type ProductCategoriesMinOrderByAggregateInput = {
-    productId?: SortOrder
-    categoryId?: SortOrder
+    productId?: SortOrder | $Types.Skip
+    categoryId?: SortOrder | $Types.Skip
   }
 
   export type LikesUser_idProductIdCompoundUniqueInput = {
@@ -17415,987 +21678,1261 @@ export namespace Prisma {
   }
 
   export type LikesCountOrderByAggregateInput = {
-    productId?: SortOrder
-    user_id?: SortOrder
+    productId?: SortOrder | $Types.Skip
+    user_id?: SortOrder | $Types.Skip
   }
 
   export type LikesMaxOrderByAggregateInput = {
-    productId?: SortOrder
-    user_id?: SortOrder
+    productId?: SortOrder | $Types.Skip
+    user_id?: SortOrder | $Types.Skip
   }
 
   export type LikesMinOrderByAggregateInput = {
-    productId?: SortOrder
-    user_id?: SortOrder
+    productId?: SortOrder | $Types.Skip
+    user_id?: SortOrder | $Types.Skip
+  }
+
+  export type CartsScalarRelationFilter = {
+    is?: CartsWhereInput | $Types.Skip
+    isNot?: CartsWhereInput | $Types.Skip
+  }
+
+  export type CartDetailsCountOrderByAggregateInput = {
+    id?: SortOrder | $Types.Skip
+    quantity?: SortOrder | $Types.Skip
+    price?: SortOrder | $Types.Skip
+    variant_id?: SortOrder | $Types.Skip
+    cart_id?: SortOrder | $Types.Skip
+  }
+
+  export type CartDetailsAvgOrderByAggregateInput = {
+    quantity?: SortOrder | $Types.Skip
+    price?: SortOrder | $Types.Skip
+  }
+
+  export type CartDetailsMaxOrderByAggregateInput = {
+    id?: SortOrder | $Types.Skip
+    quantity?: SortOrder | $Types.Skip
+    price?: SortOrder | $Types.Skip
+    variant_id?: SortOrder | $Types.Skip
+    cart_id?: SortOrder | $Types.Skip
+  }
+
+  export type CartDetailsMinOrderByAggregateInput = {
+    id?: SortOrder | $Types.Skip
+    quantity?: SortOrder | $Types.Skip
+    price?: SortOrder | $Types.Skip
+    variant_id?: SortOrder | $Types.Skip
+    cart_id?: SortOrder | $Types.Skip
+  }
+
+  export type CartDetailsSumOrderByAggregateInput = {
+    quantity?: SortOrder | $Types.Skip
+    price?: SortOrder | $Types.Skip
+  }
+
+  export type CartsCountOrderByAggregateInput = {
+    id?: SortOrder | $Types.Skip
+    user_id?: SortOrder | $Types.Skip
+    createdAt?: SortOrder | $Types.Skip
+    updatedAt?: SortOrder | $Types.Skip
+  }
+
+  export type CartsMaxOrderByAggregateInput = {
+    id?: SortOrder | $Types.Skip
+    user_id?: SortOrder | $Types.Skip
+    createdAt?: SortOrder | $Types.Skip
+    updatedAt?: SortOrder | $Types.Skip
+  }
+
+  export type CartsMinOrderByAggregateInput = {
+    id?: SortOrder | $Types.Skip
+    user_id?: SortOrder | $Types.Skip
+    createdAt?: SortOrder | $Types.Skip
+    updatedAt?: SortOrder | $Types.Skip
   }
 
   export type UserRolesCreateNestedManyWithoutRolesInput = {
-    create?: XOR<UserRolesCreateWithoutRolesInput, UserRolesUncheckedCreateWithoutRolesInput> | UserRolesCreateWithoutRolesInput[] | UserRolesUncheckedCreateWithoutRolesInput[]
-    connectOrCreate?: UserRolesCreateOrConnectWithoutRolesInput | UserRolesCreateOrConnectWithoutRolesInput[]
-    createMany?: UserRolesCreateManyRolesInputEnvelope
-    connect?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[]
+    create?: XOR<UserRolesCreateWithoutRolesInput, UserRolesUncheckedCreateWithoutRolesInput> | UserRolesCreateWithoutRolesInput[] | UserRolesUncheckedCreateWithoutRolesInput[] | $Types.Skip
+    connectOrCreate?: UserRolesCreateOrConnectWithoutRolesInput | UserRolesCreateOrConnectWithoutRolesInput[] | $Types.Skip
+    createMany?: UserRolesCreateManyRolesInputEnvelope | $Types.Skip
+    connect?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[] | $Types.Skip
   }
 
   export type UserRolesUncheckedCreateNestedManyWithoutRolesInput = {
-    create?: XOR<UserRolesCreateWithoutRolesInput, UserRolesUncheckedCreateWithoutRolesInput> | UserRolesCreateWithoutRolesInput[] | UserRolesUncheckedCreateWithoutRolesInput[]
-    connectOrCreate?: UserRolesCreateOrConnectWithoutRolesInput | UserRolesCreateOrConnectWithoutRolesInput[]
-    createMany?: UserRolesCreateManyRolesInputEnvelope
-    connect?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[]
+    create?: XOR<UserRolesCreateWithoutRolesInput, UserRolesUncheckedCreateWithoutRolesInput> | UserRolesCreateWithoutRolesInput[] | UserRolesUncheckedCreateWithoutRolesInput[] | $Types.Skip
+    connectOrCreate?: UserRolesCreateOrConnectWithoutRolesInput | UserRolesCreateOrConnectWithoutRolesInput[] | $Types.Skip
+    createMany?: UserRolesCreateManyRolesInputEnvelope | $Types.Skip
+    connect?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[] | $Types.Skip
   }
 
   export type StringFieldUpdateOperationsInput = {
-    set?: string
+    set?: string | $Types.Skip
   }
 
   export type UserRolesUpdateManyWithoutRolesNestedInput = {
-    create?: XOR<UserRolesCreateWithoutRolesInput, UserRolesUncheckedCreateWithoutRolesInput> | UserRolesCreateWithoutRolesInput[] | UserRolesUncheckedCreateWithoutRolesInput[]
-    connectOrCreate?: UserRolesCreateOrConnectWithoutRolesInput | UserRolesCreateOrConnectWithoutRolesInput[]
-    upsert?: UserRolesUpsertWithWhereUniqueWithoutRolesInput | UserRolesUpsertWithWhereUniqueWithoutRolesInput[]
-    createMany?: UserRolesCreateManyRolesInputEnvelope
-    set?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[]
-    disconnect?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[]
-    delete?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[]
-    connect?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[]
-    update?: UserRolesUpdateWithWhereUniqueWithoutRolesInput | UserRolesUpdateWithWhereUniqueWithoutRolesInput[]
-    updateMany?: UserRolesUpdateManyWithWhereWithoutRolesInput | UserRolesUpdateManyWithWhereWithoutRolesInput[]
-    deleteMany?: UserRolesScalarWhereInput | UserRolesScalarWhereInput[]
+    create?: XOR<UserRolesCreateWithoutRolesInput, UserRolesUncheckedCreateWithoutRolesInput> | UserRolesCreateWithoutRolesInput[] | UserRolesUncheckedCreateWithoutRolesInput[] | $Types.Skip
+    connectOrCreate?: UserRolesCreateOrConnectWithoutRolesInput | UserRolesCreateOrConnectWithoutRolesInput[] | $Types.Skip
+    upsert?: UserRolesUpsertWithWhereUniqueWithoutRolesInput | UserRolesUpsertWithWhereUniqueWithoutRolesInput[] | $Types.Skip
+    createMany?: UserRolesCreateManyRolesInputEnvelope | $Types.Skip
+    set?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[] | $Types.Skip
+    disconnect?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[] | $Types.Skip
+    delete?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[] | $Types.Skip
+    connect?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[] | $Types.Skip
+    update?: UserRolesUpdateWithWhereUniqueWithoutRolesInput | UserRolesUpdateWithWhereUniqueWithoutRolesInput[] | $Types.Skip
+    updateMany?: UserRolesUpdateManyWithWhereWithoutRolesInput | UserRolesUpdateManyWithWhereWithoutRolesInput[] | $Types.Skip
+    deleteMany?: UserRolesScalarWhereInput | UserRolesScalarWhereInput[] | $Types.Skip
   }
 
   export type UserRolesUncheckedUpdateManyWithoutRolesNestedInput = {
-    create?: XOR<UserRolesCreateWithoutRolesInput, UserRolesUncheckedCreateWithoutRolesInput> | UserRolesCreateWithoutRolesInput[] | UserRolesUncheckedCreateWithoutRolesInput[]
-    connectOrCreate?: UserRolesCreateOrConnectWithoutRolesInput | UserRolesCreateOrConnectWithoutRolesInput[]
-    upsert?: UserRolesUpsertWithWhereUniqueWithoutRolesInput | UserRolesUpsertWithWhereUniqueWithoutRolesInput[]
-    createMany?: UserRolesCreateManyRolesInputEnvelope
-    set?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[]
-    disconnect?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[]
-    delete?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[]
-    connect?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[]
-    update?: UserRolesUpdateWithWhereUniqueWithoutRolesInput | UserRolesUpdateWithWhereUniqueWithoutRolesInput[]
-    updateMany?: UserRolesUpdateManyWithWhereWithoutRolesInput | UserRolesUpdateManyWithWhereWithoutRolesInput[]
-    deleteMany?: UserRolesScalarWhereInput | UserRolesScalarWhereInput[]
+    create?: XOR<UserRolesCreateWithoutRolesInput, UserRolesUncheckedCreateWithoutRolesInput> | UserRolesCreateWithoutRolesInput[] | UserRolesUncheckedCreateWithoutRolesInput[] | $Types.Skip
+    connectOrCreate?: UserRolesCreateOrConnectWithoutRolesInput | UserRolesCreateOrConnectWithoutRolesInput[] | $Types.Skip
+    upsert?: UserRolesUpsertWithWhereUniqueWithoutRolesInput | UserRolesUpsertWithWhereUniqueWithoutRolesInput[] | $Types.Skip
+    createMany?: UserRolesCreateManyRolesInputEnvelope | $Types.Skip
+    set?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[] | $Types.Skip
+    disconnect?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[] | $Types.Skip
+    delete?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[] | $Types.Skip
+    connect?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[] | $Types.Skip
+    update?: UserRolesUpdateWithWhereUniqueWithoutRolesInput | UserRolesUpdateWithWhereUniqueWithoutRolesInput[] | $Types.Skip
+    updateMany?: UserRolesUpdateManyWithWhereWithoutRolesInput | UserRolesUpdateManyWithWhereWithoutRolesInput[] | $Types.Skip
+    deleteMany?: UserRolesScalarWhereInput | UserRolesScalarWhereInput[] | $Types.Skip
   }
 
   export type UserRolesCreateNestedManyWithoutUsersInput = {
-    create?: XOR<UserRolesCreateWithoutUsersInput, UserRolesUncheckedCreateWithoutUsersInput> | UserRolesCreateWithoutUsersInput[] | UserRolesUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: UserRolesCreateOrConnectWithoutUsersInput | UserRolesCreateOrConnectWithoutUsersInput[]
-    createMany?: UserRolesCreateManyUsersInputEnvelope
-    connect?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[]
+    create?: XOR<UserRolesCreateWithoutUsersInput, UserRolesUncheckedCreateWithoutUsersInput> | UserRolesCreateWithoutUsersInput[] | UserRolesUncheckedCreateWithoutUsersInput[] | $Types.Skip
+    connectOrCreate?: UserRolesCreateOrConnectWithoutUsersInput | UserRolesCreateOrConnectWithoutUsersInput[] | $Types.Skip
+    createMany?: UserRolesCreateManyUsersInputEnvelope | $Types.Skip
+    connect?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[] | $Types.Skip
   }
 
   export type OrdersCreateNestedManyWithoutUserInput = {
-    create?: XOR<OrdersCreateWithoutUserInput, OrdersUncheckedCreateWithoutUserInput> | OrdersCreateWithoutUserInput[] | OrdersUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: OrdersCreateOrConnectWithoutUserInput | OrdersCreateOrConnectWithoutUserInput[]
-    createMany?: OrdersCreateManyUserInputEnvelope
-    connect?: OrdersWhereUniqueInput | OrdersWhereUniqueInput[]
+    create?: XOR<OrdersCreateWithoutUserInput, OrdersUncheckedCreateWithoutUserInput> | OrdersCreateWithoutUserInput[] | OrdersUncheckedCreateWithoutUserInput[] | $Types.Skip
+    connectOrCreate?: OrdersCreateOrConnectWithoutUserInput | OrdersCreateOrConnectWithoutUserInput[] | $Types.Skip
+    createMany?: OrdersCreateManyUserInputEnvelope | $Types.Skip
+    connect?: OrdersWhereUniqueInput | OrdersWhereUniqueInput[] | $Types.Skip
   }
 
   export type LikesCreateNestedManyWithoutUserInput = {
-    create?: XOR<LikesCreateWithoutUserInput, LikesUncheckedCreateWithoutUserInput> | LikesCreateWithoutUserInput[] | LikesUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: LikesCreateOrConnectWithoutUserInput | LikesCreateOrConnectWithoutUserInput[]
-    createMany?: LikesCreateManyUserInputEnvelope
-    connect?: LikesWhereUniqueInput | LikesWhereUniqueInput[]
+    create?: XOR<LikesCreateWithoutUserInput, LikesUncheckedCreateWithoutUserInput> | LikesCreateWithoutUserInput[] | LikesUncheckedCreateWithoutUserInput[] | $Types.Skip
+    connectOrCreate?: LikesCreateOrConnectWithoutUserInput | LikesCreateOrConnectWithoutUserInput[] | $Types.Skip
+    createMany?: LikesCreateManyUserInputEnvelope | $Types.Skip
+    connect?: LikesWhereUniqueInput | LikesWhereUniqueInput[] | $Types.Skip
+  }
+
+  export type CartsCreateNestedManyWithoutUserInput = {
+    create?: XOR<CartsCreateWithoutUserInput, CartsUncheckedCreateWithoutUserInput> | CartsCreateWithoutUserInput[] | CartsUncheckedCreateWithoutUserInput[] | $Types.Skip
+    connectOrCreate?: CartsCreateOrConnectWithoutUserInput | CartsCreateOrConnectWithoutUserInput[] | $Types.Skip
+    createMany?: CartsCreateManyUserInputEnvelope | $Types.Skip
+    connect?: CartsWhereUniqueInput | CartsWhereUniqueInput[] | $Types.Skip
   }
 
   export type UserRolesUncheckedCreateNestedManyWithoutUsersInput = {
-    create?: XOR<UserRolesCreateWithoutUsersInput, UserRolesUncheckedCreateWithoutUsersInput> | UserRolesCreateWithoutUsersInput[] | UserRolesUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: UserRolesCreateOrConnectWithoutUsersInput | UserRolesCreateOrConnectWithoutUsersInput[]
-    createMany?: UserRolesCreateManyUsersInputEnvelope
-    connect?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[]
+    create?: XOR<UserRolesCreateWithoutUsersInput, UserRolesUncheckedCreateWithoutUsersInput> | UserRolesCreateWithoutUsersInput[] | UserRolesUncheckedCreateWithoutUsersInput[] | $Types.Skip
+    connectOrCreate?: UserRolesCreateOrConnectWithoutUsersInput | UserRolesCreateOrConnectWithoutUsersInput[] | $Types.Skip
+    createMany?: UserRolesCreateManyUsersInputEnvelope | $Types.Skip
+    connect?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[] | $Types.Skip
   }
 
   export type OrdersUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<OrdersCreateWithoutUserInput, OrdersUncheckedCreateWithoutUserInput> | OrdersCreateWithoutUserInput[] | OrdersUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: OrdersCreateOrConnectWithoutUserInput | OrdersCreateOrConnectWithoutUserInput[]
-    createMany?: OrdersCreateManyUserInputEnvelope
-    connect?: OrdersWhereUniqueInput | OrdersWhereUniqueInput[]
+    create?: XOR<OrdersCreateWithoutUserInput, OrdersUncheckedCreateWithoutUserInput> | OrdersCreateWithoutUserInput[] | OrdersUncheckedCreateWithoutUserInput[] | $Types.Skip
+    connectOrCreate?: OrdersCreateOrConnectWithoutUserInput | OrdersCreateOrConnectWithoutUserInput[] | $Types.Skip
+    createMany?: OrdersCreateManyUserInputEnvelope | $Types.Skip
+    connect?: OrdersWhereUniqueInput | OrdersWhereUniqueInput[] | $Types.Skip
   }
 
   export type LikesUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<LikesCreateWithoutUserInput, LikesUncheckedCreateWithoutUserInput> | LikesCreateWithoutUserInput[] | LikesUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: LikesCreateOrConnectWithoutUserInput | LikesCreateOrConnectWithoutUserInput[]
-    createMany?: LikesCreateManyUserInputEnvelope
-    connect?: LikesWhereUniqueInput | LikesWhereUniqueInput[]
+    create?: XOR<LikesCreateWithoutUserInput, LikesUncheckedCreateWithoutUserInput> | LikesCreateWithoutUserInput[] | LikesUncheckedCreateWithoutUserInput[] | $Types.Skip
+    connectOrCreate?: LikesCreateOrConnectWithoutUserInput | LikesCreateOrConnectWithoutUserInput[] | $Types.Skip
+    createMany?: LikesCreateManyUserInputEnvelope | $Types.Skip
+    connect?: LikesWhereUniqueInput | LikesWhereUniqueInput[] | $Types.Skip
+  }
+
+  export type CartsUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<CartsCreateWithoutUserInput, CartsUncheckedCreateWithoutUserInput> | CartsCreateWithoutUserInput[] | CartsUncheckedCreateWithoutUserInput[] | $Types.Skip
+    connectOrCreate?: CartsCreateOrConnectWithoutUserInput | CartsCreateOrConnectWithoutUserInput[] | $Types.Skip
+    createMany?: CartsCreateManyUserInputEnvelope | $Types.Skip
+    connect?: CartsWhereUniqueInput | CartsWhereUniqueInput[] | $Types.Skip
   }
 
   export type UserRolesUpdateManyWithoutUsersNestedInput = {
-    create?: XOR<UserRolesCreateWithoutUsersInput, UserRolesUncheckedCreateWithoutUsersInput> | UserRolesCreateWithoutUsersInput[] | UserRolesUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: UserRolesCreateOrConnectWithoutUsersInput | UserRolesCreateOrConnectWithoutUsersInput[]
-    upsert?: UserRolesUpsertWithWhereUniqueWithoutUsersInput | UserRolesUpsertWithWhereUniqueWithoutUsersInput[]
-    createMany?: UserRolesCreateManyUsersInputEnvelope
-    set?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[]
-    disconnect?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[]
-    delete?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[]
-    connect?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[]
-    update?: UserRolesUpdateWithWhereUniqueWithoutUsersInput | UserRolesUpdateWithWhereUniqueWithoutUsersInput[]
-    updateMany?: UserRolesUpdateManyWithWhereWithoutUsersInput | UserRolesUpdateManyWithWhereWithoutUsersInput[]
-    deleteMany?: UserRolesScalarWhereInput | UserRolesScalarWhereInput[]
+    create?: XOR<UserRolesCreateWithoutUsersInput, UserRolesUncheckedCreateWithoutUsersInput> | UserRolesCreateWithoutUsersInput[] | UserRolesUncheckedCreateWithoutUsersInput[] | $Types.Skip
+    connectOrCreate?: UserRolesCreateOrConnectWithoutUsersInput | UserRolesCreateOrConnectWithoutUsersInput[] | $Types.Skip
+    upsert?: UserRolesUpsertWithWhereUniqueWithoutUsersInput | UserRolesUpsertWithWhereUniqueWithoutUsersInput[] | $Types.Skip
+    createMany?: UserRolesCreateManyUsersInputEnvelope | $Types.Skip
+    set?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[] | $Types.Skip
+    disconnect?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[] | $Types.Skip
+    delete?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[] | $Types.Skip
+    connect?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[] | $Types.Skip
+    update?: UserRolesUpdateWithWhereUniqueWithoutUsersInput | UserRolesUpdateWithWhereUniqueWithoutUsersInput[] | $Types.Skip
+    updateMany?: UserRolesUpdateManyWithWhereWithoutUsersInput | UserRolesUpdateManyWithWhereWithoutUsersInput[] | $Types.Skip
+    deleteMany?: UserRolesScalarWhereInput | UserRolesScalarWhereInput[] | $Types.Skip
   }
 
   export type OrdersUpdateManyWithoutUserNestedInput = {
-    create?: XOR<OrdersCreateWithoutUserInput, OrdersUncheckedCreateWithoutUserInput> | OrdersCreateWithoutUserInput[] | OrdersUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: OrdersCreateOrConnectWithoutUserInput | OrdersCreateOrConnectWithoutUserInput[]
-    upsert?: OrdersUpsertWithWhereUniqueWithoutUserInput | OrdersUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: OrdersCreateManyUserInputEnvelope
-    set?: OrdersWhereUniqueInput | OrdersWhereUniqueInput[]
-    disconnect?: OrdersWhereUniqueInput | OrdersWhereUniqueInput[]
-    delete?: OrdersWhereUniqueInput | OrdersWhereUniqueInput[]
-    connect?: OrdersWhereUniqueInput | OrdersWhereUniqueInput[]
-    update?: OrdersUpdateWithWhereUniqueWithoutUserInput | OrdersUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: OrdersUpdateManyWithWhereWithoutUserInput | OrdersUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: OrdersScalarWhereInput | OrdersScalarWhereInput[]
+    create?: XOR<OrdersCreateWithoutUserInput, OrdersUncheckedCreateWithoutUserInput> | OrdersCreateWithoutUserInput[] | OrdersUncheckedCreateWithoutUserInput[] | $Types.Skip
+    connectOrCreate?: OrdersCreateOrConnectWithoutUserInput | OrdersCreateOrConnectWithoutUserInput[] | $Types.Skip
+    upsert?: OrdersUpsertWithWhereUniqueWithoutUserInput | OrdersUpsertWithWhereUniqueWithoutUserInput[] | $Types.Skip
+    createMany?: OrdersCreateManyUserInputEnvelope | $Types.Skip
+    set?: OrdersWhereUniqueInput | OrdersWhereUniqueInput[] | $Types.Skip
+    disconnect?: OrdersWhereUniqueInput | OrdersWhereUniqueInput[] | $Types.Skip
+    delete?: OrdersWhereUniqueInput | OrdersWhereUniqueInput[] | $Types.Skip
+    connect?: OrdersWhereUniqueInput | OrdersWhereUniqueInput[] | $Types.Skip
+    update?: OrdersUpdateWithWhereUniqueWithoutUserInput | OrdersUpdateWithWhereUniqueWithoutUserInput[] | $Types.Skip
+    updateMany?: OrdersUpdateManyWithWhereWithoutUserInput | OrdersUpdateManyWithWhereWithoutUserInput[] | $Types.Skip
+    deleteMany?: OrdersScalarWhereInput | OrdersScalarWhereInput[] | $Types.Skip
   }
 
   export type LikesUpdateManyWithoutUserNestedInput = {
-    create?: XOR<LikesCreateWithoutUserInput, LikesUncheckedCreateWithoutUserInput> | LikesCreateWithoutUserInput[] | LikesUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: LikesCreateOrConnectWithoutUserInput | LikesCreateOrConnectWithoutUserInput[]
-    upsert?: LikesUpsertWithWhereUniqueWithoutUserInput | LikesUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: LikesCreateManyUserInputEnvelope
-    set?: LikesWhereUniqueInput | LikesWhereUniqueInput[]
-    disconnect?: LikesWhereUniqueInput | LikesWhereUniqueInput[]
-    delete?: LikesWhereUniqueInput | LikesWhereUniqueInput[]
-    connect?: LikesWhereUniqueInput | LikesWhereUniqueInput[]
-    update?: LikesUpdateWithWhereUniqueWithoutUserInput | LikesUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: LikesUpdateManyWithWhereWithoutUserInput | LikesUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: LikesScalarWhereInput | LikesScalarWhereInput[]
+    create?: XOR<LikesCreateWithoutUserInput, LikesUncheckedCreateWithoutUserInput> | LikesCreateWithoutUserInput[] | LikesUncheckedCreateWithoutUserInput[] | $Types.Skip
+    connectOrCreate?: LikesCreateOrConnectWithoutUserInput | LikesCreateOrConnectWithoutUserInput[] | $Types.Skip
+    upsert?: LikesUpsertWithWhereUniqueWithoutUserInput | LikesUpsertWithWhereUniqueWithoutUserInput[] | $Types.Skip
+    createMany?: LikesCreateManyUserInputEnvelope | $Types.Skip
+    set?: LikesWhereUniqueInput | LikesWhereUniqueInput[] | $Types.Skip
+    disconnect?: LikesWhereUniqueInput | LikesWhereUniqueInput[] | $Types.Skip
+    delete?: LikesWhereUniqueInput | LikesWhereUniqueInput[] | $Types.Skip
+    connect?: LikesWhereUniqueInput | LikesWhereUniqueInput[] | $Types.Skip
+    update?: LikesUpdateWithWhereUniqueWithoutUserInput | LikesUpdateWithWhereUniqueWithoutUserInput[] | $Types.Skip
+    updateMany?: LikesUpdateManyWithWhereWithoutUserInput | LikesUpdateManyWithWhereWithoutUserInput[] | $Types.Skip
+    deleteMany?: LikesScalarWhereInput | LikesScalarWhereInput[] | $Types.Skip
+  }
+
+  export type CartsUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CartsCreateWithoutUserInput, CartsUncheckedCreateWithoutUserInput> | CartsCreateWithoutUserInput[] | CartsUncheckedCreateWithoutUserInput[] | $Types.Skip
+    connectOrCreate?: CartsCreateOrConnectWithoutUserInput | CartsCreateOrConnectWithoutUserInput[] | $Types.Skip
+    upsert?: CartsUpsertWithWhereUniqueWithoutUserInput | CartsUpsertWithWhereUniqueWithoutUserInput[] | $Types.Skip
+    createMany?: CartsCreateManyUserInputEnvelope | $Types.Skip
+    set?: CartsWhereUniqueInput | CartsWhereUniqueInput[] | $Types.Skip
+    disconnect?: CartsWhereUniqueInput | CartsWhereUniqueInput[] | $Types.Skip
+    delete?: CartsWhereUniqueInput | CartsWhereUniqueInput[] | $Types.Skip
+    connect?: CartsWhereUniqueInput | CartsWhereUniqueInput[] | $Types.Skip
+    update?: CartsUpdateWithWhereUniqueWithoutUserInput | CartsUpdateWithWhereUniqueWithoutUserInput[] | $Types.Skip
+    updateMany?: CartsUpdateManyWithWhereWithoutUserInput | CartsUpdateManyWithWhereWithoutUserInput[] | $Types.Skip
+    deleteMany?: CartsScalarWhereInput | CartsScalarWhereInput[] | $Types.Skip
   }
 
   export type UserRolesUncheckedUpdateManyWithoutUsersNestedInput = {
-    create?: XOR<UserRolesCreateWithoutUsersInput, UserRolesUncheckedCreateWithoutUsersInput> | UserRolesCreateWithoutUsersInput[] | UserRolesUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: UserRolesCreateOrConnectWithoutUsersInput | UserRolesCreateOrConnectWithoutUsersInput[]
-    upsert?: UserRolesUpsertWithWhereUniqueWithoutUsersInput | UserRolesUpsertWithWhereUniqueWithoutUsersInput[]
-    createMany?: UserRolesCreateManyUsersInputEnvelope
-    set?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[]
-    disconnect?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[]
-    delete?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[]
-    connect?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[]
-    update?: UserRolesUpdateWithWhereUniqueWithoutUsersInput | UserRolesUpdateWithWhereUniqueWithoutUsersInput[]
-    updateMany?: UserRolesUpdateManyWithWhereWithoutUsersInput | UserRolesUpdateManyWithWhereWithoutUsersInput[]
-    deleteMany?: UserRolesScalarWhereInput | UserRolesScalarWhereInput[]
+    create?: XOR<UserRolesCreateWithoutUsersInput, UserRolesUncheckedCreateWithoutUsersInput> | UserRolesCreateWithoutUsersInput[] | UserRolesUncheckedCreateWithoutUsersInput[] | $Types.Skip
+    connectOrCreate?: UserRolesCreateOrConnectWithoutUsersInput | UserRolesCreateOrConnectWithoutUsersInput[] | $Types.Skip
+    upsert?: UserRolesUpsertWithWhereUniqueWithoutUsersInput | UserRolesUpsertWithWhereUniqueWithoutUsersInput[] | $Types.Skip
+    createMany?: UserRolesCreateManyUsersInputEnvelope | $Types.Skip
+    set?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[] | $Types.Skip
+    disconnect?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[] | $Types.Skip
+    delete?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[] | $Types.Skip
+    connect?: UserRolesWhereUniqueInput | UserRolesWhereUniqueInput[] | $Types.Skip
+    update?: UserRolesUpdateWithWhereUniqueWithoutUsersInput | UserRolesUpdateWithWhereUniqueWithoutUsersInput[] | $Types.Skip
+    updateMany?: UserRolesUpdateManyWithWhereWithoutUsersInput | UserRolesUpdateManyWithWhereWithoutUsersInput[] | $Types.Skip
+    deleteMany?: UserRolesScalarWhereInput | UserRolesScalarWhereInput[] | $Types.Skip
   }
 
   export type OrdersUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<OrdersCreateWithoutUserInput, OrdersUncheckedCreateWithoutUserInput> | OrdersCreateWithoutUserInput[] | OrdersUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: OrdersCreateOrConnectWithoutUserInput | OrdersCreateOrConnectWithoutUserInput[]
-    upsert?: OrdersUpsertWithWhereUniqueWithoutUserInput | OrdersUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: OrdersCreateManyUserInputEnvelope
-    set?: OrdersWhereUniqueInput | OrdersWhereUniqueInput[]
-    disconnect?: OrdersWhereUniqueInput | OrdersWhereUniqueInput[]
-    delete?: OrdersWhereUniqueInput | OrdersWhereUniqueInput[]
-    connect?: OrdersWhereUniqueInput | OrdersWhereUniqueInput[]
-    update?: OrdersUpdateWithWhereUniqueWithoutUserInput | OrdersUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: OrdersUpdateManyWithWhereWithoutUserInput | OrdersUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: OrdersScalarWhereInput | OrdersScalarWhereInput[]
+    create?: XOR<OrdersCreateWithoutUserInput, OrdersUncheckedCreateWithoutUserInput> | OrdersCreateWithoutUserInput[] | OrdersUncheckedCreateWithoutUserInput[] | $Types.Skip
+    connectOrCreate?: OrdersCreateOrConnectWithoutUserInput | OrdersCreateOrConnectWithoutUserInput[] | $Types.Skip
+    upsert?: OrdersUpsertWithWhereUniqueWithoutUserInput | OrdersUpsertWithWhereUniqueWithoutUserInput[] | $Types.Skip
+    createMany?: OrdersCreateManyUserInputEnvelope | $Types.Skip
+    set?: OrdersWhereUniqueInput | OrdersWhereUniqueInput[] | $Types.Skip
+    disconnect?: OrdersWhereUniqueInput | OrdersWhereUniqueInput[] | $Types.Skip
+    delete?: OrdersWhereUniqueInput | OrdersWhereUniqueInput[] | $Types.Skip
+    connect?: OrdersWhereUniqueInput | OrdersWhereUniqueInput[] | $Types.Skip
+    update?: OrdersUpdateWithWhereUniqueWithoutUserInput | OrdersUpdateWithWhereUniqueWithoutUserInput[] | $Types.Skip
+    updateMany?: OrdersUpdateManyWithWhereWithoutUserInput | OrdersUpdateManyWithWhereWithoutUserInput[] | $Types.Skip
+    deleteMany?: OrdersScalarWhereInput | OrdersScalarWhereInput[] | $Types.Skip
   }
 
   export type LikesUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<LikesCreateWithoutUserInput, LikesUncheckedCreateWithoutUserInput> | LikesCreateWithoutUserInput[] | LikesUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: LikesCreateOrConnectWithoutUserInput | LikesCreateOrConnectWithoutUserInput[]
-    upsert?: LikesUpsertWithWhereUniqueWithoutUserInput | LikesUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: LikesCreateManyUserInputEnvelope
-    set?: LikesWhereUniqueInput | LikesWhereUniqueInput[]
-    disconnect?: LikesWhereUniqueInput | LikesWhereUniqueInput[]
-    delete?: LikesWhereUniqueInput | LikesWhereUniqueInput[]
-    connect?: LikesWhereUniqueInput | LikesWhereUniqueInput[]
-    update?: LikesUpdateWithWhereUniqueWithoutUserInput | LikesUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: LikesUpdateManyWithWhereWithoutUserInput | LikesUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: LikesScalarWhereInput | LikesScalarWhereInput[]
+    create?: XOR<LikesCreateWithoutUserInput, LikesUncheckedCreateWithoutUserInput> | LikesCreateWithoutUserInput[] | LikesUncheckedCreateWithoutUserInput[] | $Types.Skip
+    connectOrCreate?: LikesCreateOrConnectWithoutUserInput | LikesCreateOrConnectWithoutUserInput[] | $Types.Skip
+    upsert?: LikesUpsertWithWhereUniqueWithoutUserInput | LikesUpsertWithWhereUniqueWithoutUserInput[] | $Types.Skip
+    createMany?: LikesCreateManyUserInputEnvelope | $Types.Skip
+    set?: LikesWhereUniqueInput | LikesWhereUniqueInput[] | $Types.Skip
+    disconnect?: LikesWhereUniqueInput | LikesWhereUniqueInput[] | $Types.Skip
+    delete?: LikesWhereUniqueInput | LikesWhereUniqueInput[] | $Types.Skip
+    connect?: LikesWhereUniqueInput | LikesWhereUniqueInput[] | $Types.Skip
+    update?: LikesUpdateWithWhereUniqueWithoutUserInput | LikesUpdateWithWhereUniqueWithoutUserInput[] | $Types.Skip
+    updateMany?: LikesUpdateManyWithWhereWithoutUserInput | LikesUpdateManyWithWhereWithoutUserInput[] | $Types.Skip
+    deleteMany?: LikesScalarWhereInput | LikesScalarWhereInput[] | $Types.Skip
+  }
+
+  export type CartsUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CartsCreateWithoutUserInput, CartsUncheckedCreateWithoutUserInput> | CartsCreateWithoutUserInput[] | CartsUncheckedCreateWithoutUserInput[] | $Types.Skip
+    connectOrCreate?: CartsCreateOrConnectWithoutUserInput | CartsCreateOrConnectWithoutUserInput[] | $Types.Skip
+    upsert?: CartsUpsertWithWhereUniqueWithoutUserInput | CartsUpsertWithWhereUniqueWithoutUserInput[] | $Types.Skip
+    createMany?: CartsCreateManyUserInputEnvelope | $Types.Skip
+    set?: CartsWhereUniqueInput | CartsWhereUniqueInput[] | $Types.Skip
+    disconnect?: CartsWhereUniqueInput | CartsWhereUniqueInput[] | $Types.Skip
+    delete?: CartsWhereUniqueInput | CartsWhereUniqueInput[] | $Types.Skip
+    connect?: CartsWhereUniqueInput | CartsWhereUniqueInput[] | $Types.Skip
+    update?: CartsUpdateWithWhereUniqueWithoutUserInput | CartsUpdateWithWhereUniqueWithoutUserInput[] | $Types.Skip
+    updateMany?: CartsUpdateManyWithWhereWithoutUserInput | CartsUpdateManyWithWhereWithoutUserInput[] | $Types.Skip
+    deleteMany?: CartsScalarWhereInput | CartsScalarWhereInput[] | $Types.Skip
   }
 
   export type UsersCreateNestedOneWithoutRolesInput = {
-    create?: XOR<UsersCreateWithoutRolesInput, UsersUncheckedCreateWithoutRolesInput>
-    connectOrCreate?: UsersCreateOrConnectWithoutRolesInput
-    connect?: UsersWhereUniqueInput
+    create?: XOR<UsersCreateWithoutRolesInput, UsersUncheckedCreateWithoutRolesInput> | $Types.Skip
+    connectOrCreate?: UsersCreateOrConnectWithoutRolesInput | $Types.Skip
+    connect?: UsersWhereUniqueInput | $Types.Skip
   }
 
   export type RolesCreateNestedOneWithoutUsersInput = {
-    create?: XOR<RolesCreateWithoutUsersInput, RolesUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: RolesCreateOrConnectWithoutUsersInput
-    connect?: RolesWhereUniqueInput
+    create?: XOR<RolesCreateWithoutUsersInput, RolesUncheckedCreateWithoutUsersInput> | $Types.Skip
+    connectOrCreate?: RolesCreateOrConnectWithoutUsersInput | $Types.Skip
+    connect?: RolesWhereUniqueInput | $Types.Skip
   }
 
   export type UsersUpdateOneRequiredWithoutRolesNestedInput = {
-    create?: XOR<UsersCreateWithoutRolesInput, UsersUncheckedCreateWithoutRolesInput>
-    connectOrCreate?: UsersCreateOrConnectWithoutRolesInput
-    upsert?: UsersUpsertWithoutRolesInput
-    connect?: UsersWhereUniqueInput
-    update?: XOR<XOR<UsersUpdateToOneWithWhereWithoutRolesInput, UsersUpdateWithoutRolesInput>, UsersUncheckedUpdateWithoutRolesInput>
+    create?: XOR<UsersCreateWithoutRolesInput, UsersUncheckedCreateWithoutRolesInput> | $Types.Skip
+    connectOrCreate?: UsersCreateOrConnectWithoutRolesInput | $Types.Skip
+    upsert?: UsersUpsertWithoutRolesInput | $Types.Skip
+    connect?: UsersWhereUniqueInput | $Types.Skip
+    update?: XOR<XOR<UsersUpdateToOneWithWhereWithoutRolesInput, UsersUpdateWithoutRolesInput>, UsersUncheckedUpdateWithoutRolesInput> | $Types.Skip
   }
 
   export type RolesUpdateOneRequiredWithoutUsersNestedInput = {
-    create?: XOR<RolesCreateWithoutUsersInput, RolesUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: RolesCreateOrConnectWithoutUsersInput
-    upsert?: RolesUpsertWithoutUsersInput
-    connect?: RolesWhereUniqueInput
-    update?: XOR<XOR<RolesUpdateToOneWithWhereWithoutUsersInput, RolesUpdateWithoutUsersInput>, RolesUncheckedUpdateWithoutUsersInput>
+    create?: XOR<RolesCreateWithoutUsersInput, RolesUncheckedCreateWithoutUsersInput> | $Types.Skip
+    connectOrCreate?: RolesCreateOrConnectWithoutUsersInput | $Types.Skip
+    upsert?: RolesUpsertWithoutUsersInput | $Types.Skip
+    connect?: RolesWhereUniqueInput | $Types.Skip
+    update?: XOR<XOR<RolesUpdateToOneWithWhereWithoutUsersInput, RolesUpdateWithoutUsersInput>, RolesUncheckedUpdateWithoutUsersInput> | $Types.Skip
   }
 
   export type UsersCreateNestedOneWithoutOrdersInput = {
-    create?: XOR<UsersCreateWithoutOrdersInput, UsersUncheckedCreateWithoutOrdersInput>
-    connectOrCreate?: UsersCreateOrConnectWithoutOrdersInput
-    connect?: UsersWhereUniqueInput
+    create?: XOR<UsersCreateWithoutOrdersInput, UsersUncheckedCreateWithoutOrdersInput> | $Types.Skip
+    connectOrCreate?: UsersCreateOrConnectWithoutOrdersInput | $Types.Skip
+    connect?: UsersWhereUniqueInput | $Types.Skip
   }
 
   export type OrderDetailsCreateNestedManyWithoutOrderDetailsInput = {
-    create?: XOR<OrderDetailsCreateWithoutOrderDetailsInput, OrderDetailsUncheckedCreateWithoutOrderDetailsInput> | OrderDetailsCreateWithoutOrderDetailsInput[] | OrderDetailsUncheckedCreateWithoutOrderDetailsInput[]
-    connectOrCreate?: OrderDetailsCreateOrConnectWithoutOrderDetailsInput | OrderDetailsCreateOrConnectWithoutOrderDetailsInput[]
-    createMany?: OrderDetailsCreateManyOrderDetailsInputEnvelope
-    connect?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[]
+    create?: XOR<OrderDetailsCreateWithoutOrderDetailsInput, OrderDetailsUncheckedCreateWithoutOrderDetailsInput> | OrderDetailsCreateWithoutOrderDetailsInput[] | OrderDetailsUncheckedCreateWithoutOrderDetailsInput[] | $Types.Skip
+    connectOrCreate?: OrderDetailsCreateOrConnectWithoutOrderDetailsInput | OrderDetailsCreateOrConnectWithoutOrderDetailsInput[] | $Types.Skip
+    createMany?: OrderDetailsCreateManyOrderDetailsInputEnvelope | $Types.Skip
+    connect?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[] | $Types.Skip
+  }
+
+  export type PaymentsCreateNestedOneWithoutOrderInput = {
+    create?: XOR<PaymentsCreateWithoutOrderInput, PaymentsUncheckedCreateWithoutOrderInput> | $Types.Skip
+    connectOrCreate?: PaymentsCreateOrConnectWithoutOrderInput | $Types.Skip
+    connect?: PaymentsWhereUniqueInput | $Types.Skip
   }
 
   export type OrderDetailsUncheckedCreateNestedManyWithoutOrderDetailsInput = {
-    create?: XOR<OrderDetailsCreateWithoutOrderDetailsInput, OrderDetailsUncheckedCreateWithoutOrderDetailsInput> | OrderDetailsCreateWithoutOrderDetailsInput[] | OrderDetailsUncheckedCreateWithoutOrderDetailsInput[]
-    connectOrCreate?: OrderDetailsCreateOrConnectWithoutOrderDetailsInput | OrderDetailsCreateOrConnectWithoutOrderDetailsInput[]
-    createMany?: OrderDetailsCreateManyOrderDetailsInputEnvelope
-    connect?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[]
+    create?: XOR<OrderDetailsCreateWithoutOrderDetailsInput, OrderDetailsUncheckedCreateWithoutOrderDetailsInput> | OrderDetailsCreateWithoutOrderDetailsInput[] | OrderDetailsUncheckedCreateWithoutOrderDetailsInput[] | $Types.Skip
+    connectOrCreate?: OrderDetailsCreateOrConnectWithoutOrderDetailsInput | OrderDetailsCreateOrConnectWithoutOrderDetailsInput[] | $Types.Skip
+    createMany?: OrderDetailsCreateManyOrderDetailsInputEnvelope | $Types.Skip
+    connect?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[] | $Types.Skip
+  }
+
+  export type PaymentsUncheckedCreateNestedOneWithoutOrderInput = {
+    create?: XOR<PaymentsCreateWithoutOrderInput, PaymentsUncheckedCreateWithoutOrderInput> | $Types.Skip
+    connectOrCreate?: PaymentsCreateOrConnectWithoutOrderInput | $Types.Skip
+    connect?: PaymentsWhereUniqueInput | $Types.Skip
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
+    set?: Date | string | $Types.Skip
   }
 
   export type UsersUpdateOneRequiredWithoutOrdersNestedInput = {
-    create?: XOR<UsersCreateWithoutOrdersInput, UsersUncheckedCreateWithoutOrdersInput>
-    connectOrCreate?: UsersCreateOrConnectWithoutOrdersInput
-    upsert?: UsersUpsertWithoutOrdersInput
-    connect?: UsersWhereUniqueInput
-    update?: XOR<XOR<UsersUpdateToOneWithWhereWithoutOrdersInput, UsersUpdateWithoutOrdersInput>, UsersUncheckedUpdateWithoutOrdersInput>
+    create?: XOR<UsersCreateWithoutOrdersInput, UsersUncheckedCreateWithoutOrdersInput> | $Types.Skip
+    connectOrCreate?: UsersCreateOrConnectWithoutOrdersInput | $Types.Skip
+    upsert?: UsersUpsertWithoutOrdersInput | $Types.Skip
+    connect?: UsersWhereUniqueInput | $Types.Skip
+    update?: XOR<XOR<UsersUpdateToOneWithWhereWithoutOrdersInput, UsersUpdateWithoutOrdersInput>, UsersUncheckedUpdateWithoutOrdersInput> | $Types.Skip
   }
 
   export type OrderDetailsUpdateManyWithoutOrderDetailsNestedInput = {
-    create?: XOR<OrderDetailsCreateWithoutOrderDetailsInput, OrderDetailsUncheckedCreateWithoutOrderDetailsInput> | OrderDetailsCreateWithoutOrderDetailsInput[] | OrderDetailsUncheckedCreateWithoutOrderDetailsInput[]
-    connectOrCreate?: OrderDetailsCreateOrConnectWithoutOrderDetailsInput | OrderDetailsCreateOrConnectWithoutOrderDetailsInput[]
-    upsert?: OrderDetailsUpsertWithWhereUniqueWithoutOrderDetailsInput | OrderDetailsUpsertWithWhereUniqueWithoutOrderDetailsInput[]
-    createMany?: OrderDetailsCreateManyOrderDetailsInputEnvelope
-    set?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[]
-    disconnect?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[]
-    delete?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[]
-    connect?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[]
-    update?: OrderDetailsUpdateWithWhereUniqueWithoutOrderDetailsInput | OrderDetailsUpdateWithWhereUniqueWithoutOrderDetailsInput[]
-    updateMany?: OrderDetailsUpdateManyWithWhereWithoutOrderDetailsInput | OrderDetailsUpdateManyWithWhereWithoutOrderDetailsInput[]
-    deleteMany?: OrderDetailsScalarWhereInput | OrderDetailsScalarWhereInput[]
+    create?: XOR<OrderDetailsCreateWithoutOrderDetailsInput, OrderDetailsUncheckedCreateWithoutOrderDetailsInput> | OrderDetailsCreateWithoutOrderDetailsInput[] | OrderDetailsUncheckedCreateWithoutOrderDetailsInput[] | $Types.Skip
+    connectOrCreate?: OrderDetailsCreateOrConnectWithoutOrderDetailsInput | OrderDetailsCreateOrConnectWithoutOrderDetailsInput[] | $Types.Skip
+    upsert?: OrderDetailsUpsertWithWhereUniqueWithoutOrderDetailsInput | OrderDetailsUpsertWithWhereUniqueWithoutOrderDetailsInput[] | $Types.Skip
+    createMany?: OrderDetailsCreateManyOrderDetailsInputEnvelope | $Types.Skip
+    set?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[] | $Types.Skip
+    disconnect?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[] | $Types.Skip
+    delete?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[] | $Types.Skip
+    connect?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[] | $Types.Skip
+    update?: OrderDetailsUpdateWithWhereUniqueWithoutOrderDetailsInput | OrderDetailsUpdateWithWhereUniqueWithoutOrderDetailsInput[] | $Types.Skip
+    updateMany?: OrderDetailsUpdateManyWithWhereWithoutOrderDetailsInput | OrderDetailsUpdateManyWithWhereWithoutOrderDetailsInput[] | $Types.Skip
+    deleteMany?: OrderDetailsScalarWhereInput | OrderDetailsScalarWhereInput[] | $Types.Skip
+  }
+
+  export type PaymentsUpdateOneWithoutOrderNestedInput = {
+    create?: XOR<PaymentsCreateWithoutOrderInput, PaymentsUncheckedCreateWithoutOrderInput> | $Types.Skip
+    connectOrCreate?: PaymentsCreateOrConnectWithoutOrderInput | $Types.Skip
+    upsert?: PaymentsUpsertWithoutOrderInput | $Types.Skip
+    disconnect?: PaymentsWhereInput | boolean | $Types.Skip
+    delete?: PaymentsWhereInput | boolean | $Types.Skip
+    connect?: PaymentsWhereUniqueInput | $Types.Skip
+    update?: XOR<XOR<PaymentsUpdateToOneWithWhereWithoutOrderInput, PaymentsUpdateWithoutOrderInput>, PaymentsUncheckedUpdateWithoutOrderInput> | $Types.Skip
   }
 
   export type OrderDetailsUncheckedUpdateManyWithoutOrderDetailsNestedInput = {
-    create?: XOR<OrderDetailsCreateWithoutOrderDetailsInput, OrderDetailsUncheckedCreateWithoutOrderDetailsInput> | OrderDetailsCreateWithoutOrderDetailsInput[] | OrderDetailsUncheckedCreateWithoutOrderDetailsInput[]
-    connectOrCreate?: OrderDetailsCreateOrConnectWithoutOrderDetailsInput | OrderDetailsCreateOrConnectWithoutOrderDetailsInput[]
-    upsert?: OrderDetailsUpsertWithWhereUniqueWithoutOrderDetailsInput | OrderDetailsUpsertWithWhereUniqueWithoutOrderDetailsInput[]
-    createMany?: OrderDetailsCreateManyOrderDetailsInputEnvelope
-    set?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[]
-    disconnect?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[]
-    delete?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[]
-    connect?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[]
-    update?: OrderDetailsUpdateWithWhereUniqueWithoutOrderDetailsInput | OrderDetailsUpdateWithWhereUniqueWithoutOrderDetailsInput[]
-    updateMany?: OrderDetailsUpdateManyWithWhereWithoutOrderDetailsInput | OrderDetailsUpdateManyWithWhereWithoutOrderDetailsInput[]
-    deleteMany?: OrderDetailsScalarWhereInput | OrderDetailsScalarWhereInput[]
+    create?: XOR<OrderDetailsCreateWithoutOrderDetailsInput, OrderDetailsUncheckedCreateWithoutOrderDetailsInput> | OrderDetailsCreateWithoutOrderDetailsInput[] | OrderDetailsUncheckedCreateWithoutOrderDetailsInput[] | $Types.Skip
+    connectOrCreate?: OrderDetailsCreateOrConnectWithoutOrderDetailsInput | OrderDetailsCreateOrConnectWithoutOrderDetailsInput[] | $Types.Skip
+    upsert?: OrderDetailsUpsertWithWhereUniqueWithoutOrderDetailsInput | OrderDetailsUpsertWithWhereUniqueWithoutOrderDetailsInput[] | $Types.Skip
+    createMany?: OrderDetailsCreateManyOrderDetailsInputEnvelope | $Types.Skip
+    set?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[] | $Types.Skip
+    disconnect?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[] | $Types.Skip
+    delete?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[] | $Types.Skip
+    connect?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[] | $Types.Skip
+    update?: OrderDetailsUpdateWithWhereUniqueWithoutOrderDetailsInput | OrderDetailsUpdateWithWhereUniqueWithoutOrderDetailsInput[] | $Types.Skip
+    updateMany?: OrderDetailsUpdateManyWithWhereWithoutOrderDetailsInput | OrderDetailsUpdateManyWithWhereWithoutOrderDetailsInput[] | $Types.Skip
+    deleteMany?: OrderDetailsScalarWhereInput | OrderDetailsScalarWhereInput[] | $Types.Skip
   }
 
-  export type OrdersCreateNestedOneWithoutOrderDetailsInput = {
-    create?: XOR<OrdersCreateWithoutOrderDetailsInput, OrdersUncheckedCreateWithoutOrderDetailsInput>
-    connectOrCreate?: OrdersCreateOrConnectWithoutOrderDetailsInput
-    connect?: OrdersWhereUniqueInput
+  export type PaymentsUncheckedUpdateOneWithoutOrderNestedInput = {
+    create?: XOR<PaymentsCreateWithoutOrderInput, PaymentsUncheckedCreateWithoutOrderInput> | $Types.Skip
+    connectOrCreate?: PaymentsCreateOrConnectWithoutOrderInput | $Types.Skip
+    upsert?: PaymentsUpsertWithoutOrderInput | $Types.Skip
+    disconnect?: PaymentsWhereInput | boolean | $Types.Skip
+    delete?: PaymentsWhereInput | boolean | $Types.Skip
+    connect?: PaymentsWhereUniqueInput | $Types.Skip
+    update?: XOR<XOR<PaymentsUpdateToOneWithWhereWithoutOrderInput, PaymentsUpdateWithoutOrderInput>, PaymentsUncheckedUpdateWithoutOrderInput> | $Types.Skip
   }
 
-  export type ProductsCreateNestedOneWithoutOrderDetailsInput = {
-    create?: XOR<ProductsCreateWithoutOrderDetailsInput, ProductsUncheckedCreateWithoutOrderDetailsInput>
-    connectOrCreate?: ProductsCreateOrConnectWithoutOrderDetailsInput
-    connect?: ProductsWhereUniqueInput
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
+  export type OrdersCreateNestedOneWithoutPaymentInput = {
+    create?: XOR<OrdersCreateWithoutPaymentInput, OrdersUncheckedCreateWithoutPaymentInput> | $Types.Skip
+    connectOrCreate?: OrdersCreateOrConnectWithoutPaymentInput | $Types.Skip
+    connect?: OrdersWhereUniqueInput | $Types.Skip
   }
 
   export type FloatFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
+    set?: number | $Types.Skip
+    increment?: number | $Types.Skip
+    decrement?: number | $Types.Skip
+    multiply?: number | $Types.Skip
+    divide?: number | $Types.Skip
+  }
+
+  export type OrdersUpdateOneRequiredWithoutPaymentNestedInput = {
+    create?: XOR<OrdersCreateWithoutPaymentInput, OrdersUncheckedCreateWithoutPaymentInput> | $Types.Skip
+    connectOrCreate?: OrdersCreateOrConnectWithoutPaymentInput | $Types.Skip
+    upsert?: OrdersUpsertWithoutPaymentInput | $Types.Skip
+    connect?: OrdersWhereUniqueInput | $Types.Skip
+    update?: XOR<XOR<OrdersUpdateToOneWithWhereWithoutPaymentInput, OrdersUpdateWithoutPaymentInput>, OrdersUncheckedUpdateWithoutPaymentInput> | $Types.Skip
+  }
+
+  export type OrdersCreateNestedOneWithoutOrderDetailsInput = {
+    create?: XOR<OrdersCreateWithoutOrderDetailsInput, OrdersUncheckedCreateWithoutOrderDetailsInput> | $Types.Skip
+    connectOrCreate?: OrdersCreateOrConnectWithoutOrderDetailsInput | $Types.Skip
+    connect?: OrdersWhereUniqueInput | $Types.Skip
+  }
+
+  export type VariantsCreateNestedOneWithoutOrderDetailsInput = {
+    create?: XOR<VariantsCreateWithoutOrderDetailsInput, VariantsUncheckedCreateWithoutOrderDetailsInput> | $Types.Skip
+    connectOrCreate?: VariantsCreateOrConnectWithoutOrderDetailsInput | $Types.Skip
+    connect?: VariantsWhereUniqueInput | $Types.Skip
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number | $Types.Skip
+    increment?: number | $Types.Skip
+    decrement?: number | $Types.Skip
+    multiply?: number | $Types.Skip
+    divide?: number | $Types.Skip
   }
 
   export type OrdersUpdateOneRequiredWithoutOrderDetailsNestedInput = {
-    create?: XOR<OrdersCreateWithoutOrderDetailsInput, OrdersUncheckedCreateWithoutOrderDetailsInput>
-    connectOrCreate?: OrdersCreateOrConnectWithoutOrderDetailsInput
-    upsert?: OrdersUpsertWithoutOrderDetailsInput
-    connect?: OrdersWhereUniqueInput
-    update?: XOR<XOR<OrdersUpdateToOneWithWhereWithoutOrderDetailsInput, OrdersUpdateWithoutOrderDetailsInput>, OrdersUncheckedUpdateWithoutOrderDetailsInput>
+    create?: XOR<OrdersCreateWithoutOrderDetailsInput, OrdersUncheckedCreateWithoutOrderDetailsInput> | $Types.Skip
+    connectOrCreate?: OrdersCreateOrConnectWithoutOrderDetailsInput | $Types.Skip
+    upsert?: OrdersUpsertWithoutOrderDetailsInput | $Types.Skip
+    connect?: OrdersWhereUniqueInput | $Types.Skip
+    update?: XOR<XOR<OrdersUpdateToOneWithWhereWithoutOrderDetailsInput, OrdersUpdateWithoutOrderDetailsInput>, OrdersUncheckedUpdateWithoutOrderDetailsInput> | $Types.Skip
   }
 
-  export type ProductsUpdateOneRequiredWithoutOrderDetailsNestedInput = {
-    create?: XOR<ProductsCreateWithoutOrderDetailsInput, ProductsUncheckedCreateWithoutOrderDetailsInput>
-    connectOrCreate?: ProductsCreateOrConnectWithoutOrderDetailsInput
-    upsert?: ProductsUpsertWithoutOrderDetailsInput
-    connect?: ProductsWhereUniqueInput
-    update?: XOR<XOR<ProductsUpdateToOneWithWhereWithoutOrderDetailsInput, ProductsUpdateWithoutOrderDetailsInput>, ProductsUncheckedUpdateWithoutOrderDetailsInput>
+  export type VariantsUpdateOneRequiredWithoutOrderDetailsNestedInput = {
+    create?: XOR<VariantsCreateWithoutOrderDetailsInput, VariantsUncheckedCreateWithoutOrderDetailsInput> | $Types.Skip
+    connectOrCreate?: VariantsCreateOrConnectWithoutOrderDetailsInput | $Types.Skip
+    upsert?: VariantsUpsertWithoutOrderDetailsInput | $Types.Skip
+    connect?: VariantsWhereUniqueInput | $Types.Skip
+    update?: XOR<XOR<VariantsUpdateToOneWithWhereWithoutOrderDetailsInput, VariantsUpdateWithoutOrderDetailsInput>, VariantsUncheckedUpdateWithoutOrderDetailsInput> | $Types.Skip
   }
 
   export type BrandsCreateNestedOneWithoutProductsInput = {
-    create?: XOR<BrandsCreateWithoutProductsInput, BrandsUncheckedCreateWithoutProductsInput>
-    connectOrCreate?: BrandsCreateOrConnectWithoutProductsInput
-    connect?: BrandsWhereUniqueInput
-  }
-
-  export type OrderDetailsCreateNestedManyWithoutProductInput = {
-    create?: XOR<OrderDetailsCreateWithoutProductInput, OrderDetailsUncheckedCreateWithoutProductInput> | OrderDetailsCreateWithoutProductInput[] | OrderDetailsUncheckedCreateWithoutProductInput[]
-    connectOrCreate?: OrderDetailsCreateOrConnectWithoutProductInput | OrderDetailsCreateOrConnectWithoutProductInput[]
-    createMany?: OrderDetailsCreateManyProductInputEnvelope
-    connect?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[]
+    create?: XOR<BrandsCreateWithoutProductsInput, BrandsUncheckedCreateWithoutProductsInput> | $Types.Skip
+    connectOrCreate?: BrandsCreateOrConnectWithoutProductsInput | $Types.Skip
+    connect?: BrandsWhereUniqueInput | $Types.Skip
   }
 
   export type VariantsCreateNestedManyWithoutProductInput = {
-    create?: XOR<VariantsCreateWithoutProductInput, VariantsUncheckedCreateWithoutProductInput> | VariantsCreateWithoutProductInput[] | VariantsUncheckedCreateWithoutProductInput[]
-    connectOrCreate?: VariantsCreateOrConnectWithoutProductInput | VariantsCreateOrConnectWithoutProductInput[]
-    createMany?: VariantsCreateManyProductInputEnvelope
-    connect?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[]
+    create?: XOR<VariantsCreateWithoutProductInput, VariantsUncheckedCreateWithoutProductInput> | VariantsCreateWithoutProductInput[] | VariantsUncheckedCreateWithoutProductInput[] | $Types.Skip
+    connectOrCreate?: VariantsCreateOrConnectWithoutProductInput | VariantsCreateOrConnectWithoutProductInput[] | $Types.Skip
+    createMany?: VariantsCreateManyProductInputEnvelope | $Types.Skip
+    connect?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[] | $Types.Skip
   }
 
   export type ProductCategoriesCreateNestedManyWithoutProductsInput = {
-    create?: XOR<ProductCategoriesCreateWithoutProductsInput, ProductCategoriesUncheckedCreateWithoutProductsInput> | ProductCategoriesCreateWithoutProductsInput[] | ProductCategoriesUncheckedCreateWithoutProductsInput[]
-    connectOrCreate?: ProductCategoriesCreateOrConnectWithoutProductsInput | ProductCategoriesCreateOrConnectWithoutProductsInput[]
-    createMany?: ProductCategoriesCreateManyProductsInputEnvelope
-    connect?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[]
+    create?: XOR<ProductCategoriesCreateWithoutProductsInput, ProductCategoriesUncheckedCreateWithoutProductsInput> | ProductCategoriesCreateWithoutProductsInput[] | ProductCategoriesUncheckedCreateWithoutProductsInput[] | $Types.Skip
+    connectOrCreate?: ProductCategoriesCreateOrConnectWithoutProductsInput | ProductCategoriesCreateOrConnectWithoutProductsInput[] | $Types.Skip
+    createMany?: ProductCategoriesCreateManyProductsInputEnvelope | $Types.Skip
+    connect?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[] | $Types.Skip
   }
 
   export type LikesCreateNestedManyWithoutProductsInput = {
-    create?: XOR<LikesCreateWithoutProductsInput, LikesUncheckedCreateWithoutProductsInput> | LikesCreateWithoutProductsInput[] | LikesUncheckedCreateWithoutProductsInput[]
-    connectOrCreate?: LikesCreateOrConnectWithoutProductsInput | LikesCreateOrConnectWithoutProductsInput[]
-    createMany?: LikesCreateManyProductsInputEnvelope
-    connect?: LikesWhereUniqueInput | LikesWhereUniqueInput[]
-  }
-
-  export type OrderDetailsUncheckedCreateNestedManyWithoutProductInput = {
-    create?: XOR<OrderDetailsCreateWithoutProductInput, OrderDetailsUncheckedCreateWithoutProductInput> | OrderDetailsCreateWithoutProductInput[] | OrderDetailsUncheckedCreateWithoutProductInput[]
-    connectOrCreate?: OrderDetailsCreateOrConnectWithoutProductInput | OrderDetailsCreateOrConnectWithoutProductInput[]
-    createMany?: OrderDetailsCreateManyProductInputEnvelope
-    connect?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[]
+    create?: XOR<LikesCreateWithoutProductsInput, LikesUncheckedCreateWithoutProductsInput> | LikesCreateWithoutProductsInput[] | LikesUncheckedCreateWithoutProductsInput[] | $Types.Skip
+    connectOrCreate?: LikesCreateOrConnectWithoutProductsInput | LikesCreateOrConnectWithoutProductsInput[] | $Types.Skip
+    createMany?: LikesCreateManyProductsInputEnvelope | $Types.Skip
+    connect?: LikesWhereUniqueInput | LikesWhereUniqueInput[] | $Types.Skip
   }
 
   export type VariantsUncheckedCreateNestedManyWithoutProductInput = {
-    create?: XOR<VariantsCreateWithoutProductInput, VariantsUncheckedCreateWithoutProductInput> | VariantsCreateWithoutProductInput[] | VariantsUncheckedCreateWithoutProductInput[]
-    connectOrCreate?: VariantsCreateOrConnectWithoutProductInput | VariantsCreateOrConnectWithoutProductInput[]
-    createMany?: VariantsCreateManyProductInputEnvelope
-    connect?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[]
+    create?: XOR<VariantsCreateWithoutProductInput, VariantsUncheckedCreateWithoutProductInput> | VariantsCreateWithoutProductInput[] | VariantsUncheckedCreateWithoutProductInput[] | $Types.Skip
+    connectOrCreate?: VariantsCreateOrConnectWithoutProductInput | VariantsCreateOrConnectWithoutProductInput[] | $Types.Skip
+    createMany?: VariantsCreateManyProductInputEnvelope | $Types.Skip
+    connect?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[] | $Types.Skip
   }
 
   export type ProductCategoriesUncheckedCreateNestedManyWithoutProductsInput = {
-    create?: XOR<ProductCategoriesCreateWithoutProductsInput, ProductCategoriesUncheckedCreateWithoutProductsInput> | ProductCategoriesCreateWithoutProductsInput[] | ProductCategoriesUncheckedCreateWithoutProductsInput[]
-    connectOrCreate?: ProductCategoriesCreateOrConnectWithoutProductsInput | ProductCategoriesCreateOrConnectWithoutProductsInput[]
-    createMany?: ProductCategoriesCreateManyProductsInputEnvelope
-    connect?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[]
+    create?: XOR<ProductCategoriesCreateWithoutProductsInput, ProductCategoriesUncheckedCreateWithoutProductsInput> | ProductCategoriesCreateWithoutProductsInput[] | ProductCategoriesUncheckedCreateWithoutProductsInput[] | $Types.Skip
+    connectOrCreate?: ProductCategoriesCreateOrConnectWithoutProductsInput | ProductCategoriesCreateOrConnectWithoutProductsInput[] | $Types.Skip
+    createMany?: ProductCategoriesCreateManyProductsInputEnvelope | $Types.Skip
+    connect?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[] | $Types.Skip
   }
 
   export type LikesUncheckedCreateNestedManyWithoutProductsInput = {
-    create?: XOR<LikesCreateWithoutProductsInput, LikesUncheckedCreateWithoutProductsInput> | LikesCreateWithoutProductsInput[] | LikesUncheckedCreateWithoutProductsInput[]
-    connectOrCreate?: LikesCreateOrConnectWithoutProductsInput | LikesCreateOrConnectWithoutProductsInput[]
-    createMany?: LikesCreateManyProductsInputEnvelope
-    connect?: LikesWhereUniqueInput | LikesWhereUniqueInput[]
+    create?: XOR<LikesCreateWithoutProductsInput, LikesUncheckedCreateWithoutProductsInput> | LikesCreateWithoutProductsInput[] | LikesUncheckedCreateWithoutProductsInput[] | $Types.Skip
+    connectOrCreate?: LikesCreateOrConnectWithoutProductsInput | LikesCreateOrConnectWithoutProductsInput[] | $Types.Skip
+    createMany?: LikesCreateManyProductsInputEnvelope | $Types.Skip
+    connect?: LikesWhereUniqueInput | LikesWhereUniqueInput[] | $Types.Skip
   }
 
   export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
+    set?: boolean | $Types.Skip
   }
 
   export type BrandsUpdateOneRequiredWithoutProductsNestedInput = {
-    create?: XOR<BrandsCreateWithoutProductsInput, BrandsUncheckedCreateWithoutProductsInput>
-    connectOrCreate?: BrandsCreateOrConnectWithoutProductsInput
-    upsert?: BrandsUpsertWithoutProductsInput
-    connect?: BrandsWhereUniqueInput
-    update?: XOR<XOR<BrandsUpdateToOneWithWhereWithoutProductsInput, BrandsUpdateWithoutProductsInput>, BrandsUncheckedUpdateWithoutProductsInput>
-  }
-
-  export type OrderDetailsUpdateManyWithoutProductNestedInput = {
-    create?: XOR<OrderDetailsCreateWithoutProductInput, OrderDetailsUncheckedCreateWithoutProductInput> | OrderDetailsCreateWithoutProductInput[] | OrderDetailsUncheckedCreateWithoutProductInput[]
-    connectOrCreate?: OrderDetailsCreateOrConnectWithoutProductInput | OrderDetailsCreateOrConnectWithoutProductInput[]
-    upsert?: OrderDetailsUpsertWithWhereUniqueWithoutProductInput | OrderDetailsUpsertWithWhereUniqueWithoutProductInput[]
-    createMany?: OrderDetailsCreateManyProductInputEnvelope
-    set?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[]
-    disconnect?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[]
-    delete?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[]
-    connect?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[]
-    update?: OrderDetailsUpdateWithWhereUniqueWithoutProductInput | OrderDetailsUpdateWithWhereUniqueWithoutProductInput[]
-    updateMany?: OrderDetailsUpdateManyWithWhereWithoutProductInput | OrderDetailsUpdateManyWithWhereWithoutProductInput[]
-    deleteMany?: OrderDetailsScalarWhereInput | OrderDetailsScalarWhereInput[]
+    create?: XOR<BrandsCreateWithoutProductsInput, BrandsUncheckedCreateWithoutProductsInput> | $Types.Skip
+    connectOrCreate?: BrandsCreateOrConnectWithoutProductsInput | $Types.Skip
+    upsert?: BrandsUpsertWithoutProductsInput | $Types.Skip
+    connect?: BrandsWhereUniqueInput | $Types.Skip
+    update?: XOR<XOR<BrandsUpdateToOneWithWhereWithoutProductsInput, BrandsUpdateWithoutProductsInput>, BrandsUncheckedUpdateWithoutProductsInput> | $Types.Skip
   }
 
   export type VariantsUpdateManyWithoutProductNestedInput = {
-    create?: XOR<VariantsCreateWithoutProductInput, VariantsUncheckedCreateWithoutProductInput> | VariantsCreateWithoutProductInput[] | VariantsUncheckedCreateWithoutProductInput[]
-    connectOrCreate?: VariantsCreateOrConnectWithoutProductInput | VariantsCreateOrConnectWithoutProductInput[]
-    upsert?: VariantsUpsertWithWhereUniqueWithoutProductInput | VariantsUpsertWithWhereUniqueWithoutProductInput[]
-    createMany?: VariantsCreateManyProductInputEnvelope
-    set?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[]
-    disconnect?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[]
-    delete?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[]
-    connect?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[]
-    update?: VariantsUpdateWithWhereUniqueWithoutProductInput | VariantsUpdateWithWhereUniqueWithoutProductInput[]
-    updateMany?: VariantsUpdateManyWithWhereWithoutProductInput | VariantsUpdateManyWithWhereWithoutProductInput[]
-    deleteMany?: VariantsScalarWhereInput | VariantsScalarWhereInput[]
+    create?: XOR<VariantsCreateWithoutProductInput, VariantsUncheckedCreateWithoutProductInput> | VariantsCreateWithoutProductInput[] | VariantsUncheckedCreateWithoutProductInput[] | $Types.Skip
+    connectOrCreate?: VariantsCreateOrConnectWithoutProductInput | VariantsCreateOrConnectWithoutProductInput[] | $Types.Skip
+    upsert?: VariantsUpsertWithWhereUniqueWithoutProductInput | VariantsUpsertWithWhereUniqueWithoutProductInput[] | $Types.Skip
+    createMany?: VariantsCreateManyProductInputEnvelope | $Types.Skip
+    set?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[] | $Types.Skip
+    disconnect?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[] | $Types.Skip
+    delete?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[] | $Types.Skip
+    connect?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[] | $Types.Skip
+    update?: VariantsUpdateWithWhereUniqueWithoutProductInput | VariantsUpdateWithWhereUniqueWithoutProductInput[] | $Types.Skip
+    updateMany?: VariantsUpdateManyWithWhereWithoutProductInput | VariantsUpdateManyWithWhereWithoutProductInput[] | $Types.Skip
+    deleteMany?: VariantsScalarWhereInput | VariantsScalarWhereInput[] | $Types.Skip
   }
 
   export type ProductCategoriesUpdateManyWithoutProductsNestedInput = {
-    create?: XOR<ProductCategoriesCreateWithoutProductsInput, ProductCategoriesUncheckedCreateWithoutProductsInput> | ProductCategoriesCreateWithoutProductsInput[] | ProductCategoriesUncheckedCreateWithoutProductsInput[]
-    connectOrCreate?: ProductCategoriesCreateOrConnectWithoutProductsInput | ProductCategoriesCreateOrConnectWithoutProductsInput[]
-    upsert?: ProductCategoriesUpsertWithWhereUniqueWithoutProductsInput | ProductCategoriesUpsertWithWhereUniqueWithoutProductsInput[]
-    createMany?: ProductCategoriesCreateManyProductsInputEnvelope
-    set?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[]
-    disconnect?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[]
-    delete?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[]
-    connect?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[]
-    update?: ProductCategoriesUpdateWithWhereUniqueWithoutProductsInput | ProductCategoriesUpdateWithWhereUniqueWithoutProductsInput[]
-    updateMany?: ProductCategoriesUpdateManyWithWhereWithoutProductsInput | ProductCategoriesUpdateManyWithWhereWithoutProductsInput[]
-    deleteMany?: ProductCategoriesScalarWhereInput | ProductCategoriesScalarWhereInput[]
+    create?: XOR<ProductCategoriesCreateWithoutProductsInput, ProductCategoriesUncheckedCreateWithoutProductsInput> | ProductCategoriesCreateWithoutProductsInput[] | ProductCategoriesUncheckedCreateWithoutProductsInput[] | $Types.Skip
+    connectOrCreate?: ProductCategoriesCreateOrConnectWithoutProductsInput | ProductCategoriesCreateOrConnectWithoutProductsInput[] | $Types.Skip
+    upsert?: ProductCategoriesUpsertWithWhereUniqueWithoutProductsInput | ProductCategoriesUpsertWithWhereUniqueWithoutProductsInput[] | $Types.Skip
+    createMany?: ProductCategoriesCreateManyProductsInputEnvelope | $Types.Skip
+    set?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[] | $Types.Skip
+    disconnect?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[] | $Types.Skip
+    delete?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[] | $Types.Skip
+    connect?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[] | $Types.Skip
+    update?: ProductCategoriesUpdateWithWhereUniqueWithoutProductsInput | ProductCategoriesUpdateWithWhereUniqueWithoutProductsInput[] | $Types.Skip
+    updateMany?: ProductCategoriesUpdateManyWithWhereWithoutProductsInput | ProductCategoriesUpdateManyWithWhereWithoutProductsInput[] | $Types.Skip
+    deleteMany?: ProductCategoriesScalarWhereInput | ProductCategoriesScalarWhereInput[] | $Types.Skip
   }
 
   export type LikesUpdateManyWithoutProductsNestedInput = {
-    create?: XOR<LikesCreateWithoutProductsInput, LikesUncheckedCreateWithoutProductsInput> | LikesCreateWithoutProductsInput[] | LikesUncheckedCreateWithoutProductsInput[]
-    connectOrCreate?: LikesCreateOrConnectWithoutProductsInput | LikesCreateOrConnectWithoutProductsInput[]
-    upsert?: LikesUpsertWithWhereUniqueWithoutProductsInput | LikesUpsertWithWhereUniqueWithoutProductsInput[]
-    createMany?: LikesCreateManyProductsInputEnvelope
-    set?: LikesWhereUniqueInput | LikesWhereUniqueInput[]
-    disconnect?: LikesWhereUniqueInput | LikesWhereUniqueInput[]
-    delete?: LikesWhereUniqueInput | LikesWhereUniqueInput[]
-    connect?: LikesWhereUniqueInput | LikesWhereUniqueInput[]
-    update?: LikesUpdateWithWhereUniqueWithoutProductsInput | LikesUpdateWithWhereUniqueWithoutProductsInput[]
-    updateMany?: LikesUpdateManyWithWhereWithoutProductsInput | LikesUpdateManyWithWhereWithoutProductsInput[]
-    deleteMany?: LikesScalarWhereInput | LikesScalarWhereInput[]
-  }
-
-  export type OrderDetailsUncheckedUpdateManyWithoutProductNestedInput = {
-    create?: XOR<OrderDetailsCreateWithoutProductInput, OrderDetailsUncheckedCreateWithoutProductInput> | OrderDetailsCreateWithoutProductInput[] | OrderDetailsUncheckedCreateWithoutProductInput[]
-    connectOrCreate?: OrderDetailsCreateOrConnectWithoutProductInput | OrderDetailsCreateOrConnectWithoutProductInput[]
-    upsert?: OrderDetailsUpsertWithWhereUniqueWithoutProductInput | OrderDetailsUpsertWithWhereUniqueWithoutProductInput[]
-    createMany?: OrderDetailsCreateManyProductInputEnvelope
-    set?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[]
-    disconnect?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[]
-    delete?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[]
-    connect?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[]
-    update?: OrderDetailsUpdateWithWhereUniqueWithoutProductInput | OrderDetailsUpdateWithWhereUniqueWithoutProductInput[]
-    updateMany?: OrderDetailsUpdateManyWithWhereWithoutProductInput | OrderDetailsUpdateManyWithWhereWithoutProductInput[]
-    deleteMany?: OrderDetailsScalarWhereInput | OrderDetailsScalarWhereInput[]
+    create?: XOR<LikesCreateWithoutProductsInput, LikesUncheckedCreateWithoutProductsInput> | LikesCreateWithoutProductsInput[] | LikesUncheckedCreateWithoutProductsInput[] | $Types.Skip
+    connectOrCreate?: LikesCreateOrConnectWithoutProductsInput | LikesCreateOrConnectWithoutProductsInput[] | $Types.Skip
+    upsert?: LikesUpsertWithWhereUniqueWithoutProductsInput | LikesUpsertWithWhereUniqueWithoutProductsInput[] | $Types.Skip
+    createMany?: LikesCreateManyProductsInputEnvelope | $Types.Skip
+    set?: LikesWhereUniqueInput | LikesWhereUniqueInput[] | $Types.Skip
+    disconnect?: LikesWhereUniqueInput | LikesWhereUniqueInput[] | $Types.Skip
+    delete?: LikesWhereUniqueInput | LikesWhereUniqueInput[] | $Types.Skip
+    connect?: LikesWhereUniqueInput | LikesWhereUniqueInput[] | $Types.Skip
+    update?: LikesUpdateWithWhereUniqueWithoutProductsInput | LikesUpdateWithWhereUniqueWithoutProductsInput[] | $Types.Skip
+    updateMany?: LikesUpdateManyWithWhereWithoutProductsInput | LikesUpdateManyWithWhereWithoutProductsInput[] | $Types.Skip
+    deleteMany?: LikesScalarWhereInput | LikesScalarWhereInput[] | $Types.Skip
   }
 
   export type VariantsUncheckedUpdateManyWithoutProductNestedInput = {
-    create?: XOR<VariantsCreateWithoutProductInput, VariantsUncheckedCreateWithoutProductInput> | VariantsCreateWithoutProductInput[] | VariantsUncheckedCreateWithoutProductInput[]
-    connectOrCreate?: VariantsCreateOrConnectWithoutProductInput | VariantsCreateOrConnectWithoutProductInput[]
-    upsert?: VariantsUpsertWithWhereUniqueWithoutProductInput | VariantsUpsertWithWhereUniqueWithoutProductInput[]
-    createMany?: VariantsCreateManyProductInputEnvelope
-    set?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[]
-    disconnect?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[]
-    delete?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[]
-    connect?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[]
-    update?: VariantsUpdateWithWhereUniqueWithoutProductInput | VariantsUpdateWithWhereUniqueWithoutProductInput[]
-    updateMany?: VariantsUpdateManyWithWhereWithoutProductInput | VariantsUpdateManyWithWhereWithoutProductInput[]
-    deleteMany?: VariantsScalarWhereInput | VariantsScalarWhereInput[]
+    create?: XOR<VariantsCreateWithoutProductInput, VariantsUncheckedCreateWithoutProductInput> | VariantsCreateWithoutProductInput[] | VariantsUncheckedCreateWithoutProductInput[] | $Types.Skip
+    connectOrCreate?: VariantsCreateOrConnectWithoutProductInput | VariantsCreateOrConnectWithoutProductInput[] | $Types.Skip
+    upsert?: VariantsUpsertWithWhereUniqueWithoutProductInput | VariantsUpsertWithWhereUniqueWithoutProductInput[] | $Types.Skip
+    createMany?: VariantsCreateManyProductInputEnvelope | $Types.Skip
+    set?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[] | $Types.Skip
+    disconnect?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[] | $Types.Skip
+    delete?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[] | $Types.Skip
+    connect?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[] | $Types.Skip
+    update?: VariantsUpdateWithWhereUniqueWithoutProductInput | VariantsUpdateWithWhereUniqueWithoutProductInput[] | $Types.Skip
+    updateMany?: VariantsUpdateManyWithWhereWithoutProductInput | VariantsUpdateManyWithWhereWithoutProductInput[] | $Types.Skip
+    deleteMany?: VariantsScalarWhereInput | VariantsScalarWhereInput[] | $Types.Skip
   }
 
   export type ProductCategoriesUncheckedUpdateManyWithoutProductsNestedInput = {
-    create?: XOR<ProductCategoriesCreateWithoutProductsInput, ProductCategoriesUncheckedCreateWithoutProductsInput> | ProductCategoriesCreateWithoutProductsInput[] | ProductCategoriesUncheckedCreateWithoutProductsInput[]
-    connectOrCreate?: ProductCategoriesCreateOrConnectWithoutProductsInput | ProductCategoriesCreateOrConnectWithoutProductsInput[]
-    upsert?: ProductCategoriesUpsertWithWhereUniqueWithoutProductsInput | ProductCategoriesUpsertWithWhereUniqueWithoutProductsInput[]
-    createMany?: ProductCategoriesCreateManyProductsInputEnvelope
-    set?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[]
-    disconnect?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[]
-    delete?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[]
-    connect?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[]
-    update?: ProductCategoriesUpdateWithWhereUniqueWithoutProductsInput | ProductCategoriesUpdateWithWhereUniqueWithoutProductsInput[]
-    updateMany?: ProductCategoriesUpdateManyWithWhereWithoutProductsInput | ProductCategoriesUpdateManyWithWhereWithoutProductsInput[]
-    deleteMany?: ProductCategoriesScalarWhereInput | ProductCategoriesScalarWhereInput[]
+    create?: XOR<ProductCategoriesCreateWithoutProductsInput, ProductCategoriesUncheckedCreateWithoutProductsInput> | ProductCategoriesCreateWithoutProductsInput[] | ProductCategoriesUncheckedCreateWithoutProductsInput[] | $Types.Skip
+    connectOrCreate?: ProductCategoriesCreateOrConnectWithoutProductsInput | ProductCategoriesCreateOrConnectWithoutProductsInput[] | $Types.Skip
+    upsert?: ProductCategoriesUpsertWithWhereUniqueWithoutProductsInput | ProductCategoriesUpsertWithWhereUniqueWithoutProductsInput[] | $Types.Skip
+    createMany?: ProductCategoriesCreateManyProductsInputEnvelope | $Types.Skip
+    set?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[] | $Types.Skip
+    disconnect?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[] | $Types.Skip
+    delete?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[] | $Types.Skip
+    connect?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[] | $Types.Skip
+    update?: ProductCategoriesUpdateWithWhereUniqueWithoutProductsInput | ProductCategoriesUpdateWithWhereUniqueWithoutProductsInput[] | $Types.Skip
+    updateMany?: ProductCategoriesUpdateManyWithWhereWithoutProductsInput | ProductCategoriesUpdateManyWithWhereWithoutProductsInput[] | $Types.Skip
+    deleteMany?: ProductCategoriesScalarWhereInput | ProductCategoriesScalarWhereInput[] | $Types.Skip
   }
 
   export type LikesUncheckedUpdateManyWithoutProductsNestedInput = {
-    create?: XOR<LikesCreateWithoutProductsInput, LikesUncheckedCreateWithoutProductsInput> | LikesCreateWithoutProductsInput[] | LikesUncheckedCreateWithoutProductsInput[]
-    connectOrCreate?: LikesCreateOrConnectWithoutProductsInput | LikesCreateOrConnectWithoutProductsInput[]
-    upsert?: LikesUpsertWithWhereUniqueWithoutProductsInput | LikesUpsertWithWhereUniqueWithoutProductsInput[]
-    createMany?: LikesCreateManyProductsInputEnvelope
-    set?: LikesWhereUniqueInput | LikesWhereUniqueInput[]
-    disconnect?: LikesWhereUniqueInput | LikesWhereUniqueInput[]
-    delete?: LikesWhereUniqueInput | LikesWhereUniqueInput[]
-    connect?: LikesWhereUniqueInput | LikesWhereUniqueInput[]
-    update?: LikesUpdateWithWhereUniqueWithoutProductsInput | LikesUpdateWithWhereUniqueWithoutProductsInput[]
-    updateMany?: LikesUpdateManyWithWhereWithoutProductsInput | LikesUpdateManyWithWhereWithoutProductsInput[]
-    deleteMany?: LikesScalarWhereInput | LikesScalarWhereInput[]
+    create?: XOR<LikesCreateWithoutProductsInput, LikesUncheckedCreateWithoutProductsInput> | LikesCreateWithoutProductsInput[] | LikesUncheckedCreateWithoutProductsInput[] | $Types.Skip
+    connectOrCreate?: LikesCreateOrConnectWithoutProductsInput | LikesCreateOrConnectWithoutProductsInput[] | $Types.Skip
+    upsert?: LikesUpsertWithWhereUniqueWithoutProductsInput | LikesUpsertWithWhereUniqueWithoutProductsInput[] | $Types.Skip
+    createMany?: LikesCreateManyProductsInputEnvelope | $Types.Skip
+    set?: LikesWhereUniqueInput | LikesWhereUniqueInput[] | $Types.Skip
+    disconnect?: LikesWhereUniqueInput | LikesWhereUniqueInput[] | $Types.Skip
+    delete?: LikesWhereUniqueInput | LikesWhereUniqueInput[] | $Types.Skip
+    connect?: LikesWhereUniqueInput | LikesWhereUniqueInput[] | $Types.Skip
+    update?: LikesUpdateWithWhereUniqueWithoutProductsInput | LikesUpdateWithWhereUniqueWithoutProductsInput[] | $Types.Skip
+    updateMany?: LikesUpdateManyWithWhereWithoutProductsInput | LikesUpdateManyWithWhereWithoutProductsInput[] | $Types.Skip
+    deleteMany?: LikesScalarWhereInput | LikesScalarWhereInput[] | $Types.Skip
   }
 
   export type ProductsCreateNestedManyWithoutBrandInput = {
-    create?: XOR<ProductsCreateWithoutBrandInput, ProductsUncheckedCreateWithoutBrandInput> | ProductsCreateWithoutBrandInput[] | ProductsUncheckedCreateWithoutBrandInput[]
-    connectOrCreate?: ProductsCreateOrConnectWithoutBrandInput | ProductsCreateOrConnectWithoutBrandInput[]
-    createMany?: ProductsCreateManyBrandInputEnvelope
-    connect?: ProductsWhereUniqueInput | ProductsWhereUniqueInput[]
+    create?: XOR<ProductsCreateWithoutBrandInput, ProductsUncheckedCreateWithoutBrandInput> | ProductsCreateWithoutBrandInput[] | ProductsUncheckedCreateWithoutBrandInput[] | $Types.Skip
+    connectOrCreate?: ProductsCreateOrConnectWithoutBrandInput | ProductsCreateOrConnectWithoutBrandInput[] | $Types.Skip
+    createMany?: ProductsCreateManyBrandInputEnvelope | $Types.Skip
+    connect?: ProductsWhereUniqueInput | ProductsWhereUniqueInput[] | $Types.Skip
   }
 
   export type ProductsUncheckedCreateNestedManyWithoutBrandInput = {
-    create?: XOR<ProductsCreateWithoutBrandInput, ProductsUncheckedCreateWithoutBrandInput> | ProductsCreateWithoutBrandInput[] | ProductsUncheckedCreateWithoutBrandInput[]
-    connectOrCreate?: ProductsCreateOrConnectWithoutBrandInput | ProductsCreateOrConnectWithoutBrandInput[]
-    createMany?: ProductsCreateManyBrandInputEnvelope
-    connect?: ProductsWhereUniqueInput | ProductsWhereUniqueInput[]
+    create?: XOR<ProductsCreateWithoutBrandInput, ProductsUncheckedCreateWithoutBrandInput> | ProductsCreateWithoutBrandInput[] | ProductsUncheckedCreateWithoutBrandInput[] | $Types.Skip
+    connectOrCreate?: ProductsCreateOrConnectWithoutBrandInput | ProductsCreateOrConnectWithoutBrandInput[] | $Types.Skip
+    createMany?: ProductsCreateManyBrandInputEnvelope | $Types.Skip
+    connect?: ProductsWhereUniqueInput | ProductsWhereUniqueInput[] | $Types.Skip
   }
 
   export type ProductsUpdateManyWithoutBrandNestedInput = {
-    create?: XOR<ProductsCreateWithoutBrandInput, ProductsUncheckedCreateWithoutBrandInput> | ProductsCreateWithoutBrandInput[] | ProductsUncheckedCreateWithoutBrandInput[]
-    connectOrCreate?: ProductsCreateOrConnectWithoutBrandInput | ProductsCreateOrConnectWithoutBrandInput[]
-    upsert?: ProductsUpsertWithWhereUniqueWithoutBrandInput | ProductsUpsertWithWhereUniqueWithoutBrandInput[]
-    createMany?: ProductsCreateManyBrandInputEnvelope
-    set?: ProductsWhereUniqueInput | ProductsWhereUniqueInput[]
-    disconnect?: ProductsWhereUniqueInput | ProductsWhereUniqueInput[]
-    delete?: ProductsWhereUniqueInput | ProductsWhereUniqueInput[]
-    connect?: ProductsWhereUniqueInput | ProductsWhereUniqueInput[]
-    update?: ProductsUpdateWithWhereUniqueWithoutBrandInput | ProductsUpdateWithWhereUniqueWithoutBrandInput[]
-    updateMany?: ProductsUpdateManyWithWhereWithoutBrandInput | ProductsUpdateManyWithWhereWithoutBrandInput[]
-    deleteMany?: ProductsScalarWhereInput | ProductsScalarWhereInput[]
+    create?: XOR<ProductsCreateWithoutBrandInput, ProductsUncheckedCreateWithoutBrandInput> | ProductsCreateWithoutBrandInput[] | ProductsUncheckedCreateWithoutBrandInput[] | $Types.Skip
+    connectOrCreate?: ProductsCreateOrConnectWithoutBrandInput | ProductsCreateOrConnectWithoutBrandInput[] | $Types.Skip
+    upsert?: ProductsUpsertWithWhereUniqueWithoutBrandInput | ProductsUpsertWithWhereUniqueWithoutBrandInput[] | $Types.Skip
+    createMany?: ProductsCreateManyBrandInputEnvelope | $Types.Skip
+    set?: ProductsWhereUniqueInput | ProductsWhereUniqueInput[] | $Types.Skip
+    disconnect?: ProductsWhereUniqueInput | ProductsWhereUniqueInput[] | $Types.Skip
+    delete?: ProductsWhereUniqueInput | ProductsWhereUniqueInput[] | $Types.Skip
+    connect?: ProductsWhereUniqueInput | ProductsWhereUniqueInput[] | $Types.Skip
+    update?: ProductsUpdateWithWhereUniqueWithoutBrandInput | ProductsUpdateWithWhereUniqueWithoutBrandInput[] | $Types.Skip
+    updateMany?: ProductsUpdateManyWithWhereWithoutBrandInput | ProductsUpdateManyWithWhereWithoutBrandInput[] | $Types.Skip
+    deleteMany?: ProductsScalarWhereInput | ProductsScalarWhereInput[] | $Types.Skip
   }
 
   export type ProductsUncheckedUpdateManyWithoutBrandNestedInput = {
-    create?: XOR<ProductsCreateWithoutBrandInput, ProductsUncheckedCreateWithoutBrandInput> | ProductsCreateWithoutBrandInput[] | ProductsUncheckedCreateWithoutBrandInput[]
-    connectOrCreate?: ProductsCreateOrConnectWithoutBrandInput | ProductsCreateOrConnectWithoutBrandInput[]
-    upsert?: ProductsUpsertWithWhereUniqueWithoutBrandInput | ProductsUpsertWithWhereUniqueWithoutBrandInput[]
-    createMany?: ProductsCreateManyBrandInputEnvelope
-    set?: ProductsWhereUniqueInput | ProductsWhereUniqueInput[]
-    disconnect?: ProductsWhereUniqueInput | ProductsWhereUniqueInput[]
-    delete?: ProductsWhereUniqueInput | ProductsWhereUniqueInput[]
-    connect?: ProductsWhereUniqueInput | ProductsWhereUniqueInput[]
-    update?: ProductsUpdateWithWhereUniqueWithoutBrandInput | ProductsUpdateWithWhereUniqueWithoutBrandInput[]
-    updateMany?: ProductsUpdateManyWithWhereWithoutBrandInput | ProductsUpdateManyWithWhereWithoutBrandInput[]
-    deleteMany?: ProductsScalarWhereInput | ProductsScalarWhereInput[]
+    create?: XOR<ProductsCreateWithoutBrandInput, ProductsUncheckedCreateWithoutBrandInput> | ProductsCreateWithoutBrandInput[] | ProductsUncheckedCreateWithoutBrandInput[] | $Types.Skip
+    connectOrCreate?: ProductsCreateOrConnectWithoutBrandInput | ProductsCreateOrConnectWithoutBrandInput[] | $Types.Skip
+    upsert?: ProductsUpsertWithWhereUniqueWithoutBrandInput | ProductsUpsertWithWhereUniqueWithoutBrandInput[] | $Types.Skip
+    createMany?: ProductsCreateManyBrandInputEnvelope | $Types.Skip
+    set?: ProductsWhereUniqueInput | ProductsWhereUniqueInput[] | $Types.Skip
+    disconnect?: ProductsWhereUniqueInput | ProductsWhereUniqueInput[] | $Types.Skip
+    delete?: ProductsWhereUniqueInput | ProductsWhereUniqueInput[] | $Types.Skip
+    connect?: ProductsWhereUniqueInput | ProductsWhereUniqueInput[] | $Types.Skip
+    update?: ProductsUpdateWithWhereUniqueWithoutBrandInput | ProductsUpdateWithWhereUniqueWithoutBrandInput[] | $Types.Skip
+    updateMany?: ProductsUpdateManyWithWhereWithoutBrandInput | ProductsUpdateManyWithWhereWithoutBrandInput[] | $Types.Skip
+    deleteMany?: ProductsScalarWhereInput | ProductsScalarWhereInput[] | $Types.Skip
   }
 
   export type ProductsCreateNestedOneWithoutVariantsInput = {
-    create?: XOR<ProductsCreateWithoutVariantsInput, ProductsUncheckedCreateWithoutVariantsInput>
-    connectOrCreate?: ProductsCreateOrConnectWithoutVariantsInput
-    connect?: ProductsWhereUniqueInput
+    create?: XOR<ProductsCreateWithoutVariantsInput, ProductsUncheckedCreateWithoutVariantsInput> | $Types.Skip
+    connectOrCreate?: ProductsCreateOrConnectWithoutVariantsInput | $Types.Skip
+    connect?: ProductsWhereUniqueInput | $Types.Skip
   }
 
   export type FilesCreateNestedOneWithoutVariantsInput = {
-    create?: XOR<FilesCreateWithoutVariantsInput, FilesUncheckedCreateWithoutVariantsInput>
-    connectOrCreate?: FilesCreateOrConnectWithoutVariantsInput
-    connect?: FilesWhereUniqueInput
+    create?: XOR<FilesCreateWithoutVariantsInput, FilesUncheckedCreateWithoutVariantsInput> | $Types.Skip
+    connectOrCreate?: FilesCreateOrConnectWithoutVariantsInput | $Types.Skip
+    connect?: FilesWhereUniqueInput | $Types.Skip
+  }
+
+  export type OrderDetailsCreateNestedManyWithoutVariantsInput = {
+    create?: XOR<OrderDetailsCreateWithoutVariantsInput, OrderDetailsUncheckedCreateWithoutVariantsInput> | OrderDetailsCreateWithoutVariantsInput[] | OrderDetailsUncheckedCreateWithoutVariantsInput[] | $Types.Skip
+    connectOrCreate?: OrderDetailsCreateOrConnectWithoutVariantsInput | OrderDetailsCreateOrConnectWithoutVariantsInput[] | $Types.Skip
+    createMany?: OrderDetailsCreateManyVariantsInputEnvelope | $Types.Skip
+    connect?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[] | $Types.Skip
+  }
+
+  export type CartDetailsCreateNestedManyWithoutVariantsInput = {
+    create?: XOR<CartDetailsCreateWithoutVariantsInput, CartDetailsUncheckedCreateWithoutVariantsInput> | CartDetailsCreateWithoutVariantsInput[] | CartDetailsUncheckedCreateWithoutVariantsInput[] | $Types.Skip
+    connectOrCreate?: CartDetailsCreateOrConnectWithoutVariantsInput | CartDetailsCreateOrConnectWithoutVariantsInput[] | $Types.Skip
+    createMany?: CartDetailsCreateManyVariantsInputEnvelope | $Types.Skip
+    connect?: CartDetailsWhereUniqueInput | CartDetailsWhereUniqueInput[] | $Types.Skip
+  }
+
+  export type OrderDetailsUncheckedCreateNestedManyWithoutVariantsInput = {
+    create?: XOR<OrderDetailsCreateWithoutVariantsInput, OrderDetailsUncheckedCreateWithoutVariantsInput> | OrderDetailsCreateWithoutVariantsInput[] | OrderDetailsUncheckedCreateWithoutVariantsInput[] | $Types.Skip
+    connectOrCreate?: OrderDetailsCreateOrConnectWithoutVariantsInput | OrderDetailsCreateOrConnectWithoutVariantsInput[] | $Types.Skip
+    createMany?: OrderDetailsCreateManyVariantsInputEnvelope | $Types.Skip
+    connect?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[] | $Types.Skip
+  }
+
+  export type CartDetailsUncheckedCreateNestedManyWithoutVariantsInput = {
+    create?: XOR<CartDetailsCreateWithoutVariantsInput, CartDetailsUncheckedCreateWithoutVariantsInput> | CartDetailsCreateWithoutVariantsInput[] | CartDetailsUncheckedCreateWithoutVariantsInput[] | $Types.Skip
+    connectOrCreate?: CartDetailsCreateOrConnectWithoutVariantsInput | CartDetailsCreateOrConnectWithoutVariantsInput[] | $Types.Skip
+    createMany?: CartDetailsCreateManyVariantsInputEnvelope | $Types.Skip
+    connect?: CartDetailsWhereUniqueInput | CartDetailsWhereUniqueInput[] | $Types.Skip
   }
 
   export type EnumSizeFieldUpdateOperationsInput = {
-    set?: $Enums.Size
+    set?: $Enums.Size | $Types.Skip
   }
 
   export type EnumTextColorFieldUpdateOperationsInput = {
-    set?: $Enums.TextColor
+    set?: $Enums.TextColor | $Types.Skip
   }
 
   export type ProductsUpdateOneRequiredWithoutVariantsNestedInput = {
-    create?: XOR<ProductsCreateWithoutVariantsInput, ProductsUncheckedCreateWithoutVariantsInput>
-    connectOrCreate?: ProductsCreateOrConnectWithoutVariantsInput
-    upsert?: ProductsUpsertWithoutVariantsInput
-    connect?: ProductsWhereUniqueInput
-    update?: XOR<XOR<ProductsUpdateToOneWithWhereWithoutVariantsInput, ProductsUpdateWithoutVariantsInput>, ProductsUncheckedUpdateWithoutVariantsInput>
+    create?: XOR<ProductsCreateWithoutVariantsInput, ProductsUncheckedCreateWithoutVariantsInput> | $Types.Skip
+    connectOrCreate?: ProductsCreateOrConnectWithoutVariantsInput | $Types.Skip
+    upsert?: ProductsUpsertWithoutVariantsInput | $Types.Skip
+    connect?: ProductsWhereUniqueInput | $Types.Skip
+    update?: XOR<XOR<ProductsUpdateToOneWithWhereWithoutVariantsInput, ProductsUpdateWithoutVariantsInput>, ProductsUncheckedUpdateWithoutVariantsInput> | $Types.Skip
   }
 
   export type FilesUpdateOneRequiredWithoutVariantsNestedInput = {
-    create?: XOR<FilesCreateWithoutVariantsInput, FilesUncheckedCreateWithoutVariantsInput>
-    connectOrCreate?: FilesCreateOrConnectWithoutVariantsInput
-    upsert?: FilesUpsertWithoutVariantsInput
-    connect?: FilesWhereUniqueInput
-    update?: XOR<XOR<FilesUpdateToOneWithWhereWithoutVariantsInput, FilesUpdateWithoutVariantsInput>, FilesUncheckedUpdateWithoutVariantsInput>
+    create?: XOR<FilesCreateWithoutVariantsInput, FilesUncheckedCreateWithoutVariantsInput> | $Types.Skip
+    connectOrCreate?: FilesCreateOrConnectWithoutVariantsInput | $Types.Skip
+    upsert?: FilesUpsertWithoutVariantsInput | $Types.Skip
+    connect?: FilesWhereUniqueInput | $Types.Skip
+    update?: XOR<XOR<FilesUpdateToOneWithWhereWithoutVariantsInput, FilesUpdateWithoutVariantsInput>, FilesUncheckedUpdateWithoutVariantsInput> | $Types.Skip
+  }
+
+  export type OrderDetailsUpdateManyWithoutVariantsNestedInput = {
+    create?: XOR<OrderDetailsCreateWithoutVariantsInput, OrderDetailsUncheckedCreateWithoutVariantsInput> | OrderDetailsCreateWithoutVariantsInput[] | OrderDetailsUncheckedCreateWithoutVariantsInput[] | $Types.Skip
+    connectOrCreate?: OrderDetailsCreateOrConnectWithoutVariantsInput | OrderDetailsCreateOrConnectWithoutVariantsInput[] | $Types.Skip
+    upsert?: OrderDetailsUpsertWithWhereUniqueWithoutVariantsInput | OrderDetailsUpsertWithWhereUniqueWithoutVariantsInput[] | $Types.Skip
+    createMany?: OrderDetailsCreateManyVariantsInputEnvelope | $Types.Skip
+    set?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[] | $Types.Skip
+    disconnect?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[] | $Types.Skip
+    delete?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[] | $Types.Skip
+    connect?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[] | $Types.Skip
+    update?: OrderDetailsUpdateWithWhereUniqueWithoutVariantsInput | OrderDetailsUpdateWithWhereUniqueWithoutVariantsInput[] | $Types.Skip
+    updateMany?: OrderDetailsUpdateManyWithWhereWithoutVariantsInput | OrderDetailsUpdateManyWithWhereWithoutVariantsInput[] | $Types.Skip
+    deleteMany?: OrderDetailsScalarWhereInput | OrderDetailsScalarWhereInput[] | $Types.Skip
+  }
+
+  export type CartDetailsUpdateManyWithoutVariantsNestedInput = {
+    create?: XOR<CartDetailsCreateWithoutVariantsInput, CartDetailsUncheckedCreateWithoutVariantsInput> | CartDetailsCreateWithoutVariantsInput[] | CartDetailsUncheckedCreateWithoutVariantsInput[] | $Types.Skip
+    connectOrCreate?: CartDetailsCreateOrConnectWithoutVariantsInput | CartDetailsCreateOrConnectWithoutVariantsInput[] | $Types.Skip
+    upsert?: CartDetailsUpsertWithWhereUniqueWithoutVariantsInput | CartDetailsUpsertWithWhereUniqueWithoutVariantsInput[] | $Types.Skip
+    createMany?: CartDetailsCreateManyVariantsInputEnvelope | $Types.Skip
+    set?: CartDetailsWhereUniqueInput | CartDetailsWhereUniqueInput[] | $Types.Skip
+    disconnect?: CartDetailsWhereUniqueInput | CartDetailsWhereUniqueInput[] | $Types.Skip
+    delete?: CartDetailsWhereUniqueInput | CartDetailsWhereUniqueInput[] | $Types.Skip
+    connect?: CartDetailsWhereUniqueInput | CartDetailsWhereUniqueInput[] | $Types.Skip
+    update?: CartDetailsUpdateWithWhereUniqueWithoutVariantsInput | CartDetailsUpdateWithWhereUniqueWithoutVariantsInput[] | $Types.Skip
+    updateMany?: CartDetailsUpdateManyWithWhereWithoutVariantsInput | CartDetailsUpdateManyWithWhereWithoutVariantsInput[] | $Types.Skip
+    deleteMany?: CartDetailsScalarWhereInput | CartDetailsScalarWhereInput[] | $Types.Skip
+  }
+
+  export type OrderDetailsUncheckedUpdateManyWithoutVariantsNestedInput = {
+    create?: XOR<OrderDetailsCreateWithoutVariantsInput, OrderDetailsUncheckedCreateWithoutVariantsInput> | OrderDetailsCreateWithoutVariantsInput[] | OrderDetailsUncheckedCreateWithoutVariantsInput[] | $Types.Skip
+    connectOrCreate?: OrderDetailsCreateOrConnectWithoutVariantsInput | OrderDetailsCreateOrConnectWithoutVariantsInput[] | $Types.Skip
+    upsert?: OrderDetailsUpsertWithWhereUniqueWithoutVariantsInput | OrderDetailsUpsertWithWhereUniqueWithoutVariantsInput[] | $Types.Skip
+    createMany?: OrderDetailsCreateManyVariantsInputEnvelope | $Types.Skip
+    set?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[] | $Types.Skip
+    disconnect?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[] | $Types.Skip
+    delete?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[] | $Types.Skip
+    connect?: OrderDetailsWhereUniqueInput | OrderDetailsWhereUniqueInput[] | $Types.Skip
+    update?: OrderDetailsUpdateWithWhereUniqueWithoutVariantsInput | OrderDetailsUpdateWithWhereUniqueWithoutVariantsInput[] | $Types.Skip
+    updateMany?: OrderDetailsUpdateManyWithWhereWithoutVariantsInput | OrderDetailsUpdateManyWithWhereWithoutVariantsInput[] | $Types.Skip
+    deleteMany?: OrderDetailsScalarWhereInput | OrderDetailsScalarWhereInput[] | $Types.Skip
+  }
+
+  export type CartDetailsUncheckedUpdateManyWithoutVariantsNestedInput = {
+    create?: XOR<CartDetailsCreateWithoutVariantsInput, CartDetailsUncheckedCreateWithoutVariantsInput> | CartDetailsCreateWithoutVariantsInput[] | CartDetailsUncheckedCreateWithoutVariantsInput[] | $Types.Skip
+    connectOrCreate?: CartDetailsCreateOrConnectWithoutVariantsInput | CartDetailsCreateOrConnectWithoutVariantsInput[] | $Types.Skip
+    upsert?: CartDetailsUpsertWithWhereUniqueWithoutVariantsInput | CartDetailsUpsertWithWhereUniqueWithoutVariantsInput[] | $Types.Skip
+    createMany?: CartDetailsCreateManyVariantsInputEnvelope | $Types.Skip
+    set?: CartDetailsWhereUniqueInput | CartDetailsWhereUniqueInput[] | $Types.Skip
+    disconnect?: CartDetailsWhereUniqueInput | CartDetailsWhereUniqueInput[] | $Types.Skip
+    delete?: CartDetailsWhereUniqueInput | CartDetailsWhereUniqueInput[] | $Types.Skip
+    connect?: CartDetailsWhereUniqueInput | CartDetailsWhereUniqueInput[] | $Types.Skip
+    update?: CartDetailsUpdateWithWhereUniqueWithoutVariantsInput | CartDetailsUpdateWithWhereUniqueWithoutVariantsInput[] | $Types.Skip
+    updateMany?: CartDetailsUpdateManyWithWhereWithoutVariantsInput | CartDetailsUpdateManyWithWhereWithoutVariantsInput[] | $Types.Skip
+    deleteMany?: CartDetailsScalarWhereInput | CartDetailsScalarWhereInput[] | $Types.Skip
   }
 
   export type VariantsCreateNestedManyWithoutFileInput = {
-    create?: XOR<VariantsCreateWithoutFileInput, VariantsUncheckedCreateWithoutFileInput> | VariantsCreateWithoutFileInput[] | VariantsUncheckedCreateWithoutFileInput[]
-    connectOrCreate?: VariantsCreateOrConnectWithoutFileInput | VariantsCreateOrConnectWithoutFileInput[]
-    createMany?: VariantsCreateManyFileInputEnvelope
-    connect?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[]
+    create?: XOR<VariantsCreateWithoutFileInput, VariantsUncheckedCreateWithoutFileInput> | VariantsCreateWithoutFileInput[] | VariantsUncheckedCreateWithoutFileInput[] | $Types.Skip
+    connectOrCreate?: VariantsCreateOrConnectWithoutFileInput | VariantsCreateOrConnectWithoutFileInput[] | $Types.Skip
+    createMany?: VariantsCreateManyFileInputEnvelope | $Types.Skip
+    connect?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[] | $Types.Skip
   }
 
   export type VariantsUncheckedCreateNestedManyWithoutFileInput = {
-    create?: XOR<VariantsCreateWithoutFileInput, VariantsUncheckedCreateWithoutFileInput> | VariantsCreateWithoutFileInput[] | VariantsUncheckedCreateWithoutFileInput[]
-    connectOrCreate?: VariantsCreateOrConnectWithoutFileInput | VariantsCreateOrConnectWithoutFileInput[]
-    createMany?: VariantsCreateManyFileInputEnvelope
-    connect?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[]
+    create?: XOR<VariantsCreateWithoutFileInput, VariantsUncheckedCreateWithoutFileInput> | VariantsCreateWithoutFileInput[] | VariantsUncheckedCreateWithoutFileInput[] | $Types.Skip
+    connectOrCreate?: VariantsCreateOrConnectWithoutFileInput | VariantsCreateOrConnectWithoutFileInput[] | $Types.Skip
+    createMany?: VariantsCreateManyFileInputEnvelope | $Types.Skip
+    connect?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[] | $Types.Skip
   }
 
   export type VariantsUpdateManyWithoutFileNestedInput = {
-    create?: XOR<VariantsCreateWithoutFileInput, VariantsUncheckedCreateWithoutFileInput> | VariantsCreateWithoutFileInput[] | VariantsUncheckedCreateWithoutFileInput[]
-    connectOrCreate?: VariantsCreateOrConnectWithoutFileInput | VariantsCreateOrConnectWithoutFileInput[]
-    upsert?: VariantsUpsertWithWhereUniqueWithoutFileInput | VariantsUpsertWithWhereUniqueWithoutFileInput[]
-    createMany?: VariantsCreateManyFileInputEnvelope
-    set?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[]
-    disconnect?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[]
-    delete?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[]
-    connect?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[]
-    update?: VariantsUpdateWithWhereUniqueWithoutFileInput | VariantsUpdateWithWhereUniqueWithoutFileInput[]
-    updateMany?: VariantsUpdateManyWithWhereWithoutFileInput | VariantsUpdateManyWithWhereWithoutFileInput[]
-    deleteMany?: VariantsScalarWhereInput | VariantsScalarWhereInput[]
+    create?: XOR<VariantsCreateWithoutFileInput, VariantsUncheckedCreateWithoutFileInput> | VariantsCreateWithoutFileInput[] | VariantsUncheckedCreateWithoutFileInput[] | $Types.Skip
+    connectOrCreate?: VariantsCreateOrConnectWithoutFileInput | VariantsCreateOrConnectWithoutFileInput[] | $Types.Skip
+    upsert?: VariantsUpsertWithWhereUniqueWithoutFileInput | VariantsUpsertWithWhereUniqueWithoutFileInput[] | $Types.Skip
+    createMany?: VariantsCreateManyFileInputEnvelope | $Types.Skip
+    set?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[] | $Types.Skip
+    disconnect?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[] | $Types.Skip
+    delete?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[] | $Types.Skip
+    connect?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[] | $Types.Skip
+    update?: VariantsUpdateWithWhereUniqueWithoutFileInput | VariantsUpdateWithWhereUniqueWithoutFileInput[] | $Types.Skip
+    updateMany?: VariantsUpdateManyWithWhereWithoutFileInput | VariantsUpdateManyWithWhereWithoutFileInput[] | $Types.Skip
+    deleteMany?: VariantsScalarWhereInput | VariantsScalarWhereInput[] | $Types.Skip
   }
 
   export type VariantsUncheckedUpdateManyWithoutFileNestedInput = {
-    create?: XOR<VariantsCreateWithoutFileInput, VariantsUncheckedCreateWithoutFileInput> | VariantsCreateWithoutFileInput[] | VariantsUncheckedCreateWithoutFileInput[]
-    connectOrCreate?: VariantsCreateOrConnectWithoutFileInput | VariantsCreateOrConnectWithoutFileInput[]
-    upsert?: VariantsUpsertWithWhereUniqueWithoutFileInput | VariantsUpsertWithWhereUniqueWithoutFileInput[]
-    createMany?: VariantsCreateManyFileInputEnvelope
-    set?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[]
-    disconnect?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[]
-    delete?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[]
-    connect?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[]
-    update?: VariantsUpdateWithWhereUniqueWithoutFileInput | VariantsUpdateWithWhereUniqueWithoutFileInput[]
-    updateMany?: VariantsUpdateManyWithWhereWithoutFileInput | VariantsUpdateManyWithWhereWithoutFileInput[]
-    deleteMany?: VariantsScalarWhereInput | VariantsScalarWhereInput[]
+    create?: XOR<VariantsCreateWithoutFileInput, VariantsUncheckedCreateWithoutFileInput> | VariantsCreateWithoutFileInput[] | VariantsUncheckedCreateWithoutFileInput[] | $Types.Skip
+    connectOrCreate?: VariantsCreateOrConnectWithoutFileInput | VariantsCreateOrConnectWithoutFileInput[] | $Types.Skip
+    upsert?: VariantsUpsertWithWhereUniqueWithoutFileInput | VariantsUpsertWithWhereUniqueWithoutFileInput[] | $Types.Skip
+    createMany?: VariantsCreateManyFileInputEnvelope | $Types.Skip
+    set?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[] | $Types.Skip
+    disconnect?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[] | $Types.Skip
+    delete?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[] | $Types.Skip
+    connect?: VariantsWhereUniqueInput | VariantsWhereUniqueInput[] | $Types.Skip
+    update?: VariantsUpdateWithWhereUniqueWithoutFileInput | VariantsUpdateWithWhereUniqueWithoutFileInput[] | $Types.Skip
+    updateMany?: VariantsUpdateManyWithWhereWithoutFileInput | VariantsUpdateManyWithWhereWithoutFileInput[] | $Types.Skip
+    deleteMany?: VariantsScalarWhereInput | VariantsScalarWhereInput[] | $Types.Skip
   }
 
   export type CategoriesCreateNestedOneWithoutCategoriesInput = {
-    create?: XOR<CategoriesCreateWithoutCategoriesInput, CategoriesUncheckedCreateWithoutCategoriesInput>
-    connectOrCreate?: CategoriesCreateOrConnectWithoutCategoriesInput
-    connect?: CategoriesWhereUniqueInput
+    create?: XOR<CategoriesCreateWithoutCategoriesInput, CategoriesUncheckedCreateWithoutCategoriesInput> | $Types.Skip
+    connectOrCreate?: CategoriesCreateOrConnectWithoutCategoriesInput | $Types.Skip
+    connect?: CategoriesWhereUniqueInput | $Types.Skip
   }
 
   export type ProductCategoriesCreateNestedManyWithoutCategoriesInput = {
-    create?: XOR<ProductCategoriesCreateWithoutCategoriesInput, ProductCategoriesUncheckedCreateWithoutCategoriesInput> | ProductCategoriesCreateWithoutCategoriesInput[] | ProductCategoriesUncheckedCreateWithoutCategoriesInput[]
-    connectOrCreate?: ProductCategoriesCreateOrConnectWithoutCategoriesInput | ProductCategoriesCreateOrConnectWithoutCategoriesInput[]
-    createMany?: ProductCategoriesCreateManyCategoriesInputEnvelope
-    connect?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[]
+    create?: XOR<ProductCategoriesCreateWithoutCategoriesInput, ProductCategoriesUncheckedCreateWithoutCategoriesInput> | ProductCategoriesCreateWithoutCategoriesInput[] | ProductCategoriesUncheckedCreateWithoutCategoriesInput[] | $Types.Skip
+    connectOrCreate?: ProductCategoriesCreateOrConnectWithoutCategoriesInput | ProductCategoriesCreateOrConnectWithoutCategoriesInput[] | $Types.Skip
+    createMany?: ProductCategoriesCreateManyCategoriesInputEnvelope | $Types.Skip
+    connect?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[] | $Types.Skip
   }
 
   export type CategoriesCreateNestedManyWithoutParentInput = {
-    create?: XOR<CategoriesCreateWithoutParentInput, CategoriesUncheckedCreateWithoutParentInput> | CategoriesCreateWithoutParentInput[] | CategoriesUncheckedCreateWithoutParentInput[]
-    connectOrCreate?: CategoriesCreateOrConnectWithoutParentInput | CategoriesCreateOrConnectWithoutParentInput[]
-    createMany?: CategoriesCreateManyParentInputEnvelope
-    connect?: CategoriesWhereUniqueInput | CategoriesWhereUniqueInput[]
+    create?: XOR<CategoriesCreateWithoutParentInput, CategoriesUncheckedCreateWithoutParentInput> | CategoriesCreateWithoutParentInput[] | CategoriesUncheckedCreateWithoutParentInput[] | $Types.Skip
+    connectOrCreate?: CategoriesCreateOrConnectWithoutParentInput | CategoriesCreateOrConnectWithoutParentInput[] | $Types.Skip
+    createMany?: CategoriesCreateManyParentInputEnvelope | $Types.Skip
+    connect?: CategoriesWhereUniqueInput | CategoriesWhereUniqueInput[] | $Types.Skip
   }
 
   export type ProductCategoriesUncheckedCreateNestedManyWithoutCategoriesInput = {
-    create?: XOR<ProductCategoriesCreateWithoutCategoriesInput, ProductCategoriesUncheckedCreateWithoutCategoriesInput> | ProductCategoriesCreateWithoutCategoriesInput[] | ProductCategoriesUncheckedCreateWithoutCategoriesInput[]
-    connectOrCreate?: ProductCategoriesCreateOrConnectWithoutCategoriesInput | ProductCategoriesCreateOrConnectWithoutCategoriesInput[]
-    createMany?: ProductCategoriesCreateManyCategoriesInputEnvelope
-    connect?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[]
+    create?: XOR<ProductCategoriesCreateWithoutCategoriesInput, ProductCategoriesUncheckedCreateWithoutCategoriesInput> | ProductCategoriesCreateWithoutCategoriesInput[] | ProductCategoriesUncheckedCreateWithoutCategoriesInput[] | $Types.Skip
+    connectOrCreate?: ProductCategoriesCreateOrConnectWithoutCategoriesInput | ProductCategoriesCreateOrConnectWithoutCategoriesInput[] | $Types.Skip
+    createMany?: ProductCategoriesCreateManyCategoriesInputEnvelope | $Types.Skip
+    connect?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[] | $Types.Skip
   }
 
   export type CategoriesUncheckedCreateNestedManyWithoutParentInput = {
-    create?: XOR<CategoriesCreateWithoutParentInput, CategoriesUncheckedCreateWithoutParentInput> | CategoriesCreateWithoutParentInput[] | CategoriesUncheckedCreateWithoutParentInput[]
-    connectOrCreate?: CategoriesCreateOrConnectWithoutParentInput | CategoriesCreateOrConnectWithoutParentInput[]
-    createMany?: CategoriesCreateManyParentInputEnvelope
-    connect?: CategoriesWhereUniqueInput | CategoriesWhereUniqueInput[]
+    create?: XOR<CategoriesCreateWithoutParentInput, CategoriesUncheckedCreateWithoutParentInput> | CategoriesCreateWithoutParentInput[] | CategoriesUncheckedCreateWithoutParentInput[] | $Types.Skip
+    connectOrCreate?: CategoriesCreateOrConnectWithoutParentInput | CategoriesCreateOrConnectWithoutParentInput[] | $Types.Skip
+    createMany?: CategoriesCreateManyParentInputEnvelope | $Types.Skip
+    connect?: CategoriesWhereUniqueInput | CategoriesWhereUniqueInput[] | $Types.Skip
   }
 
   export type CategoriesUpdateOneWithoutCategoriesNestedInput = {
-    create?: XOR<CategoriesCreateWithoutCategoriesInput, CategoriesUncheckedCreateWithoutCategoriesInput>
-    connectOrCreate?: CategoriesCreateOrConnectWithoutCategoriesInput
-    upsert?: CategoriesUpsertWithoutCategoriesInput
-    disconnect?: CategoriesWhereInput | boolean
-    delete?: CategoriesWhereInput | boolean
-    connect?: CategoriesWhereUniqueInput
-    update?: XOR<XOR<CategoriesUpdateToOneWithWhereWithoutCategoriesInput, CategoriesUpdateWithoutCategoriesInput>, CategoriesUncheckedUpdateWithoutCategoriesInput>
+    create?: XOR<CategoriesCreateWithoutCategoriesInput, CategoriesUncheckedCreateWithoutCategoriesInput> | $Types.Skip
+    connectOrCreate?: CategoriesCreateOrConnectWithoutCategoriesInput | $Types.Skip
+    upsert?: CategoriesUpsertWithoutCategoriesInput | $Types.Skip
+    disconnect?: CategoriesWhereInput | boolean | $Types.Skip
+    delete?: CategoriesWhereInput | boolean | $Types.Skip
+    connect?: CategoriesWhereUniqueInput | $Types.Skip
+    update?: XOR<XOR<CategoriesUpdateToOneWithWhereWithoutCategoriesInput, CategoriesUpdateWithoutCategoriesInput>, CategoriesUncheckedUpdateWithoutCategoriesInput> | $Types.Skip
   }
 
   export type ProductCategoriesUpdateManyWithoutCategoriesNestedInput = {
-    create?: XOR<ProductCategoriesCreateWithoutCategoriesInput, ProductCategoriesUncheckedCreateWithoutCategoriesInput> | ProductCategoriesCreateWithoutCategoriesInput[] | ProductCategoriesUncheckedCreateWithoutCategoriesInput[]
-    connectOrCreate?: ProductCategoriesCreateOrConnectWithoutCategoriesInput | ProductCategoriesCreateOrConnectWithoutCategoriesInput[]
-    upsert?: ProductCategoriesUpsertWithWhereUniqueWithoutCategoriesInput | ProductCategoriesUpsertWithWhereUniqueWithoutCategoriesInput[]
-    createMany?: ProductCategoriesCreateManyCategoriesInputEnvelope
-    set?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[]
-    disconnect?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[]
-    delete?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[]
-    connect?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[]
-    update?: ProductCategoriesUpdateWithWhereUniqueWithoutCategoriesInput | ProductCategoriesUpdateWithWhereUniqueWithoutCategoriesInput[]
-    updateMany?: ProductCategoriesUpdateManyWithWhereWithoutCategoriesInput | ProductCategoriesUpdateManyWithWhereWithoutCategoriesInput[]
-    deleteMany?: ProductCategoriesScalarWhereInput | ProductCategoriesScalarWhereInput[]
+    create?: XOR<ProductCategoriesCreateWithoutCategoriesInput, ProductCategoriesUncheckedCreateWithoutCategoriesInput> | ProductCategoriesCreateWithoutCategoriesInput[] | ProductCategoriesUncheckedCreateWithoutCategoriesInput[] | $Types.Skip
+    connectOrCreate?: ProductCategoriesCreateOrConnectWithoutCategoriesInput | ProductCategoriesCreateOrConnectWithoutCategoriesInput[] | $Types.Skip
+    upsert?: ProductCategoriesUpsertWithWhereUniqueWithoutCategoriesInput | ProductCategoriesUpsertWithWhereUniqueWithoutCategoriesInput[] | $Types.Skip
+    createMany?: ProductCategoriesCreateManyCategoriesInputEnvelope | $Types.Skip
+    set?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[] | $Types.Skip
+    disconnect?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[] | $Types.Skip
+    delete?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[] | $Types.Skip
+    connect?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[] | $Types.Skip
+    update?: ProductCategoriesUpdateWithWhereUniqueWithoutCategoriesInput | ProductCategoriesUpdateWithWhereUniqueWithoutCategoriesInput[] | $Types.Skip
+    updateMany?: ProductCategoriesUpdateManyWithWhereWithoutCategoriesInput | ProductCategoriesUpdateManyWithWhereWithoutCategoriesInput[] | $Types.Skip
+    deleteMany?: ProductCategoriesScalarWhereInput | ProductCategoriesScalarWhereInput[] | $Types.Skip
   }
 
   export type CategoriesUpdateManyWithoutParentNestedInput = {
-    create?: XOR<CategoriesCreateWithoutParentInput, CategoriesUncheckedCreateWithoutParentInput> | CategoriesCreateWithoutParentInput[] | CategoriesUncheckedCreateWithoutParentInput[]
-    connectOrCreate?: CategoriesCreateOrConnectWithoutParentInput | CategoriesCreateOrConnectWithoutParentInput[]
-    upsert?: CategoriesUpsertWithWhereUniqueWithoutParentInput | CategoriesUpsertWithWhereUniqueWithoutParentInput[]
-    createMany?: CategoriesCreateManyParentInputEnvelope
-    set?: CategoriesWhereUniqueInput | CategoriesWhereUniqueInput[]
-    disconnect?: CategoriesWhereUniqueInput | CategoriesWhereUniqueInput[]
-    delete?: CategoriesWhereUniqueInput | CategoriesWhereUniqueInput[]
-    connect?: CategoriesWhereUniqueInput | CategoriesWhereUniqueInput[]
-    update?: CategoriesUpdateWithWhereUniqueWithoutParentInput | CategoriesUpdateWithWhereUniqueWithoutParentInput[]
-    updateMany?: CategoriesUpdateManyWithWhereWithoutParentInput | CategoriesUpdateManyWithWhereWithoutParentInput[]
-    deleteMany?: CategoriesScalarWhereInput | CategoriesScalarWhereInput[]
+    create?: XOR<CategoriesCreateWithoutParentInput, CategoriesUncheckedCreateWithoutParentInput> | CategoriesCreateWithoutParentInput[] | CategoriesUncheckedCreateWithoutParentInput[] | $Types.Skip
+    connectOrCreate?: CategoriesCreateOrConnectWithoutParentInput | CategoriesCreateOrConnectWithoutParentInput[] | $Types.Skip
+    upsert?: CategoriesUpsertWithWhereUniqueWithoutParentInput | CategoriesUpsertWithWhereUniqueWithoutParentInput[] | $Types.Skip
+    createMany?: CategoriesCreateManyParentInputEnvelope | $Types.Skip
+    set?: CategoriesWhereUniqueInput | CategoriesWhereUniqueInput[] | $Types.Skip
+    disconnect?: CategoriesWhereUniqueInput | CategoriesWhereUniqueInput[] | $Types.Skip
+    delete?: CategoriesWhereUniqueInput | CategoriesWhereUniqueInput[] | $Types.Skip
+    connect?: CategoriesWhereUniqueInput | CategoriesWhereUniqueInput[] | $Types.Skip
+    update?: CategoriesUpdateWithWhereUniqueWithoutParentInput | CategoriesUpdateWithWhereUniqueWithoutParentInput[] | $Types.Skip
+    updateMany?: CategoriesUpdateManyWithWhereWithoutParentInput | CategoriesUpdateManyWithWhereWithoutParentInput[] | $Types.Skip
+    deleteMany?: CategoriesScalarWhereInput | CategoriesScalarWhereInput[] | $Types.Skip
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
+    set?: string | null | $Types.Skip
   }
 
   export type ProductCategoriesUncheckedUpdateManyWithoutCategoriesNestedInput = {
-    create?: XOR<ProductCategoriesCreateWithoutCategoriesInput, ProductCategoriesUncheckedCreateWithoutCategoriesInput> | ProductCategoriesCreateWithoutCategoriesInput[] | ProductCategoriesUncheckedCreateWithoutCategoriesInput[]
-    connectOrCreate?: ProductCategoriesCreateOrConnectWithoutCategoriesInput | ProductCategoriesCreateOrConnectWithoutCategoriesInput[]
-    upsert?: ProductCategoriesUpsertWithWhereUniqueWithoutCategoriesInput | ProductCategoriesUpsertWithWhereUniqueWithoutCategoriesInput[]
-    createMany?: ProductCategoriesCreateManyCategoriesInputEnvelope
-    set?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[]
-    disconnect?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[]
-    delete?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[]
-    connect?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[]
-    update?: ProductCategoriesUpdateWithWhereUniqueWithoutCategoriesInput | ProductCategoriesUpdateWithWhereUniqueWithoutCategoriesInput[]
-    updateMany?: ProductCategoriesUpdateManyWithWhereWithoutCategoriesInput | ProductCategoriesUpdateManyWithWhereWithoutCategoriesInput[]
-    deleteMany?: ProductCategoriesScalarWhereInput | ProductCategoriesScalarWhereInput[]
+    create?: XOR<ProductCategoriesCreateWithoutCategoriesInput, ProductCategoriesUncheckedCreateWithoutCategoriesInput> | ProductCategoriesCreateWithoutCategoriesInput[] | ProductCategoriesUncheckedCreateWithoutCategoriesInput[] | $Types.Skip
+    connectOrCreate?: ProductCategoriesCreateOrConnectWithoutCategoriesInput | ProductCategoriesCreateOrConnectWithoutCategoriesInput[] | $Types.Skip
+    upsert?: ProductCategoriesUpsertWithWhereUniqueWithoutCategoriesInput | ProductCategoriesUpsertWithWhereUniqueWithoutCategoriesInput[] | $Types.Skip
+    createMany?: ProductCategoriesCreateManyCategoriesInputEnvelope | $Types.Skip
+    set?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[] | $Types.Skip
+    disconnect?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[] | $Types.Skip
+    delete?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[] | $Types.Skip
+    connect?: ProductCategoriesWhereUniqueInput | ProductCategoriesWhereUniqueInput[] | $Types.Skip
+    update?: ProductCategoriesUpdateWithWhereUniqueWithoutCategoriesInput | ProductCategoriesUpdateWithWhereUniqueWithoutCategoriesInput[] | $Types.Skip
+    updateMany?: ProductCategoriesUpdateManyWithWhereWithoutCategoriesInput | ProductCategoriesUpdateManyWithWhereWithoutCategoriesInput[] | $Types.Skip
+    deleteMany?: ProductCategoriesScalarWhereInput | ProductCategoriesScalarWhereInput[] | $Types.Skip
   }
 
   export type CategoriesUncheckedUpdateManyWithoutParentNestedInput = {
-    create?: XOR<CategoriesCreateWithoutParentInput, CategoriesUncheckedCreateWithoutParentInput> | CategoriesCreateWithoutParentInput[] | CategoriesUncheckedCreateWithoutParentInput[]
-    connectOrCreate?: CategoriesCreateOrConnectWithoutParentInput | CategoriesCreateOrConnectWithoutParentInput[]
-    upsert?: CategoriesUpsertWithWhereUniqueWithoutParentInput | CategoriesUpsertWithWhereUniqueWithoutParentInput[]
-    createMany?: CategoriesCreateManyParentInputEnvelope
-    set?: CategoriesWhereUniqueInput | CategoriesWhereUniqueInput[]
-    disconnect?: CategoriesWhereUniqueInput | CategoriesWhereUniqueInput[]
-    delete?: CategoriesWhereUniqueInput | CategoriesWhereUniqueInput[]
-    connect?: CategoriesWhereUniqueInput | CategoriesWhereUniqueInput[]
-    update?: CategoriesUpdateWithWhereUniqueWithoutParentInput | CategoriesUpdateWithWhereUniqueWithoutParentInput[]
-    updateMany?: CategoriesUpdateManyWithWhereWithoutParentInput | CategoriesUpdateManyWithWhereWithoutParentInput[]
-    deleteMany?: CategoriesScalarWhereInput | CategoriesScalarWhereInput[]
+    create?: XOR<CategoriesCreateWithoutParentInput, CategoriesUncheckedCreateWithoutParentInput> | CategoriesCreateWithoutParentInput[] | CategoriesUncheckedCreateWithoutParentInput[] | $Types.Skip
+    connectOrCreate?: CategoriesCreateOrConnectWithoutParentInput | CategoriesCreateOrConnectWithoutParentInput[] | $Types.Skip
+    upsert?: CategoriesUpsertWithWhereUniqueWithoutParentInput | CategoriesUpsertWithWhereUniqueWithoutParentInput[] | $Types.Skip
+    createMany?: CategoriesCreateManyParentInputEnvelope | $Types.Skip
+    set?: CategoriesWhereUniqueInput | CategoriesWhereUniqueInput[] | $Types.Skip
+    disconnect?: CategoriesWhereUniqueInput | CategoriesWhereUniqueInput[] | $Types.Skip
+    delete?: CategoriesWhereUniqueInput | CategoriesWhereUniqueInput[] | $Types.Skip
+    connect?: CategoriesWhereUniqueInput | CategoriesWhereUniqueInput[] | $Types.Skip
+    update?: CategoriesUpdateWithWhereUniqueWithoutParentInput | CategoriesUpdateWithWhereUniqueWithoutParentInput[] | $Types.Skip
+    updateMany?: CategoriesUpdateManyWithWhereWithoutParentInput | CategoriesUpdateManyWithWhereWithoutParentInput[] | $Types.Skip
+    deleteMany?: CategoriesScalarWhereInput | CategoriesScalarWhereInput[] | $Types.Skip
   }
 
   export type ProductsCreateNestedOneWithoutProductCategoriesInput = {
-    create?: XOR<ProductsCreateWithoutProductCategoriesInput, ProductsUncheckedCreateWithoutProductCategoriesInput>
-    connectOrCreate?: ProductsCreateOrConnectWithoutProductCategoriesInput
-    connect?: ProductsWhereUniqueInput
+    create?: XOR<ProductsCreateWithoutProductCategoriesInput, ProductsUncheckedCreateWithoutProductCategoriesInput> | $Types.Skip
+    connectOrCreate?: ProductsCreateOrConnectWithoutProductCategoriesInput | $Types.Skip
+    connect?: ProductsWhereUniqueInput | $Types.Skip
   }
 
   export type CategoriesCreateNestedOneWithoutProductCategoriesInput = {
-    create?: XOR<CategoriesCreateWithoutProductCategoriesInput, CategoriesUncheckedCreateWithoutProductCategoriesInput>
-    connectOrCreate?: CategoriesCreateOrConnectWithoutProductCategoriesInput
-    connect?: CategoriesWhereUniqueInput
+    create?: XOR<CategoriesCreateWithoutProductCategoriesInput, CategoriesUncheckedCreateWithoutProductCategoriesInput> | $Types.Skip
+    connectOrCreate?: CategoriesCreateOrConnectWithoutProductCategoriesInput | $Types.Skip
+    connect?: CategoriesWhereUniqueInput | $Types.Skip
   }
 
   export type ProductsUpdateOneRequiredWithoutProductCategoriesNestedInput = {
-    create?: XOR<ProductsCreateWithoutProductCategoriesInput, ProductsUncheckedCreateWithoutProductCategoriesInput>
-    connectOrCreate?: ProductsCreateOrConnectWithoutProductCategoriesInput
-    upsert?: ProductsUpsertWithoutProductCategoriesInput
-    connect?: ProductsWhereUniqueInput
-    update?: XOR<XOR<ProductsUpdateToOneWithWhereWithoutProductCategoriesInput, ProductsUpdateWithoutProductCategoriesInput>, ProductsUncheckedUpdateWithoutProductCategoriesInput>
+    create?: XOR<ProductsCreateWithoutProductCategoriesInput, ProductsUncheckedCreateWithoutProductCategoriesInput> | $Types.Skip
+    connectOrCreate?: ProductsCreateOrConnectWithoutProductCategoriesInput | $Types.Skip
+    upsert?: ProductsUpsertWithoutProductCategoriesInput | $Types.Skip
+    connect?: ProductsWhereUniqueInput | $Types.Skip
+    update?: XOR<XOR<ProductsUpdateToOneWithWhereWithoutProductCategoriesInput, ProductsUpdateWithoutProductCategoriesInput>, ProductsUncheckedUpdateWithoutProductCategoriesInput> | $Types.Skip
   }
 
   export type CategoriesUpdateOneRequiredWithoutProductCategoriesNestedInput = {
-    create?: XOR<CategoriesCreateWithoutProductCategoriesInput, CategoriesUncheckedCreateWithoutProductCategoriesInput>
-    connectOrCreate?: CategoriesCreateOrConnectWithoutProductCategoriesInput
-    upsert?: CategoriesUpsertWithoutProductCategoriesInput
-    connect?: CategoriesWhereUniqueInput
-    update?: XOR<XOR<CategoriesUpdateToOneWithWhereWithoutProductCategoriesInput, CategoriesUpdateWithoutProductCategoriesInput>, CategoriesUncheckedUpdateWithoutProductCategoriesInput>
+    create?: XOR<CategoriesCreateWithoutProductCategoriesInput, CategoriesUncheckedCreateWithoutProductCategoriesInput> | $Types.Skip
+    connectOrCreate?: CategoriesCreateOrConnectWithoutProductCategoriesInput | $Types.Skip
+    upsert?: CategoriesUpsertWithoutProductCategoriesInput | $Types.Skip
+    connect?: CategoriesWhereUniqueInput | $Types.Skip
+    update?: XOR<XOR<CategoriesUpdateToOneWithWhereWithoutProductCategoriesInput, CategoriesUpdateWithoutProductCategoriesInput>, CategoriesUncheckedUpdateWithoutProductCategoriesInput> | $Types.Skip
   }
 
   export type ProductsCreateNestedOneWithoutLikesInput = {
-    create?: XOR<ProductsCreateWithoutLikesInput, ProductsUncheckedCreateWithoutLikesInput>
-    connectOrCreate?: ProductsCreateOrConnectWithoutLikesInput
-    connect?: ProductsWhereUniqueInput
+    create?: XOR<ProductsCreateWithoutLikesInput, ProductsUncheckedCreateWithoutLikesInput> | $Types.Skip
+    connectOrCreate?: ProductsCreateOrConnectWithoutLikesInput | $Types.Skip
+    connect?: ProductsWhereUniqueInput | $Types.Skip
   }
 
   export type UsersCreateNestedOneWithoutLikesInput = {
-    create?: XOR<UsersCreateWithoutLikesInput, UsersUncheckedCreateWithoutLikesInput>
-    connectOrCreate?: UsersCreateOrConnectWithoutLikesInput
-    connect?: UsersWhereUniqueInput
+    create?: XOR<UsersCreateWithoutLikesInput, UsersUncheckedCreateWithoutLikesInput> | $Types.Skip
+    connectOrCreate?: UsersCreateOrConnectWithoutLikesInput | $Types.Skip
+    connect?: UsersWhereUniqueInput | $Types.Skip
   }
 
   export type ProductsUpdateOneRequiredWithoutLikesNestedInput = {
-    create?: XOR<ProductsCreateWithoutLikesInput, ProductsUncheckedCreateWithoutLikesInput>
-    connectOrCreate?: ProductsCreateOrConnectWithoutLikesInput
-    upsert?: ProductsUpsertWithoutLikesInput
-    connect?: ProductsWhereUniqueInput
-    update?: XOR<XOR<ProductsUpdateToOneWithWhereWithoutLikesInput, ProductsUpdateWithoutLikesInput>, ProductsUncheckedUpdateWithoutLikesInput>
+    create?: XOR<ProductsCreateWithoutLikesInput, ProductsUncheckedCreateWithoutLikesInput> | $Types.Skip
+    connectOrCreate?: ProductsCreateOrConnectWithoutLikesInput | $Types.Skip
+    upsert?: ProductsUpsertWithoutLikesInput | $Types.Skip
+    connect?: ProductsWhereUniqueInput | $Types.Skip
+    update?: XOR<XOR<ProductsUpdateToOneWithWhereWithoutLikesInput, ProductsUpdateWithoutLikesInput>, ProductsUncheckedUpdateWithoutLikesInput> | $Types.Skip
   }
 
   export type UsersUpdateOneRequiredWithoutLikesNestedInput = {
-    create?: XOR<UsersCreateWithoutLikesInput, UsersUncheckedCreateWithoutLikesInput>
-    connectOrCreate?: UsersCreateOrConnectWithoutLikesInput
-    upsert?: UsersUpsertWithoutLikesInput
-    connect?: UsersWhereUniqueInput
-    update?: XOR<XOR<UsersUpdateToOneWithWhereWithoutLikesInput, UsersUpdateWithoutLikesInput>, UsersUncheckedUpdateWithoutLikesInput>
+    create?: XOR<UsersCreateWithoutLikesInput, UsersUncheckedCreateWithoutLikesInput> | $Types.Skip
+    connectOrCreate?: UsersCreateOrConnectWithoutLikesInput | $Types.Skip
+    upsert?: UsersUpsertWithoutLikesInput | $Types.Skip
+    connect?: UsersWhereUniqueInput | $Types.Skip
+    update?: XOR<XOR<UsersUpdateToOneWithWhereWithoutLikesInput, UsersUpdateWithoutLikesInput>, UsersUncheckedUpdateWithoutLikesInput> | $Types.Skip
+  }
+
+  export type VariantsCreateNestedOneWithoutCartDetailsInput = {
+    create?: XOR<VariantsCreateWithoutCartDetailsInput, VariantsUncheckedCreateWithoutCartDetailsInput> | $Types.Skip
+    connectOrCreate?: VariantsCreateOrConnectWithoutCartDetailsInput | $Types.Skip
+    connect?: VariantsWhereUniqueInput | $Types.Skip
+  }
+
+  export type CartsCreateNestedOneWithoutCartDetailsInput = {
+    create?: XOR<CartsCreateWithoutCartDetailsInput, CartsUncheckedCreateWithoutCartDetailsInput> | $Types.Skip
+    connectOrCreate?: CartsCreateOrConnectWithoutCartDetailsInput | $Types.Skip
+    connect?: CartsWhereUniqueInput | $Types.Skip
+  }
+
+  export type VariantsUpdateOneRequiredWithoutCartDetailsNestedInput = {
+    create?: XOR<VariantsCreateWithoutCartDetailsInput, VariantsUncheckedCreateWithoutCartDetailsInput> | $Types.Skip
+    connectOrCreate?: VariantsCreateOrConnectWithoutCartDetailsInput | $Types.Skip
+    upsert?: VariantsUpsertWithoutCartDetailsInput | $Types.Skip
+    connect?: VariantsWhereUniqueInput | $Types.Skip
+    update?: XOR<XOR<VariantsUpdateToOneWithWhereWithoutCartDetailsInput, VariantsUpdateWithoutCartDetailsInput>, VariantsUncheckedUpdateWithoutCartDetailsInput> | $Types.Skip
+  }
+
+  export type CartsUpdateOneRequiredWithoutCartDetailsNestedInput = {
+    create?: XOR<CartsCreateWithoutCartDetailsInput, CartsUncheckedCreateWithoutCartDetailsInput> | $Types.Skip
+    connectOrCreate?: CartsCreateOrConnectWithoutCartDetailsInput | $Types.Skip
+    upsert?: CartsUpsertWithoutCartDetailsInput | $Types.Skip
+    connect?: CartsWhereUniqueInput | $Types.Skip
+    update?: XOR<XOR<CartsUpdateToOneWithWhereWithoutCartDetailsInput, CartsUpdateWithoutCartDetailsInput>, CartsUncheckedUpdateWithoutCartDetailsInput> | $Types.Skip
+  }
+
+  export type UsersCreateNestedOneWithoutCartsInput = {
+    create?: XOR<UsersCreateWithoutCartsInput, UsersUncheckedCreateWithoutCartsInput> | $Types.Skip
+    connectOrCreate?: UsersCreateOrConnectWithoutCartsInput | $Types.Skip
+    connect?: UsersWhereUniqueInput | $Types.Skip
+  }
+
+  export type CartDetailsCreateNestedManyWithoutCartInput = {
+    create?: XOR<CartDetailsCreateWithoutCartInput, CartDetailsUncheckedCreateWithoutCartInput> | CartDetailsCreateWithoutCartInput[] | CartDetailsUncheckedCreateWithoutCartInput[] | $Types.Skip
+    connectOrCreate?: CartDetailsCreateOrConnectWithoutCartInput | CartDetailsCreateOrConnectWithoutCartInput[] | $Types.Skip
+    createMany?: CartDetailsCreateManyCartInputEnvelope | $Types.Skip
+    connect?: CartDetailsWhereUniqueInput | CartDetailsWhereUniqueInput[] | $Types.Skip
+  }
+
+  export type CartDetailsUncheckedCreateNestedManyWithoutCartInput = {
+    create?: XOR<CartDetailsCreateWithoutCartInput, CartDetailsUncheckedCreateWithoutCartInput> | CartDetailsCreateWithoutCartInput[] | CartDetailsUncheckedCreateWithoutCartInput[] | $Types.Skip
+    connectOrCreate?: CartDetailsCreateOrConnectWithoutCartInput | CartDetailsCreateOrConnectWithoutCartInput[] | $Types.Skip
+    createMany?: CartDetailsCreateManyCartInputEnvelope | $Types.Skip
+    connect?: CartDetailsWhereUniqueInput | CartDetailsWhereUniqueInput[] | $Types.Skip
+  }
+
+  export type UsersUpdateOneRequiredWithoutCartsNestedInput = {
+    create?: XOR<UsersCreateWithoutCartsInput, UsersUncheckedCreateWithoutCartsInput> | $Types.Skip
+    connectOrCreate?: UsersCreateOrConnectWithoutCartsInput | $Types.Skip
+    upsert?: UsersUpsertWithoutCartsInput | $Types.Skip
+    connect?: UsersWhereUniqueInput | $Types.Skip
+    update?: XOR<XOR<UsersUpdateToOneWithWhereWithoutCartsInput, UsersUpdateWithoutCartsInput>, UsersUncheckedUpdateWithoutCartsInput> | $Types.Skip
+  }
+
+  export type CartDetailsUpdateManyWithoutCartNestedInput = {
+    create?: XOR<CartDetailsCreateWithoutCartInput, CartDetailsUncheckedCreateWithoutCartInput> | CartDetailsCreateWithoutCartInput[] | CartDetailsUncheckedCreateWithoutCartInput[] | $Types.Skip
+    connectOrCreate?: CartDetailsCreateOrConnectWithoutCartInput | CartDetailsCreateOrConnectWithoutCartInput[] | $Types.Skip
+    upsert?: CartDetailsUpsertWithWhereUniqueWithoutCartInput | CartDetailsUpsertWithWhereUniqueWithoutCartInput[] | $Types.Skip
+    createMany?: CartDetailsCreateManyCartInputEnvelope | $Types.Skip
+    set?: CartDetailsWhereUniqueInput | CartDetailsWhereUniqueInput[] | $Types.Skip
+    disconnect?: CartDetailsWhereUniqueInput | CartDetailsWhereUniqueInput[] | $Types.Skip
+    delete?: CartDetailsWhereUniqueInput | CartDetailsWhereUniqueInput[] | $Types.Skip
+    connect?: CartDetailsWhereUniqueInput | CartDetailsWhereUniqueInput[] | $Types.Skip
+    update?: CartDetailsUpdateWithWhereUniqueWithoutCartInput | CartDetailsUpdateWithWhereUniqueWithoutCartInput[] | $Types.Skip
+    updateMany?: CartDetailsUpdateManyWithWhereWithoutCartInput | CartDetailsUpdateManyWithWhereWithoutCartInput[] | $Types.Skip
+    deleteMany?: CartDetailsScalarWhereInput | CartDetailsScalarWhereInput[] | $Types.Skip
+  }
+
+  export type CartDetailsUncheckedUpdateManyWithoutCartNestedInput = {
+    create?: XOR<CartDetailsCreateWithoutCartInput, CartDetailsUncheckedCreateWithoutCartInput> | CartDetailsCreateWithoutCartInput[] | CartDetailsUncheckedCreateWithoutCartInput[] | $Types.Skip
+    connectOrCreate?: CartDetailsCreateOrConnectWithoutCartInput | CartDetailsCreateOrConnectWithoutCartInput[] | $Types.Skip
+    upsert?: CartDetailsUpsertWithWhereUniqueWithoutCartInput | CartDetailsUpsertWithWhereUniqueWithoutCartInput[] | $Types.Skip
+    createMany?: CartDetailsCreateManyCartInputEnvelope | $Types.Skip
+    set?: CartDetailsWhereUniqueInput | CartDetailsWhereUniqueInput[] | $Types.Skip
+    disconnect?: CartDetailsWhereUniqueInput | CartDetailsWhereUniqueInput[] | $Types.Skip
+    delete?: CartDetailsWhereUniqueInput | CartDetailsWhereUniqueInput[] | $Types.Skip
+    connect?: CartDetailsWhereUniqueInput | CartDetailsWhereUniqueInput[] | $Types.Skip
+    update?: CartDetailsUpdateWithWhereUniqueWithoutCartInput | CartDetailsUpdateWithWhereUniqueWithoutCartInput[] | $Types.Skip
+    updateMany?: CartDetailsUpdateManyWithWhereWithoutCartInput | CartDetailsUpdateManyWithWhereWithoutCartInput[] | $Types.Skip
+    deleteMany?: CartDetailsScalarWhereInput | CartDetailsScalarWhereInput[] | $Types.Skip
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringFilter<$PrismaModel> | string
+    equals?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | $Types.Skip
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | $Types.Skip
+    lt?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    lte?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    gt?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    gte?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    contains?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    startsWith?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    endsWith?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    not?: NestedStringFilter<$PrismaModel> | string | $Types.Skip
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
+    equals?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | $Types.Skip
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | $Types.Skip
+    lt?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    lte?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    gt?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    gte?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    contains?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    startsWith?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    endsWith?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string | $Types.Skip
+    _count?: NestedIntFilter<$PrismaModel> | $Types.Skip
+    _min?: NestedStringFilter<$PrismaModel> | $Types.Skip
+    _max?: NestedStringFilter<$PrismaModel> | $Types.Skip
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
+    equals?: number | IntFieldRefInput<$PrismaModel> | $Types.Skip
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | $Types.Skip
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | $Types.Skip
+    lt?: number | IntFieldRefInput<$PrismaModel> | $Types.Skip
+    lte?: number | IntFieldRefInput<$PrismaModel> | $Types.Skip
+    gt?: number | IntFieldRefInput<$PrismaModel> | $Types.Skip
+    gte?: number | IntFieldRefInput<$PrismaModel> | $Types.Skip
+    not?: NestedIntFilter<$PrismaModel> | number | $Types.Skip
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | $Types.Skip
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | $Types.Skip
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | $Types.Skip
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel> | $Types.Skip
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel> | $Types.Skip
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel> | $Types.Skip
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel> | $Types.Skip
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string | $Types.Skip
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | $Types.Skip
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | $Types.Skip
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | $Types.Skip
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel> | $Types.Skip
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel> | $Types.Skip
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel> | $Types.Skip
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel> | $Types.Skip
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string | $Types.Skip
+    _count?: NestedIntFilter<$PrismaModel> | $Types.Skip
+    _min?: NestedDateTimeFilter<$PrismaModel> | $Types.Skip
+    _max?: NestedDateTimeFilter<$PrismaModel> | $Types.Skip
   }
 
   export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
-  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
+    equals?: number | FloatFieldRefInput<$PrismaModel> | $Types.Skip
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | $Types.Skip
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | $Types.Skip
+    lt?: number | FloatFieldRefInput<$PrismaModel> | $Types.Skip
+    lte?: number | FloatFieldRefInput<$PrismaModel> | $Types.Skip
+    gt?: number | FloatFieldRefInput<$PrismaModel> | $Types.Skip
+    gte?: number | FloatFieldRefInput<$PrismaModel> | $Types.Skip
+    not?: NestedFloatFilter<$PrismaModel> | number | $Types.Skip
   }
 
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
+    equals?: number | FloatFieldRefInput<$PrismaModel> | $Types.Skip
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | $Types.Skip
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | $Types.Skip
+    lt?: number | FloatFieldRefInput<$PrismaModel> | $Types.Skip
+    lte?: number | FloatFieldRefInput<$PrismaModel> | $Types.Skip
+    gt?: number | FloatFieldRefInput<$PrismaModel> | $Types.Skip
+    gte?: number | FloatFieldRefInput<$PrismaModel> | $Types.Skip
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number | $Types.Skip
+    _count?: NestedIntFilter<$PrismaModel> | $Types.Skip
+    _avg?: NestedFloatFilter<$PrismaModel> | $Types.Skip
+    _sum?: NestedFloatFilter<$PrismaModel> | $Types.Skip
+    _min?: NestedFloatFilter<$PrismaModel> | $Types.Skip
+    _max?: NestedFloatFilter<$PrismaModel> | $Types.Skip
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | $Types.Skip
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | $Types.Skip
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | $Types.Skip
+    lt?: number | IntFieldRefInput<$PrismaModel> | $Types.Skip
+    lte?: number | IntFieldRefInput<$PrismaModel> | $Types.Skip
+    gt?: number | IntFieldRefInput<$PrismaModel> | $Types.Skip
+    gte?: number | IntFieldRefInput<$PrismaModel> | $Types.Skip
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number | $Types.Skip
+    _count?: NestedIntFilter<$PrismaModel> | $Types.Skip
+    _avg?: NestedFloatFilter<$PrismaModel> | $Types.Skip
+    _sum?: NestedIntFilter<$PrismaModel> | $Types.Skip
+    _min?: NestedIntFilter<$PrismaModel> | $Types.Skip
+    _max?: NestedIntFilter<$PrismaModel> | $Types.Skip
   }
 
   export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | $Types.Skip
+    not?: NestedBoolFilter<$PrismaModel> | boolean | $Types.Skip
   }
 
   export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | $Types.Skip
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean | $Types.Skip
+    _count?: NestedIntFilter<$PrismaModel> | $Types.Skip
+    _min?: NestedBoolFilter<$PrismaModel> | $Types.Skip
+    _max?: NestedBoolFilter<$PrismaModel> | $Types.Skip
   }
 
   export type NestedEnumSizeFilter<$PrismaModel = never> = {
-    equals?: $Enums.Size | EnumSizeFieldRefInput<$PrismaModel>
-    in?: $Enums.Size[] | ListEnumSizeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Size[] | ListEnumSizeFieldRefInput<$PrismaModel>
-    not?: NestedEnumSizeFilter<$PrismaModel> | $Enums.Size
+    equals?: $Enums.Size | EnumSizeFieldRefInput<$PrismaModel> | $Types.Skip
+    in?: $Enums.Size[] | ListEnumSizeFieldRefInput<$PrismaModel> | $Types.Skip
+    notIn?: $Enums.Size[] | ListEnumSizeFieldRefInput<$PrismaModel> | $Types.Skip
+    not?: NestedEnumSizeFilter<$PrismaModel> | $Enums.Size | $Types.Skip
   }
 
   export type NestedEnumTextColorFilter<$PrismaModel = never> = {
-    equals?: $Enums.TextColor | EnumTextColorFieldRefInput<$PrismaModel>
-    in?: $Enums.TextColor[] | ListEnumTextColorFieldRefInput<$PrismaModel>
-    notIn?: $Enums.TextColor[] | ListEnumTextColorFieldRefInput<$PrismaModel>
-    not?: NestedEnumTextColorFilter<$PrismaModel> | $Enums.TextColor
+    equals?: $Enums.TextColor | EnumTextColorFieldRefInput<$PrismaModel> | $Types.Skip
+    in?: $Enums.TextColor[] | ListEnumTextColorFieldRefInput<$PrismaModel> | $Types.Skip
+    notIn?: $Enums.TextColor[] | ListEnumTextColorFieldRefInput<$PrismaModel> | $Types.Skip
+    not?: NestedEnumTextColorFilter<$PrismaModel> | $Enums.TextColor | $Types.Skip
   }
 
   export type NestedEnumSizeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Size | EnumSizeFieldRefInput<$PrismaModel>
-    in?: $Enums.Size[] | ListEnumSizeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.Size[] | ListEnumSizeFieldRefInput<$PrismaModel>
-    not?: NestedEnumSizeWithAggregatesFilter<$PrismaModel> | $Enums.Size
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumSizeFilter<$PrismaModel>
-    _max?: NestedEnumSizeFilter<$PrismaModel>
+    equals?: $Enums.Size | EnumSizeFieldRefInput<$PrismaModel> | $Types.Skip
+    in?: $Enums.Size[] | ListEnumSizeFieldRefInput<$PrismaModel> | $Types.Skip
+    notIn?: $Enums.Size[] | ListEnumSizeFieldRefInput<$PrismaModel> | $Types.Skip
+    not?: NestedEnumSizeWithAggregatesFilter<$PrismaModel> | $Enums.Size | $Types.Skip
+    _count?: NestedIntFilter<$PrismaModel> | $Types.Skip
+    _min?: NestedEnumSizeFilter<$PrismaModel> | $Types.Skip
+    _max?: NestedEnumSizeFilter<$PrismaModel> | $Types.Skip
   }
 
   export type NestedEnumTextColorWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.TextColor | EnumTextColorFieldRefInput<$PrismaModel>
-    in?: $Enums.TextColor[] | ListEnumTextColorFieldRefInput<$PrismaModel>
-    notIn?: $Enums.TextColor[] | ListEnumTextColorFieldRefInput<$PrismaModel>
-    not?: NestedEnumTextColorWithAggregatesFilter<$PrismaModel> | $Enums.TextColor
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumTextColorFilter<$PrismaModel>
-    _max?: NestedEnumTextColorFilter<$PrismaModel>
+    equals?: $Enums.TextColor | EnumTextColorFieldRefInput<$PrismaModel> | $Types.Skip
+    in?: $Enums.TextColor[] | ListEnumTextColorFieldRefInput<$PrismaModel> | $Types.Skip
+    notIn?: $Enums.TextColor[] | ListEnumTextColorFieldRefInput<$PrismaModel> | $Types.Skip
+    not?: NestedEnumTextColorWithAggregatesFilter<$PrismaModel> | $Enums.TextColor | $Types.Skip
+    _count?: NestedIntFilter<$PrismaModel> | $Types.Skip
+    _min?: NestedEnumTextColorFilter<$PrismaModel> | $Types.Skip
+    _max?: NestedEnumTextColorFilter<$PrismaModel> | $Types.Skip
   }
 
   export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+    equals?: string | StringFieldRefInput<$PrismaModel> | null | $Types.Skip
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null | $Types.Skip
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null | $Types.Skip
+    lt?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    lte?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    gt?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    gte?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    contains?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    startsWith?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    endsWith?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null | $Types.Skip
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
+    equals?: string | StringFieldRefInput<$PrismaModel> | null | $Types.Skip
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null | $Types.Skip
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null | $Types.Skip
+    lt?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    lte?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    gt?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    gte?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    contains?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    startsWith?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    endsWith?: string | StringFieldRefInput<$PrismaModel> | $Types.Skip
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null | $Types.Skip
+    _count?: NestedIntNullableFilter<$PrismaModel> | $Types.Skip
+    _min?: NestedStringNullableFilter<$PrismaModel> | $Types.Skip
+    _max?: NestedStringNullableFilter<$PrismaModel> | $Types.Skip
   }
 
   export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+    equals?: number | IntFieldRefInput<$PrismaModel> | null | $Types.Skip
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null | $Types.Skip
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null | $Types.Skip
+    lt?: number | IntFieldRefInput<$PrismaModel> | $Types.Skip
+    lte?: number | IntFieldRefInput<$PrismaModel> | $Types.Skip
+    gt?: number | IntFieldRefInput<$PrismaModel> | $Types.Skip
+    gte?: number | IntFieldRefInput<$PrismaModel> | $Types.Skip
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null | $Types.Skip
   }
 
   export type UserRolesCreateWithoutRolesInput = {
@@ -18413,7 +22950,7 @@ export namespace Prisma {
 
   export type UserRolesCreateManyRolesInputEnvelope = {
     data: UserRolesCreateManyRolesInput | UserRolesCreateManyRolesInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
   }
 
   export type UserRolesUpsertWithWhereUniqueWithoutRolesInput = {
@@ -18433,11 +22970,11 @@ export namespace Prisma {
   }
 
   export type UserRolesScalarWhereInput = {
-    AND?: UserRolesScalarWhereInput | UserRolesScalarWhereInput[]
-    OR?: UserRolesScalarWhereInput[]
-    NOT?: UserRolesScalarWhereInput | UserRolesScalarWhereInput[]
-    userId?: StringFilter<"UserRoles"> | string
-    roleId?: StringFilter<"UserRoles"> | string
+    AND?: UserRolesScalarWhereInput | UserRolesScalarWhereInput[] | $Types.Skip
+    OR?: UserRolesScalarWhereInput[] | $Types.Skip
+    NOT?: UserRolesScalarWhereInput | UserRolesScalarWhereInput[] | $Types.Skip
+    userId?: StringFilter<"UserRoles"> | string | $Types.Skip
+    roleId?: StringFilter<"UserRoles"> | string | $Types.Skip
   }
 
   export type UserRolesCreateWithoutUsersInput = {
@@ -18455,21 +22992,23 @@ export namespace Prisma {
 
   export type UserRolesCreateManyUsersInputEnvelope = {
     data: UserRolesCreateManyUsersInput | UserRolesCreateManyUsersInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
   }
 
   export type OrdersCreateWithoutUserInput = {
-    id?: string
-    created_at?: Date | string
+    id?: string | $Types.Skip
+    created_at?: Date | string | $Types.Skip
     stripe_checkout_id: string
-    orderDetails?: OrderDetailsCreateNestedManyWithoutOrderDetailsInput
+    orderDetails?: OrderDetailsCreateNestedManyWithoutOrderDetailsInput | $Types.Skip
+    payment?: PaymentsCreateNestedOneWithoutOrderInput | $Types.Skip
   }
 
   export type OrdersUncheckedCreateWithoutUserInput = {
-    id?: string
-    created_at?: Date | string
+    id?: string | $Types.Skip
+    created_at?: Date | string | $Types.Skip
     stripe_checkout_id: string
-    orderDetails?: OrderDetailsUncheckedCreateNestedManyWithoutOrderDetailsInput
+    orderDetails?: OrderDetailsUncheckedCreateNestedManyWithoutOrderDetailsInput | $Types.Skip
+    payment?: PaymentsUncheckedCreateNestedOneWithoutOrderInput | $Types.Skip
   }
 
   export type OrdersCreateOrConnectWithoutUserInput = {
@@ -18479,7 +23018,7 @@ export namespace Prisma {
 
   export type OrdersCreateManyUserInputEnvelope = {
     data: OrdersCreateManyUserInput | OrdersCreateManyUserInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
   }
 
   export type LikesCreateWithoutUserInput = {
@@ -18497,7 +23036,31 @@ export namespace Prisma {
 
   export type LikesCreateManyUserInputEnvelope = {
     data: LikesCreateManyUserInput | LikesCreateManyUserInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
+  }
+
+  export type CartsCreateWithoutUserInput = {
+    id?: string | $Types.Skip
+    createdAt?: Date | string | $Types.Skip
+    updatedAt?: Date | string | $Types.Skip
+    cartDetails?: CartDetailsCreateNestedManyWithoutCartInput | $Types.Skip
+  }
+
+  export type CartsUncheckedCreateWithoutUserInput = {
+    id?: string | $Types.Skip
+    createdAt?: Date | string | $Types.Skip
+    updatedAt?: Date | string | $Types.Skip
+    cartDetails?: CartDetailsUncheckedCreateNestedManyWithoutCartInput | $Types.Skip
+  }
+
+  export type CartsCreateOrConnectWithoutUserInput = {
+    where: CartsWhereUniqueInput
+    create: XOR<CartsCreateWithoutUserInput, CartsUncheckedCreateWithoutUserInput>
+  }
+
+  export type CartsCreateManyUserInputEnvelope = {
+    data: CartsCreateManyUserInput | CartsCreateManyUserInput[]
+    skipDuplicates?: boolean | $Types.Skip
   }
 
   export type UserRolesUpsertWithWhereUniqueWithoutUsersInput = {
@@ -18533,13 +23096,13 @@ export namespace Prisma {
   }
 
   export type OrdersScalarWhereInput = {
-    AND?: OrdersScalarWhereInput | OrdersScalarWhereInput[]
-    OR?: OrdersScalarWhereInput[]
-    NOT?: OrdersScalarWhereInput | OrdersScalarWhereInput[]
-    id?: StringFilter<"Orders"> | string
-    created_at?: DateTimeFilter<"Orders"> | Date | string
-    stripe_checkout_id?: StringFilter<"Orders"> | string
-    user_id?: StringFilter<"Orders"> | string
+    AND?: OrdersScalarWhereInput | OrdersScalarWhereInput[] | $Types.Skip
+    OR?: OrdersScalarWhereInput[] | $Types.Skip
+    NOT?: OrdersScalarWhereInput | OrdersScalarWhereInput[] | $Types.Skip
+    id?: StringFilter<"Orders"> | string | $Types.Skip
+    created_at?: DateTimeFilter<"Orders"> | Date | string | $Types.Skip
+    stripe_checkout_id?: StringFilter<"Orders"> | string | $Types.Skip
+    user_id?: StringFilter<"Orders"> | string | $Types.Skip
   }
 
   export type LikesUpsertWithWhereUniqueWithoutUserInput = {
@@ -18559,33 +23122,61 @@ export namespace Prisma {
   }
 
   export type LikesScalarWhereInput = {
-    AND?: LikesScalarWhereInput | LikesScalarWhereInput[]
-    OR?: LikesScalarWhereInput[]
-    NOT?: LikesScalarWhereInput | LikesScalarWhereInput[]
-    productId?: StringFilter<"Likes"> | string
-    user_id?: StringFilter<"Likes"> | string
+    AND?: LikesScalarWhereInput | LikesScalarWhereInput[] | $Types.Skip
+    OR?: LikesScalarWhereInput[] | $Types.Skip
+    NOT?: LikesScalarWhereInput | LikesScalarWhereInput[] | $Types.Skip
+    productId?: StringFilter<"Likes"> | string | $Types.Skip
+    user_id?: StringFilter<"Likes"> | string | $Types.Skip
+  }
+
+  export type CartsUpsertWithWhereUniqueWithoutUserInput = {
+    where: CartsWhereUniqueInput
+    update: XOR<CartsUpdateWithoutUserInput, CartsUncheckedUpdateWithoutUserInput>
+    create: XOR<CartsCreateWithoutUserInput, CartsUncheckedCreateWithoutUserInput>
+  }
+
+  export type CartsUpdateWithWhereUniqueWithoutUserInput = {
+    where: CartsWhereUniqueInput
+    data: XOR<CartsUpdateWithoutUserInput, CartsUncheckedUpdateWithoutUserInput>
+  }
+
+  export type CartsUpdateManyWithWhereWithoutUserInput = {
+    where: CartsScalarWhereInput
+    data: XOR<CartsUpdateManyMutationInput, CartsUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type CartsScalarWhereInput = {
+    AND?: CartsScalarWhereInput | CartsScalarWhereInput[] | $Types.Skip
+    OR?: CartsScalarWhereInput[] | $Types.Skip
+    NOT?: CartsScalarWhereInput | CartsScalarWhereInput[] | $Types.Skip
+    id?: StringFilter<"Carts"> | string | $Types.Skip
+    user_id?: StringFilter<"Carts"> | string | $Types.Skip
+    createdAt?: DateTimeFilter<"Carts"> | Date | string | $Types.Skip
+    updatedAt?: DateTimeFilter<"Carts"> | Date | string | $Types.Skip
   }
 
   export type UsersCreateWithoutRolesInput = {
-    id?: string
+    id?: string | $Types.Skip
     nickname: string
     first_name: string
     last_name: string
     email: string
     password: string
-    orders?: OrdersCreateNestedManyWithoutUserInput
-    likes?: LikesCreateNestedManyWithoutUserInput
+    orders?: OrdersCreateNestedManyWithoutUserInput | $Types.Skip
+    likes?: LikesCreateNestedManyWithoutUserInput | $Types.Skip
+    carts?: CartsCreateNestedManyWithoutUserInput | $Types.Skip
   }
 
   export type UsersUncheckedCreateWithoutRolesInput = {
-    id?: string
+    id?: string | $Types.Skip
     nickname: string
     first_name: string
     last_name: string
     email: string
     password: string
-    orders?: OrdersUncheckedCreateNestedManyWithoutUserInput
-    likes?: LikesUncheckedCreateNestedManyWithoutUserInput
+    orders?: OrdersUncheckedCreateNestedManyWithoutUserInput | $Types.Skip
+    likes?: LikesUncheckedCreateNestedManyWithoutUserInput | $Types.Skip
+    carts?: CartsUncheckedCreateNestedManyWithoutUserInput | $Types.Skip
   }
 
   export type UsersCreateOrConnectWithoutRolesInput = {
@@ -18594,12 +23185,12 @@ export namespace Prisma {
   }
 
   export type RolesCreateWithoutUsersInput = {
-    id?: string
+    id?: string | $Types.Skip
     name: string
   }
 
   export type RolesUncheckedCreateWithoutUsersInput = {
-    id?: string
+    id?: string | $Types.Skip
     name: string
   }
 
@@ -18611,77 +23202,81 @@ export namespace Prisma {
   export type UsersUpsertWithoutRolesInput = {
     update: XOR<UsersUpdateWithoutRolesInput, UsersUncheckedUpdateWithoutRolesInput>
     create: XOR<UsersCreateWithoutRolesInput, UsersUncheckedCreateWithoutRolesInput>
-    where?: UsersWhereInput
+    where?: UsersWhereInput | $Types.Skip
   }
 
   export type UsersUpdateToOneWithWhereWithoutRolesInput = {
-    where?: UsersWhereInput
+    where?: UsersWhereInput | $Types.Skip
     data: XOR<UsersUpdateWithoutRolesInput, UsersUncheckedUpdateWithoutRolesInput>
   }
 
   export type UsersUpdateWithoutRolesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nickname?: StringFieldUpdateOperationsInput | string
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    orders?: OrdersUpdateManyWithoutUserNestedInput
-    likes?: LikesUpdateManyWithoutUserNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    nickname?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    first_name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    last_name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    email?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    password?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    orders?: OrdersUpdateManyWithoutUserNestedInput | $Types.Skip
+    likes?: LikesUpdateManyWithoutUserNestedInput | $Types.Skip
+    carts?: CartsUpdateManyWithoutUserNestedInput | $Types.Skip
   }
 
   export type UsersUncheckedUpdateWithoutRolesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nickname?: StringFieldUpdateOperationsInput | string
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    orders?: OrdersUncheckedUpdateManyWithoutUserNestedInput
-    likes?: LikesUncheckedUpdateManyWithoutUserNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    nickname?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    first_name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    last_name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    email?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    password?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    orders?: OrdersUncheckedUpdateManyWithoutUserNestedInput | $Types.Skip
+    likes?: LikesUncheckedUpdateManyWithoutUserNestedInput | $Types.Skip
+    carts?: CartsUncheckedUpdateManyWithoutUserNestedInput | $Types.Skip
   }
 
   export type RolesUpsertWithoutUsersInput = {
     update: XOR<RolesUpdateWithoutUsersInput, RolesUncheckedUpdateWithoutUsersInput>
     create: XOR<RolesCreateWithoutUsersInput, RolesUncheckedCreateWithoutUsersInput>
-    where?: RolesWhereInput
+    where?: RolesWhereInput | $Types.Skip
   }
 
   export type RolesUpdateToOneWithWhereWithoutUsersInput = {
-    where?: RolesWhereInput
+    where?: RolesWhereInput | $Types.Skip
     data: XOR<RolesUpdateWithoutUsersInput, RolesUncheckedUpdateWithoutUsersInput>
   }
 
   export type RolesUpdateWithoutUsersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type RolesUncheckedUpdateWithoutUsersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type UsersCreateWithoutOrdersInput = {
-    id?: string
+    id?: string | $Types.Skip
     nickname: string
     first_name: string
     last_name: string
     email: string
     password: string
-    roles?: UserRolesCreateNestedManyWithoutUsersInput
-    likes?: LikesCreateNestedManyWithoutUserInput
+    roles?: UserRolesCreateNestedManyWithoutUsersInput | $Types.Skip
+    likes?: LikesCreateNestedManyWithoutUserInput | $Types.Skip
+    carts?: CartsCreateNestedManyWithoutUserInput | $Types.Skip
   }
 
   export type UsersUncheckedCreateWithoutOrdersInput = {
-    id?: string
+    id?: string | $Types.Skip
     nickname: string
     first_name: string
     last_name: string
     email: string
     password: string
-    roles?: UserRolesUncheckedCreateNestedManyWithoutUsersInput
-    likes?: LikesUncheckedCreateNestedManyWithoutUserInput
+    roles?: UserRolesUncheckedCreateNestedManyWithoutUsersInput | $Types.Skip
+    likes?: LikesUncheckedCreateNestedManyWithoutUserInput | $Types.Skip
+    carts?: CartsUncheckedCreateNestedManyWithoutUserInput | $Types.Skip
   }
 
   export type UsersCreateOrConnectWithoutOrdersInput = {
@@ -18690,17 +23285,17 @@ export namespace Prisma {
   }
 
   export type OrderDetailsCreateWithoutOrderDetailsInput = {
-    id?: string
+    id?: string | $Types.Skip
     quantity: number
     price: number
-    product: ProductsCreateNestedOneWithoutOrderDetailsInput
+    variants: VariantsCreateNestedOneWithoutOrderDetailsInput
   }
 
   export type OrderDetailsUncheckedCreateWithoutOrderDetailsInput = {
-    id?: string
+    id?: string | $Types.Skip
     quantity: number
     price: number
-    product_id: string
+    variant_id: string
   }
 
   export type OrderDetailsCreateOrConnectWithoutOrderDetailsInput = {
@@ -18710,40 +23305,69 @@ export namespace Prisma {
 
   export type OrderDetailsCreateManyOrderDetailsInputEnvelope = {
     data: OrderDetailsCreateManyOrderDetailsInput | OrderDetailsCreateManyOrderDetailsInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
+  }
+
+  export type PaymentsCreateWithoutOrderInput = {
+    id?: string | $Types.Skip
+    created_at?: Date | string | $Types.Skip
+    updated_at?: Date | string | $Types.Skip
+    status: string
+    amount: number
+    currency: string
+    receipt_url: string
+    payment_intent: string
+  }
+
+  export type PaymentsUncheckedCreateWithoutOrderInput = {
+    id?: string | $Types.Skip
+    created_at?: Date | string | $Types.Skip
+    updated_at?: Date | string | $Types.Skip
+    status: string
+    amount: number
+    currency: string
+    receipt_url: string
+    payment_intent: string
+  }
+
+  export type PaymentsCreateOrConnectWithoutOrderInput = {
+    where: PaymentsWhereUniqueInput
+    create: XOR<PaymentsCreateWithoutOrderInput, PaymentsUncheckedCreateWithoutOrderInput>
   }
 
   export type UsersUpsertWithoutOrdersInput = {
     update: XOR<UsersUpdateWithoutOrdersInput, UsersUncheckedUpdateWithoutOrdersInput>
     create: XOR<UsersCreateWithoutOrdersInput, UsersUncheckedCreateWithoutOrdersInput>
-    where?: UsersWhereInput
+    where?: UsersWhereInput | $Types.Skip
   }
 
   export type UsersUpdateToOneWithWhereWithoutOrdersInput = {
-    where?: UsersWhereInput
+    where?: UsersWhereInput | $Types.Skip
     data: XOR<UsersUpdateWithoutOrdersInput, UsersUncheckedUpdateWithoutOrdersInput>
   }
 
   export type UsersUpdateWithoutOrdersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nickname?: StringFieldUpdateOperationsInput | string
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    roles?: UserRolesUpdateManyWithoutUsersNestedInput
-    likes?: LikesUpdateManyWithoutUserNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    nickname?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    first_name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    last_name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    email?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    password?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    roles?: UserRolesUpdateManyWithoutUsersNestedInput | $Types.Skip
+    likes?: LikesUpdateManyWithoutUserNestedInput | $Types.Skip
+    carts?: CartsUpdateManyWithoutUserNestedInput | $Types.Skip
   }
 
   export type UsersUncheckedUpdateWithoutOrdersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nickname?: StringFieldUpdateOperationsInput | string
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    roles?: UserRolesUncheckedUpdateManyWithoutUsersNestedInput
-    likes?: LikesUncheckedUpdateManyWithoutUserNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    nickname?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    first_name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    last_name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    email?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    password?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    roles?: UserRolesUncheckedUpdateManyWithoutUsersNestedInput | $Types.Skip
+    likes?: LikesUncheckedUpdateManyWithoutUserNestedInput | $Types.Skip
+    carts?: CartsUncheckedUpdateManyWithoutUserNestedInput | $Types.Skip
   }
 
   export type OrderDetailsUpsertWithWhereUniqueWithoutOrderDetailsInput = {
@@ -18763,28 +23387,111 @@ export namespace Prisma {
   }
 
   export type OrderDetailsScalarWhereInput = {
-    AND?: OrderDetailsScalarWhereInput | OrderDetailsScalarWhereInput[]
-    OR?: OrderDetailsScalarWhereInput[]
-    NOT?: OrderDetailsScalarWhereInput | OrderDetailsScalarWhereInput[]
-    id?: StringFilter<"OrderDetails"> | string
-    quantity?: IntFilter<"OrderDetails"> | number
-    price?: FloatFilter<"OrderDetails"> | number
-    orderDetails_id?: StringFilter<"OrderDetails"> | string
-    product_id?: StringFilter<"OrderDetails"> | string
+    AND?: OrderDetailsScalarWhereInput | OrderDetailsScalarWhereInput[] | $Types.Skip
+    OR?: OrderDetailsScalarWhereInput[] | $Types.Skip
+    NOT?: OrderDetailsScalarWhereInput | OrderDetailsScalarWhereInput[] | $Types.Skip
+    id?: StringFilter<"OrderDetails"> | string | $Types.Skip
+    quantity?: IntFilter<"OrderDetails"> | number | $Types.Skip
+    price?: FloatFilter<"OrderDetails"> | number | $Types.Skip
+    orderDetails_id?: StringFilter<"OrderDetails"> | string | $Types.Skip
+    variant_id?: StringFilter<"OrderDetails"> | string | $Types.Skip
+  }
+
+  export type PaymentsUpsertWithoutOrderInput = {
+    update: XOR<PaymentsUpdateWithoutOrderInput, PaymentsUncheckedUpdateWithoutOrderInput>
+    create: XOR<PaymentsCreateWithoutOrderInput, PaymentsUncheckedCreateWithoutOrderInput>
+    where?: PaymentsWhereInput | $Types.Skip
+  }
+
+  export type PaymentsUpdateToOneWithWhereWithoutOrderInput = {
+    where?: PaymentsWhereInput | $Types.Skip
+    data: XOR<PaymentsUpdateWithoutOrderInput, PaymentsUncheckedUpdateWithoutOrderInput>
+  }
+
+  export type PaymentsUpdateWithoutOrderInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    status?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    amount?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    currency?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    receipt_url?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    payment_intent?: StringFieldUpdateOperationsInput | string | $Types.Skip
+  }
+
+  export type PaymentsUncheckedUpdateWithoutOrderInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    status?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    amount?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    currency?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    receipt_url?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    payment_intent?: StringFieldUpdateOperationsInput | string | $Types.Skip
+  }
+
+  export type OrdersCreateWithoutPaymentInput = {
+    id?: string | $Types.Skip
+    created_at?: Date | string | $Types.Skip
+    stripe_checkout_id: string
+    user: UsersCreateNestedOneWithoutOrdersInput
+    orderDetails?: OrderDetailsCreateNestedManyWithoutOrderDetailsInput | $Types.Skip
+  }
+
+  export type OrdersUncheckedCreateWithoutPaymentInput = {
+    id?: string | $Types.Skip
+    created_at?: Date | string | $Types.Skip
+    stripe_checkout_id: string
+    user_id: string
+    orderDetails?: OrderDetailsUncheckedCreateNestedManyWithoutOrderDetailsInput | $Types.Skip
+  }
+
+  export type OrdersCreateOrConnectWithoutPaymentInput = {
+    where: OrdersWhereUniqueInput
+    create: XOR<OrdersCreateWithoutPaymentInput, OrdersUncheckedCreateWithoutPaymentInput>
+  }
+
+  export type OrdersUpsertWithoutPaymentInput = {
+    update: XOR<OrdersUpdateWithoutPaymentInput, OrdersUncheckedUpdateWithoutPaymentInput>
+    create: XOR<OrdersCreateWithoutPaymentInput, OrdersUncheckedCreateWithoutPaymentInput>
+    where?: OrdersWhereInput | $Types.Skip
+  }
+
+  export type OrdersUpdateToOneWithWhereWithoutPaymentInput = {
+    where?: OrdersWhereInput | $Types.Skip
+    data: XOR<OrdersUpdateWithoutPaymentInput, OrdersUncheckedUpdateWithoutPaymentInput>
+  }
+
+  export type OrdersUpdateWithoutPaymentInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    stripe_checkout_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    user?: UsersUpdateOneRequiredWithoutOrdersNestedInput | $Types.Skip
+    orderDetails?: OrderDetailsUpdateManyWithoutOrderDetailsNestedInput | $Types.Skip
+  }
+
+  export type OrdersUncheckedUpdateWithoutPaymentInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    stripe_checkout_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    user_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    orderDetails?: OrderDetailsUncheckedUpdateManyWithoutOrderDetailsNestedInput | $Types.Skip
   }
 
   export type OrdersCreateWithoutOrderDetailsInput = {
-    id?: string
-    created_at?: Date | string
+    id?: string | $Types.Skip
+    created_at?: Date | string | $Types.Skip
     stripe_checkout_id: string
     user: UsersCreateNestedOneWithoutOrdersInput
+    payment?: PaymentsCreateNestedOneWithoutOrderInput | $Types.Skip
   }
 
   export type OrdersUncheckedCreateWithoutOrderDetailsInput = {
-    id?: string
-    created_at?: Date | string
+    id?: string | $Types.Skip
+    created_at?: Date | string | $Types.Skip
     stripe_checkout_id: string
     user_id: string
+    payment?: PaymentsUncheckedCreateNestedOneWithoutOrderInput | $Types.Skip
   }
 
   export type OrdersCreateOrConnectWithoutOrderDetailsInput = {
@@ -18792,106 +23499,108 @@ export namespace Prisma {
     create: XOR<OrdersCreateWithoutOrderDetailsInput, OrdersUncheckedCreateWithoutOrderDetailsInput>
   }
 
-  export type ProductsCreateWithoutOrderDetailsInput = {
-    id?: string
-    name: string
-    price: number
-    created_at?: Date | string
-    updated_at?: Date | string
-    active?: boolean
-    brand: BrandsCreateNestedOneWithoutProductsInput
-    variants?: VariantsCreateNestedManyWithoutProductInput
-    productCategories?: ProductCategoriesCreateNestedManyWithoutProductsInput
-    likes?: LikesCreateNestedManyWithoutProductsInput
+  export type VariantsCreateWithoutOrderDetailsInput = {
+    id?: string | $Types.Skip
+    size?: $Enums.Size | $Types.Skip
+    textColor?: $Enums.TextColor | $Types.Skip
+    rgb: string
+    stock: number
+    createdAt?: Date | string | $Types.Skip
+    updatedAt?: Date | string | $Types.Skip
+    product: ProductsCreateNestedOneWithoutVariantsInput
+    file: FilesCreateNestedOneWithoutVariantsInput
+    cartDetails?: CartDetailsCreateNestedManyWithoutVariantsInput | $Types.Skip
   }
 
-  export type ProductsUncheckedCreateWithoutOrderDetailsInput = {
-    id?: string
-    name: string
-    price: number
-    created_at?: Date | string
-    updated_at?: Date | string
-    active?: boolean
-    brand_id: string
-    variants?: VariantsUncheckedCreateNestedManyWithoutProductInput
-    productCategories?: ProductCategoriesUncheckedCreateNestedManyWithoutProductsInput
-    likes?: LikesUncheckedCreateNestedManyWithoutProductsInput
+  export type VariantsUncheckedCreateWithoutOrderDetailsInput = {
+    id?: string | $Types.Skip
+    product_id: string
+    file_id: string
+    size?: $Enums.Size | $Types.Skip
+    textColor?: $Enums.TextColor | $Types.Skip
+    rgb: string
+    stock: number
+    createdAt?: Date | string | $Types.Skip
+    updatedAt?: Date | string | $Types.Skip
+    cartDetails?: CartDetailsUncheckedCreateNestedManyWithoutVariantsInput | $Types.Skip
   }
 
-  export type ProductsCreateOrConnectWithoutOrderDetailsInput = {
-    where: ProductsWhereUniqueInput
-    create: XOR<ProductsCreateWithoutOrderDetailsInput, ProductsUncheckedCreateWithoutOrderDetailsInput>
+  export type VariantsCreateOrConnectWithoutOrderDetailsInput = {
+    where: VariantsWhereUniqueInput
+    create: XOR<VariantsCreateWithoutOrderDetailsInput, VariantsUncheckedCreateWithoutOrderDetailsInput>
   }
 
   export type OrdersUpsertWithoutOrderDetailsInput = {
     update: XOR<OrdersUpdateWithoutOrderDetailsInput, OrdersUncheckedUpdateWithoutOrderDetailsInput>
     create: XOR<OrdersCreateWithoutOrderDetailsInput, OrdersUncheckedCreateWithoutOrderDetailsInput>
-    where?: OrdersWhereInput
+    where?: OrdersWhereInput | $Types.Skip
   }
 
   export type OrdersUpdateToOneWithWhereWithoutOrderDetailsInput = {
-    where?: OrdersWhereInput
+    where?: OrdersWhereInput | $Types.Skip
     data: XOR<OrdersUpdateWithoutOrderDetailsInput, OrdersUncheckedUpdateWithoutOrderDetailsInput>
   }
 
   export type OrdersUpdateWithoutOrderDetailsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    stripe_checkout_id?: StringFieldUpdateOperationsInput | string
-    user?: UsersUpdateOneRequiredWithoutOrdersNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    stripe_checkout_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    user?: UsersUpdateOneRequiredWithoutOrdersNestedInput | $Types.Skip
+    payment?: PaymentsUpdateOneWithoutOrderNestedInput | $Types.Skip
   }
 
   export type OrdersUncheckedUpdateWithoutOrderDetailsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    stripe_checkout_id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    stripe_checkout_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    user_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    payment?: PaymentsUncheckedUpdateOneWithoutOrderNestedInput | $Types.Skip
   }
 
-  export type ProductsUpsertWithoutOrderDetailsInput = {
-    update: XOR<ProductsUpdateWithoutOrderDetailsInput, ProductsUncheckedUpdateWithoutOrderDetailsInput>
-    create: XOR<ProductsCreateWithoutOrderDetailsInput, ProductsUncheckedCreateWithoutOrderDetailsInput>
-    where?: ProductsWhereInput
+  export type VariantsUpsertWithoutOrderDetailsInput = {
+    update: XOR<VariantsUpdateWithoutOrderDetailsInput, VariantsUncheckedUpdateWithoutOrderDetailsInput>
+    create: XOR<VariantsCreateWithoutOrderDetailsInput, VariantsUncheckedCreateWithoutOrderDetailsInput>
+    where?: VariantsWhereInput | $Types.Skip
   }
 
-  export type ProductsUpdateToOneWithWhereWithoutOrderDetailsInput = {
-    where?: ProductsWhereInput
-    data: XOR<ProductsUpdateWithoutOrderDetailsInput, ProductsUncheckedUpdateWithoutOrderDetailsInput>
+  export type VariantsUpdateToOneWithWhereWithoutOrderDetailsInput = {
+    where?: VariantsWhereInput | $Types.Skip
+    data: XOR<VariantsUpdateWithoutOrderDetailsInput, VariantsUncheckedUpdateWithoutOrderDetailsInput>
   }
 
-  export type ProductsUpdateWithoutOrderDetailsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    brand?: BrandsUpdateOneRequiredWithoutProductsNestedInput
-    variants?: VariantsUpdateManyWithoutProductNestedInput
-    productCategories?: ProductCategoriesUpdateManyWithoutProductsNestedInput
-    likes?: LikesUpdateManyWithoutProductsNestedInput
+  export type VariantsUpdateWithoutOrderDetailsInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    size?: EnumSizeFieldUpdateOperationsInput | $Enums.Size | $Types.Skip
+    textColor?: EnumTextColorFieldUpdateOperationsInput | $Enums.TextColor | $Types.Skip
+    rgb?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    stock?: IntFieldUpdateOperationsInput | number | $Types.Skip
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    product?: ProductsUpdateOneRequiredWithoutVariantsNestedInput | $Types.Skip
+    file?: FilesUpdateOneRequiredWithoutVariantsNestedInput | $Types.Skip
+    cartDetails?: CartDetailsUpdateManyWithoutVariantsNestedInput | $Types.Skip
   }
 
-  export type ProductsUncheckedUpdateWithoutOrderDetailsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    brand_id?: StringFieldUpdateOperationsInput | string
-    variants?: VariantsUncheckedUpdateManyWithoutProductNestedInput
-    productCategories?: ProductCategoriesUncheckedUpdateManyWithoutProductsNestedInput
-    likes?: LikesUncheckedUpdateManyWithoutProductsNestedInput
+  export type VariantsUncheckedUpdateWithoutOrderDetailsInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    product_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    file_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    size?: EnumSizeFieldUpdateOperationsInput | $Enums.Size | $Types.Skip
+    textColor?: EnumTextColorFieldUpdateOperationsInput | $Enums.TextColor | $Types.Skip
+    rgb?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    stock?: IntFieldUpdateOperationsInput | number | $Types.Skip
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    cartDetails?: CartDetailsUncheckedUpdateManyWithoutVariantsNestedInput | $Types.Skip
   }
 
   export type BrandsCreateWithoutProductsInput = {
-    id?: string
+    id?: string | $Types.Skip
     name: string
   }
 
   export type BrandsUncheckedCreateWithoutProductsInput = {
-    id?: string
+    id?: string | $Types.Skip
     name: string
   }
 
@@ -18900,50 +23609,30 @@ export namespace Prisma {
     create: XOR<BrandsCreateWithoutProductsInput, BrandsUncheckedCreateWithoutProductsInput>
   }
 
-  export type OrderDetailsCreateWithoutProductInput = {
-    id?: string
-    quantity: number
-    price: number
-    orderDetails: OrdersCreateNestedOneWithoutOrderDetailsInput
-  }
-
-  export type OrderDetailsUncheckedCreateWithoutProductInput = {
-    id?: string
-    quantity: number
-    price: number
-    orderDetails_id: string
-  }
-
-  export type OrderDetailsCreateOrConnectWithoutProductInput = {
-    where: OrderDetailsWhereUniqueInput
-    create: XOR<OrderDetailsCreateWithoutProductInput, OrderDetailsUncheckedCreateWithoutProductInput>
-  }
-
-  export type OrderDetailsCreateManyProductInputEnvelope = {
-    data: OrderDetailsCreateManyProductInput | OrderDetailsCreateManyProductInput[]
-    skipDuplicates?: boolean
-  }
-
   export type VariantsCreateWithoutProductInput = {
-    id?: string
-    size?: $Enums.Size
-    textColor?: $Enums.TextColor
+    id?: string | $Types.Skip
+    size?: $Enums.Size | $Types.Skip
+    textColor?: $Enums.TextColor | $Types.Skip
     rgb: string
     stock: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    createdAt?: Date | string | $Types.Skip
+    updatedAt?: Date | string | $Types.Skip
     file: FilesCreateNestedOneWithoutVariantsInput
+    orderDetails?: OrderDetailsCreateNestedManyWithoutVariantsInput | $Types.Skip
+    cartDetails?: CartDetailsCreateNestedManyWithoutVariantsInput | $Types.Skip
   }
 
   export type VariantsUncheckedCreateWithoutProductInput = {
-    id?: string
+    id?: string | $Types.Skip
     file_id: string
-    size?: $Enums.Size
-    textColor?: $Enums.TextColor
+    size?: $Enums.Size | $Types.Skip
+    textColor?: $Enums.TextColor | $Types.Skip
     rgb: string
     stock: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    createdAt?: Date | string | $Types.Skip
+    updatedAt?: Date | string | $Types.Skip
+    orderDetails?: OrderDetailsUncheckedCreateNestedManyWithoutVariantsInput | $Types.Skip
+    cartDetails?: CartDetailsUncheckedCreateNestedManyWithoutVariantsInput | $Types.Skip
   }
 
   export type VariantsCreateOrConnectWithoutProductInput = {
@@ -18953,7 +23642,7 @@ export namespace Prisma {
 
   export type VariantsCreateManyProductInputEnvelope = {
     data: VariantsCreateManyProductInput | VariantsCreateManyProductInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
   }
 
   export type ProductCategoriesCreateWithoutProductsInput = {
@@ -18971,7 +23660,7 @@ export namespace Prisma {
 
   export type ProductCategoriesCreateManyProductsInputEnvelope = {
     data: ProductCategoriesCreateManyProductsInput | ProductCategoriesCreateManyProductsInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
   }
 
   export type LikesCreateWithoutProductsInput = {
@@ -18989,44 +23678,28 @@ export namespace Prisma {
 
   export type LikesCreateManyProductsInputEnvelope = {
     data: LikesCreateManyProductsInput | LikesCreateManyProductsInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
   }
 
   export type BrandsUpsertWithoutProductsInput = {
     update: XOR<BrandsUpdateWithoutProductsInput, BrandsUncheckedUpdateWithoutProductsInput>
     create: XOR<BrandsCreateWithoutProductsInput, BrandsUncheckedCreateWithoutProductsInput>
-    where?: BrandsWhereInput
+    where?: BrandsWhereInput | $Types.Skip
   }
 
   export type BrandsUpdateToOneWithWhereWithoutProductsInput = {
-    where?: BrandsWhereInput
+    where?: BrandsWhereInput | $Types.Skip
     data: XOR<BrandsUpdateWithoutProductsInput, BrandsUncheckedUpdateWithoutProductsInput>
   }
 
   export type BrandsUpdateWithoutProductsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type BrandsUncheckedUpdateWithoutProductsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type OrderDetailsUpsertWithWhereUniqueWithoutProductInput = {
-    where: OrderDetailsWhereUniqueInput
-    update: XOR<OrderDetailsUpdateWithoutProductInput, OrderDetailsUncheckedUpdateWithoutProductInput>
-    create: XOR<OrderDetailsCreateWithoutProductInput, OrderDetailsUncheckedCreateWithoutProductInput>
-  }
-
-  export type OrderDetailsUpdateWithWhereUniqueWithoutProductInput = {
-    where: OrderDetailsWhereUniqueInput
-    data: XOR<OrderDetailsUpdateWithoutProductInput, OrderDetailsUncheckedUpdateWithoutProductInput>
-  }
-
-  export type OrderDetailsUpdateManyWithWhereWithoutProductInput = {
-    where: OrderDetailsScalarWhereInput
-    data: XOR<OrderDetailsUpdateManyMutationInput, OrderDetailsUncheckedUpdateManyWithoutProductInput>
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type VariantsUpsertWithWhereUniqueWithoutProductInput = {
@@ -19046,18 +23719,18 @@ export namespace Prisma {
   }
 
   export type VariantsScalarWhereInput = {
-    AND?: VariantsScalarWhereInput | VariantsScalarWhereInput[]
-    OR?: VariantsScalarWhereInput[]
-    NOT?: VariantsScalarWhereInput | VariantsScalarWhereInput[]
-    id?: StringFilter<"Variants"> | string
-    product_id?: StringFilter<"Variants"> | string
-    file_id?: StringFilter<"Variants"> | string
-    size?: EnumSizeFilter<"Variants"> | $Enums.Size
-    textColor?: EnumTextColorFilter<"Variants"> | $Enums.TextColor
-    rgb?: StringFilter<"Variants"> | string
-    stock?: IntFilter<"Variants"> | number
-    createdAt?: DateTimeFilter<"Variants"> | Date | string
-    updatedAt?: DateTimeFilter<"Variants"> | Date | string
+    AND?: VariantsScalarWhereInput | VariantsScalarWhereInput[] | $Types.Skip
+    OR?: VariantsScalarWhereInput[] | $Types.Skip
+    NOT?: VariantsScalarWhereInput | VariantsScalarWhereInput[] | $Types.Skip
+    id?: StringFilter<"Variants"> | string | $Types.Skip
+    product_id?: StringFilter<"Variants"> | string | $Types.Skip
+    file_id?: StringFilter<"Variants"> | string | $Types.Skip
+    size?: EnumSizeFilter<"Variants"> | $Enums.Size | $Types.Skip
+    textColor?: EnumTextColorFilter<"Variants"> | $Enums.TextColor | $Types.Skip
+    rgb?: StringFilter<"Variants"> | string | $Types.Skip
+    stock?: IntFilter<"Variants"> | number | $Types.Skip
+    createdAt?: DateTimeFilter<"Variants"> | Date | string | $Types.Skip
+    updatedAt?: DateTimeFilter<"Variants"> | Date | string | $Types.Skip
   }
 
   export type ProductCategoriesUpsertWithWhereUniqueWithoutProductsInput = {
@@ -19077,11 +23750,11 @@ export namespace Prisma {
   }
 
   export type ProductCategoriesScalarWhereInput = {
-    AND?: ProductCategoriesScalarWhereInput | ProductCategoriesScalarWhereInput[]
-    OR?: ProductCategoriesScalarWhereInput[]
-    NOT?: ProductCategoriesScalarWhereInput | ProductCategoriesScalarWhereInput[]
-    productId?: StringFilter<"ProductCategories"> | string
-    categoryId?: StringFilter<"ProductCategories"> | string
+    AND?: ProductCategoriesScalarWhereInput | ProductCategoriesScalarWhereInput[] | $Types.Skip
+    OR?: ProductCategoriesScalarWhereInput[] | $Types.Skip
+    NOT?: ProductCategoriesScalarWhereInput | ProductCategoriesScalarWhereInput[] | $Types.Skip
+    productId?: StringFilter<"ProductCategories"> | string | $Types.Skip
+    categoryId?: StringFilter<"ProductCategories"> | string | $Types.Skip
   }
 
   export type LikesUpsertWithWhereUniqueWithoutProductsInput = {
@@ -19101,29 +23774,27 @@ export namespace Prisma {
   }
 
   export type ProductsCreateWithoutBrandInput = {
-    id?: string
+    id?: string | $Types.Skip
     name: string
     price: number
-    created_at?: Date | string
-    updated_at?: Date | string
-    active?: boolean
-    orderDetails?: OrderDetailsCreateNestedManyWithoutProductInput
-    variants?: VariantsCreateNestedManyWithoutProductInput
-    productCategories?: ProductCategoriesCreateNestedManyWithoutProductsInput
-    likes?: LikesCreateNestedManyWithoutProductsInput
+    created_at?: Date | string | $Types.Skip
+    updated_at?: Date | string | $Types.Skip
+    active?: boolean | $Types.Skip
+    variants?: VariantsCreateNestedManyWithoutProductInput | $Types.Skip
+    productCategories?: ProductCategoriesCreateNestedManyWithoutProductsInput | $Types.Skip
+    likes?: LikesCreateNestedManyWithoutProductsInput | $Types.Skip
   }
 
   export type ProductsUncheckedCreateWithoutBrandInput = {
-    id?: string
+    id?: string | $Types.Skip
     name: string
     price: number
-    created_at?: Date | string
-    updated_at?: Date | string
-    active?: boolean
-    orderDetails?: OrderDetailsUncheckedCreateNestedManyWithoutProductInput
-    variants?: VariantsUncheckedCreateNestedManyWithoutProductInput
-    productCategories?: ProductCategoriesUncheckedCreateNestedManyWithoutProductsInput
-    likes?: LikesUncheckedCreateNestedManyWithoutProductsInput
+    created_at?: Date | string | $Types.Skip
+    updated_at?: Date | string | $Types.Skip
+    active?: boolean | $Types.Skip
+    variants?: VariantsUncheckedCreateNestedManyWithoutProductInput | $Types.Skip
+    productCategories?: ProductCategoriesUncheckedCreateNestedManyWithoutProductsInput | $Types.Skip
+    likes?: LikesUncheckedCreateNestedManyWithoutProductsInput | $Types.Skip
   }
 
   export type ProductsCreateOrConnectWithoutBrandInput = {
@@ -19133,7 +23804,7 @@ export namespace Prisma {
 
   export type ProductsCreateManyBrandInputEnvelope = {
     data: ProductsCreateManyBrandInput | ProductsCreateManyBrandInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
   }
 
   export type ProductsUpsertWithWhereUniqueWithoutBrandInput = {
@@ -19153,42 +23824,40 @@ export namespace Prisma {
   }
 
   export type ProductsScalarWhereInput = {
-    AND?: ProductsScalarWhereInput | ProductsScalarWhereInput[]
-    OR?: ProductsScalarWhereInput[]
-    NOT?: ProductsScalarWhereInput | ProductsScalarWhereInput[]
-    id?: StringFilter<"Products"> | string
-    name?: StringFilter<"Products"> | string
-    price?: FloatFilter<"Products"> | number
-    created_at?: DateTimeFilter<"Products"> | Date | string
-    updated_at?: DateTimeFilter<"Products"> | Date | string
-    active?: BoolFilter<"Products"> | boolean
-    brand_id?: StringFilter<"Products"> | string
+    AND?: ProductsScalarWhereInput | ProductsScalarWhereInput[] | $Types.Skip
+    OR?: ProductsScalarWhereInput[] | $Types.Skip
+    NOT?: ProductsScalarWhereInput | ProductsScalarWhereInput[] | $Types.Skip
+    id?: StringFilter<"Products"> | string | $Types.Skip
+    name?: StringFilter<"Products"> | string | $Types.Skip
+    price?: FloatFilter<"Products"> | number | $Types.Skip
+    created_at?: DateTimeFilter<"Products"> | Date | string | $Types.Skip
+    updated_at?: DateTimeFilter<"Products"> | Date | string | $Types.Skip
+    active?: BoolFilter<"Products"> | boolean | $Types.Skip
+    brand_id?: StringFilter<"Products"> | string | $Types.Skip
   }
 
   export type ProductsCreateWithoutVariantsInput = {
-    id?: string
+    id?: string | $Types.Skip
     name: string
     price: number
-    created_at?: Date | string
-    updated_at?: Date | string
-    active?: boolean
+    created_at?: Date | string | $Types.Skip
+    updated_at?: Date | string | $Types.Skip
+    active?: boolean | $Types.Skip
     brand: BrandsCreateNestedOneWithoutProductsInput
-    orderDetails?: OrderDetailsCreateNestedManyWithoutProductInput
-    productCategories?: ProductCategoriesCreateNestedManyWithoutProductsInput
-    likes?: LikesCreateNestedManyWithoutProductsInput
+    productCategories?: ProductCategoriesCreateNestedManyWithoutProductsInput | $Types.Skip
+    likes?: LikesCreateNestedManyWithoutProductsInput | $Types.Skip
   }
 
   export type ProductsUncheckedCreateWithoutVariantsInput = {
-    id?: string
+    id?: string | $Types.Skip
     name: string
     price: number
-    created_at?: Date | string
-    updated_at?: Date | string
-    active?: boolean
+    created_at?: Date | string | $Types.Skip
+    updated_at?: Date | string | $Types.Skip
+    active?: boolean | $Types.Skip
     brand_id: string
-    orderDetails?: OrderDetailsUncheckedCreateNestedManyWithoutProductInput
-    productCategories?: ProductCategoriesUncheckedCreateNestedManyWithoutProductsInput
-    likes?: LikesUncheckedCreateNestedManyWithoutProductsInput
+    productCategories?: ProductCategoriesUncheckedCreateNestedManyWithoutProductsInput | $Types.Skip
+    likes?: LikesUncheckedCreateNestedManyWithoutProductsInput | $Types.Skip
   }
 
   export type ProductsCreateOrConnectWithoutVariantsInput = {
@@ -19197,14 +23866,14 @@ export namespace Prisma {
   }
 
   export type FilesCreateWithoutVariantsInput = {
-    id?: string
+    id?: string | $Types.Skip
     key: string
     idKey: string
     bucket: string
   }
 
   export type FilesUncheckedCreateWithoutVariantsInput = {
-    id?: string
+    id?: string | $Types.Skip
     key: string
     idKey: string
     bucket: string
@@ -19215,88 +23884,181 @@ export namespace Prisma {
     create: XOR<FilesCreateWithoutVariantsInput, FilesUncheckedCreateWithoutVariantsInput>
   }
 
+  export type OrderDetailsCreateWithoutVariantsInput = {
+    id?: string | $Types.Skip
+    quantity: number
+    price: number
+    orderDetails: OrdersCreateNestedOneWithoutOrderDetailsInput
+  }
+
+  export type OrderDetailsUncheckedCreateWithoutVariantsInput = {
+    id?: string | $Types.Skip
+    quantity: number
+    price: number
+    orderDetails_id: string
+  }
+
+  export type OrderDetailsCreateOrConnectWithoutVariantsInput = {
+    where: OrderDetailsWhereUniqueInput
+    create: XOR<OrderDetailsCreateWithoutVariantsInput, OrderDetailsUncheckedCreateWithoutVariantsInput>
+  }
+
+  export type OrderDetailsCreateManyVariantsInputEnvelope = {
+    data: OrderDetailsCreateManyVariantsInput | OrderDetailsCreateManyVariantsInput[]
+    skipDuplicates?: boolean | $Types.Skip
+  }
+
+  export type CartDetailsCreateWithoutVariantsInput = {
+    id?: string | $Types.Skip
+    quantity: number
+    price: number
+    cart: CartsCreateNestedOneWithoutCartDetailsInput
+  }
+
+  export type CartDetailsUncheckedCreateWithoutVariantsInput = {
+    id?: string | $Types.Skip
+    quantity: number
+    price: number
+    cart_id: string
+  }
+
+  export type CartDetailsCreateOrConnectWithoutVariantsInput = {
+    where: CartDetailsWhereUniqueInput
+    create: XOR<CartDetailsCreateWithoutVariantsInput, CartDetailsUncheckedCreateWithoutVariantsInput>
+  }
+
+  export type CartDetailsCreateManyVariantsInputEnvelope = {
+    data: CartDetailsCreateManyVariantsInput | CartDetailsCreateManyVariantsInput[]
+    skipDuplicates?: boolean | $Types.Skip
+  }
+
   export type ProductsUpsertWithoutVariantsInput = {
     update: XOR<ProductsUpdateWithoutVariantsInput, ProductsUncheckedUpdateWithoutVariantsInput>
     create: XOR<ProductsCreateWithoutVariantsInput, ProductsUncheckedCreateWithoutVariantsInput>
-    where?: ProductsWhereInput
+    where?: ProductsWhereInput | $Types.Skip
   }
 
   export type ProductsUpdateToOneWithWhereWithoutVariantsInput = {
-    where?: ProductsWhereInput
+    where?: ProductsWhereInput | $Types.Skip
     data: XOR<ProductsUpdateWithoutVariantsInput, ProductsUncheckedUpdateWithoutVariantsInput>
   }
 
   export type ProductsUpdateWithoutVariantsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    brand?: BrandsUpdateOneRequiredWithoutProductsNestedInput
-    orderDetails?: OrderDetailsUpdateManyWithoutProductNestedInput
-    productCategories?: ProductCategoriesUpdateManyWithoutProductsNestedInput
-    likes?: LikesUpdateManyWithoutProductsNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    price?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    active?: BoolFieldUpdateOperationsInput | boolean | $Types.Skip
+    brand?: BrandsUpdateOneRequiredWithoutProductsNestedInput | $Types.Skip
+    productCategories?: ProductCategoriesUpdateManyWithoutProductsNestedInput | $Types.Skip
+    likes?: LikesUpdateManyWithoutProductsNestedInput | $Types.Skip
   }
 
   export type ProductsUncheckedUpdateWithoutVariantsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    brand_id?: StringFieldUpdateOperationsInput | string
-    orderDetails?: OrderDetailsUncheckedUpdateManyWithoutProductNestedInput
-    productCategories?: ProductCategoriesUncheckedUpdateManyWithoutProductsNestedInput
-    likes?: LikesUncheckedUpdateManyWithoutProductsNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    price?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    active?: BoolFieldUpdateOperationsInput | boolean | $Types.Skip
+    brand_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    productCategories?: ProductCategoriesUncheckedUpdateManyWithoutProductsNestedInput | $Types.Skip
+    likes?: LikesUncheckedUpdateManyWithoutProductsNestedInput | $Types.Skip
   }
 
   export type FilesUpsertWithoutVariantsInput = {
     update: XOR<FilesUpdateWithoutVariantsInput, FilesUncheckedUpdateWithoutVariantsInput>
     create: XOR<FilesCreateWithoutVariantsInput, FilesUncheckedCreateWithoutVariantsInput>
-    where?: FilesWhereInput
+    where?: FilesWhereInput | $Types.Skip
   }
 
   export type FilesUpdateToOneWithWhereWithoutVariantsInput = {
-    where?: FilesWhereInput
+    where?: FilesWhereInput | $Types.Skip
     data: XOR<FilesUpdateWithoutVariantsInput, FilesUncheckedUpdateWithoutVariantsInput>
   }
 
   export type FilesUpdateWithoutVariantsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    key?: StringFieldUpdateOperationsInput | string
-    idKey?: StringFieldUpdateOperationsInput | string
-    bucket?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    key?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    idKey?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    bucket?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type FilesUncheckedUpdateWithoutVariantsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    key?: StringFieldUpdateOperationsInput | string
-    idKey?: StringFieldUpdateOperationsInput | string
-    bucket?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    key?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    idKey?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    bucket?: StringFieldUpdateOperationsInput | string | $Types.Skip
+  }
+
+  export type OrderDetailsUpsertWithWhereUniqueWithoutVariantsInput = {
+    where: OrderDetailsWhereUniqueInput
+    update: XOR<OrderDetailsUpdateWithoutVariantsInput, OrderDetailsUncheckedUpdateWithoutVariantsInput>
+    create: XOR<OrderDetailsCreateWithoutVariantsInput, OrderDetailsUncheckedCreateWithoutVariantsInput>
+  }
+
+  export type OrderDetailsUpdateWithWhereUniqueWithoutVariantsInput = {
+    where: OrderDetailsWhereUniqueInput
+    data: XOR<OrderDetailsUpdateWithoutVariantsInput, OrderDetailsUncheckedUpdateWithoutVariantsInput>
+  }
+
+  export type OrderDetailsUpdateManyWithWhereWithoutVariantsInput = {
+    where: OrderDetailsScalarWhereInput
+    data: XOR<OrderDetailsUpdateManyMutationInput, OrderDetailsUncheckedUpdateManyWithoutVariantsInput>
+  }
+
+  export type CartDetailsUpsertWithWhereUniqueWithoutVariantsInput = {
+    where: CartDetailsWhereUniqueInput
+    update: XOR<CartDetailsUpdateWithoutVariantsInput, CartDetailsUncheckedUpdateWithoutVariantsInput>
+    create: XOR<CartDetailsCreateWithoutVariantsInput, CartDetailsUncheckedCreateWithoutVariantsInput>
+  }
+
+  export type CartDetailsUpdateWithWhereUniqueWithoutVariantsInput = {
+    where: CartDetailsWhereUniqueInput
+    data: XOR<CartDetailsUpdateWithoutVariantsInput, CartDetailsUncheckedUpdateWithoutVariantsInput>
+  }
+
+  export type CartDetailsUpdateManyWithWhereWithoutVariantsInput = {
+    where: CartDetailsScalarWhereInput
+    data: XOR<CartDetailsUpdateManyMutationInput, CartDetailsUncheckedUpdateManyWithoutVariantsInput>
+  }
+
+  export type CartDetailsScalarWhereInput = {
+    AND?: CartDetailsScalarWhereInput | CartDetailsScalarWhereInput[] | $Types.Skip
+    OR?: CartDetailsScalarWhereInput[] | $Types.Skip
+    NOT?: CartDetailsScalarWhereInput | CartDetailsScalarWhereInput[] | $Types.Skip
+    id?: StringFilter<"CartDetails"> | string | $Types.Skip
+    quantity?: IntFilter<"CartDetails"> | number | $Types.Skip
+    price?: FloatFilter<"CartDetails"> | number | $Types.Skip
+    variant_id?: StringFilter<"CartDetails"> | string | $Types.Skip
+    cart_id?: StringFilter<"CartDetails"> | string | $Types.Skip
   }
 
   export type VariantsCreateWithoutFileInput = {
-    id?: string
-    size?: $Enums.Size
-    textColor?: $Enums.TextColor
+    id?: string | $Types.Skip
+    size?: $Enums.Size | $Types.Skip
+    textColor?: $Enums.TextColor | $Types.Skip
     rgb: string
     stock: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    createdAt?: Date | string | $Types.Skip
+    updatedAt?: Date | string | $Types.Skip
     product: ProductsCreateNestedOneWithoutVariantsInput
+    orderDetails?: OrderDetailsCreateNestedManyWithoutVariantsInput | $Types.Skip
+    cartDetails?: CartDetailsCreateNestedManyWithoutVariantsInput | $Types.Skip
   }
 
   export type VariantsUncheckedCreateWithoutFileInput = {
-    id?: string
+    id?: string | $Types.Skip
     product_id: string
-    size?: $Enums.Size
-    textColor?: $Enums.TextColor
+    size?: $Enums.Size | $Types.Skip
+    textColor?: $Enums.TextColor | $Types.Skip
     rgb: string
     stock: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    createdAt?: Date | string | $Types.Skip
+    updatedAt?: Date | string | $Types.Skip
+    orderDetails?: OrderDetailsUncheckedCreateNestedManyWithoutVariantsInput | $Types.Skip
+    cartDetails?: CartDetailsUncheckedCreateNestedManyWithoutVariantsInput | $Types.Skip
   }
 
   export type VariantsCreateOrConnectWithoutFileInput = {
@@ -19306,7 +24068,7 @@ export namespace Prisma {
 
   export type VariantsCreateManyFileInputEnvelope = {
     data: VariantsCreateManyFileInput | VariantsCreateManyFileInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
   }
 
   export type VariantsUpsertWithWhereUniqueWithoutFileInput = {
@@ -19326,23 +24088,23 @@ export namespace Prisma {
   }
 
   export type CategoriesCreateWithoutCategoriesInput = {
-    id?: string
+    id?: string | $Types.Skip
     name: string
     active: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    parent?: CategoriesCreateNestedOneWithoutCategoriesInput
-    productCategories?: ProductCategoriesCreateNestedManyWithoutCategoriesInput
+    createdAt?: Date | string | $Types.Skip
+    updatedAt?: Date | string | $Types.Skip
+    parent?: CategoriesCreateNestedOneWithoutCategoriesInput | $Types.Skip
+    productCategories?: ProductCategoriesCreateNestedManyWithoutCategoriesInput | $Types.Skip
   }
 
   export type CategoriesUncheckedCreateWithoutCategoriesInput = {
-    id?: string
+    id?: string | $Types.Skip
     name: string
-    parentId?: string | null
+    parentId?: string | null | $Types.Skip
     active: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    productCategories?: ProductCategoriesUncheckedCreateNestedManyWithoutCategoriesInput
+    createdAt?: Date | string | $Types.Skip
+    updatedAt?: Date | string | $Types.Skip
+    productCategories?: ProductCategoriesUncheckedCreateNestedManyWithoutCategoriesInput | $Types.Skip
   }
 
   export type CategoriesCreateOrConnectWithoutCategoriesInput = {
@@ -19365,27 +24127,27 @@ export namespace Prisma {
 
   export type ProductCategoriesCreateManyCategoriesInputEnvelope = {
     data: ProductCategoriesCreateManyCategoriesInput | ProductCategoriesCreateManyCategoriesInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
   }
 
   export type CategoriesCreateWithoutParentInput = {
-    id?: string
+    id?: string | $Types.Skip
     name: string
     active: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    productCategories?: ProductCategoriesCreateNestedManyWithoutCategoriesInput
-    Categories?: CategoriesCreateNestedManyWithoutParentInput
+    createdAt?: Date | string | $Types.Skip
+    updatedAt?: Date | string | $Types.Skip
+    productCategories?: ProductCategoriesCreateNestedManyWithoutCategoriesInput | $Types.Skip
+    Categories?: CategoriesCreateNestedManyWithoutParentInput | $Types.Skip
   }
 
   export type CategoriesUncheckedCreateWithoutParentInput = {
-    id?: string
+    id?: string | $Types.Skip
     name: string
     active: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    productCategories?: ProductCategoriesUncheckedCreateNestedManyWithoutCategoriesInput
-    Categories?: CategoriesUncheckedCreateNestedManyWithoutParentInput
+    createdAt?: Date | string | $Types.Skip
+    updatedAt?: Date | string | $Types.Skip
+    productCategories?: ProductCategoriesUncheckedCreateNestedManyWithoutCategoriesInput | $Types.Skip
+    Categories?: CategoriesUncheckedCreateNestedManyWithoutParentInput | $Types.Skip
   }
 
   export type CategoriesCreateOrConnectWithoutParentInput = {
@@ -19395,38 +24157,38 @@ export namespace Prisma {
 
   export type CategoriesCreateManyParentInputEnvelope = {
     data: CategoriesCreateManyParentInput | CategoriesCreateManyParentInput[]
-    skipDuplicates?: boolean
+    skipDuplicates?: boolean | $Types.Skip
   }
 
   export type CategoriesUpsertWithoutCategoriesInput = {
     update: XOR<CategoriesUpdateWithoutCategoriesInput, CategoriesUncheckedUpdateWithoutCategoriesInput>
     create: XOR<CategoriesCreateWithoutCategoriesInput, CategoriesUncheckedCreateWithoutCategoriesInput>
-    where?: CategoriesWhereInput
+    where?: CategoriesWhereInput | $Types.Skip
   }
 
   export type CategoriesUpdateToOneWithWhereWithoutCategoriesInput = {
-    where?: CategoriesWhereInput
+    where?: CategoriesWhereInput | $Types.Skip
     data: XOR<CategoriesUpdateWithoutCategoriesInput, CategoriesUncheckedUpdateWithoutCategoriesInput>
   }
 
   export type CategoriesUpdateWithoutCategoriesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    parent?: CategoriesUpdateOneWithoutCategoriesNestedInput
-    productCategories?: ProductCategoriesUpdateManyWithoutCategoriesNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    active?: BoolFieldUpdateOperationsInput | boolean | $Types.Skip
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    parent?: CategoriesUpdateOneWithoutCategoriesNestedInput | $Types.Skip
+    productCategories?: ProductCategoriesUpdateManyWithoutCategoriesNestedInput | $Types.Skip
   }
 
   export type CategoriesUncheckedUpdateWithoutCategoriesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    parentId?: NullableStringFieldUpdateOperationsInput | string | null
-    active?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    productCategories?: ProductCategoriesUncheckedUpdateManyWithoutCategoriesNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null | $Types.Skip
+    active?: BoolFieldUpdateOperationsInput | boolean | $Types.Skip
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    productCategories?: ProductCategoriesUncheckedUpdateManyWithoutCategoriesNestedInput | $Types.Skip
   }
 
   export type ProductCategoriesUpsertWithWhereUniqueWithoutCategoriesInput = {
@@ -19462,41 +24224,39 @@ export namespace Prisma {
   }
 
   export type CategoriesScalarWhereInput = {
-    AND?: CategoriesScalarWhereInput | CategoriesScalarWhereInput[]
-    OR?: CategoriesScalarWhereInput[]
-    NOT?: CategoriesScalarWhereInput | CategoriesScalarWhereInput[]
-    id?: StringFilter<"Categories"> | string
-    name?: StringFilter<"Categories"> | string
-    parentId?: StringNullableFilter<"Categories"> | string | null
-    active?: BoolFilter<"Categories"> | boolean
-    createdAt?: DateTimeFilter<"Categories"> | Date | string
-    updatedAt?: DateTimeFilter<"Categories"> | Date | string
+    AND?: CategoriesScalarWhereInput | CategoriesScalarWhereInput[] | $Types.Skip
+    OR?: CategoriesScalarWhereInput[] | $Types.Skip
+    NOT?: CategoriesScalarWhereInput | CategoriesScalarWhereInput[] | $Types.Skip
+    id?: StringFilter<"Categories"> | string | $Types.Skip
+    name?: StringFilter<"Categories"> | string | $Types.Skip
+    parentId?: StringNullableFilter<"Categories"> | string | null | $Types.Skip
+    active?: BoolFilter<"Categories"> | boolean | $Types.Skip
+    createdAt?: DateTimeFilter<"Categories"> | Date | string | $Types.Skip
+    updatedAt?: DateTimeFilter<"Categories"> | Date | string | $Types.Skip
   }
 
   export type ProductsCreateWithoutProductCategoriesInput = {
-    id?: string
+    id?: string | $Types.Skip
     name: string
     price: number
-    created_at?: Date | string
-    updated_at?: Date | string
-    active?: boolean
+    created_at?: Date | string | $Types.Skip
+    updated_at?: Date | string | $Types.Skip
+    active?: boolean | $Types.Skip
     brand: BrandsCreateNestedOneWithoutProductsInput
-    orderDetails?: OrderDetailsCreateNestedManyWithoutProductInput
-    variants?: VariantsCreateNestedManyWithoutProductInput
-    likes?: LikesCreateNestedManyWithoutProductsInput
+    variants?: VariantsCreateNestedManyWithoutProductInput | $Types.Skip
+    likes?: LikesCreateNestedManyWithoutProductsInput | $Types.Skip
   }
 
   export type ProductsUncheckedCreateWithoutProductCategoriesInput = {
-    id?: string
+    id?: string | $Types.Skip
     name: string
     price: number
-    created_at?: Date | string
-    updated_at?: Date | string
-    active?: boolean
+    created_at?: Date | string | $Types.Skip
+    updated_at?: Date | string | $Types.Skip
+    active?: boolean | $Types.Skip
     brand_id: string
-    orderDetails?: OrderDetailsUncheckedCreateNestedManyWithoutProductInput
-    variants?: VariantsUncheckedCreateNestedManyWithoutProductInput
-    likes?: LikesUncheckedCreateNestedManyWithoutProductsInput
+    variants?: VariantsUncheckedCreateNestedManyWithoutProductInput | $Types.Skip
+    likes?: LikesUncheckedCreateNestedManyWithoutProductsInput | $Types.Skip
   }
 
   export type ProductsCreateOrConnectWithoutProductCategoriesInput = {
@@ -19505,23 +24265,23 @@ export namespace Prisma {
   }
 
   export type CategoriesCreateWithoutProductCategoriesInput = {
-    id?: string
+    id?: string | $Types.Skip
     name: string
     active: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    parent?: CategoriesCreateNestedOneWithoutCategoriesInput
-    Categories?: CategoriesCreateNestedManyWithoutParentInput
+    createdAt?: Date | string | $Types.Skip
+    updatedAt?: Date | string | $Types.Skip
+    parent?: CategoriesCreateNestedOneWithoutCategoriesInput | $Types.Skip
+    Categories?: CategoriesCreateNestedManyWithoutParentInput | $Types.Skip
   }
 
   export type CategoriesUncheckedCreateWithoutProductCategoriesInput = {
-    id?: string
+    id?: string | $Types.Skip
     name: string
-    parentId?: string | null
+    parentId?: string | null | $Types.Skip
     active: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    Categories?: CategoriesUncheckedCreateNestedManyWithoutParentInput
+    createdAt?: Date | string | $Types.Skip
+    updatedAt?: Date | string | $Types.Skip
+    Categories?: CategoriesUncheckedCreateNestedManyWithoutParentInput | $Types.Skip
   }
 
   export type CategoriesCreateOrConnectWithoutProductCategoriesInput = {
@@ -19532,95 +24292,91 @@ export namespace Prisma {
   export type ProductsUpsertWithoutProductCategoriesInput = {
     update: XOR<ProductsUpdateWithoutProductCategoriesInput, ProductsUncheckedUpdateWithoutProductCategoriesInput>
     create: XOR<ProductsCreateWithoutProductCategoriesInput, ProductsUncheckedCreateWithoutProductCategoriesInput>
-    where?: ProductsWhereInput
+    where?: ProductsWhereInput | $Types.Skip
   }
 
   export type ProductsUpdateToOneWithWhereWithoutProductCategoriesInput = {
-    where?: ProductsWhereInput
+    where?: ProductsWhereInput | $Types.Skip
     data: XOR<ProductsUpdateWithoutProductCategoriesInput, ProductsUncheckedUpdateWithoutProductCategoriesInput>
   }
 
   export type ProductsUpdateWithoutProductCategoriesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    brand?: BrandsUpdateOneRequiredWithoutProductsNestedInput
-    orderDetails?: OrderDetailsUpdateManyWithoutProductNestedInput
-    variants?: VariantsUpdateManyWithoutProductNestedInput
-    likes?: LikesUpdateManyWithoutProductsNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    price?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    active?: BoolFieldUpdateOperationsInput | boolean | $Types.Skip
+    brand?: BrandsUpdateOneRequiredWithoutProductsNestedInput | $Types.Skip
+    variants?: VariantsUpdateManyWithoutProductNestedInput | $Types.Skip
+    likes?: LikesUpdateManyWithoutProductsNestedInput | $Types.Skip
   }
 
   export type ProductsUncheckedUpdateWithoutProductCategoriesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    brand_id?: StringFieldUpdateOperationsInput | string
-    orderDetails?: OrderDetailsUncheckedUpdateManyWithoutProductNestedInput
-    variants?: VariantsUncheckedUpdateManyWithoutProductNestedInput
-    likes?: LikesUncheckedUpdateManyWithoutProductsNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    price?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    active?: BoolFieldUpdateOperationsInput | boolean | $Types.Skip
+    brand_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    variants?: VariantsUncheckedUpdateManyWithoutProductNestedInput | $Types.Skip
+    likes?: LikesUncheckedUpdateManyWithoutProductsNestedInput | $Types.Skip
   }
 
   export type CategoriesUpsertWithoutProductCategoriesInput = {
     update: XOR<CategoriesUpdateWithoutProductCategoriesInput, CategoriesUncheckedUpdateWithoutProductCategoriesInput>
     create: XOR<CategoriesCreateWithoutProductCategoriesInput, CategoriesUncheckedCreateWithoutProductCategoriesInput>
-    where?: CategoriesWhereInput
+    where?: CategoriesWhereInput | $Types.Skip
   }
 
   export type CategoriesUpdateToOneWithWhereWithoutProductCategoriesInput = {
-    where?: CategoriesWhereInput
+    where?: CategoriesWhereInput | $Types.Skip
     data: XOR<CategoriesUpdateWithoutProductCategoriesInput, CategoriesUncheckedUpdateWithoutProductCategoriesInput>
   }
 
   export type CategoriesUpdateWithoutProductCategoriesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    parent?: CategoriesUpdateOneWithoutCategoriesNestedInput
-    Categories?: CategoriesUpdateManyWithoutParentNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    active?: BoolFieldUpdateOperationsInput | boolean | $Types.Skip
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    parent?: CategoriesUpdateOneWithoutCategoriesNestedInput | $Types.Skip
+    Categories?: CategoriesUpdateManyWithoutParentNestedInput | $Types.Skip
   }
 
   export type CategoriesUncheckedUpdateWithoutProductCategoriesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    parentId?: NullableStringFieldUpdateOperationsInput | string | null
-    active?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Categories?: CategoriesUncheckedUpdateManyWithoutParentNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    parentId?: NullableStringFieldUpdateOperationsInput | string | null | $Types.Skip
+    active?: BoolFieldUpdateOperationsInput | boolean | $Types.Skip
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    Categories?: CategoriesUncheckedUpdateManyWithoutParentNestedInput | $Types.Skip
   }
 
   export type ProductsCreateWithoutLikesInput = {
-    id?: string
+    id?: string | $Types.Skip
     name: string
     price: number
-    created_at?: Date | string
-    updated_at?: Date | string
-    active?: boolean
+    created_at?: Date | string | $Types.Skip
+    updated_at?: Date | string | $Types.Skip
+    active?: boolean | $Types.Skip
     brand: BrandsCreateNestedOneWithoutProductsInput
-    orderDetails?: OrderDetailsCreateNestedManyWithoutProductInput
-    variants?: VariantsCreateNestedManyWithoutProductInput
-    productCategories?: ProductCategoriesCreateNestedManyWithoutProductsInput
+    variants?: VariantsCreateNestedManyWithoutProductInput | $Types.Skip
+    productCategories?: ProductCategoriesCreateNestedManyWithoutProductsInput | $Types.Skip
   }
 
   export type ProductsUncheckedCreateWithoutLikesInput = {
-    id?: string
+    id?: string | $Types.Skip
     name: string
     price: number
-    created_at?: Date | string
-    updated_at?: Date | string
-    active?: boolean
+    created_at?: Date | string | $Types.Skip
+    updated_at?: Date | string | $Types.Skip
+    active?: boolean | $Types.Skip
     brand_id: string
-    orderDetails?: OrderDetailsUncheckedCreateNestedManyWithoutProductInput
-    variants?: VariantsUncheckedCreateNestedManyWithoutProductInput
-    productCategories?: ProductCategoriesUncheckedCreateNestedManyWithoutProductsInput
+    variants?: VariantsUncheckedCreateNestedManyWithoutProductInput | $Types.Skip
+    productCategories?: ProductCategoriesUncheckedCreateNestedManyWithoutProductsInput | $Types.Skip
   }
 
   export type ProductsCreateOrConnectWithoutLikesInput = {
@@ -19629,25 +24385,27 @@ export namespace Prisma {
   }
 
   export type UsersCreateWithoutLikesInput = {
-    id?: string
+    id?: string | $Types.Skip
     nickname: string
     first_name: string
     last_name: string
     email: string
     password: string
-    roles?: UserRolesCreateNestedManyWithoutUsersInput
-    orders?: OrdersCreateNestedManyWithoutUserInput
+    roles?: UserRolesCreateNestedManyWithoutUsersInput | $Types.Skip
+    orders?: OrdersCreateNestedManyWithoutUserInput | $Types.Skip
+    carts?: CartsCreateNestedManyWithoutUserInput | $Types.Skip
   }
 
   export type UsersUncheckedCreateWithoutLikesInput = {
-    id?: string
+    id?: string | $Types.Skip
     nickname: string
     first_name: string
     last_name: string
     email: string
     password: string
-    roles?: UserRolesUncheckedCreateNestedManyWithoutUsersInput
-    orders?: OrdersUncheckedCreateNestedManyWithoutUserInput
+    roles?: UserRolesUncheckedCreateNestedManyWithoutUsersInput | $Types.Skip
+    orders?: OrdersUncheckedCreateNestedManyWithoutUserInput | $Types.Skip
+    carts?: CartsUncheckedCreateNestedManyWithoutUserInput | $Types.Skip
   }
 
   export type UsersCreateOrConnectWithoutLikesInput = {
@@ -19658,71 +24416,287 @@ export namespace Prisma {
   export type ProductsUpsertWithoutLikesInput = {
     update: XOR<ProductsUpdateWithoutLikesInput, ProductsUncheckedUpdateWithoutLikesInput>
     create: XOR<ProductsCreateWithoutLikesInput, ProductsUncheckedCreateWithoutLikesInput>
-    where?: ProductsWhereInput
+    where?: ProductsWhereInput | $Types.Skip
   }
 
   export type ProductsUpdateToOneWithWhereWithoutLikesInput = {
-    where?: ProductsWhereInput
+    where?: ProductsWhereInput | $Types.Skip
     data: XOR<ProductsUpdateWithoutLikesInput, ProductsUncheckedUpdateWithoutLikesInput>
   }
 
   export type ProductsUpdateWithoutLikesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    brand?: BrandsUpdateOneRequiredWithoutProductsNestedInput
-    orderDetails?: OrderDetailsUpdateManyWithoutProductNestedInput
-    variants?: VariantsUpdateManyWithoutProductNestedInput
-    productCategories?: ProductCategoriesUpdateManyWithoutProductsNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    price?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    active?: BoolFieldUpdateOperationsInput | boolean | $Types.Skip
+    brand?: BrandsUpdateOneRequiredWithoutProductsNestedInput | $Types.Skip
+    variants?: VariantsUpdateManyWithoutProductNestedInput | $Types.Skip
+    productCategories?: ProductCategoriesUpdateManyWithoutProductsNestedInput | $Types.Skip
   }
 
   export type ProductsUncheckedUpdateWithoutLikesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    brand_id?: StringFieldUpdateOperationsInput | string
-    orderDetails?: OrderDetailsUncheckedUpdateManyWithoutProductNestedInput
-    variants?: VariantsUncheckedUpdateManyWithoutProductNestedInput
-    productCategories?: ProductCategoriesUncheckedUpdateManyWithoutProductsNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    price?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    active?: BoolFieldUpdateOperationsInput | boolean | $Types.Skip
+    brand_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    variants?: VariantsUncheckedUpdateManyWithoutProductNestedInput | $Types.Skip
+    productCategories?: ProductCategoriesUncheckedUpdateManyWithoutProductsNestedInput | $Types.Skip
   }
 
   export type UsersUpsertWithoutLikesInput = {
     update: XOR<UsersUpdateWithoutLikesInput, UsersUncheckedUpdateWithoutLikesInput>
     create: XOR<UsersCreateWithoutLikesInput, UsersUncheckedCreateWithoutLikesInput>
-    where?: UsersWhereInput
+    where?: UsersWhereInput | $Types.Skip
   }
 
   export type UsersUpdateToOneWithWhereWithoutLikesInput = {
-    where?: UsersWhereInput
+    where?: UsersWhereInput | $Types.Skip
     data: XOR<UsersUpdateWithoutLikesInput, UsersUncheckedUpdateWithoutLikesInput>
   }
 
   export type UsersUpdateWithoutLikesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nickname?: StringFieldUpdateOperationsInput | string
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    roles?: UserRolesUpdateManyWithoutUsersNestedInput
-    orders?: OrdersUpdateManyWithoutUserNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    nickname?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    first_name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    last_name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    email?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    password?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    roles?: UserRolesUpdateManyWithoutUsersNestedInput | $Types.Skip
+    orders?: OrdersUpdateManyWithoutUserNestedInput | $Types.Skip
+    carts?: CartsUpdateManyWithoutUserNestedInput | $Types.Skip
   }
 
   export type UsersUncheckedUpdateWithoutLikesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nickname?: StringFieldUpdateOperationsInput | string
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    roles?: UserRolesUncheckedUpdateManyWithoutUsersNestedInput
-    orders?: OrdersUncheckedUpdateManyWithoutUserNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    nickname?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    first_name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    last_name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    email?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    password?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    roles?: UserRolesUncheckedUpdateManyWithoutUsersNestedInput | $Types.Skip
+    orders?: OrdersUncheckedUpdateManyWithoutUserNestedInput | $Types.Skip
+    carts?: CartsUncheckedUpdateManyWithoutUserNestedInput | $Types.Skip
+  }
+
+  export type VariantsCreateWithoutCartDetailsInput = {
+    id?: string | $Types.Skip
+    size?: $Enums.Size | $Types.Skip
+    textColor?: $Enums.TextColor | $Types.Skip
+    rgb: string
+    stock: number
+    createdAt?: Date | string | $Types.Skip
+    updatedAt?: Date | string | $Types.Skip
+    product: ProductsCreateNestedOneWithoutVariantsInput
+    file: FilesCreateNestedOneWithoutVariantsInput
+    orderDetails?: OrderDetailsCreateNestedManyWithoutVariantsInput | $Types.Skip
+  }
+
+  export type VariantsUncheckedCreateWithoutCartDetailsInput = {
+    id?: string | $Types.Skip
+    product_id: string
+    file_id: string
+    size?: $Enums.Size | $Types.Skip
+    textColor?: $Enums.TextColor | $Types.Skip
+    rgb: string
+    stock: number
+    createdAt?: Date | string | $Types.Skip
+    updatedAt?: Date | string | $Types.Skip
+    orderDetails?: OrderDetailsUncheckedCreateNestedManyWithoutVariantsInput | $Types.Skip
+  }
+
+  export type VariantsCreateOrConnectWithoutCartDetailsInput = {
+    where: VariantsWhereUniqueInput
+    create: XOR<VariantsCreateWithoutCartDetailsInput, VariantsUncheckedCreateWithoutCartDetailsInput>
+  }
+
+  export type CartsCreateWithoutCartDetailsInput = {
+    id?: string | $Types.Skip
+    createdAt?: Date | string | $Types.Skip
+    updatedAt?: Date | string | $Types.Skip
+    user: UsersCreateNestedOneWithoutCartsInput
+  }
+
+  export type CartsUncheckedCreateWithoutCartDetailsInput = {
+    id?: string | $Types.Skip
+    user_id: string
+    createdAt?: Date | string | $Types.Skip
+    updatedAt?: Date | string | $Types.Skip
+  }
+
+  export type CartsCreateOrConnectWithoutCartDetailsInput = {
+    where: CartsWhereUniqueInput
+    create: XOR<CartsCreateWithoutCartDetailsInput, CartsUncheckedCreateWithoutCartDetailsInput>
+  }
+
+  export type VariantsUpsertWithoutCartDetailsInput = {
+    update: XOR<VariantsUpdateWithoutCartDetailsInput, VariantsUncheckedUpdateWithoutCartDetailsInput>
+    create: XOR<VariantsCreateWithoutCartDetailsInput, VariantsUncheckedCreateWithoutCartDetailsInput>
+    where?: VariantsWhereInput | $Types.Skip
+  }
+
+  export type VariantsUpdateToOneWithWhereWithoutCartDetailsInput = {
+    where?: VariantsWhereInput | $Types.Skip
+    data: XOR<VariantsUpdateWithoutCartDetailsInput, VariantsUncheckedUpdateWithoutCartDetailsInput>
+  }
+
+  export type VariantsUpdateWithoutCartDetailsInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    size?: EnumSizeFieldUpdateOperationsInput | $Enums.Size | $Types.Skip
+    textColor?: EnumTextColorFieldUpdateOperationsInput | $Enums.TextColor | $Types.Skip
+    rgb?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    stock?: IntFieldUpdateOperationsInput | number | $Types.Skip
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    product?: ProductsUpdateOneRequiredWithoutVariantsNestedInput | $Types.Skip
+    file?: FilesUpdateOneRequiredWithoutVariantsNestedInput | $Types.Skip
+    orderDetails?: OrderDetailsUpdateManyWithoutVariantsNestedInput | $Types.Skip
+  }
+
+  export type VariantsUncheckedUpdateWithoutCartDetailsInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    product_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    file_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    size?: EnumSizeFieldUpdateOperationsInput | $Enums.Size | $Types.Skip
+    textColor?: EnumTextColorFieldUpdateOperationsInput | $Enums.TextColor | $Types.Skip
+    rgb?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    stock?: IntFieldUpdateOperationsInput | number | $Types.Skip
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    orderDetails?: OrderDetailsUncheckedUpdateManyWithoutVariantsNestedInput | $Types.Skip
+  }
+
+  export type CartsUpsertWithoutCartDetailsInput = {
+    update: XOR<CartsUpdateWithoutCartDetailsInput, CartsUncheckedUpdateWithoutCartDetailsInput>
+    create: XOR<CartsCreateWithoutCartDetailsInput, CartsUncheckedCreateWithoutCartDetailsInput>
+    where?: CartsWhereInput | $Types.Skip
+  }
+
+  export type CartsUpdateToOneWithWhereWithoutCartDetailsInput = {
+    where?: CartsWhereInput | $Types.Skip
+    data: XOR<CartsUpdateWithoutCartDetailsInput, CartsUncheckedUpdateWithoutCartDetailsInput>
+  }
+
+  export type CartsUpdateWithoutCartDetailsInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    user?: UsersUpdateOneRequiredWithoutCartsNestedInput | $Types.Skip
+  }
+
+  export type CartsUncheckedUpdateWithoutCartDetailsInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    user_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+  }
+
+  export type UsersCreateWithoutCartsInput = {
+    id?: string | $Types.Skip
+    nickname: string
+    first_name: string
+    last_name: string
+    email: string
+    password: string
+    roles?: UserRolesCreateNestedManyWithoutUsersInput | $Types.Skip
+    orders?: OrdersCreateNestedManyWithoutUserInput | $Types.Skip
+    likes?: LikesCreateNestedManyWithoutUserInput | $Types.Skip
+  }
+
+  export type UsersUncheckedCreateWithoutCartsInput = {
+    id?: string | $Types.Skip
+    nickname: string
+    first_name: string
+    last_name: string
+    email: string
+    password: string
+    roles?: UserRolesUncheckedCreateNestedManyWithoutUsersInput | $Types.Skip
+    orders?: OrdersUncheckedCreateNestedManyWithoutUserInput | $Types.Skip
+    likes?: LikesUncheckedCreateNestedManyWithoutUserInput | $Types.Skip
+  }
+
+  export type UsersCreateOrConnectWithoutCartsInput = {
+    where: UsersWhereUniqueInput
+    create: XOR<UsersCreateWithoutCartsInput, UsersUncheckedCreateWithoutCartsInput>
+  }
+
+  export type CartDetailsCreateWithoutCartInput = {
+    id?: string | $Types.Skip
+    quantity: number
+    price: number
+    variants: VariantsCreateNestedOneWithoutCartDetailsInput
+  }
+
+  export type CartDetailsUncheckedCreateWithoutCartInput = {
+    id?: string | $Types.Skip
+    quantity: number
+    price: number
+    variant_id: string
+  }
+
+  export type CartDetailsCreateOrConnectWithoutCartInput = {
+    where: CartDetailsWhereUniqueInput
+    create: XOR<CartDetailsCreateWithoutCartInput, CartDetailsUncheckedCreateWithoutCartInput>
+  }
+
+  export type CartDetailsCreateManyCartInputEnvelope = {
+    data: CartDetailsCreateManyCartInput | CartDetailsCreateManyCartInput[]
+    skipDuplicates?: boolean | $Types.Skip
+  }
+
+  export type UsersUpsertWithoutCartsInput = {
+    update: XOR<UsersUpdateWithoutCartsInput, UsersUncheckedUpdateWithoutCartsInput>
+    create: XOR<UsersCreateWithoutCartsInput, UsersUncheckedCreateWithoutCartsInput>
+    where?: UsersWhereInput | $Types.Skip
+  }
+
+  export type UsersUpdateToOneWithWhereWithoutCartsInput = {
+    where?: UsersWhereInput | $Types.Skip
+    data: XOR<UsersUpdateWithoutCartsInput, UsersUncheckedUpdateWithoutCartsInput>
+  }
+
+  export type UsersUpdateWithoutCartsInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    nickname?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    first_name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    last_name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    email?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    password?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    roles?: UserRolesUpdateManyWithoutUsersNestedInput | $Types.Skip
+    orders?: OrdersUpdateManyWithoutUserNestedInput | $Types.Skip
+    likes?: LikesUpdateManyWithoutUserNestedInput | $Types.Skip
+  }
+
+  export type UsersUncheckedUpdateWithoutCartsInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    nickname?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    first_name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    last_name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    email?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    password?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    roles?: UserRolesUncheckedUpdateManyWithoutUsersNestedInput | $Types.Skip
+    orders?: OrdersUncheckedUpdateManyWithoutUserNestedInput | $Types.Skip
+    likes?: LikesUncheckedUpdateManyWithoutUserNestedInput | $Types.Skip
+  }
+
+  export type CartDetailsUpsertWithWhereUniqueWithoutCartInput = {
+    where: CartDetailsWhereUniqueInput
+    update: XOR<CartDetailsUpdateWithoutCartInput, CartDetailsUncheckedUpdateWithoutCartInput>
+    create: XOR<CartDetailsCreateWithoutCartInput, CartDetailsUncheckedCreateWithoutCartInput>
+  }
+
+  export type CartDetailsUpdateWithWhereUniqueWithoutCartInput = {
+    where: CartDetailsWhereUniqueInput
+    data: XOR<CartDetailsUpdateWithoutCartInput, CartDetailsUncheckedUpdateWithoutCartInput>
+  }
+
+  export type CartDetailsUpdateManyWithWhereWithoutCartInput = {
+    where: CartDetailsScalarWhereInput
+    data: XOR<CartDetailsUpdateManyMutationInput, CartDetailsUncheckedUpdateManyWithoutCartInput>
   }
 
   export type UserRolesCreateManyRolesInput = {
@@ -19730,15 +24704,15 @@ export namespace Prisma {
   }
 
   export type UserRolesUpdateWithoutRolesInput = {
-    users?: UsersUpdateOneRequiredWithoutRolesNestedInput
+    users?: UsersUpdateOneRequiredWithoutRolesNestedInput | $Types.Skip
   }
 
   export type UserRolesUncheckedUpdateWithoutRolesInput = {
-    userId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type UserRolesUncheckedUpdateManyWithoutRolesInput = {
-    userId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type UserRolesCreateManyUsersInput = {
@@ -19746,8 +24720,8 @@ export namespace Prisma {
   }
 
   export type OrdersCreateManyUserInput = {
-    id?: string
-    created_at?: Date | string
+    id?: string | $Types.Skip
+    created_at?: Date | string | $Types.Skip
     stripe_checkout_id: string
   }
 
@@ -19755,94 +24729,115 @@ export namespace Prisma {
     productId: string
   }
 
+  export type CartsCreateManyUserInput = {
+    id?: string | $Types.Skip
+    createdAt?: Date | string | $Types.Skip
+    updatedAt?: Date | string | $Types.Skip
+  }
+
   export type UserRolesUpdateWithoutUsersInput = {
-    roles?: RolesUpdateOneRequiredWithoutUsersNestedInput
+    roles?: RolesUpdateOneRequiredWithoutUsersNestedInput | $Types.Skip
   }
 
   export type UserRolesUncheckedUpdateWithoutUsersInput = {
-    roleId?: StringFieldUpdateOperationsInput | string
+    roleId?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type UserRolesUncheckedUpdateManyWithoutUsersInput = {
-    roleId?: StringFieldUpdateOperationsInput | string
+    roleId?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type OrdersUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    stripe_checkout_id?: StringFieldUpdateOperationsInput | string
-    orderDetails?: OrderDetailsUpdateManyWithoutOrderDetailsNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    stripe_checkout_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    orderDetails?: OrderDetailsUpdateManyWithoutOrderDetailsNestedInput | $Types.Skip
+    payment?: PaymentsUpdateOneWithoutOrderNestedInput | $Types.Skip
   }
 
   export type OrdersUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    stripe_checkout_id?: StringFieldUpdateOperationsInput | string
-    orderDetails?: OrderDetailsUncheckedUpdateManyWithoutOrderDetailsNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    stripe_checkout_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    orderDetails?: OrderDetailsUncheckedUpdateManyWithoutOrderDetailsNestedInput | $Types.Skip
+    payment?: PaymentsUncheckedUpdateOneWithoutOrderNestedInput | $Types.Skip
   }
 
   export type OrdersUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    stripe_checkout_id?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    stripe_checkout_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type LikesUpdateWithoutUserInput = {
-    products?: ProductsUpdateOneRequiredWithoutLikesNestedInput
+    products?: ProductsUpdateOneRequiredWithoutLikesNestedInput | $Types.Skip
   }
 
   export type LikesUncheckedUpdateWithoutUserInput = {
-    productId?: StringFieldUpdateOperationsInput | string
+    productId?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type LikesUncheckedUpdateManyWithoutUserInput = {
-    productId?: StringFieldUpdateOperationsInput | string
+    productId?: StringFieldUpdateOperationsInput | string | $Types.Skip
+  }
+
+  export type CartsUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    cartDetails?: CartDetailsUpdateManyWithoutCartNestedInput | $Types.Skip
+  }
+
+  export type CartsUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    cartDetails?: CartDetailsUncheckedUpdateManyWithoutCartNestedInput | $Types.Skip
+  }
+
+  export type CartsUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
   }
 
   export type OrderDetailsCreateManyOrderDetailsInput = {
-    id?: string
+    id?: string | $Types.Skip
     quantity: number
     price: number
-    product_id: string
+    variant_id: string
   }
 
   export type OrderDetailsUpdateWithoutOrderDetailsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    quantity?: IntFieldUpdateOperationsInput | number
-    price?: FloatFieldUpdateOperationsInput | number
-    product?: ProductsUpdateOneRequiredWithoutOrderDetailsNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    quantity?: IntFieldUpdateOperationsInput | number | $Types.Skip
+    price?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    variants?: VariantsUpdateOneRequiredWithoutOrderDetailsNestedInput | $Types.Skip
   }
 
   export type OrderDetailsUncheckedUpdateWithoutOrderDetailsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    quantity?: IntFieldUpdateOperationsInput | number
-    price?: FloatFieldUpdateOperationsInput | number
-    product_id?: StringFieldUpdateOperationsInput | string
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    quantity?: IntFieldUpdateOperationsInput | number | $Types.Skip
+    price?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    variant_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type OrderDetailsUncheckedUpdateManyWithoutOrderDetailsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    quantity?: IntFieldUpdateOperationsInput | number
-    price?: FloatFieldUpdateOperationsInput | number
-    product_id?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type OrderDetailsCreateManyProductInput = {
-    id?: string
-    quantity: number
-    price: number
-    orderDetails_id: string
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    quantity?: IntFieldUpdateOperationsInput | number | $Types.Skip
+    price?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    variant_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type VariantsCreateManyProductInput = {
-    id?: string
+    id?: string | $Types.Skip
     file_id: string
-    size?: $Enums.Size
-    textColor?: $Enums.TextColor
+    size?: $Enums.Size | $Types.Skip
+    textColor?: $Enums.TextColor | $Types.Skip
     rgb: string
     stock: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    createdAt?: Date | string | $Types.Skip
+    updatedAt?: Date | string | $Types.Skip
   }
 
   export type ProductCategoriesCreateManyProductsInput = {
@@ -19853,170 +24848,211 @@ export namespace Prisma {
     user_id: string
   }
 
-  export type OrderDetailsUpdateWithoutProductInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    quantity?: IntFieldUpdateOperationsInput | number
-    price?: FloatFieldUpdateOperationsInput | number
-    orderDetails?: OrdersUpdateOneRequiredWithoutOrderDetailsNestedInput
-  }
-
-  export type OrderDetailsUncheckedUpdateWithoutProductInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    quantity?: IntFieldUpdateOperationsInput | number
-    price?: FloatFieldUpdateOperationsInput | number
-    orderDetails_id?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type OrderDetailsUncheckedUpdateManyWithoutProductInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    quantity?: IntFieldUpdateOperationsInput | number
-    price?: FloatFieldUpdateOperationsInput | number
-    orderDetails_id?: StringFieldUpdateOperationsInput | string
-  }
-
   export type VariantsUpdateWithoutProductInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    size?: EnumSizeFieldUpdateOperationsInput | $Enums.Size
-    textColor?: EnumTextColorFieldUpdateOperationsInput | $Enums.TextColor
-    rgb?: StringFieldUpdateOperationsInput | string
-    stock?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    file?: FilesUpdateOneRequiredWithoutVariantsNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    size?: EnumSizeFieldUpdateOperationsInput | $Enums.Size | $Types.Skip
+    textColor?: EnumTextColorFieldUpdateOperationsInput | $Enums.TextColor | $Types.Skip
+    rgb?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    stock?: IntFieldUpdateOperationsInput | number | $Types.Skip
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    file?: FilesUpdateOneRequiredWithoutVariantsNestedInput | $Types.Skip
+    orderDetails?: OrderDetailsUpdateManyWithoutVariantsNestedInput | $Types.Skip
+    cartDetails?: CartDetailsUpdateManyWithoutVariantsNestedInput | $Types.Skip
   }
 
   export type VariantsUncheckedUpdateWithoutProductInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    file_id?: StringFieldUpdateOperationsInput | string
-    size?: EnumSizeFieldUpdateOperationsInput | $Enums.Size
-    textColor?: EnumTextColorFieldUpdateOperationsInput | $Enums.TextColor
-    rgb?: StringFieldUpdateOperationsInput | string
-    stock?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    file_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    size?: EnumSizeFieldUpdateOperationsInput | $Enums.Size | $Types.Skip
+    textColor?: EnumTextColorFieldUpdateOperationsInput | $Enums.TextColor | $Types.Skip
+    rgb?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    stock?: IntFieldUpdateOperationsInput | number | $Types.Skip
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    orderDetails?: OrderDetailsUncheckedUpdateManyWithoutVariantsNestedInput | $Types.Skip
+    cartDetails?: CartDetailsUncheckedUpdateManyWithoutVariantsNestedInput | $Types.Skip
   }
 
   export type VariantsUncheckedUpdateManyWithoutProductInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    file_id?: StringFieldUpdateOperationsInput | string
-    size?: EnumSizeFieldUpdateOperationsInput | $Enums.Size
-    textColor?: EnumTextColorFieldUpdateOperationsInput | $Enums.TextColor
-    rgb?: StringFieldUpdateOperationsInput | string
-    stock?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    file_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    size?: EnumSizeFieldUpdateOperationsInput | $Enums.Size | $Types.Skip
+    textColor?: EnumTextColorFieldUpdateOperationsInput | $Enums.TextColor | $Types.Skip
+    rgb?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    stock?: IntFieldUpdateOperationsInput | number | $Types.Skip
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
   }
 
   export type ProductCategoriesUpdateWithoutProductsInput = {
-    categories?: CategoriesUpdateOneRequiredWithoutProductCategoriesNestedInput
+    categories?: CategoriesUpdateOneRequiredWithoutProductCategoriesNestedInput | $Types.Skip
   }
 
   export type ProductCategoriesUncheckedUpdateWithoutProductsInput = {
-    categoryId?: StringFieldUpdateOperationsInput | string
+    categoryId?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type ProductCategoriesUncheckedUpdateManyWithoutProductsInput = {
-    categoryId?: StringFieldUpdateOperationsInput | string
+    categoryId?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type LikesUpdateWithoutProductsInput = {
-    user?: UsersUpdateOneRequiredWithoutLikesNestedInput
+    user?: UsersUpdateOneRequiredWithoutLikesNestedInput | $Types.Skip
   }
 
   export type LikesUncheckedUpdateWithoutProductsInput = {
-    user_id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type LikesUncheckedUpdateManyWithoutProductsInput = {
-    user_id?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type ProductsCreateManyBrandInput = {
-    id?: string
+    id?: string | $Types.Skip
     name: string
     price: number
-    created_at?: Date | string
-    updated_at?: Date | string
-    active?: boolean
+    created_at?: Date | string | $Types.Skip
+    updated_at?: Date | string | $Types.Skip
+    active?: boolean | $Types.Skip
   }
 
   export type ProductsUpdateWithoutBrandInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    orderDetails?: OrderDetailsUpdateManyWithoutProductNestedInput
-    variants?: VariantsUpdateManyWithoutProductNestedInput
-    productCategories?: ProductCategoriesUpdateManyWithoutProductsNestedInput
-    likes?: LikesUpdateManyWithoutProductsNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    price?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    active?: BoolFieldUpdateOperationsInput | boolean | $Types.Skip
+    variants?: VariantsUpdateManyWithoutProductNestedInput | $Types.Skip
+    productCategories?: ProductCategoriesUpdateManyWithoutProductsNestedInput | $Types.Skip
+    likes?: LikesUpdateManyWithoutProductsNestedInput | $Types.Skip
   }
 
   export type ProductsUncheckedUpdateWithoutBrandInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    orderDetails?: OrderDetailsUncheckedUpdateManyWithoutProductNestedInput
-    variants?: VariantsUncheckedUpdateManyWithoutProductNestedInput
-    productCategories?: ProductCategoriesUncheckedUpdateManyWithoutProductsNestedInput
-    likes?: LikesUncheckedUpdateManyWithoutProductsNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    price?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    active?: BoolFieldUpdateOperationsInput | boolean | $Types.Skip
+    variants?: VariantsUncheckedUpdateManyWithoutProductNestedInput | $Types.Skip
+    productCategories?: ProductCategoriesUncheckedUpdateManyWithoutProductsNestedInput | $Types.Skip
+    likes?: LikesUncheckedUpdateManyWithoutProductsNestedInput | $Types.Skip
   }
 
   export type ProductsUncheckedUpdateManyWithoutBrandInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    active?: BoolFieldUpdateOperationsInput | boolean
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    price?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    active?: BoolFieldUpdateOperationsInput | boolean | $Types.Skip
+  }
+
+  export type OrderDetailsCreateManyVariantsInput = {
+    id?: string | $Types.Skip
+    quantity: number
+    price: number
+    orderDetails_id: string
+  }
+
+  export type CartDetailsCreateManyVariantsInput = {
+    id?: string | $Types.Skip
+    quantity: number
+    price: number
+    cart_id: string
+  }
+
+  export type OrderDetailsUpdateWithoutVariantsInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    quantity?: IntFieldUpdateOperationsInput | number | $Types.Skip
+    price?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    orderDetails?: OrdersUpdateOneRequiredWithoutOrderDetailsNestedInput | $Types.Skip
+  }
+
+  export type OrderDetailsUncheckedUpdateWithoutVariantsInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    quantity?: IntFieldUpdateOperationsInput | number | $Types.Skip
+    price?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    orderDetails_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+  }
+
+  export type OrderDetailsUncheckedUpdateManyWithoutVariantsInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    quantity?: IntFieldUpdateOperationsInput | number | $Types.Skip
+    price?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    orderDetails_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+  }
+
+  export type CartDetailsUpdateWithoutVariantsInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    quantity?: IntFieldUpdateOperationsInput | number | $Types.Skip
+    price?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    cart?: CartsUpdateOneRequiredWithoutCartDetailsNestedInput | $Types.Skip
+  }
+
+  export type CartDetailsUncheckedUpdateWithoutVariantsInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    quantity?: IntFieldUpdateOperationsInput | number | $Types.Skip
+    price?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    cart_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+  }
+
+  export type CartDetailsUncheckedUpdateManyWithoutVariantsInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    quantity?: IntFieldUpdateOperationsInput | number | $Types.Skip
+    price?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    cart_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type VariantsCreateManyFileInput = {
-    id?: string
+    id?: string | $Types.Skip
     product_id: string
-    size?: $Enums.Size
-    textColor?: $Enums.TextColor
+    size?: $Enums.Size | $Types.Skip
+    textColor?: $Enums.TextColor | $Types.Skip
     rgb: string
     stock: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    createdAt?: Date | string | $Types.Skip
+    updatedAt?: Date | string | $Types.Skip
   }
 
   export type VariantsUpdateWithoutFileInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    size?: EnumSizeFieldUpdateOperationsInput | $Enums.Size
-    textColor?: EnumTextColorFieldUpdateOperationsInput | $Enums.TextColor
-    rgb?: StringFieldUpdateOperationsInput | string
-    stock?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    product?: ProductsUpdateOneRequiredWithoutVariantsNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    size?: EnumSizeFieldUpdateOperationsInput | $Enums.Size | $Types.Skip
+    textColor?: EnumTextColorFieldUpdateOperationsInput | $Enums.TextColor | $Types.Skip
+    rgb?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    stock?: IntFieldUpdateOperationsInput | number | $Types.Skip
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    product?: ProductsUpdateOneRequiredWithoutVariantsNestedInput | $Types.Skip
+    orderDetails?: OrderDetailsUpdateManyWithoutVariantsNestedInput | $Types.Skip
+    cartDetails?: CartDetailsUpdateManyWithoutVariantsNestedInput | $Types.Skip
   }
 
   export type VariantsUncheckedUpdateWithoutFileInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    product_id?: StringFieldUpdateOperationsInput | string
-    size?: EnumSizeFieldUpdateOperationsInput | $Enums.Size
-    textColor?: EnumTextColorFieldUpdateOperationsInput | $Enums.TextColor
-    rgb?: StringFieldUpdateOperationsInput | string
-    stock?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    product_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    size?: EnumSizeFieldUpdateOperationsInput | $Enums.Size | $Types.Skip
+    textColor?: EnumTextColorFieldUpdateOperationsInput | $Enums.TextColor | $Types.Skip
+    rgb?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    stock?: IntFieldUpdateOperationsInput | number | $Types.Skip
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    orderDetails?: OrderDetailsUncheckedUpdateManyWithoutVariantsNestedInput | $Types.Skip
+    cartDetails?: CartDetailsUncheckedUpdateManyWithoutVariantsNestedInput | $Types.Skip
   }
 
   export type VariantsUncheckedUpdateManyWithoutFileInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    product_id?: StringFieldUpdateOperationsInput | string
-    size?: EnumSizeFieldUpdateOperationsInput | $Enums.Size
-    textColor?: EnumTextColorFieldUpdateOperationsInput | $Enums.TextColor
-    rgb?: StringFieldUpdateOperationsInput | string
-    stock?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    product_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    size?: EnumSizeFieldUpdateOperationsInput | $Enums.Size | $Types.Skip
+    textColor?: EnumTextColorFieldUpdateOperationsInput | $Enums.TextColor | $Types.Skip
+    rgb?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    stock?: IntFieldUpdateOperationsInput | number | $Types.Skip
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
   }
 
   export type ProductCategoriesCreateManyCategoriesInput = {
@@ -20024,51 +25060,79 @@ export namespace Prisma {
   }
 
   export type CategoriesCreateManyParentInput = {
-    id?: string
+    id?: string | $Types.Skip
     name: string
     active: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    createdAt?: Date | string | $Types.Skip
+    updatedAt?: Date | string | $Types.Skip
   }
 
   export type ProductCategoriesUpdateWithoutCategoriesInput = {
-    products?: ProductsUpdateOneRequiredWithoutProductCategoriesNestedInput
+    products?: ProductsUpdateOneRequiredWithoutProductCategoriesNestedInput | $Types.Skip
   }
 
   export type ProductCategoriesUncheckedUpdateWithoutCategoriesInput = {
-    productId?: StringFieldUpdateOperationsInput | string
+    productId?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type ProductCategoriesUncheckedUpdateManyWithoutCategoriesInput = {
-    productId?: StringFieldUpdateOperationsInput | string
+    productId?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
   export type CategoriesUpdateWithoutParentInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    productCategories?: ProductCategoriesUpdateManyWithoutCategoriesNestedInput
-    Categories?: CategoriesUpdateManyWithoutParentNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    active?: BoolFieldUpdateOperationsInput | boolean | $Types.Skip
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    productCategories?: ProductCategoriesUpdateManyWithoutCategoriesNestedInput | $Types.Skip
+    Categories?: CategoriesUpdateManyWithoutParentNestedInput | $Types.Skip
   }
 
   export type CategoriesUncheckedUpdateWithoutParentInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    productCategories?: ProductCategoriesUncheckedUpdateManyWithoutCategoriesNestedInput
-    Categories?: CategoriesUncheckedUpdateManyWithoutParentNestedInput
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    active?: BoolFieldUpdateOperationsInput | boolean | $Types.Skip
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    productCategories?: ProductCategoriesUncheckedUpdateManyWithoutCategoriesNestedInput | $Types.Skip
+    Categories?: CategoriesUncheckedUpdateManyWithoutParentNestedInput | $Types.Skip
   }
 
   export type CategoriesUncheckedUpdateManyWithoutParentInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    active?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    name?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    active?: BoolFieldUpdateOperationsInput | boolean | $Types.Skip
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string | $Types.Skip
+  }
+
+  export type CartDetailsCreateManyCartInput = {
+    id?: string | $Types.Skip
+    quantity: number
+    price: number
+    variant_id: string
+  }
+
+  export type CartDetailsUpdateWithoutCartInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    quantity?: IntFieldUpdateOperationsInput | number | $Types.Skip
+    price?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    variants?: VariantsUpdateOneRequiredWithoutCartDetailsNestedInput | $Types.Skip
+  }
+
+  export type CartDetailsUncheckedUpdateWithoutCartInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    quantity?: IntFieldUpdateOperationsInput | number | $Types.Skip
+    price?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    variant_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+  }
+
+  export type CartDetailsUncheckedUpdateManyWithoutCartInput = {
+    id?: StringFieldUpdateOperationsInput | string | $Types.Skip
+    quantity?: IntFieldUpdateOperationsInput | number | $Types.Skip
+    price?: FloatFieldUpdateOperationsInput | number | $Types.Skip
+    variant_id?: StringFieldUpdateOperationsInput | string | $Types.Skip
   }
 
 

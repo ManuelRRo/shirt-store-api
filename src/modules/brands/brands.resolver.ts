@@ -9,9 +9,15 @@ import {
 import { BrandsService } from './brands.service';
 import { ProductsService } from 'src/modules/products/products.service';
 import { CreateBrandInput } from './input/create-brand.input';
-import { Products } from 'src/common/models/products.model';
-import { Brand } from 'src/common/models/brand.model';
+import { Products } from 'src/modules/products/model/products.model';
+import { Brand } from 'src/modules/brands/model/brand.model';
 import { PaginationArgs } from 'src/common/args/pagination.args';
+import { UseGuards } from '@nestjs/common';
+import { GqlAuthGuard } from 'src/common/guards/gql-auth.guard';
+import { RolesGuard } from 'src/common/guards/roles.guard';
+import { Roles } from 'src/common/decorators/role.decorator';
+import { ROLES } from 'src/common/enums/roles.enum';
+//import { Roles } from 'src/common/decorators/role.decorator';
 
 @Resolver(() => Brand)
 export class BrandsResolver {
@@ -30,7 +36,9 @@ export class BrandsResolver {
     return this.brandsService.getBrandById(id);
   }
 
+  @UseGuards(GqlAuthGuard, RolesGuard)
   @Mutation(() => Brand, { name: 'newBrand' })
+  @Roles(ROLES.MANAGER)
   createBrand(@Args('input') input: CreateBrandInput) {
     return this.brandsService.createBrand(input);
   }

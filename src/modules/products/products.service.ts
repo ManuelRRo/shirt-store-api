@@ -3,7 +3,7 @@ import { Products } from 'generated/prisma';
 import { PrismaService } from 'src/prisma.service';
 import { ProductFilteArgs } from './args/product-filter.args';
 import { ProductInput } from './inputs/create-product.input';
-import { Size, TextColor } from 'src/common/models/variants.model';
+import { Size, TextColor } from 'src/modules/variants/model/variants.model';
 import { PaginationArgs } from 'src/common/args/pagination.args';
 import { ProductActiveInput } from './inputs/changeActiveProduct.input';
 import { UpdateProductInput } from './inputs/updateProduct.input';

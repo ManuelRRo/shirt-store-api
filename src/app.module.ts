@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { BrandsModule } from './modules/brands/brands.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
@@ -12,6 +12,14 @@ import { ProductCategoriesModule } from './modules/product-categories/product-ca
 import { CategoriesModule } from './modules/categories/categories.module';
 import { DataloaderModule } from './common/modules/dataloader/dataloader.module';
 import { DataLoaderService } from './common/modules/dataloader/dataloader.service';
+import { OrdersModule } from './modules/orders/orders.module';
+import { LikesModule } from './modules/likes/likes.module';
+import { RolesModule } from './modules/roles/roles.module';
+import { JwtModule, JwtService } from '@nestjs/jwt';
+import { CartsModule } from './modules/carts/carts.module';
+import { CartsDetailsModule } from './modules/carts-details/carts-details.module';
+import { PaymentsModule } from './modules/payments/payments.module';
+import { AppService } from './app.service';
 
 @Module({
   imports: [
@@ -26,11 +34,19 @@ import { DataLoaderService } from './common/modules/dataloader/dataloader.servic
         playground: false,
         plugins: [ApolloServerPluginLandingPageLocalDefault()],
         introspection: true,
-        context: () => ({
-          loaders: dataloderService.getLoaders(),
-        }),
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        context: ({ req }) => ({ req, loaders: dataloderService.getLoaders() }),
       }),
       inject: [DataLoaderService],
+    }),
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        secret: configService.get<string>('JWT_SECRET'),
+        global: true, // This makes the module global
+        signOptions: { expiresIn: '30m' },
+      }),
     }),
     UsersModule,
     AuthModule,
@@ -40,8 +56,15 @@ import { DataLoaderService } from './common/modules/dataloader/dataloader.servic
     ProductCategoriesModule,
     CategoriesModule,
     DataloaderModule,
+    OrdersModule,
+    LikesModule,
+    RolesModule,
+    CartsModule,
+    CartsDetailsModule,
+    PaymentsModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [JwtService, AppService],
+  exports: [AppService],
 })
 export class AppModule {}
